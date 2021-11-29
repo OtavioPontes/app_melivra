@@ -13,10 +13,10 @@ abstract class ThemesMeLivra {
       brightness: Brightness.light,
       primary: ColorsMeLivra().purple,
       primaryVariant: ColorsMeLivra().lightPurple,
-      onPrimary: ColorsMeLivra().white,
+      onPrimary: ColorsMeLivra().black,
       secondary: ColorsMeLivra().green,
       secondaryVariant: ColorsMeLivra().green.shade800,
-      onSecondary: ColorsMeLivra().white,
+      onSecondary: ColorsMeLivra().black,
       background: ColorsMeLivra().white,
       scaffoldBackground: ColorsMeLivra().white,
       onBackground: ColorsMeLivra().black,
@@ -57,7 +57,7 @@ abstract class ThemesMeLivra {
       bottomNavigationBarBackgroundColor: ColorsMeLivra().black.shade300,
       inputFillColor: ColorsMeLivra().black.shade300,
       appBarBackgroundColor: ColorsMeLivra().black.shade500,
-      fontColor: ColorsMeLivra().white,
+      fontColor: ColorsMeLivra().black,
       primarySwatch: ColorsMeLivra().black,
     );
   }
@@ -174,6 +174,7 @@ abstract class ThemesMeLivra {
         headline2: TextStyle(
           fontSize: 52.scale,
           fontWeight: FontWeight.w300,
+          color: onPrimary,
           letterSpacing: -0.5,
         ),
         headline3: TextStyle(

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "834072919526",
+    "project_id": "melivra",
+    "storage_bucket": "melivra.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834072919526:android:46a9006af817086c6a6a27",
+        "android_client_info": {
+          "package_name": "com.otaviopontes.app_melivra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834072919526-tu147ht91fnct01lscuemgk3fv36lbpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7SJUQ9NCWPLvJ_gu7bnn1AMqcBu_vSeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834072919526-tu147ht91fnct01lscuemgk3fv36lbpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

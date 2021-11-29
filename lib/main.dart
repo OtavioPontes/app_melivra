@@ -3,18 +3,21 @@ import 'dart:isolate';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'app/app_module.dart';
 import 'app/app_widget.dart';
+import 'app/core/utils/appinfo.dart';
 
-late final FirebaseAnalytics firebaseAnalyticsProduction;
+late final FirebaseAnalytics firebaseAnalytics;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
-  firebaseAnalyticsProduction = FirebaseAnalytics();
-  await firebaseAnalyticsProduction.setAnalyticsCollectionEnabled(false);
+  firebaseAnalytics = FirebaseAnalytics();
+  await firebaseAnalytics.setAnalyticsCollectionEnabled(false);
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   Isolate.current.addErrorListener(
     RawReceivePort((pair) async {
@@ -26,14 +29,7 @@ void main() async {
     }).sendPort,
   );
 
-  // await AppInfoWay.init();
-  // await LoggerWay.init(LoggerWayConfig.development());
-  // await AuthWay.init(AuthWayConfig.development());
-  // await SpoolWay.init(SpoolWayConfig.development(endpointConfigProduction));
-
-  // Modular.to.addListener(() {
-  //   LoggerWay.instance.information(description: '[FLOW] ${Modular.to.path}');
-  // });
+  await AppInfo.init();
 
   runApp(
     ModularApp(

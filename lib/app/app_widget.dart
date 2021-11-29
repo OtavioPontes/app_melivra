@@ -1,6 +1,4 @@
 import 'package:app_melivra/app/core/style/theme.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -26,25 +24,18 @@ class _AppWidgetState extends State<AppWidget> {
     ]);
   }
 
-  static FirebaseAnalytics analytics = FirebaseAnalytics();
-  static FirebaseAnalyticsObserver observer =
-      FirebaseAnalyticsObserver(analytics: analytics);
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtil.builder(
-      designUI: DesignUI.iPhone12ProMax,
+      designUI: DesignUI.androidMaterial,
       designUITablet: DesignUI.iPadPro12dot9,
       builder: (context, constraints, orientation) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Me Livra',
           theme: ThemesMeLivra.light,
+          darkTheme: ThemesMeLivra.dark,
           initialRoute: AppModule.initialRoute,
-          navigatorObservers: <NavigatorObserver>[observer],
-          supportedLocales: const [
-            Locale('pt', 'BR'),
-          ],
         ).modular();
       },
     );
