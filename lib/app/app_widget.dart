@@ -28,7 +28,7 @@ class _AppWidgetState extends State<AppWidget> {
   Widget build(BuildContext context) {
     return ScreenUtil.builder(
       designUI: DesignUI.androidMaterial,
-      designUITablet: DesignUI.iPadPro12dot9,
+      designUITablet: DesignUI.androidMaterial,
       builder: (context, constraints, orientation) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,

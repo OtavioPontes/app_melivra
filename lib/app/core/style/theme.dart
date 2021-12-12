@@ -2,7 +2,6 @@ import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/colors.dart';
 import 'package:app_melivra/app/core/style/fonts.dart';
 import 'package:app_melivra/app/core/extensions/brightness_extension.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

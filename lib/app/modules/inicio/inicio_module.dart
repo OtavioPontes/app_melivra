@@ -1,6 +1,4 @@
-import 'package:app_melivra/app/core/utils/appinfo.dart';
 import 'package:app_melivra/app/modules/inicio/presentation/pages/inicio_page.dart';
-import 'package:app_melivra/app/modules/splash/presentation/controller/splash_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'presentation/controller/inicio_controller.dart';

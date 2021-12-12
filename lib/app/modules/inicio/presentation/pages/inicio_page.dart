@@ -29,6 +29,8 @@ class _InicioPageState extends ModularState<InicioPage, InicioController> {
                 children: [
                   Image.asset(
                     'assets/images/logo.png',
+                    fit: BoxFit.fitHeight,
+                    height: 80.scale,
                   ),
                   SizedBox(
                     height: 16.scale,
@@ -42,12 +44,14 @@ class _InicioPageState extends ModularState<InicioPage, InicioController> {
             ),
           ),
           Positioned(
-            bottom: -size.height * 0.05,
+            bottom: 0,
             width: size.width,
             child: SvgPicture.asset(
               AssetsMeLivra.inicio,
+              fit: BoxFit.fill,
               color: theme.primaryColor,
               width: size.width,
+              height: size.height * 0.65,
             ),
           ),
           Positioned(
@@ -138,6 +142,7 @@ class _InicioPageState extends ModularState<InicioPage, InicioController> {
                         Image.asset(
                           AssetsMeLivra.googleIcon,
                           fit: BoxFit.fitHeight,
+                          height: 25.scale,
                         ),
                         SizedBox(
                           width: 16.scale,
