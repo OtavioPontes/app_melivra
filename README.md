@@ -1,16 +1,14 @@
-# app_melivra
+# 📱 App Me Livra
 
-A new Flutter project.
+Aplicativo para avaliação de discentes e institutos na UFG.
 
-## Getting Started
+[EM PRODUÇÃO]
 
-This project is a starting point for a Flutter application.
+## 🔧 Stack do Projeto
 
-A few resources to get you started if this is your first Flutter project:
+- Framework Mobile: Flutter
+- Gerenciamento de estados: Bloc
+- Arquitetura Clean Modular
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🎨 Figma
+https://www.figma.com/file/dzweMI4l5xILBmtmbfLY7O/%F0%9F%91%A8%E2%80%8D%F0%9F%8F%AB-Me-Livra-2.0?node-id=15%3A26
