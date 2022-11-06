@@ -1,66 +1,47 @@
+import 'dart:async';
+
+import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
 import 'package:app_melivra/app/core/utils/appinfo.dart';
 import 'package:app_melivra/app/core/utils/control_state.dart';
-import 'package:mobx/mobx.dart';
-import 'package:pedantic/pedantic.dart';
+import 'package:app_melivra/app/modules/splash/domain/usecases/splash_pipeline_usecase.dart';
 
-import '../../domain/usecases/i_splash_pipeline_usecase.dart';
-
-part 'splash_controller.g.dart';
-
-class SplashController = _SplashControllerBase with _$SplashController;
-
-abstract class _SplashControllerBase with Store {
-  final ISplashPipelineUseCase _pipeline;
+class SplashController {
+  final SplashPipelineUseCase _pipeline;
 
   final AppInfo _appInfo;
 
-  _SplashControllerBase({
-    required ISplashPipelineUseCase pipeline,
+  SplashController({
+    required SplashPipelineUseCase pipeline,
     required AppInfo appInfo,
   })  : _pipeline = pipeline,
         _appInfo = appInfo {
-    _init();
+    this.pipeline();
   }
 
-  @observable
   ControlState state = ControlState.start;
-  @observable
+
   String failureMessage = '';
-  @observable
   String loadingMessage = '';
-  @observable
-  String appVersion = '';
-  @observable
   String appName = '';
+  String appVersion = '';
 
-  @action
-  void _setLoadingMessage({required String value}) => loadingMessage = value;
+  void setLoadingMessage({required String value}) => loadingMessage = value;
 
-  @action
-  void _setStateFailure({
+  void setStateFailure({
     required String failureMessage,
   }) {
     this.failureMessage = failureMessage;
-    state = ControlState.failure;
-  }
-
-  Future<void> _init() async {
-    appName = _appInfo.packageInfo.appName;
-    unawaited(pipeline());
+    state = ControlState.failure(failureMessage);
   }
 
   Future<void> pipeline() async {
     state = ControlState.loading;
+    appName = _appInfo.packageInfo.appName;
     appVersion = _appInfo.packageInfo.version;
-    final failureOrPathToNavigate = await _pipeline(
-      ParamsSplashPipeline(
-        setLoadingMessage: (message) => _setLoadingMessage(value: message),
-        appVersion: appVersion,
-      ),
-    );
+    final failureOrPathToNavigate = await _pipeline(const NoParams());
 
     failureOrPathToNavigate.fold(
-      (failure) => _setStateFailure(failureMessage: failure.message),
+      (failure) => setStateFailure(failureMessage: failure.message),
       (path) => path,
     );
   }

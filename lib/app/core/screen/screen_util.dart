@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../extensions/orientation_extension.dart';
 import '../extensions/screen_extension.dart';
@@ -59,7 +58,7 @@ class ScreenUtil {
     double block;
     double blockVertical;
 
-    final double bottomBarHeight = kBottomNavigationBarHeight;
+    const double bottomBarHeight = kBottomNavigationBarHeight;
     final ScreenUtil instance = ScreenUtil._();
 
     width = constraints.maxWidth;

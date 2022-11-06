@@ -1,7 +1,8 @@
 import 'package:app_melivra/app/core/network/network_info.dart';
 import 'package:app_melivra/app/core/utils/appinfo.dart';
 import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
-import 'package:app_melivra/app/modules/splash/domain/usecases/initializers_usecase.dart';
+import 'package:app_melivra/app/modules/cadastro/cadastro_module.dart';
+import 'package:app_melivra/app/modules/login/login_module.dart';
 import 'package:app_melivra/app/modules/splash/domain/usecases/splash_pipeline_usecase.dart';
 import 'package:app_melivra/app/modules/splash/splash_module.dart';
 import 'package:app_melivra/main.dart';
@@ -10,7 +11,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AppModule extends Module {
-  static String get initialRoute => SplashModule.initialRoute;
+  static String get routeName => SplashModule.routeName;
 
   @override
   List<Bind> get binds => [
@@ -19,12 +20,9 @@ class AppModule extends Module {
         // --------------------- CONTROLLERS ----------------------
 
         // ---------------------- USE CASES -----------------------
-        Bind((i) => InitalizersUseCase(networkInfo: i())),
 
         Bind(
           (i) => SplashPipelineUseCase(
-            initalizersUseCase: i(),
-            getConfiguracaoUseCase: i(),
             networkInfo: i(),
           ),
         ),
@@ -44,17 +42,22 @@ class AppModule extends Module {
       ];
 
   @override
-  final List<Module> imports = [];
-
-  @override
   final List<ModularRoute> routes = [
     ModuleRoute(
-      SplashModule.initialRoute,
+      SplashModule.routeName,
       module: SplashModule(),
     ),
     ModuleRoute(
-      InicioModule.initialRoute,
+      InicioModule.routeName,
       module: InicioModule(),
+    ),
+    ModuleRoute(
+      CadastroModule.routeName,
+      module: CadastroModule(),
+    ),
+    ModuleRoute(
+      LoginModule.routeName,
+      module: LoginModule(),
     ),
   ];
 }

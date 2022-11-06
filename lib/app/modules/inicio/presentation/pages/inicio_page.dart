@@ -1,6 +1,8 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/modules/inicio/presentation/controller/inicio_controller.dart';
+import 'package:app_melivra/app/modules/cadastro/cadastro_module.dart';
+import 'package:app_melivra/app/modules/login/login_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,7 +14,8 @@ class InicioPage extends StatefulWidget {
   _InicioPageState createState() => _InicioPageState();
 }
 
-class _InicioPageState extends ModularState<InicioPage, InicioController> {
+class _InicioPageState extends State<InicioPage> {
+  final InicioController controller = Modular.get<InicioController>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,10 +30,11 @@ class _InicioPageState extends ModularState<InicioPage, InicioController> {
               ),
               child: Column(
                 children: [
-                  Image.asset(
-                    'assets/images/logo.png',
-                    fit: BoxFit.fitHeight,
-                    height: 80.scale,
+                  SvgPicture.asset(
+                    AssetsMeLivra.logo,
+                    width: 85.scale,
+                    height: 85.scale,
+                    fit: BoxFit.fitWidth,
                   ),
                   SizedBox(
                     height: 16.scale,
@@ -85,7 +89,8 @@ class _InicioPageState extends ModularState<InicioPage, InicioController> {
                         ),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () =>
+                        Modular.to.pushNamed(LoginModule.routeName),
                     child: Text(
                       "Fazer Login",
                       style: theme.textTheme.headline5!.merge(
@@ -112,7 +117,8 @@ class _InicioPageState extends ModularState<InicioPage, InicioController> {
                         width: 2,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () =>
+                        Modular.to.pushNamed(CadastroModule.routeName),
                     child: Text(
                       "Cadastrar",
                       style: theme.textTheme.headline5!.merge(

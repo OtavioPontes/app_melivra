@@ -6,14 +6,14 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
-  flutter_modular: ^4.2.0
+  flutter_modular: ^5.0.3
 
   # Gerência de Estados
   mobx: ^2.0.5
@@ -22,29 +22,29 @@ dependencies:
   # Utils
   equatable: ^2.0.3
   dartz: ^0.10.0
-  version: ^2.0.0
+  version: ^3.0.2
   google_sign_in: ^5.2.1
   package_info: ^2.0.2
   device_info: ^2.0.3
-  connectivity_plus: ^2.0.3
+  connectivity_plus: ^3.0.2
 
   # Images
-  flutter_svg: ^0.23.0+1
+  flutter_svg: ^1.1.6
 
   # Firebase
-  firebase_core: ^1.10.0
-  firebase_storage: ^10.0.3
-  firebase_analytics: ^8.3.4
-  firebase_crashlytics: ^2.3.0
+  firebase_core: ^2.1.1
+  firebase_storage: ^11.0.3
+  firebase_analytics: ^10.0.3
+  firebase_crashlytics: ^3.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
   mobx_codegen: ^2.0.4
   build_runner: ^2.1.5
-  mocktail: ^0.2.0
+  mocktail: ^0.3.0
 
 flutter:
   uses-material-design: true

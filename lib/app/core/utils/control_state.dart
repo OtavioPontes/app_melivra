@@ -1,103 +1,39 @@
-import 'package:flutter/foundation.dart';
+import 'package:equatable/equatable.dart';
 
-// class ControlState extends Equatable {
-//   @override
-//   List<Object?> get props => [];
+abstract class ControlState extends Equatable {
+  @override
+  List<Object?> get props => [];
 
-//   static ControlState get start => StartControlState();
-//   static ControlState empty(String message) =>
-//       EmptyControlState(message: message);
-//   static ControlState get loading => LoadingControlState();
-//   static ControlState get success => SuccessControlState();
-//   static ControlState failure(String message) =>
-//       FailureControlState(message: message);
+  static ControlState get start => StartState();
+  static ControlState empty([String? message]) => EmptyState(message: message);
+  static ControlState get loading => LoadingState();
+  static ControlState get success => SuccessState();
+  static ControlState failure([String? message]) =>
+      FailureState(message: message);
 
-//   bool get isStart => this is StartControlState;
-//   bool get isEmpty => this is EmptyControlState;
-//   bool get isLoading => this is LoadingControlState;
-//   bool get isSuccess => this is SuccessControlState;
-//   bool get isFailure => this is FailureControlState;
-//   bool get isPermissionDenied => this is PermissionControlState;
-
-//   bool get isNotStart => this is! StartControlState;
-//   bool get isNotEmpty => this is! EmptyControlState;
-//   bool get isNotLoading => this is! LoadingControlState;
-//   bool get isNotSuccess => this is! SuccessControlState;
-//   bool get isNotFailure => this is! FailureControlState;
-//   bool get isNotPermission => this is! PermissionControlState;
-// }
-
-// class StartControlState extends ControlState {}
-
-// class EmptyControlState extends ControlState {
-//   final String message;
-
-//   EmptyControlState({required this.message});
-
-//   EmptyControlState copyWith({
-//     String? message,
-//   }) {
-//     return EmptyControlState(
-//       message: message ?? this.message,
-//     );
-//   }
-// }
-
-// class LoadingControlState extends ControlState {}
-
-// class SuccessControlState extends ControlState {}
-
-// class FailureControlState extends ControlState {
-//   final String message;
-
-//   FailureControlState({required this.message});
-
-//   factory FailureControlState.fromFailure(IFailure failure) {
-//     return FailureControlState(message: failure.message);
-//   }
-
-//   FailureControlState copyWith({
-//     String? message,
-//   }) {
-//     return FailureControlState(
-//       message: message ?? this.message,
-//     );
-//   }
-// }
-
-// class PermissionControlState extends ControlState {
-//   final String message;
-
-//   PermissionControlState({required this.message});
-
-//   PermissionControlState copyWith({
-//     String? message,
-//   }) {
-//     return PermissionControlState(
-//       message: message ?? this.message,
-//     );
-//   }
-// }
-
-enum ControlState {
-  start,
-  empty,
-  loading,
-  sucess,
-  failure,
+  bool get isStart => this is StartState;
+  bool get isEmpty => this is EmptyState;
+  bool get isLoading => this is LoadingState;
+  bool get isSuccess => this is SuccessState;
+  bool get isFailure => this is FailureState;
 }
 
-extension ParseToString on ControlState {
-  String toShortString() => describeEnum(this);
+class StartState extends ControlState {}
 
-  bool get isStart => this == ControlState.start;
-  bool get isEmpty => this == ControlState.empty;
-  bool get isLoading => this == ControlState.loading;
-  bool get isSucess => this == ControlState.sucess;
-  bool get isFailure => this == ControlState.failure;
-  bool get isNotStart => this != ControlState.start;
-  bool get isNotEmpty => this != ControlState.empty;
-  bool get isNotLoading => this != ControlState.loading;
-  bool get isNotSucess => this != ControlState.sucess;
-  bool get isNotFailure => this != ControlState.failure;
+class EmptyState extends ControlState {
+  final String? message;
+
+  EmptyState({this.message = 'Não encontramos nada aqui...'});
+}
+
+class LoadingState extends ControlState {}
+
+class SuccessState extends ControlState {}
+
+class FailureState extends ControlState {
+  final String? message;
+
+  FailureState({
+    this.message = 'Ocorreu um erro 😥',
+  });
 }

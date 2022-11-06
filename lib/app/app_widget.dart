@@ -26,17 +26,19 @@ class _AppWidgetState extends State<AppWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Modular.setInitialRoute(AppModule.routeName);
     return ScreenUtil.builder(
       designUI: DesignUI.androidMaterial,
       designUITablet: DesignUI.androidMaterial,
       builder: (context, constraints, orientation) {
-        return MaterialApp(
+        return MaterialApp.router(
+          routeInformationParser: Modular.routeInformationParser,
+          routerDelegate: Modular.routerDelegate,
           debugShowCheckedModeBanner: false,
           title: 'Me Livra',
           theme: ThemesMeLivra.light,
           darkTheme: ThemesMeLivra.dark,
-          initialRoute: AppModule.initialRoute,
-        ).modular();
+        );
       },
     );
   }

@@ -4,8 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'presentation/controller/inicio_controller.dart';
 
 class InicioModule extends Module {
-  static const String routeName = '/inicio';
-  static const String initialRoute = '/inicio/';
+  static const String routeName = '/inicio/';
 
   @override
   List<Bind> get binds => [

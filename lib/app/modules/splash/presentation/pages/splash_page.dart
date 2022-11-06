@@ -15,14 +15,17 @@ class SplashPage extends StatefulWidget {
   _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashPageState extends ModularState<SplashPage, SplashController> {
+class _SplashPageState extends State<SplashPage> {
+  final SplashController controller = Modular.get<SplashController>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     ThemeData theme = Theme.of(context);
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
-        statusBarColor: theme.colorScheme.primary,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarColor: theme.backgroundColor,
+        systemNavigationBarColor: theme.colorScheme.primary,
       ),
       child: Scaffold(
         body: Stack(children: [
@@ -33,8 +36,11 @@ class _SplashPageState extends ModularState<SplashPage, SplashController> {
               ),
               child: Column(
                 children: [
-                  Image.asset(
-                    'assets/images/logo.png',
+                  SvgPicture.asset(
+                    AssetsMeLivra.logo,
+                    width: 85.scale,
+                    height: 85.scale,
+                    fit: BoxFit.fitWidth,
                   ),
                   SizedBox(
                     height: 16.scale,
@@ -79,16 +85,14 @@ class _SplashPageState extends ModularState<SplashPage, SplashController> {
                 SizedBox(
                   height: 32.scale,
                 ),
-                Observer(builder: (_) {
-                  return Text(
-                    controller.loadingMessage,
-                    style: theme.textTheme.subtitle1!.merge(
-                      TextStyle(
-                        color: theme.colorScheme.surface,
-                      ),
+                Text(
+                  controller.loadingMessage,
+                  style: theme.textTheme.subtitle1!.merge(
+                    TextStyle(
+                      color: theme.colorScheme.surface,
                     ),
-                  );
-                }),
+                  ),
+                ),
                 SizedBox(
                   height: 32.scale,
                 ),

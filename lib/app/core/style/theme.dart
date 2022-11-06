@@ -154,8 +154,6 @@ abstract class ThemesMeLivra {
         background: background,
         surface: surface,
         error: error,
-        primaryVariant: primaryVariant,
-        secondaryVariant: secondaryVariant,
         onBackground: onBackground,
         onPrimary: onPrimary,
         onSecondary: onSecondary,

@@ -1,13 +1,12 @@
 import 'package:app_melivra/app/core/utils/appinfo.dart';
-import 'package:app_melivra/app/modules/splash/domain/usecases/get_configuracao_usecase.dart';
+
 import 'package:app_melivra/app/modules/splash/presentation/controller/splash_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'presentation/pages/splash_page.dart';
 
 class SplashModule extends Module {
-  static const String routeName = '/splash';
-  static const String initialRoute = '/splash/';
+  static const String routeName = '/splash/';
 
   @override
   List<Bind> get binds => [
@@ -22,7 +21,6 @@ class SplashModule extends Module {
         ),
 
         // ---------------------- USE CASES -----------------------
-        Bind((i) => GetConfiguracaoUseCase()),
 
         // --------------------- REPOSITORIES ---------------------
 
