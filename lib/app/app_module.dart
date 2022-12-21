@@ -1,5 +1,7 @@
 import 'package:app_melivra/app/core/network/network_info.dart';
 import 'package:app_melivra/app/core/utils/appinfo.dart';
+import 'package:app_melivra/app/modules/esqueci_senha/esqueci_senha_module.dart';
+import 'package:app_melivra/app/modules/home/home_module.dart';
 import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
 import 'package:app_melivra/app/modules/cadastro/cadastro_module.dart';
 import 'package:app_melivra/app/modules/login/login_module.dart';
@@ -58,6 +60,14 @@ class AppModule extends Module {
     ModuleRoute(
       LoginModule.routeName,
       module: LoginModule(),
+    ),
+    ModuleRoute(
+      EsqueciSenhaModule.routeName,
+      module: EsqueciSenhaModule(),
+    ),
+    ModuleRoute(
+      HomeModule.routeName,
+      module: HomeModule(),
     ),
   ];
 }

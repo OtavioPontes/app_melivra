@@ -33,7 +33,7 @@ class ColorsMeLivra implements IColors {
   final Color grey = const Color(0xFFB4B4B4);
 
   @override
-  final Color purple = const Color(0xFF7713B5);
+  final Color purple = const Color(0xFF651B94);
 
   @override
   final MaterialColor green =

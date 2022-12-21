@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 class TextFieldInicio extends StatelessWidget {
   final String fieldHint;
   final IconData prefixIcon;
+  final bool isPassword;
   final TextEditingController controller;
   const TextFieldInicio({
     Key? key,
+    this.isPassword = false,
     required this.fieldHint,
     required this.prefixIcon,
     required this.controller,
@@ -26,6 +28,7 @@ class TextFieldInicio extends StatelessWidget {
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           hintText: fieldHint,
+          suffixIcon: isPassword ? Icon(Icons.remove_red_eye) : null,
           prefixIcon: Padding(
             padding: const EdgeInsets.only(right: 16),
             child: Icon(prefixIcon),

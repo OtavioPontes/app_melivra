@@ -6,5 +6,6 @@ class AssetsMeLivra {
   static const String googleIcon = "${url}logo_google.png";
   static const String wave = "${url}wave_shape.svg";
   static const String waveLogin = "${url}wave_shape_login.svg";
+  static const String waveHome = "${url}wave_shape_home.svg";
   static const String loginDrawing = "${url}login_drawing.svg";
 }

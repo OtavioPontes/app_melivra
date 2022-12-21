@@ -59,7 +59,7 @@ class _InicioPageState extends State<InicioPage> {
             ),
           ),
           Positioned(
-            bottom: 45.scale,
+            bottom: size.height * 0.12,
             width: size.width,
             child: Padding(
               padding: EdgeInsets.symmetric(
@@ -155,7 +155,7 @@ class _InicioPageState extends State<InicioPage> {
                         ),
                         Text(
                           "Entrar com Google",
-                          style: theme.textTheme.headline5!.merge(
+                          style: theme.textTheme.headline6!.merge(
                             TextStyle(
                               color: theme.colorScheme.onSecondary,
                             ),

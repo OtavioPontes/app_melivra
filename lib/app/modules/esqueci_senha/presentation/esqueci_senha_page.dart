@@ -1,6 +1,4 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
-import 'package:app_melivra/app/modules/esqueci_senha/esqueci_senha_module.dart';
-import 'package:app_melivra/app/modules/home/home_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,8 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/style/assets.dart';
 import '../../../core/widgets/textfield_inicio_widget.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class EsqueciSenhaPage extends StatelessWidget {
+  const EsqueciSenhaPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -75,14 +73,6 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          right: 10,
-                          child: SvgPicture.asset(
-                            AssetsMeLivra.loginDrawing,
-                            width: size.width,
-                            height: 100,
-                          ),
-                        ),
-                        Positioned(
                           top: size.height * 0.12,
                           width: size.width,
                           child: Padding(
@@ -91,42 +81,27 @@ class LoginPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Login',
+                                  'Esqueci minha senha',
                                   style: theme.textTheme.headline4!.merge(
                                     TextStyle(
                                       color: theme.colorScheme.background,
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 24.scale),
+                                SizedBox(height: 16.scale),
+                                Text(
+                                  'Insira seu email e logo mandaremos o link de troca de senha',
+                                  style: theme.textTheme.bodyText2!.merge(
+                                    TextStyle(
+                                      color: theme.colorScheme.background,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 32.scale),
                                 TextFieldInicio(
                                   controller: TextEditingController(),
                                   fieldHint: 'Email',
                                   prefixIcon: Icons.email,
-                                ),
-                                SizedBox(height: 24.scale),
-                                TextFieldInicio(
-                                  controller: TextEditingController(),
-                                  fieldHint: 'Senha',
-                                  prefixIcon: Icons.lock,
-                                  isPassword: true,
-                                ),
-                                SizedBox(height: 16.scale),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 12.scale),
-                                  child: GestureDetector(
-                                    onTap: () => Modular.to.pushNamed(
-                                      EsqueciSenhaModule.routeName,
-                                    ),
-                                    child: Text(
-                                      'Esqueci minha senha',
-                                      style: theme.textTheme.bodyText2!.merge(
-                                        TextStyle(
-                                          color: theme.backgroundColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
                                 ),
                                 SizedBox(height: 32.scale),
                                 Center(
@@ -139,11 +114,9 @@ class LoginPage extends StatelessWidget {
                                       fixedSize: Size(140.scale, 50.scale),
                                       backgroundColor: theme.backgroundColor,
                                     ),
-                                    onPressed: () => Modular.to.pushNamed(
-                                      HomeModule.routeName,
-                                    ),
+                                    onPressed: () {},
                                     child: Text(
-                                      'Entrar',
+                                      'Enviar',
                                       style: theme.textTheme.headline6!.merge(
                                         TextStyle(
                                           color: theme.primaryColor,

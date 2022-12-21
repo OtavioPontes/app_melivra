@@ -37,6 +37,7 @@ class _AppWidgetState extends State<AppWidget> {
           debugShowCheckedModeBanner: false,
           title: 'Me Livra',
           theme: ThemesMeLivra.light,
+          themeMode: ThemeMode.light,
           darkTheme: ThemesMeLivra.dark,
         );
       },
