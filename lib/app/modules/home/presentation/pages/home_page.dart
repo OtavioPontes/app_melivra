@@ -1,9 +1,14 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/style/colors.dart';
+import 'package:app_melivra/app/core/widgets/card_info_instituto_widget.dart';
+import 'package:app_melivra/app/modules/ranking_institutos/ranking_institutos_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../core/widgets/score_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,7 +26,10 @@ class HomePage extends StatelessWidget {
         ),
         child: SafeArea(
           child: SingleChildScrollView(
-            padding: EdgeInsets.only(top: 32.scale),
+            padding: EdgeInsets.only(
+              top: 32.scale,
+              bottom: 40.scale,
+            ),
             physics: const BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +63,8 @@ class HomePage extends StatelessWidget {
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.search),
                         hintText: 'Pesquisar professor ou instituto',
-                        hintStyle: theme.textTheme.bodyText2,
+                        hintStyle: theme.textTheme.bodyText1!
+                            .merge(TextStyle(color: theme.disabledColor)),
                       ),
                     ),
                   ),
@@ -68,36 +77,35 @@ class HomePage extends StatelessWidget {
                       width: size.width,
                       fit: BoxFit.fitWidth,
                     ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: 32.scale,
-                            top: 40.scale,
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.search,
-                                color: theme.backgroundColor,
-                              ),
-                              SizedBox(width: 16.scale),
-                              Text(
-                                'Mais Pesquisados',
-                                style: theme.textTheme.headline5!.merge(
-                                  TextStyle(
-                                    color: theme.backgroundColor,
-                                  ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 32.scale),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: 40.scale,
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.search,
+                                  color: theme.backgroundColor,
                                 ),
-                              )
-                            ],
+                                SizedBox(width: 8.scale),
+                                Text(
+                                  'Mais Pesquisados',
+                                  style: theme.textTheme.headline5!.merge(
+                                    TextStyle(
+                                      color: theme.backgroundColor,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 32.scale),
-                        SizedBox(
-                          height: 100.scale,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 32.scale),
+                          SizedBox(height: 32.scale),
+                          SizedBox(
+                            height: 100.scale,
                             child: ListView.separated(
                               separatorBuilder: (context, index) =>
                                   SizedBox(width: 16.scale),
@@ -118,8 +126,9 @@ class HomePage extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          const Icon(Icons.refresh),
-                                          SizedBox(height: 16.scale),
+                                          SizedBox(height: 4.scale),
+                                          const ScoreWidget(score: 60),
+                                          SizedBox(height: 12.scale),
                                           const Text('Professor 3'),
                                         ],
                                       ),
@@ -129,8 +138,50 @@ class HomePage extends StatelessWidget {
                               },
                             ),
                           ),
-                        ),
-                      ],
+                          SizedBox(height: 40.scale),
+                          InkWell(
+                            onTap: () => Modular.to
+                                .pushNamed(RankingInstitutosModule.routeName),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: ColorsMeLivra().yellow,
+                                    ),
+                                    SizedBox(width: 8.scale),
+                                    Text(
+                                      'Top Institutos',
+                                      style: theme.textTheme.headline5!.merge(
+                                        TextStyle(
+                                          color: theme.backgroundColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: theme.backgroundColor,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 32.scale),
+                          ListView.separated(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return const CardInfoInstituto();
+                            },
+                            separatorBuilder: (context, index) =>
+                                SizedBox(height: 16.scale),
+                            itemCount: 3,
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 )

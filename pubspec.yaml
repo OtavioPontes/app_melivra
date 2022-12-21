@@ -16,8 +16,6 @@ dependencies:
   flutter_modular: ^5.0.3
 
   # Gerência de Estados
-  mobx: ^2.0.5
-  flutter_mobx: ^2.0.2
 
   # Utils
   equatable: ^2.0.3

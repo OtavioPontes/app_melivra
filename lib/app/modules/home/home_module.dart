@@ -4,6 +4,12 @@ import 'presentation/pages/home_page.dart';
 
 class HomeModule extends Module {
   static String routeName = '/home/';
+
+  static ModularProvider get provider => ModularProvider(
+        module: HomeModule(),
+        child: const HomePage(),
+      );
+
   @override
   List<Bind> get binds => [];
 

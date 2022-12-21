@@ -28,7 +28,7 @@ class TextFieldInicio extends StatelessWidget {
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           hintText: fieldHint,
-          suffixIcon: isPassword ? Icon(Icons.remove_red_eye) : null,
+          suffixIcon: isPassword ? const Icon(Icons.remove_red_eye) : null,
           prefixIcon: Padding(
             padding: const EdgeInsets.only(right: 16),
             child: Icon(prefixIcon),

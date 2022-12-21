@@ -128,42 +128,6 @@ class _InicioPageState extends State<InicioPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 16.scale,
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      fixedSize: Size(size.width * 0.8, 54.scale),
-                      backgroundColor: theme.colorScheme.background,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          AssetsMeLivra.googleIcon,
-                          fit: BoxFit.fitHeight,
-                          height: 25.scale,
-                        ),
-                        SizedBox(
-                          width: 16.scale,
-                        ),
-                        Text(
-                          "Entrar com Google",
-                          style: theme.textTheme.headline6!.merge(
-                            TextStyle(
-                              color: theme.colorScheme.onSecondary,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
