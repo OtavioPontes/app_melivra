@@ -16,6 +16,8 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'modules/instituto_details/instituto_details_module.dart';
+import 'modules/professores_details/professores_details_module.dart';
 import 'modules/ranking_institutos/ranking_institutos_module.dart';
 
 class AppModule extends Module {
@@ -94,6 +96,14 @@ class AppModule extends Module {
     ModuleRoute(
       PerfilModule.routeName,
       module: PerfilModule(),
+    ),
+    ModuleRoute(
+      InstitutoDetailsModule.routeName,
+      module: InstitutoDetailsModule(),
+    ),
+    ModuleRoute(
+      ProfessoresDetailsModule.routeName,
+      module: ProfessoresDetailsModule(),
     ),
   ];
 }

@@ -49,6 +49,11 @@ void main() async {
             SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.trophy),
         null,
       ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.waveChat),
+        null,
+      ),
     ]);
     await Firebase.initializeApp();
     FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.instance;

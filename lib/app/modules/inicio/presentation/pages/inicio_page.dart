@@ -59,7 +59,7 @@ class _InicioPageState extends State<InicioPage> {
             ),
           ),
           Positioned(
-            bottom: size.height * 0.12,
+            bottom: size.height * 0.16,
             width: size.width,
             child: Padding(
               padding: EdgeInsets.symmetric(

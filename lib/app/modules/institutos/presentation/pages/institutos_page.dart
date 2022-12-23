@@ -1,7 +1,6 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/widgets/card_info_instituto_widget.dart';
-import 'package:app_melivra/app/core/widgets/card_info_professor_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
