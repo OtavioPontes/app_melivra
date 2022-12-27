@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:app_melivra/app/core/domain/enums/score_enum.dart';
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:flutter/material.dart';
 
 class ScoreTinyWidget extends StatelessWidget {
@@ -26,8 +27,8 @@ class ScoreTinyWidget extends StatelessWidget {
           ),
         ),
         Container(
-          height: 30,
-          width: 30,
+          height: 30.scale,
+          width: 30.scale,
           decoration: BoxDecoration(
             color: theme.cardColor,
             borderRadius: BorderRadius.circular(50),

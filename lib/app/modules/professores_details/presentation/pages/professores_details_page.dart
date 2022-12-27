@@ -22,7 +22,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final Size size = MediaQuery.of(context).size;
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+
     return Scaffold(
       backgroundColor: theme.primaryColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -199,20 +199,27 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                             ),
                             Column(
                               children: [
-                                SizedBox(height: 32.scale),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.chat,
-                                      color: theme.colorScheme.onPrimary,
-                                    ),
-                                    SizedBox(width: 16.scale),
-                                    Text(
-                                      'Avaliações e Comentários',
-                                      style: theme.textTheme.headline5!,
-                                    ),
-                                  ],
+                                SizedBox(height: 16.scale),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 24.scale),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Icon(
+                                        Icons.chat,
+                                        color: theme.colorScheme.onPrimary,
+                                      ),
+                                      SizedBox(width: 32.scale),
+                                      Flexible(
+                                        child: Text(
+                                          'Avaliações e Comentários',
+                                          style: theme.textTheme.headline5!,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(height: 32.scale),
                                 Stack(
@@ -224,22 +231,23 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                       ),
                                       width: size.width * 0.8,
                                       decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(20),
-                                            topLeft: Radius.circular(20),
-                                            topRight: Radius.circular(20),
-                                            bottomRight: Radius.circular(30),
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: theme.colorScheme.onPrimary
-                                                  .withOpacity(0.2),
-                                              offset: Offset(-1, 2),
-                                              blurRadius: 5,
-                                              spreadRadius: 2,
-                                            )
-                                          ],
-                                          color: theme.cardColor),
+                                        borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(20),
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20),
+                                          bottomRight: Radius.circular(30),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: theme.colorScheme.onPrimary
+                                                .withOpacity(0.2),
+                                            offset: const Offset(-1, 2),
+                                            blurRadius: 5,
+                                            spreadRadius: 2,
+                                          )
+                                        ],
+                                        color: theme.cardColor,
+                                      ),
                                       child: TextField(
                                         minLines: 2,
                                         maxLines: 2,

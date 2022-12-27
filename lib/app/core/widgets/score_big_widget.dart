@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:app_melivra/app/core/domain/enums/score_enum.dart';
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:flutter/material.dart';
 
 class ScoreBigWidget extends StatelessWidget {
@@ -18,8 +19,8 @@ class ScoreBigWidget extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         SizedBox(
-          height: 130,
-          width: 130,
+          height: 130.scale,
+          width: 130.scale,
           child: Transform.rotate(
             angle: pi,
             child: CircularProgressIndicator(
@@ -30,8 +31,8 @@ class ScoreBigWidget extends StatelessWidget {
           ),
         ),
         Container(
-          height: 95,
-          width: 95,
+          height: 100.scale,
+          width: 100.scale,
           decoration: BoxDecoration(
             color: theme.cardColor,
             borderRadius: BorderRadius.circular(50),

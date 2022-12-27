@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/widgets/score_widget.dart';
+import '../../../../core/widgets/search_widget.dart';
 
 class ProfessoresPage extends StatelessWidget {
   const ProfessoresPage({Key? key}) : super(key: key);
@@ -31,30 +32,7 @@ class ProfessoresPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                      left: 8.scale,
-                      top: 4.scale,
-                      bottom: 4.scale,
-                    ),
-                    decoration: BoxDecoration(
-                      color: theme.canvasColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    width: size.width * 0.85,
-                    child: TextField(
-                      textAlignVertical: TextAlignVertical.center,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
-                        hintText: 'Pesquisar professor',
-                        hintStyle: theme.textTheme.bodyText1!.merge(
-                          TextStyle(color: theme.disabledColor),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                const SearchWidget(onlyProfessor: true),
                 Stack(
                   children: [
                     Positioned(

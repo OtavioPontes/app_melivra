@@ -1,6 +1,9 @@
+import 'package:app_melivra/app/core/domain/entities/grade.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/widgets/card_info_instituto_widget.dart';
+import 'package:app_melivra/app/core/widgets/search_widget.dart';
+import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,30 +34,7 @@ class InstitutosPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                      left: 8.scale,
-                      top: 4.scale,
-                      bottom: 4.scale,
-                    ),
-                    decoration: BoxDecoration(
-                      color: theme.canvasColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    width: size.width * 0.85,
-                    child: TextField(
-                      textAlignVertical: TextAlignVertical.center,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
-                        hintText: 'Pesquisar institutos',
-                        hintStyle: theme.textTheme.bodyText1!.merge(
-                          TextStyle(color: theme.disabledColor),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                const SearchWidget(onlyInstitutos: true),
                 Stack(
                   children: [
                     Positioned(
@@ -173,7 +153,20 @@ class InstitutosPage extends StatelessWidget {
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (context, index) {
-                                  return const CardInfoInstituto();
+                                  return const CardInfoInstituto(
+                                    instituto: Instituto(
+                                      id: 0,
+                                      name: 'name',
+                                      initials: 'initials',
+                                      grades: Grade(
+                                        coherentEvaluation: 0,
+                                        clearExplanation: 10,
+                                        respectfulTreatment: 0,
+                                        boardOrganization: 0,
+                                        average: 75,
+                                      ),
+                                    ),
+                                  );
                                 },
                                 separatorBuilder: (context, index) =>
                                     SizedBox(height: 16.scale),

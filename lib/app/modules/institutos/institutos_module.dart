@@ -9,7 +9,7 @@ class InstitutosModule extends Module {
   );
 
   @override
-  List<Bind> get binds => const [];
+  List<Bind> get binds => [];
 
   @override
   List<ModularRoute> get routes => [

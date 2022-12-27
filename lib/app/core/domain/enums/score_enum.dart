@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 /// [50 - 79] -> Average
 /// [80 - 100] -> Good
 
-enum ScoreEnum { good, average, bad }
+enum ScoreEnum { good, average, bad, undefined }
 
 class UtilsScoreEnum {
-  static ScoreEnum getEnumFromScore({required int score}) {
+  static ScoreEnum getEnumFromScore({required int? score}) {
+    if (score == null) {
+      return ScoreEnum.undefined;
+    }
     if (score >= 0 && score <= 49) {
       return ScoreEnum.bad;
     }
@@ -25,6 +28,8 @@ class UtilsScoreEnum {
 extension ScoreEnumExtension on ScoreEnum {
   Color get getColor {
     switch (this) {
+      case ScoreEnum.undefined:
+        return ColorsMeLivra().grey;
       case ScoreEnum.bad:
         return ColorsMeLivra().red;
       case ScoreEnum.average:

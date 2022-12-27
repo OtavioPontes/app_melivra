@@ -2,17 +2,21 @@ import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/style/colors.dart';
 import 'package:app_melivra/app/core/widgets/card_info_instituto_widget.dart';
+import 'package:app_melivra/app/modules/home/presentation/bloc/top_institutos_bloc.dart';
+import 'package:app_melivra/app/modules/home/presentation/controllers/home_controller.dart';
 import 'package:app_melivra/app/modules/ranking_institutos/ranking_institutos_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/widgets/score_widget.dart';
+import '../../../../core/widgets/search_widget.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  HomePage({Key? key}) : super(key: key);
+  final HomeController controller = Modular.get<HomeController>();
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -37,7 +41,7 @@ class HomePage extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 32.scale),
                   child: Text(
-                    'Olá, [Usuário]',
+                    'Olá, ${controller.store.loggedUser?.name}',
                     style: theme.textTheme.headline4!.merge(
                       TextStyle(
                         color: theme.colorScheme.background,
@@ -46,29 +50,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 32.scale),
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                      left: 8.scale,
-                      top: 4.scale,
-                      bottom: 4.scale,
-                    ),
-                    decoration: BoxDecoration(
-                      color: theme.canvasColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    width: size.width * 0.85,
-                    child: TextField(
-                      textAlignVertical: TextAlignVertical.center,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
-                        hintText: 'Pesquisar professor ou instituto',
-                        hintStyle: theme.textTheme.bodyText1!
-                            .merge(TextStyle(color: theme.disabledColor)),
-                      ),
-                    ),
-                  ),
-                ),
+                const SearchWidget(),
                 SizedBox(height: 24.scale),
                 Stack(
                   children: [
@@ -170,15 +152,51 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 32.scale),
-                          ListView.separated(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return const CardInfoInstituto();
+                          BlocBuilder(
+                            bloc: controller.bloc,
+                            builder: (context, state) {
+                              if (state.runtimeType ==
+                                  TopInstitutosLoadingState) {
+                                return CircularProgressIndicator(
+                                  color: theme.backgroundColor,
+                                );
+                              }
+                              if (state.runtimeType ==
+                                  TopInstitutosEmptyState) {
+                                return Padding(
+                                  padding: EdgeInsets.all(16.scale),
+                                  child: Center(
+                                    child: Text(
+                                      'Não encontramos nada aqui 😥',
+                                      style: theme.textTheme.headline6!.merge(
+                                        TextStyle(
+                                          color: theme.backgroundColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              if (state.runtimeType ==
+                                  TopInstitutosSuccessState) {
+                                final institutes =
+                                    (state as TopInstitutosSuccessState)
+                                        .rankInstitutes;
+                                return ListView.separated(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return CardInfoInstituto(
+                                      instituto: institutes[index],
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(height: 16.scale),
+                                  itemCount: institutes.length,
+                                );
+                              }
+                              return const SizedBox.shrink();
                             },
-                            separatorBuilder: (context, index) =>
-                                SizedBox(height: 16.scale),
-                            itemCount: 3,
                           )
                         ],
                       ),

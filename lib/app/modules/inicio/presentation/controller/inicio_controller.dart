@@ -1,8 +1,4 @@
-import 'package:app_melivra/app/core/utils/control_state.dart';
-
 class InicioController {
-  ControlState state = ControlState.start;
-
   String failureMessage = '';
 
   String loadingMessage = '';
@@ -13,10 +9,7 @@ class InicioController {
     required String failureMessage,
   }) {
     this.failureMessage = failureMessage;
-    state = ControlState.failure();
   }
 
-  Future<void> pipeline() async {
-    state = ControlState.loading;
-  }
+  Future<void> pipeline() async {}
 }

@@ -7,7 +7,7 @@ class HomeModule extends Module {
 
   static ModularProvider get provider => ModularProvider(
         module: HomeModule(),
-        child: const HomePage(),
+        child: HomePage(),
       );
 
   @override
@@ -17,7 +17,7 @@ class HomeModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) => const HomePage(),
+          child: (context, args) => HomePage(),
         )
       ];
 }

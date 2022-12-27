@@ -4,7 +4,7 @@ import 'package:app_melivra/app/core/domain/enums/score_enum.dart';
 import 'package:flutter/material.dart';
 
 class ScoreWidget extends StatelessWidget {
-  final int score;
+  final int? score;
   const ScoreWidget({
     Key? key,
     required this.score,
@@ -24,7 +24,7 @@ class ScoreWidget extends StatelessWidget {
             angle: pi,
             child: CircularProgressIndicator(
               color: scoreEnum.getColor,
-              value: score / 100,
+              value: score != null ? score! / 100 : 0,
               strokeWidth: 8,
             ),
           ),
@@ -42,7 +42,7 @@ class ScoreWidget extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              score.toString(),
+              score != null ? score.toString() : '-',
               style: theme.textTheme.bodyText1,
             ),
           ),

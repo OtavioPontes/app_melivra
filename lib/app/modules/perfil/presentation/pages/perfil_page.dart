@@ -1,7 +1,10 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
+import 'package:app_melivra/app/modules/perfil/presentation/controllers/perfil_controller.dart';
+import 'package:app_melivra/app/modules/perfil/presentation/widgets/logout_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../widgets/card_deslogar_widget.dart';
@@ -10,7 +13,8 @@ import '../widgets/card_retirada_widget.dart';
 import '../widgets/card_sobre_widget.dart';
 
 class PerfilPage extends StatelessWidget {
-  const PerfilPage({Key? key}) : super(key: key);
+  PerfilPage({Key? key}) : super(key: key);
+  final PerfilController controller = Modular.get<PerfilController>();
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +86,16 @@ class PerfilPage extends StatelessWidget {
                           SizedBox(height: 16.scale),
                           const CardRetirada(),
                           SizedBox(height: 16.scale),
-                          const CardDeslogar(),
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) =>
+                                    LogoutDialog(controller: controller),
+                              );
+                            },
+                            child: const CardDeslogar(),
+                          ),
                         ],
                       ),
                     ),

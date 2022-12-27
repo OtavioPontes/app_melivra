@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
 import 'package:app_melivra/app/core/utils/appinfo.dart';
-import 'package:app_melivra/app/core/utils/control_state.dart';
+
 import 'package:app_melivra/app/modules/splash/domain/usecases/splash_pipeline_usecase.dart';
 
 class SplashController {
@@ -18,8 +18,6 @@ class SplashController {
     this.pipeline();
   }
 
-  ControlState state = ControlState.start;
-
   String failureMessage = '';
   String loadingMessage = '';
   String appName = '';
@@ -31,11 +29,9 @@ class SplashController {
     required String failureMessage,
   }) {
     this.failureMessage = failureMessage;
-    state = ControlState.failure(failureMessage);
   }
 
   Future<void> pipeline() async {
-    state = ControlState.loading;
     appName = _appInfo.packageInfo.appName;
     appVersion = _appInfo.packageInfo.version;
     final failureOrPathToNavigate = await _pipeline(const NoParams());

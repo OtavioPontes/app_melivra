@@ -1,8 +1,10 @@
 import 'package:app_melivra/app/core/network/network_info.dart';
+import 'package:app_melivra/app/core/stores/user_store.dart';
 import 'package:app_melivra/app/core/utils/appinfo.dart';
 import 'package:app_melivra/app/modules/bottom_navigation/bottom_navigation_module.dart';
 import 'package:app_melivra/app/modules/esqueci_senha/esqueci_senha_module.dart';
 import 'package:app_melivra/app/modules/home/home_module.dart';
+import 'package:app_melivra/app/modules/home/presentation/controllers/home_controller.dart';
 import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
 import 'package:app_melivra/app/modules/cadastro/cadastro_module.dart';
 import 'package:app_melivra/app/modules/institutos/institutos_module.dart';
@@ -12,13 +14,26 @@ import 'package:app_melivra/app/modules/professores/professores_module.dart';
 import 'package:app_melivra/app/modules/splash/domain/usecases/splash_pipeline_usecase.dart';
 import 'package:app_melivra/app/modules/splash/splash_module.dart';
 import 'package:app_melivra/main.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+import 'core/network/dio_config.dart';
+import 'modules/home/presentation/bloc/top_institutos_bloc.dart';
 import 'modules/instituto_details/instituto_details_module.dart';
+import 'modules/institutos/data/datasources/i_instituto_datasource.dart';
+import 'modules/institutos/data/datasources/instituto_datasource.dart';
+import 'modules/institutos/data/repositories/instituto_repository.dart';
+import 'modules/institutos/domain/repositories/i_instituto_repository.dart';
+import 'modules/institutos/domain/usecases/get_instituto_details.dart';
+import 'modules/institutos/domain/usecases/get_institutos_rank_usecase.dart';
+import 'modules/institutos/domain/usecases/get_institutos_usecase.dart';
+import 'modules/perfil/presentation/controllers/perfil_controller.dart';
 import 'modules/professores_details/professores_details_module.dart';
 import 'modules/ranking_institutos/ranking_institutos_module.dart';
+import 'modules/search/search_module.dart';
 
 class AppModule extends Module {
   static String get routeName => SplashModule.routeName;
@@ -26,20 +41,38 @@ class AppModule extends Module {
   @override
   List<Bind> get binds => [
         // ------------------------ STORES ------------------------
+        Bind((i) => UserStore(hiveBox: i())),
+        Bind((i) => TopInstitutosBloc()),
+        Bind(
+          (i) => HomeController(
+            store: i(),
+            getInstitutosRankUsecase: i(),
+            bloc: i(),
+          ),
+        ),
+        Bind((i) => PerfilController(store: i())),
 
         // --------------------- CONTROLLERS ----------------------
 
         // ---------------------- USE CASES -----------------------
 
+        Bind((i) => GetInstitutoDetailsUsecase(repository: i())),
+        Bind((i) => GetInstitutosRankUsecase(repository: i())),
+        Bind((i) => GetInstitutosUsecase(repository: i())),
+
         Bind(
           (i) => SplashPipelineUseCase(
+            dioConfig: i(),
+            store: i(),
             networkInfo: i(),
           ),
         ),
 
         // --------------------- REPOSITORIES ---------------------
+        Bind<IInstitutoRepository>((i) => InstitutoRepository(datasource: i())),
 
         // --------------------- DATA SOURCES ---------------------
+        Bind<IInstitutoDatasource>((i) => InstitutoDatasource(dio: i())),
 
         // ----------------------- SERVICES -----------------------
         Bind((i) => AppInfo.instance),
@@ -48,6 +81,17 @@ class AppModule extends Module {
         Bind<FirebaseAnalytics>(
           (i) => firebaseAnalytics,
         ),
+        Bind(
+          (i) => Dio(),
+        ),
+        Bind(
+          (i) => DioConfig(
+            dio: i(),
+          ),
+        ),
+
+        Bind<Box>((i) => Hive.box('melivra'))
+
         // -------------------- NOTIFICATIONS ---------------------
       ];
 
@@ -74,12 +118,12 @@ class AppModule extends Module {
       module: EsqueciSenhaModule(),
     ),
     ModuleRoute(
-      BottomNavigationModule.routeName,
-      module: BottomNavigationModule(),
-    ),
-    ModuleRoute(
       HomeModule.routeName,
       module: HomeModule(),
+    ),
+    ModuleRoute(
+      BottomNavigationModule.routeName,
+      module: BottomNavigationModule(),
     ),
     ModuleRoute(
       RankingInstitutosModule.routeName,
@@ -104,6 +148,10 @@ class AppModule extends Module {
     ModuleRoute(
       ProfessoresDetailsModule.routeName,
       module: ProfessoresDetailsModule(),
+    ),
+    ModuleRoute(
+      SeachModule.routeName,
+      module: SeachModule(),
     ),
   ];
 }

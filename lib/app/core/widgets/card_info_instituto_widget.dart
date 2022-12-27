@@ -1,11 +1,17 @@
-import 'package:app_melivra/app/core/extensions/screen_extension.dart';
-import 'package:app_melivra/app/core/widgets/score_widget.dart';
-import 'package:app_melivra/app/modules/instituto_details/instituto_details_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/core/widgets/score_widget.dart';
+import 'package:app_melivra/app/modules/instituto_details/instituto_details_module.dart';
+import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
+
 class CardInfoInstituto extends StatelessWidget {
-  const CardInfoInstituto({Key? key}) : super(key: key);
+  final Instituto instituto;
+  const CardInfoInstituto({
+    Key? key,
+    required this.instituto,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +40,7 @@ class CardInfoInstituto extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'EMC',
+                              instituto.initials,
                               style: theme.textTheme.headline6!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,
@@ -43,16 +49,17 @@ class CardInfoInstituto extends StatelessWidget {
                             ),
                             SizedBox(height: 2.scale),
                             Text(
-                              'Escola de Engenharia Elétrica, Mecânica e da Computação',
+                              instituto.name,
                               style: theme.textTheme.caption,
                             ),
                           ],
                         ),
                       ),
+                      SizedBox(width: 16.scale),
                     ],
                   ),
                 ),
-                const ScoreWidget(score: 90),
+                ScoreWidget(score: instituto.averageGrade),
               ],
             ),
           ),

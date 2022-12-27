@@ -28,6 +28,12 @@ class ServerFailure extends IFailure {
   }) : super(message: message);
 }
 
+class TokenFailure extends IFailure {
+  const TokenFailure({
+    String message = 'Token expirou',
+  }) : super(message: message);
+}
+
 class InternetConectionFailure extends IFailure {
   const InternetConectionFailure({
     String message = 'Sem conexão com à internet',

@@ -1,0 +1,15 @@
+import 'package:app_melivra/app/core/stores/user_store.dart';
+import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+class PerfilController {
+  final UserStore _store;
+  PerfilController({
+    required UserStore store,
+  }) : _store = store;
+
+  Future<void> logout() async {
+    await _store.clearUser();
+    Modular.to.navigate(InicioModule.routeName);
+  }
+}

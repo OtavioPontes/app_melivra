@@ -9,6 +9,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app/app_module.dart';
 import 'app/app_widget.dart';
@@ -55,6 +56,7 @@ void main() async {
         null,
       ),
     ]);
+
     await Firebase.initializeApp();
     FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.instance;
     await firebaseAnalytics.setAnalyticsCollectionEnabled(false);
@@ -68,7 +70,8 @@ void main() async {
         );
       }).sendPort,
     );
-
+    await Hive.initFlutter();
+    await Hive.openBox('melivra');
     await AppInfo.init();
 
     runApp(
