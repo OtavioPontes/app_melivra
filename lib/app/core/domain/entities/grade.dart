@@ -44,20 +44,20 @@ class Grade extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'average': average,
-      'coherentEvaluation': coherentEvaluation,
-      'clearExplanation': clearExplanation,
-      'respectfulTreatment': respectfulTreatment,
-      'boardOrganization': boardOrganization,
+      'coherent_valuation': coherentEvaluation,
+      'clear_explanation': clearExplanation,
+      'respectful_treatment': respectfulTreatment,
+      'board_organization': boardOrganization,
     };
   }
 
   factory Grade.fromMap(Map<String, dynamic> map) {
     return Grade(
-      average: map['average']?.toInt() ?? 0,
-      coherentEvaluation: map['coherentEvaluation']?.toInt() ?? 0,
-      clearExplanation: map['clearExplanation']?.toInt() ?? 0,
-      respectfulTreatment: map['respectfulTreatment']?.toInt() ?? 0,
-      boardOrganization: map['boardOrganization']?.toInt() ?? 0,
+      average: map['average_grade']?.toInt() ?? 0,
+      coherentEvaluation: map['coherent_evaluation']?.toInt() ?? 0,
+      clearExplanation: map['clear_explanation']?.toInt() ?? 0,
+      respectfulTreatment: map['respectful_treatment']?.toInt() ?? 0,
+      boardOrganization: map['board_organization']?.toInt() ?? 0,
     );
   }
 

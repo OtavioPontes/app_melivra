@@ -12,12 +12,14 @@ class ProfessorModel extends Professor {
     required int id,
     required String name,
     required Instituto instituto,
-    Grade? grade,
+    Grade? grades,
+    int? averageGrade,
   }) : super(
           id: id,
           name: name,
           instituto: instituto,
-          grade: grade,
+          grades: grades,
+          averageGrade: averageGrade,
         );
 
   Map<String, dynamic> toMap() {
@@ -25,7 +27,8 @@ class ProfessorModel extends Professor {
       'id': id,
       'name': name,
       'institute': InstitutoModel.fromEntity(instituto).toMap(),
-      'grade': grade?.toMap(),
+      'grades': grades?.toMap(),
+      'averageGrade': averageGrade
     };
   }
 
@@ -34,9 +37,10 @@ class ProfessorModel extends Professor {
       id: map['id']?.toInt() ?? 0,
       name: map['name'] ?? '',
       instituto: InstitutoModel.fromMap(map['institute']).toEntity(),
-      grade: map['grade'] != null
+      averageGrade: map['grade'],
+      grades: map['grades'] != null
           ? Grade.fromMap(
-              map['grade'],
+              map['grades'],
             )
           : null,
     );
@@ -44,20 +48,20 @@ class ProfessorModel extends Professor {
 
   Professor toEntity() {
     return Professor(
-      id: id,
-      name: name,
-      instituto: instituto,
-      grade: grade,
-    );
+        id: id,
+        name: name,
+        instituto: instituto,
+        grades: grades,
+        averageGrade: averageGrade);
   }
 
   factory ProfessorModel.fromEntity(Professor professor) {
     return ProfessorModel(
-      id: professor.id,
-      name: professor.name,
-      instituto: professor.instituto,
-      grade: professor.grade,
-    );
+        id: professor.id,
+        name: professor.name,
+        instituto: professor.instituto,
+        grades: professor.grades,
+        averageGrade: professor.averageGrade);
   }
 
   String toJson() => json.encode(toMap());

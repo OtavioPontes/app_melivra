@@ -20,7 +20,10 @@ class CardInfoProfessor extends StatelessWidget {
     return SizedBox(
       width: size.width * 0.85,
       child: GestureDetector(
-        onTap: () => Modular.to.pushNamed(ProfessoresDetailsModule.routeName),
+        onTap: () => Modular.to
+            .pushNamed(ProfessoresDetailsModule.routeName, arguments: {
+          'id': professor.id,
+        }),
         child: Card(
           child: Padding(
             padding: EdgeInsets.all(16.scale),
@@ -41,6 +44,7 @@ class CardInfoProfessor extends StatelessWidget {
                           children: [
                             Text(
                               professor.name,
+                              overflow: TextOverflow.ellipsis,
                               style: theme.textTheme.headline6!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,
@@ -60,7 +64,8 @@ class CardInfoProfessor extends StatelessWidget {
                     ],
                   ),
                 ),
-                ScoreWidget(score: professor.grade?.average),
+                ScoreWidget(
+                    score: professor.grades?.average ?? professor.averageGrade),
               ],
             ),
           ),
