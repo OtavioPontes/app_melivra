@@ -29,10 +29,10 @@ class HomeController {
           TopInstitutosFailureEvent(message: failure.message),
         );
       },
-      (institutos) {
+      (rankConfig) {
         bloc.add(
           TopInstitutosSuccessEvent(
-            rankInstitutes: institutos,
+            rankInstitutes: rankConfig.institutos,
           ),
         );
       },

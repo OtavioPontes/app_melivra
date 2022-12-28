@@ -1,13 +1,16 @@
 import 'package:app_melivra/app/modules/institutos/data/models/instituto_model.dart';
 
+import '../../../ranking_institutos/domain/entities/ranking_config_entity.dart';
+import '../../domain/entities/institutos_response.dart';
+
 abstract class IInstitutoDatasource {
-  Future<List<InstitutoModel>> getInstitutos([
+  Future<InstitutosResponse> getInstitutos([
     int? page,
     int? itemsPerPage,
     String? searchText,
   ]);
 
-  Future<List<InstitutoModel>> getInstitutosRank([
+  Future<RankingConfig> getInstitutosRank([
     int? page,
     int? itemsPerPage,
   ]);

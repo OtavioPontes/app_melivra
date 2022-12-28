@@ -1,13 +1,19 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/modules/ranking_institutos/presentation/bloc/ranking_bloc.dart';
+import 'package:app_melivra/app/modules/ranking_institutos/presentation/controllers/ranking_controller.dart';
+import 'package:app_melivra/app/modules/ranking_institutos/presentation/widgets/ranking_navigation_menu_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/style/assets.dart';
 import '../../../../core/widgets/score_widget.dart';
+import '../../../institutos/domain/entities/instituto_entity.dart';
 
 class RankingPage extends StatelessWidget {
-  const RankingPage({Key? key}) : super(key: key);
+  RankingPage({Key? key}) : super(key: key);
+  final RankController controller = Modular.get<RankController>();
 
   @override
   Widget build(BuildContext context) {
@@ -63,133 +69,119 @@ class RankingPage extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 32.scale),
                     child: Column(
                       children: [
-                        ListView.separated(
-                          padding: EdgeInsets.symmetric(vertical: 24.scale),
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 24.scale,
-                                vertical: 8.scale,
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "${index + 1}º",
+                        BlocBuilder(
+                          bloc: controller.bloc,
+                          builder: (context, state) {
+                            if (state is RankingEmptyState) {
+                              return Padding(
+                                padding: EdgeInsets.all(16.scale),
+                                child: Center(
+                                  child: Text(
+                                    'Não encontramos nada aqui 😥',
                                     style: theme.textTheme.headline6!.merge(
                                       TextStyle(
-                                        color: theme.primaryColor,
+                                        color: theme.backgroundColor,
                                       ),
                                     ),
                                   ),
-                                  SizedBox(width: 24.scale),
-                                  Flexible(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'EMC',
-                                          style:
-                                              theme.textTheme.headline6!.merge(
-                                            TextStyle(
-                                              color: theme.primaryColor,
+                                ),
+                              );
+                            }
+                            if (state is RankingLoadingState) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            if (state is RankingSuccessState) {
+                              final list = state.rankInstitutes;
+                              return Column(
+                                children: [
+                                  ListView.separated(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 24.scale),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: list.length,
+                                    itemBuilder: (context, index) {
+                                      final Instituto item = list[index];
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 24.scale,
+                                          vertical: 8.scale,
+                                        ),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              controller.page > 1
+                                                  ? "${(index + 1) + controller.config!.itemsPerPage * (controller.page - 1)}º"
+                                                  : "${(index + 1)}º",
+                                              style: theme.textTheme.headline6!
+                                                  .merge(
+                                                TextStyle(
+                                                  color: theme.primaryColor,
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                            SizedBox(width: 24.scale),
+                                            Flexible(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    item.initials,
+                                                    style: theme
+                                                        .textTheme.headline6!
+                                                        .merge(
+                                                      TextStyle(
+                                                        color:
+                                                            theme.primaryColor,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 2.scale),
+                                                  Text(
+                                                    item.name,
+                                                    style:
+                                                        theme.textTheme.caption,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(width: 16.scale),
+                                            ScoreWidget(
+                                                score: item.averageGrade),
+                                          ],
                                         ),
-                                        SizedBox(height: 2.scale),
-                                        Text(
-                                          'Escola de Engenharia Elétrica, Mecânica e da Computação',
-                                          style: theme.textTheme.caption,
-                                        ),
-                                      ],
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) =>
+                                        SizedBox(height: 16.scale),
+                                  ),
+                                  SizedBox(height: 8.scale),
+                                  RankingMenu(controller: controller),
+                                  SizedBox(height: 16.scale),
+                                ],
+                              );
+                            }
+                            return Padding(
+                              padding: EdgeInsets.all(16.scale),
+                              child: Center(
+                                child: Text(
+                                  'Não encontramos nada aqui 😥',
+                                  style: theme.textTheme.headline6!.merge(
+                                    TextStyle(
+                                      color: theme.backgroundColor,
                                     ),
                                   ),
-                                  SizedBox(width: 16.scale),
-                                  const ScoreWidget(score: 90),
-                                ],
+                                ),
                               ),
                             );
                           },
-                          separatorBuilder: (context, index) =>
-                              SizedBox(height: 16.scale),
-                          itemCount: 5,
                         ),
-                        SizedBox(height: 8.scale),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: const Icon(
-                                Icons.arrow_back_ios,
-                              ),
-                            ),
-                            SizedBox(width: 16.scale),
-                            CircleAvatar(
-                              backgroundColor: theme.primaryColor,
-                              radius: 13,
-                              child: const Text('1'),
-                            ),
-                            CircleAvatar(
-                              backgroundColor: theme.cardColor,
-                              radius: 13,
-                              child: Text(
-                                '2',
-                                style: theme.textTheme.bodyText2!.merge(
-                                  TextStyle(
-                                    color: theme.primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                              child: Text(
-                                '...',
-                                style: theme.textTheme.bodyText2!.merge(
-                                  TextStyle(
-                                    color: theme.primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            CircleAvatar(
-                              backgroundColor: theme.cardColor,
-                              radius: 13,
-                              child: Text(
-                                '19',
-                                style: theme.textTheme.bodyText2!.merge(
-                                  TextStyle(
-                                    color: theme.primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            CircleAvatar(
-                              backgroundColor: theme.cardColor,
-                              radius: 13,
-                              child: Text(
-                                '20',
-                                style: theme.textTheme.bodyText2!.merge(
-                                  TextStyle(
-                                    color: theme.primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 16.scale),
-                            GestureDetector(
-                              onTap: () {},
-                              child: const Icon(
-                                Icons.arrow_forward_ios,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 16.scale),
                       ],
                     ),
                   )

@@ -5,15 +5,17 @@ import 'package:dartz/dartz.dart';
 import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
 import 'package:app_melivra/app/core/error/failures.dart';
 
+import '../entities/institutos_response.dart';
+
 class GetInstitutosUsecase
-    implements UseCase<List<Instituto>, ParamsGetInstitutosUsecase> {
+    implements UseCase<InstitutosResponse, ParamsGetInstitutosUsecase> {
   final IInstitutoRepository _repository;
 
   GetInstitutosUsecase({
     required IInstitutoRepository repository,
   }) : _repository = repository;
   @override
-  Future<Either<IFailure, List<Instituto>>> call(params) async {
+  Future<Either<IFailure, InstitutosResponse>> call(params) async {
     return await _repository.getInstitutos(
       params.page,
       params.itemsPerPage,
@@ -25,10 +27,10 @@ class GetInstitutosUsecase
 class ParamsGetInstitutosUsecase extends IParams {
   final int? page;
   final int? itemsPerPage;
-  final String searchText;
+  final String? searchText;
   ParamsGetInstitutosUsecase({
     this.page,
     this.itemsPerPage,
-    required this.searchText,
+    this.searchText,
   });
 }

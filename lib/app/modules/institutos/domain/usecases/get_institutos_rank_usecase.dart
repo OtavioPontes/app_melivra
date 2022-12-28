@@ -5,15 +5,17 @@ import 'package:dartz/dartz.dart';
 import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
 import 'package:app_melivra/app/core/error/failures.dart';
 
+import '../../../ranking_institutos/domain/entities/ranking_config_entity.dart';
+
 class GetInstitutosRankUsecase
-    implements UseCase<List<Instituto>, ParamsGetInstitutosRankUsecase> {
+    implements UseCase<RankingConfig, ParamsGetInstitutosRankUsecase> {
   final IInstitutoRepository _repository;
 
   GetInstitutosRankUsecase({
     required IInstitutoRepository repository,
   }) : _repository = repository;
   @override
-  Future<Either<IFailure, List<Instituto>>> call(params) async {
+  Future<Either<IFailure, RankingConfig>> call(params) async {
     return await _repository.getInstitutosRank(
       params.page,
       params.itemsPerPage,

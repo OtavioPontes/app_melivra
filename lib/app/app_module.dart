@@ -30,6 +30,8 @@ import 'modules/institutos/domain/repositories/i_instituto_repository.dart';
 import 'modules/institutos/domain/usecases/get_instituto_details.dart';
 import 'modules/institutos/domain/usecases/get_institutos_rank_usecase.dart';
 import 'modules/institutos/domain/usecases/get_institutos_usecase.dart';
+import 'modules/institutos/presentation/bloc/institutos_bloc.dart';
+import 'modules/institutos/presentation/controllers/institutos_controller.dart';
 import 'modules/perfil/presentation/controllers/perfil_controller.dart';
 import 'modules/professores_details/professores_details_module.dart';
 import 'modules/ranking_institutos/ranking_institutos_module.dart';
@@ -51,6 +53,13 @@ class AppModule extends Module {
           ),
         ),
         Bind((i) => PerfilController(store: i())),
+        Bind((i) => InstitutosBloc()),
+        Bind(
+          (i) => InstitutosController(
+            getInstitutosUsecase: i(),
+            bloc: i(),
+          ),
+        ),
 
         // --------------------- CONTROLLERS ----------------------
 
