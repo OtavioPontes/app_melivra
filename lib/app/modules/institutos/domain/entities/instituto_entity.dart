@@ -5,14 +5,14 @@ import '../../../../core/domain/entities/grade.dart';
 class Instituto extends Equatable {
   final int id;
   final String name;
-  final String initials;
+  final String? initials;
   final Grade? grades;
   final int? averageGrade;
 
   const Instituto({
     required this.id,
     required this.name,
-    required this.initials,
+    this.initials,
     this.grades,
     this.averageGrade,
   });

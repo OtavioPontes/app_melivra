@@ -7,7 +7,7 @@ class InstitutoModel extends Instituto {
   const InstitutoModel({
     required int id,
     required String name,
-    required String initials,
+    required String? initials,
     required Grade? grades,
     required int? averageGrade,
   }) : super(

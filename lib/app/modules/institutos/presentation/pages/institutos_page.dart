@@ -69,8 +69,10 @@ class InstitutosPage extends StatelessWidget {
                             );
                           }
                           if (state is InstitutosLoadingState) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: theme.backgroundColor,
+                              ),
                             );
                           }
                           if (state is InstitutosSuccessState) {

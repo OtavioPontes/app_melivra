@@ -1,11 +1,17 @@
-import 'package:app_melivra/app/core/extensions/screen_extension.dart';
-import 'package:app_melivra/app/core/widgets/score_widget.dart';
-import 'package:app_melivra/app/modules/professores_details/professores_details_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/core/widgets/score_widget.dart';
+import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
+import 'package:app_melivra/app/modules/professores_details/professores_details_module.dart';
+
 class CardInfoProfessor extends StatelessWidget {
-  const CardInfoProfessor({Key? key}) : super(key: key);
+  final Professor professor;
+  const CardInfoProfessor({
+    Key? key,
+    required this.professor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,36 +27,40 @@ class CardInfoProfessor extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(
-                      Icons.school,
-                    ),
-                    SizedBox(width: 16.scale),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Professor 1',
-                            style: theme.textTheme.headline6!.merge(
-                              TextStyle(
-                                color: theme.primaryColor,
+                Flexible(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.school,
+                      ),
+                      SizedBox(width: 16.scale),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              professor.name,
+                              style: theme.textTheme.headline6!.merge(
+                                TextStyle(
+                                  color: theme.primaryColor,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(height: 2.scale),
-                          Text(
-                            'EMC',
-                            style: theme.textTheme.caption,
-                          ),
-                        ],
+                            SizedBox(height: 2.scale),
+                            Text(
+                              professor.instituto.initials ??
+                                  professor.instituto.name,
+                              style: theme.textTheme.caption,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(width: 16.scale),
+                    ],
+                  ),
                 ),
-                const ScoreWidget(score: 90),
+                ScoreWidget(score: professor.grade?.average),
               ],
             ),
           ),

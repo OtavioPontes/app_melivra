@@ -33,6 +33,15 @@ import 'modules/institutos/domain/usecases/get_institutos_usecase.dart';
 import 'modules/institutos/presentation/bloc/institutos_bloc.dart';
 import 'modules/institutos/presentation/controllers/institutos_controller.dart';
 import 'modules/perfil/presentation/controllers/perfil_controller.dart';
+import 'modules/professores/data/datasources/i_professor_datasource.dart';
+import 'modules/professores/data/datasources/professors_datasource.dart';
+import 'modules/professores/data/repositories/professor_repository.dart';
+import 'modules/professores/domain/repositories/i_professor_repository.dart';
+import 'modules/professores/domain/usecases/get_professor_details_usecase.dart';
+import 'modules/professores/domain/usecases/get_professors_rank_usecase.dart';
+import 'modules/professores/domain/usecases/get_professors_usecase.dart';
+import 'modules/professores/presentation/bloc/professors_bloc.dart';
+import 'modules/professores/presentation/controllers/professores_controller.dart';
 import 'modules/professores_details/professores_details_module.dart';
 import 'modules/ranking_institutos/ranking_institutos_module.dart';
 import 'modules/search/search_module.dart';
@@ -60,6 +69,13 @@ class AppModule extends Module {
             bloc: i(),
           ),
         ),
+        Bind((i) => ProfessorsBloc()),
+        Bind(
+          (i) => ProfessorsController(
+            getProfessorsUsecase: i(),
+            bloc: i(),
+          ),
+        ),
 
         // --------------------- CONTROLLERS ----------------------
 
@@ -68,6 +84,10 @@ class AppModule extends Module {
         Bind((i) => GetInstitutoDetailsUsecase(repository: i())),
         Bind((i) => GetInstitutosRankUsecase(repository: i())),
         Bind((i) => GetInstitutosUsecase(repository: i())),
+
+        Bind((i) => GetProfessorDetailsUsecase(repository: i())),
+        Bind((i) => GetProfessorsRankUsecase(repository: i())),
+        Bind((i) => GetProfessorsUsecase(repository: i())),
 
         Bind(
           (i) => SplashPipelineUseCase(
@@ -79,9 +99,11 @@ class AppModule extends Module {
 
         // --------------------- REPOSITORIES ---------------------
         Bind<IInstitutoRepository>((i) => InstitutoRepository(datasource: i())),
+        Bind<IProfessorRepository>((i) => ProfessorRepository(datasource: i())),
 
         // --------------------- DATA SOURCES ---------------------
         Bind<IInstitutoDatasource>((i) => InstitutoDatasource(dio: i())),
+        Bind<IProfessorDatasource>((i) => ProfessorsDatasource(dio: i())),
 
         // ----------------------- SERVICES -----------------------
         Bind((i) => AppInfo.instance),

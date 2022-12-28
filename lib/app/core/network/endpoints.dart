@@ -8,4 +8,8 @@ class Endpoints {
   /// [INSTITUTOS]
   static const String institutos = '/institutes/';
   static const String institutosRank = '/institutes/ranks';
+
+  /// [PROFESSORES]
+  static const String professors = '/professors/';
+  static const String professorsRank = '/professors/ranks';
 }

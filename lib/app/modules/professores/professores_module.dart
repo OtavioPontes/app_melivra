@@ -7,7 +7,7 @@ class ProfessoresModule extends Module {
 
   static ModularProvider provider = ModularProvider(
     module: ProfessoresModule(),
-    child: const ProfessoresPage(),
+    child: ProfessoresPage(),
   );
 
   @override
@@ -17,7 +17,7 @@ class ProfessoresModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) => const ProfessoresPage(),
+          child: (context, args) => ProfessoresPage(),
         )
       ];
 }

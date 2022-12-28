@@ -20,7 +20,10 @@ class CardInfoInstituto extends StatelessWidget {
     return SizedBox(
       width: size.width * 0.85,
       child: GestureDetector(
-        onTap: () => Modular.to.pushNamed(InstitutoDetailsModule.routeName),
+        onTap: () =>
+            Modular.to.pushNamed(InstitutoDetailsModule.routeName, arguments: {
+          'id': instituto.id,
+        }),
         child: Card(
           child: Padding(
             padding: EdgeInsets.all(16.scale),
@@ -40,7 +43,7 @@ class CardInfoInstituto extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              instituto.initials,
+                              instituto.initials!,
                               style: theme.textTheme.headline6!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,

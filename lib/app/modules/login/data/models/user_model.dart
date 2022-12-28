@@ -23,7 +23,7 @@ class UserModel extends User {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      name: map['name'] ?? 'Teste',
+      name: map['name'] ?? '',
       email: map['email'] ?? '',
       token: map['token'] ?? '',
     );

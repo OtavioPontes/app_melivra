@@ -132,7 +132,7 @@ class RankingPage extends StatelessWidget {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    item.initials,
+                                                    item.initials!,
                                                     style: theme
                                                         .textTheme.headline6!
                                                         .merge(

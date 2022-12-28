@@ -5,10 +5,10 @@ import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:flutter/material.dart';
 
 class ScoreTinyWidget extends StatelessWidget {
-  final int score;
+  final int? score;
   const ScoreTinyWidget({
     Key? key,
-    required this.score,
+    this.score,
   }) : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class ScoreTinyWidget extends StatelessWidget {
           angle: pi,
           child: CircularProgressIndicator(
             color: scoreEnum.getColor,
-            value: score / 100,
+            value: score != null ? score! / 100 : 0,
             strokeWidth: 5,
           ),
         ),
@@ -39,7 +39,7 @@ class ScoreTinyWidget extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              score.toString(),
+              score != null ? score.toString() : '-',
               style: theme.textTheme.bodyText2,
             ),
           ),
