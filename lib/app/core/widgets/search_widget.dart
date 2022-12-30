@@ -18,7 +18,7 @@ class SearchWidget extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     final Size size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: () => Modular.to.pushNamed(SeachModule.routeName, arguments: {
+      onTap: () => Modular.to.pushNamed(SearchModule.routeName, arguments: {
         'onlyProfessores': onlyProfessor,
         'onlyInstitutos': onlyInstitutos,
       }),

@@ -1,4 +1,6 @@
+import 'package:app_melivra/app/modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/pages/evaluate_professor_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,6 +14,7 @@ import '../../../../core/widgets/score_big_widget.dart';
 import '../../../../core/widgets/score_tiny_widget.dart';
 import '../../../professores/domain/entities/professor_entity.dart';
 import '../bloc/professor_details_bloc.dart';
+import '../widgets/evaluate_professor_dialog_widget.dart';
 
 class ProfessoresDetailsPage extends StatefulWidget {
   const ProfessoresDetailsPage({Key? key}) : super(key: key);
@@ -24,6 +27,8 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
     with TickerProviderStateMixin {
   final ProfessorDetailsController controller =
       Modular.get<ProfessorDetailsController>();
+  final EvaluateProfessorController evaluateController =
+      Modular.get<EvaluateProfessorController>();
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -32,23 +37,41 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
     return Scaffold(
       backgroundColor: theme.primaryColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 50),
-        child: TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            fixedSize: Size(60.scale, 60.scale),
-            backgroundColor: ColorsMeLivra().lightPurple,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                100,
+      floatingActionButton: BlocBuilder(
+        bloc: controller.bloc,
+        builder: (context, state) {
+          if (state is ProfessorDetailsSuccessState) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: TextButton(
+                onPressed: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return EvaluateProfessorDialog(
+                        professor: state.professor,
+                      );
+                    },
+                  );
+                  evaluateController.dispose();
+                },
+                style: TextButton.styleFrom(
+                  fixedSize: Size(60.scale, 60.scale),
+                  backgroundColor: ColorsMeLivra().lightPurple,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      100,
+                    ),
+                  ),
+                ),
+                child: const Icon(
+                  Icons.thumb_up,
+                ),
               ),
-            ),
-          ),
-          child: const Icon(
-            Icons.thumb_up,
-          ),
-        ),
+            );
+          }
+          return const SizedBox.shrink();
+        },
       ),
       body: Stack(
         children: [
@@ -154,6 +177,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                           children: [
                                             Text(
                                               professor.name,
+                                              textAlign: TextAlign.center,
                                               style: theme.textTheme.headline4!
                                                   .merge(
                                                 TextStyle(

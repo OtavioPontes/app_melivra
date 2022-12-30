@@ -30,12 +30,11 @@ dependencies:
   equatable: ^2.0.3
   dartz: ^0.10.0
   version: ^3.0.2
-  google_sign_in: ^5.2.1
   package_info: ^2.0.2
   device_info: ^2.0.3
   connectivity_plus: ^3.0.2
   jwt_decoder: ^2.0.1
-
+  sleek_circular_slider: ^2.0.1
   # Images
   flutter_svg: ^1.1.6
 

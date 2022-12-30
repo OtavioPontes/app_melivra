@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/domain/entities/grade.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:dio/dio.dart';
 
@@ -31,15 +32,20 @@ class ProfessorsDatasource implements IProfessorDatasource {
   }
 
   @override
-  Future<ProfessorResponse> getProfessors(
-      [int? page, int? itemsPerPage, String? searchText]) async {
+  Future<ProfessorResponse> getProfessors({
+    int? page,
+    int? itemsPerPage,
+    String? searchText,
+    int? instituteId,
+  }) async {
     try {
       final response = await _dio.get(
         Endpoints.professors,
         queryParameters: {
-          'page': page,
-          'items_per_page': itemsPerPage,
-          'q': searchText,
+          if (page != null) 'page': page,
+          if (itemsPerPage != null) 'items_per_page': itemsPerPage,
+          if (searchText != null) 'q': searchText,
+          if (instituteId != null) 'institute_id': instituteId
         },
       );
       final List<Professor> professors = List.from(
@@ -65,7 +71,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
 
   @override
   Future<RankingProfessorsConfig> getProfessorsRank(
-      [int? page, int? itemsPerPage]) async {
+      {int? page, int? itemsPerPage}) async {
     try {
       final response = await _dio.get(
         Endpoints.professorsRank,
@@ -90,6 +96,24 @@ class ProfessorsDatasource implements IProfessorDatasource {
     } on DioError catch (e) {
       throw ServerException(
         message: e.message,
+        statusCode: e.response?.statusCode,
+      );
+    }
+  }
+
+  @override
+  Future<void> evaluateProfessor({
+    required int id,
+    required Grade grade,
+  }) async {
+    try {
+      await _dio.post(
+        Endpoints.evaluateProfessor(id: id),
+        data: grade.toJson(),
+      );
+    } on DioError catch (e) {
+      throw ServerException(
+        message: e.response?.data['message'],
         statusCode: e.response?.statusCode,
       );
     }

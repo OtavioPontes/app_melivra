@@ -3,7 +3,9 @@ import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/style/colors.dart';
 import 'package:app_melivra/app/core/widgets/card_info_instituto_widget.dart';
 import 'package:app_melivra/app/modules/home/presentation/bloc/top_institutos_bloc.dart';
+import 'package:app_melivra/app/modules/home/presentation/bloc/ultimos_pesquisados_bloc.dart';
 import 'package:app_melivra/app/modules/home/presentation/controllers/home_controller.dart';
+import 'package:app_melivra/app/modules/professores_details/professores_details_module.dart';
 import 'package:app_melivra/app/modules/ranking_institutos/ranking_institutos_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -75,7 +77,7 @@ class HomePage extends StatelessWidget {
                                 ),
                                 SizedBox(width: 8.scale),
                                 Text(
-                                  'Mais Pesquisados',
+                                  'Últimos Pesquisados',
                                   style: theme.textTheme.headline5!.merge(
                                     TextStyle(
                                       color: theme.backgroundColor,
@@ -86,39 +88,89 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 32.scale),
-                          SizedBox(
-                            height: 100.scale,
-                            child: ListView.separated(
-                              separatorBuilder: (context, index) =>
-                                  SizedBox(width: 16.scale),
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              itemCount: 3,
-                              clipBehavior: Clip.none,
-                              itemBuilder: (context, index) {
-                                return SizedBox(
-                                  height: 100.scale,
-                                  child: Card(
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 16.scale,
-                                        vertical: 8.scale,
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(height: 4.scale),
-                                          const ScoreWidget(score: 60),
-                                          SizedBox(height: 12.scale),
-                                          const Text('Professor 3'),
-                                        ],
+                          BlocBuilder(
+                            bloc: controller.ultimosPesquisadosBloc,
+                            builder: (context, state) {
+                              if (state is UltimosPesquisadosLoadingState) {
+                                return Padding(
+                                  padding: EdgeInsets.all(8.scale),
+                                  child: CircularProgressIndicator(
+                                    color: theme.backgroundColor,
+                                  ),
+                                );
+                              }
+                              if (state is UltimosPesquisadosEmptyState) {
+                                return Card(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(16.scale),
+                                    child: Center(
+                                      child: Text(
+                                        'Você ainda não pesquisou professor 😥',
+                                        style: theme.textTheme.headline6!.merge(
+                                          TextStyle(
+                                            color: theme.primaryColor,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 );
-                              },
-                            ),
+                              }
+                              if (state is UltimosPesquisadosSuccessState) {
+                                return SizedBox(
+                                  height: 120.scale,
+                                  child: ListView.separated(
+                                    separatorBuilder: (context, index) =>
+                                        SizedBox(width: 16.scale),
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    itemCount: state.professors.length,
+                                    clipBehavior: Clip.none,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () => Modular.to.pushNamed(
+                                          ProfessoresDetailsModule.routeName,
+                                          arguments: {
+                                            'id': state.professors[index].id
+                                          },
+                                        ),
+                                        child: SizedBox(
+                                          width: 150.scale,
+                                          child: Card(
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: 16.scale,
+                                                vertical: 8.scale,
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(height: 4.scale),
+                                                  ScoreWidget(
+                                                    score: state
+                                                        .professors[index]
+                                                        .grades
+                                                        ?.average,
+                                                  ),
+                                                  SizedBox(height: 16.scale),
+                                                  Flexible(
+                                                    child: Text(state
+                                                        .professors[index]
+                                                        .name),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                );
+                              }
+                              return const SizedBox.shrink();
+                            },
                           ),
                           SizedBox(height: 40.scale),
                           InkWell(
@@ -153,7 +205,7 @@ class HomePage extends StatelessWidget {
                           ),
                           SizedBox(height: 32.scale),
                           BlocBuilder(
-                            bloc: controller.bloc,
+                            bloc: controller.topInstitutosBloc,
                             builder: (context, state) {
                               if (state.runtimeType ==
                                   TopInstitutosLoadingState) {

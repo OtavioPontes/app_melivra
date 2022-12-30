@@ -1,12 +1,26 @@
+import 'package:app_melivra/app/modules/search/presentation/bloc/search_institutes_bloc.dart';
+import 'package:app_melivra/app/modules/search/presentation/bloc/search_professor_bloc.dart';
+import 'package:app_melivra/app/modules/search/presentation/controllers/search_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'presentation/pages/search_page.dart';
 
-class SeachModule extends Module {
+class SearchModule extends Module {
   static const String routeName = "/search/";
 
   @override
-  List<Bind> get binds => const [];
+  List<Bind> get binds => [
+        Bind((i) => SearchProfessorsBloc()),
+        Bind((i) => SearchInstitutesBloc()),
+        Bind(
+          (i) => SearchController(
+            searchProfessorsBloc: i(),
+            searchInstitutesBloc: i(),
+            getInstitutosUsecase: i(),
+            getProfessorsUsecase: i(),
+          ),
+        ),
+      ];
 
   @override
   List<ModularRoute> get routes => [

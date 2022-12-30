@@ -4,12 +4,14 @@ import 'package:app_melivra/app/core/utils/appinfo.dart';
 import 'package:app_melivra/app/modules/bottom_navigation/bottom_navigation_module.dart';
 import 'package:app_melivra/app/modules/esqueci_senha/esqueci_senha_module.dart';
 import 'package:app_melivra/app/modules/home/home_module.dart';
+import 'package:app_melivra/app/modules/home/presentation/bloc/ultimos_pesquisados_bloc.dart';
 import 'package:app_melivra/app/modules/home/presentation/controllers/home_controller.dart';
 import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
 import 'package:app_melivra/app/modules/cadastro/cadastro_module.dart';
 import 'package:app_melivra/app/modules/institutos/institutos_module.dart';
 import 'package:app_melivra/app/modules/login/login_module.dart';
 import 'package:app_melivra/app/modules/perfil/perfil_module.dart';
+import 'package:app_melivra/app/modules/professores/domain/usecases/post_professor_grade_usecase.dart';
 import 'package:app_melivra/app/modules/professores/professores_module.dart';
 import 'package:app_melivra/app/modules/splash/domain/usecases/splash_pipeline_usecase.dart';
 import 'package:app_melivra/app/modules/splash/splash_module.dart';
@@ -54,11 +56,15 @@ class AppModule extends Module {
         // ------------------------ STORES ------------------------
         Bind((i) => UserStore(hiveBox: i())),
         Bind((i) => TopInstitutosBloc()),
+        Bind((i) => UltimosPesquisadosBloc()),
         Bind(
           (i) => HomeController(
             store: i(),
+            getProfessorDetailsUsecase: i(),
             getInstitutosRankUsecase: i(),
-            bloc: i(),
+            topInstitutosBloc: i(),
+            ultimosPesquisadosBloc: i(),
+            box: i(),
           ),
         ),
         Bind((i) => PerfilController(store: i())),
@@ -88,6 +94,7 @@ class AppModule extends Module {
         Bind((i) => GetProfessorDetailsUsecase(repository: i())),
         Bind((i) => GetProfessorsRankUsecase(repository: i())),
         Bind((i) => GetProfessorsUsecase(repository: i())),
+        Bind((i) => PostProfessorGradeUsecase(repository: i())),
 
         Bind(
           (i) => SplashPipelineUseCase(
@@ -181,8 +188,8 @@ class AppModule extends Module {
       module: ProfessoresDetailsModule(),
     ),
     ModuleRoute(
-      SeachModule.routeName,
-      module: SeachModule(),
+      SearchModule.routeName,
+      module: SearchModule(),
     ),
   ];
 }

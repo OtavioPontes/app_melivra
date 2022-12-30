@@ -3,22 +3,22 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class Grade extends Equatable {
-  final int coherentEvaluation;
-  final int clearExplanation;
-  final int respectfulTreatment;
-  final int boardOrganization;
-  final int average;
+  final int? coherentEvaluation;
+  final int? clearExplanation;
+  final int? respectfulTreatment;
+  final int? boardOrganization;
+  final int? average;
 
   const Grade({
     required this.coherentEvaluation,
     required this.clearExplanation,
     required this.respectfulTreatment,
     required this.boardOrganization,
-    required this.average,
+    this.average,
   });
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         average,
         coherentEvaluation,
         clearExplanation,
@@ -26,12 +26,13 @@ class Grade extends Equatable {
         boardOrganization,
       ];
 
-  Grade copyWith(
-      {int? coherentEvaluation,
-      int? clearExplanation,
-      int? respectfulTreatment,
-      int? boardOrganization,
-      int? average}) {
+  Grade copyWith({
+    int? coherentEvaluation,
+    int? clearExplanation,
+    int? respectfulTreatment,
+    int? boardOrganization,
+    int? average,
+  }) {
     return Grade(
       average: average ?? this.average,
       coherentEvaluation: coherentEvaluation ?? this.coherentEvaluation,
@@ -43,8 +44,8 @@ class Grade extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'average': average,
-      'coherent_valuation': coherentEvaluation,
+      if (average != null) 'average': average,
+      'coherent_evaluation': coherentEvaluation,
       'clear_explanation': clearExplanation,
       'respectful_treatment': respectfulTreatment,
       'board_organization': boardOrganization,
@@ -53,11 +54,11 @@ class Grade extends Equatable {
 
   factory Grade.fromMap(Map<String, dynamic> map) {
     return Grade(
-      average: map['average_grade']?.toInt() ?? 0,
-      coherentEvaluation: map['coherent_evaluation']?.toInt() ?? 0,
-      clearExplanation: map['clear_explanation']?.toInt() ?? 0,
-      respectfulTreatment: map['respectful_treatment']?.toInt() ?? 0,
-      boardOrganization: map['board_organization']?.toInt() ?? 0,
+      average: map['average_grade']?.toInt(),
+      coherentEvaluation: map['coherent_evaluation']?.toInt(),
+      clearExplanation: map['clear_explanation']?.toInt(),
+      respectfulTreatment: map['respectful_treatment']?.toInt(),
+      boardOrganization: map['board_organization']?.toInt(),
     );
   }
 

@@ -55,6 +55,16 @@ void main() async {
             SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.waveChat),
         null,
       ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.success),
+        null,
+      ),
+      precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.failure),
+        null,
+      ),
     ]);
 
     await Firebase.initializeApp();

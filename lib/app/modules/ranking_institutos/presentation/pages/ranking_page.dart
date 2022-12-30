@@ -111,28 +111,18 @@ class RankingPage extends StatelessWidget {
                                           vertical: 8.scale,
                                         ),
                                         child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
-                                              controller.page > 1
-                                                  ? "${(index + 1) + controller.config!.itemsPerPage * (controller.page - 1)}º"
-                                                  : "${(index + 1)}º",
-                                              style: theme.textTheme.headline6!
-                                                  .merge(
-                                                TextStyle(
-                                                  color: theme.primaryColor,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 24.scale),
                                             Flexible(
-                                              child: Column(
+                                              child: Row(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    item.initials!,
+                                                    controller.page > 1
+                                                        ? "${(index + 1) + controller.config!.itemsPerPage * (controller.page - 1)}º"
+                                                        : "${(index + 1)}º",
                                                     style: theme
                                                         .textTheme.headline6!
                                                         .merge(
@@ -142,18 +132,40 @@ class RankingPage extends StatelessWidget {
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(height: 2.scale),
-                                                  Text(
-                                                    item.name,
-                                                    style:
-                                                        theme.textTheme.caption,
+                                                  SizedBox(width: 24.scale),
+                                                  Flexible(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          item.initials!,
+                                                          style: theme.textTheme
+                                                              .headline6!
+                                                              .merge(
+                                                            TextStyle(
+                                                              color: theme
+                                                                  .primaryColor,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                            height: 2.scale),
+                                                        Text(
+                                                          item.name,
+                                                          style: theme.textTheme
+                                                              .caption,
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                            SizedBox(width: 16.scale),
                                             ScoreWidget(
-                                                score: item.averageGrade),
+                                              score: item.averageGrade,
+                                            ),
                                           ],
                                         ),
                                       );

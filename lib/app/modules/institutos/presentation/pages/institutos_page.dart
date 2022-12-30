@@ -186,10 +186,6 @@ class InstitutosPage extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          Icon(
-                                            Icons.filter_list,
-                                            color: theme.backgroundColor,
-                                          ),
                                         ],
                                       ),
                                       SizedBox(height: 32.scale),

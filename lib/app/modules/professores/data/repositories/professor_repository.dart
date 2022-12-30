@@ -1,11 +1,11 @@
+import 'package:app_melivra/app/core/domain/entities/grade.dart';
+import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_response.dart';
 import 'package:dartz/dartz.dart';
 
 import 'package:app_melivra/app/core/error/failures.dart';
-import 'package:app_melivra/app/modules/institutos/domain/entities/institutos_response.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:app_melivra/app/modules/professores/domain/repositories/i_professor_repository.dart';
-import 'package:app_melivra/app/modules/ranking_institutos/domain/entities/ranking_config_entity.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../domain/entities/ranking_professors_config.dart';
@@ -32,13 +32,18 @@ class ProfessorRepository implements IProfessorRepository {
   }
 
   @override
-  Future<Either<IFailure, ProfessorResponse>> getProfessors(
-      [int? page, int? itemsPerPage, String? searchText]) async {
+  Future<Either<IFailure, ProfessorResponse>> getProfessors({
+    int? page,
+    int? itemsPerPage,
+    String? searchText,
+    int? instituteId,
+  }) async {
     try {
       final response = await _datasource.getProfessors(
-        page,
-        itemsPerPage,
-        searchText,
+        page: page,
+        itemsPerPage: itemsPerPage,
+        searchText: searchText,
+        instituteId: instituteId,
       );
       return Right(response);
     } on ServerException catch (e) {
@@ -51,15 +56,39 @@ class ProfessorRepository implements IProfessorRepository {
   }
 
   @override
-  Future<Either<IFailure, RankingProfessorsConfig>> getProfessorsRank(
-      [int? page, int? itemsPerPage]) async {
+  Future<Either<IFailure, RankingProfessorsConfig>> getProfessorsRank({
+    int? page,
+    int? itemsPerPage,
+  }) async {
     try {
       final rankingConfig = await _datasource.getProfessorsRank(
-        page,
-        itemsPerPage,
+        page: page,
+        itemsPerPage: itemsPerPage,
       );
       return Right(
         rankingConfig,
+      );
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(
+          message: e.message,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<IFailure, void>> evaluateProfessor({
+    required int id,
+    required Grade grade,
+  }) async {
+    try {
+      await _datasource.evaluateProfessor(
+        grade: grade,
+        id: id,
+      );
+      return Right(
+        voidRight,
       );
     } on ServerException catch (e) {
       return Left(

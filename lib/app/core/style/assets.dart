@@ -10,4 +10,6 @@ class AssetsMeLivra {
   static const String loginDrawing = "${url}login_drawing.svg";
   static const String trophy = "${url}trophy.svg";
   static const String waveChat = "${url}wave_chat.svg";
+  static const String success = "${url}success.svg";
+  static const String failure = "${url}failure.svg";
 }

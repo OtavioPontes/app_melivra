@@ -16,9 +16,10 @@ class GetProfessorsUsecase
   @override
   Future<Either<IFailure, ProfessorResponse>> call(params) async {
     return await _repository.getProfessors(
-      params.page,
-      params.itemsPerPage,
-      params.searchText,
+      instituteId: params.instituteId,
+      itemsPerPage: params.itemsPerPage,
+      page: params.page,
+      searchText: params.searchText,
     );
   }
 }
@@ -26,10 +27,12 @@ class GetProfessorsUsecase
 class ParamsGetProfessorsUsecase extends IParams {
   final int? page;
   final int? itemsPerPage;
+  final int? instituteId;
   final String? searchText;
   ParamsGetProfessorsUsecase({
     this.page,
     this.itemsPerPage,
+    this.instituteId,
     this.searchText,
   });
 }

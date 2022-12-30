@@ -1,4 +1,5 @@
 import 'package:app_melivra/app/modules/instituto_details/presentation/bloc/instituto_details_bloc.dart';
+import 'package:app_melivra/app/modules/instituto_details/presentation/bloc/instituto_professors_bloc.dart';
 import 'package:app_melivra/app/modules/instituto_details/presentation/controllers/instituto_details_controller.dart';
 import 'package:app_melivra/app/modules/instituto_details/presentation/pages/instituto_details_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -9,8 +10,11 @@ class InstitutoDetailsModule extends Module {
   @override
   List<Bind> get binds => [
         Bind((i) => InstitutoDetailsBloc()),
+        Bind((i) => InstitutoProfessorsBloc()),
         Bind(
           (i) => InstitutoDetailsController(
+            professorsBloc: i(),
+            getProfessorsUsecase: i(),
             getInstitutoDetailsUsecase: i(),
             bloc: i(),
             id: i.args.data['id'],
@@ -22,7 +26,7 @@ class InstitutoDetailsModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) => InstitutoDetailsPage(),
+          child: (context, args) => const InstitutoDetailsPage(),
         )
       ];
 }

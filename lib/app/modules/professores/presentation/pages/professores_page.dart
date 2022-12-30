@@ -74,7 +74,8 @@ class ProfessoresPage extends StatelessWidget {
                           );
                         }
                         if (state is ProfessorsSuccessState) {
-                          final list = state.professors.getRange(0, 3).toList();
+                          List list = state.professors.getRange(0, 3).toList();
+
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -99,7 +100,9 @@ class ProfessoresPage extends StatelessWidget {
                                           children: [
                                             SizedBox(height: 4.scale),
                                             Text(
-                                              '10.451',
+                                              controller.response?.totalItems
+                                                      .toString() ??
+                                                  '',
                                               style: theme.textTheme.headline4!
                                                   .merge(
                                                 TextStyle(
@@ -178,10 +181,6 @@ class ProfessoresPage extends StatelessWidget {
                                               ),
                                             ),
                                           ],
-                                        ),
-                                        Icon(
-                                          Icons.filter_list,
-                                          color: theme.backgroundColor,
                                         ),
                                       ],
                                     ),

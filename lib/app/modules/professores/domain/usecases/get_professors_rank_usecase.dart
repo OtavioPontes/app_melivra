@@ -16,8 +16,8 @@ class GetProfessorsRankUsecase
   @override
   Future<Either<IFailure, RankingProfessorsConfig>> call(params) async {
     return await _repository.getProfessorsRank(
-      params.page,
-      params.itemsPerPage,
+      page: params.page,
+      itemsPerPage: params.itemsPerPage,
     );
   }
 }
