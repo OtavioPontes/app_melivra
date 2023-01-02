@@ -1,4 +1,5 @@
 import 'package:app_melivra/app/core/domain/entities/grade.dart';
+import 'package:app_melivra/app/core/domain/entities/grades_response_config.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:dio/dio.dart';
 
@@ -111,6 +112,26 @@ class ProfessorsDatasource implements IProfessorDatasource {
         Endpoints.evaluateProfessor(id: id),
         data: grade.toJson(),
       );
+    } on DioError catch (e) {
+      throw ServerException(
+        message: e.response?.data['message'],
+        statusCode: e.response?.statusCode,
+      );
+    }
+  }
+
+  @override
+  Future<GradesResponseConfig> getProfessorGrades({required int id}) async {
+    try {
+      final response = await _dio.get(
+        Endpoints.evaluateProfessor(id: id),
+      );
+      if (response.data['data'] == null) {
+        throw ServerException(
+          message: 'Nenhuma avaliação foi encontrada',
+        );
+      }
+      return GradesResponseConfig.fromMap(response.data);
     } on DioError catch (e) {
       throw ServerException(
         message: e.response?.data['message'],

@@ -276,7 +276,7 @@ class _SearchPageState extends State<SearchPage> {
                                         ),
                                         SizedBox(width: 16.scale),
                                         Text(
-                                          'Institutos (${controller.institutoResponse?.totalItems ?? 0})',
+                                          'Institutos (${state.institutes.length})',
                                           style:
                                               theme.textTheme.headline5!.merge(
                                             TextStyle(

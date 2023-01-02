@@ -1,8 +1,6 @@
 import 'package:app_melivra/app/modules/professores/domain/entities/ranking_professors_config.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/get_professors_rank_usecase.dart';
 
-import '../../domain/entities/professor_response.dart';
-import '../../domain/usecases/get_professors_usecase.dart';
 import '../bloc/professors_bloc.dart';
 
 class ProfessorsController {

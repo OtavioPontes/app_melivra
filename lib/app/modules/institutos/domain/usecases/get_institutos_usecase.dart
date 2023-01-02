@@ -1,4 +1,3 @@
-import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
 import 'package:app_melivra/app/modules/institutos/domain/repositories/i_instituto_repository.dart';
 import 'package:dartz/dartz.dart';
 

@@ -1,5 +1,3 @@
-import 'package:app_melivra/app/modules/institutos/presentation/bloc/institutos_bloc.dart';
-import 'package:app_melivra/app/modules/institutos/presentation/controllers/institutos_controller.dart';
 import 'package:app_melivra/app/modules/institutos/presentation/pages/institutos_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

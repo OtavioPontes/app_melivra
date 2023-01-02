@@ -1,4 +1,3 @@
-import 'package:app_melivra/app/core/domain/entities/grade.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/widgets/card_info_instituto_widget.dart';

@@ -7,7 +7,6 @@ import 'package:app_melivra/app/modules/institutos/domain/usecases/get_instituto
 import 'package:app_melivra/app/modules/professores/data/model/professor_model.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/get_professor_details_usecase.dart';
-import 'package:app_melivra/app/modules/professores/domain/usecases/get_professors_usecase.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HomeController {

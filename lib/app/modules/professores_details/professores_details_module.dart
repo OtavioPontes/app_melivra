@@ -1,5 +1,7 @@
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/evaluate_professor_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/professor_details_bloc.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/bloc/professor_grades_bloc.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/bloc/show_button_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -11,10 +13,15 @@ class ProfessoresDetailsModule extends Module {
   @override
   List<Bind> get binds => [
         Bind((i) => EvaluateProfessorBloc()),
+        Bind((i) => ProfessorGradesBloc()),
         Bind((i) => ProfessorDetailsBloc()),
+        Bind((i) => ShowEvaluationButtonBloc()),
         Bind(
           (i) => ProfessorDetailsController(
+            showButtonBloc: i(),
+            getProfessorGradesUsecase: i(),
             getProfessorDetailsUsecase: i(),
+            gradesBloc: i(),
             bloc: i(),
             id: i.args.data['id'],
           ),

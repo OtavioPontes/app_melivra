@@ -1,6 +1,7 @@
+import 'package:app_melivra/app/modules/professores_details/presentation/bloc/show_button_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
-import 'package:app_melivra/app/modules/professores_details/presentation/pages/evaluate_professor_page.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/widgets/draggable_evaluation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -41,33 +42,41 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
         bloc: controller.bloc,
         builder: (context, state) {
           if (state is ProfessorDetailsSuccessState) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 50),
-              child: TextButton(
-                onPressed: () async {
-                  await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return EvaluateProfessorDialog(
-                        professor: state.professor,
-                      );
-                    },
-                  );
-                  evaluateController.dispose();
-                },
-                style: TextButton.styleFrom(
-                  fixedSize: Size(60.scale, 60.scale),
-                  backgroundColor: ColorsMeLivra().lightPurple,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      100,
+            return BlocBuilder(
+              bloc: controller.showButtonBloc,
+              builder: (context, showState) {
+                if (showState is ShowEvaluationButtonSuccessState) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 50),
+                    child: TextButton(
+                      onPressed: () async {
+                        await showDialog(
+                          context: context,
+                          builder: (context) {
+                            return EvaluateProfessorDialog(
+                              professor: state.professor,
+                            );
+                          },
+                        );
+                        evaluateController.dispose();
+                      },
+                      style: TextButton.styleFrom(
+                        fixedSize: Size(60.scale, 60.scale),
+                        backgroundColor: ColorsMeLivra().lightPurple,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            100,
+                          ),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.thumb_up,
+                      ),
                     ),
-                  ),
-                ),
-                child: const Icon(
-                  Icons.thumb_up,
-                ),
-              ),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             );
           }
           return const SizedBox.shrink();
@@ -86,7 +95,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                   fit: BoxFit.fitWidth,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 40.scale, bottom: 64.scale),
+                  padding: EdgeInsets.only(top: 40.scale, bottom: 80.scale),
                   child: Column(
                     children: [
                       Padding(
@@ -217,7 +226,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                                   professor.grades?.average),
                                           SizedBox(height: 24.scale),
                                           Text(
-                                            '30 avaliações',
+                                            "${controller.grades.length} avaliações",
                                             style:
                                                 theme.textTheme.overline!.merge(
                                               TextStyle(
@@ -291,147 +300,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
               ],
             ),
           ),
-          DraggableScrollableSheet(
-            maxChildSize: 0.9,
-            initialChildSize: 0.15,
-            minChildSize: 0.1,
-            builder: (context, scrollController) {
-              return Material(
-                elevation: 10,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(20.scale),
-                ),
-                child: CustomScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  controller: scrollController,
-                  slivers: [
-                    SliverPersistentHeader(
-                      delegate: BadgeBottomSheet(),
-                      pinned: true,
-                    ),
-                    SliverToBoxAdapter(
-                      child: Container(
-                        height: size.height * 0.9,
-                        decoration: BoxDecoration(
-                          color: theme.cardColor,
-                          borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(20.scale),
-                          ),
-                        ),
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              top: 120.scale,
-                              child: Column(
-                                children: [
-                                  SvgPicture.asset(
-                                    AssetsMeLivra.waveChat,
-                                    width: size.width,
-                                    height: size.height,
-                                    fit: BoxFit.fitWidth,
-                                    color: theme.primaryColor,
-                                  ),
-                                  Container(
-                                    color: theme.primaryColor,
-                                  )
-                                ],
-                              ),
-                            ),
-                            Column(
-                              children: [
-                                SizedBox(height: 16.scale),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 24.scale),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.chat,
-                                        color: theme.colorScheme.onPrimary,
-                                      ),
-                                      SizedBox(width: 32.scale),
-                                      Flexible(
-                                        child: Text(
-                                          'Avaliações e Comentários',
-                                          style: theme.textTheme.headline5!,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 32.scale),
-                                Stack(
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 16.scale,
-                                        vertical: 16.scale,
-                                      ),
-                                      width: size.width * 0.8,
-                                      decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(20),
-                                          topLeft: Radius.circular(20),
-                                          topRight: Radius.circular(20),
-                                          bottomRight: Radius.circular(30),
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: theme.colorScheme.onPrimary
-                                                .withOpacity(0.2),
-                                            offset: const Offset(-1, 2),
-                                            blurRadius: 5,
-                                            spreadRadius: 2,
-                                          )
-                                        ],
-                                        color: theme.cardColor,
-                                      ),
-                                      child: TextField(
-                                        minLines: 2,
-                                        maxLines: 2,
-                                        decoration: InputDecoration(
-                                            hintText:
-                                                'Escreva seu comentário...',
-                                            hintStyle: theme
-                                                .textTheme.bodyText2!
-                                                .merge(
-                                              TextStyle(
-                                                color: theme.disabledColor,
-                                              ),
-                                            )),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      right: 0,
-                                      bottom: 0,
-                                      child: GestureDetector(
-                                        onTap: () {},
-                                        child: CircleAvatar(
-                                          radius: 25,
-                                          backgroundColor:
-                                              ColorsMeLivra().lightPurple,
-                                          child: Icon(
-                                            Icons.send,
-                                            color: theme.primaryColor,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          )
+          DraggableEvaluation(controller: controller),
         ],
       ),
     );

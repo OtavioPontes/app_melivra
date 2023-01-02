@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/domain/entities/grades_response_config.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:dartz/dartz.dart';
 
@@ -24,5 +25,9 @@ abstract class IProfessorRepository {
   Future<Either<IFailure, void>> evaluateProfessor({
     required int id,
     required Grade grade,
+  });
+
+  Future<Either<IFailure, GradesResponseConfig>> getProfessorGrades({
+    required int id,
   });
 }

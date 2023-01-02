@@ -20,7 +20,6 @@ class _RankingMenuState extends State<RankingMenu> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
 
     return Builder(builder: (context) {
       if (widget.controller.config!.totalPages > 0) {
