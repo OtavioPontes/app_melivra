@@ -103,17 +103,22 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                             ),
                           ),
                           SizedBox(height: 32.scale),
+                          MyEvaluation(controller: widget.controller),
+                          SizedBox(height: 16.scale),
                           BlocBuilder(
                             bloc: widget.controller.gradesBloc,
                             builder: (context, state) {
-                              if (state is ProfessorGradesEmptyState ||
-                                  state is ProfessorGradesFailureState) {
-                                return Center(
-                                  child: Text(
-                                    'Não encontramos nada aqui 😥',
-                                    style: theme.textTheme.headline6!.merge(
-                                      TextStyle(
-                                        color: theme.primaryColor,
+                              if (state is ProfessorGradesFailureState) {
+                                return Padding(
+                                  padding: EdgeInsets.all(16.scale),
+                                  child: Center(
+                                    child: Text(
+                                      state.message,
+                                      textAlign: TextAlign.center,
+                                      style: theme.textTheme.headline6!.merge(
+                                        TextStyle(
+                                          color: theme.backgroundColor,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -148,8 +153,6 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                 return Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const MyEvaluation(),
-                                    SizedBox(height: 32.scale),
                                     ListView.separated(
                                       physics:
                                           const NeverScrollableScrollPhysics(),

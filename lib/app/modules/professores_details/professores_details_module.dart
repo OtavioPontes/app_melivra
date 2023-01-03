@@ -18,6 +18,7 @@ class ProfessoresDetailsModule extends Module {
         Bind((i) => ShowEvaluationButtonBloc()),
         Bind(
           (i) => ProfessorDetailsController(
+            updateProfessorGradeUsecase: i(),
             showButtonBloc: i(),
             getProfessorGradesUsecase: i(),
             getProfessorDetailsUsecase: i(),

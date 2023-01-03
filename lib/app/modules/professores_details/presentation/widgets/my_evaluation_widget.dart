@@ -1,10 +1,12 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/style/colors.dart';
 
 class MyEvaluation extends StatelessWidget {
-  const MyEvaluation({Key? key}) : super(key: key);
+  final ProfessorDetailsController controller;
+  const MyEvaluation({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +38,24 @@ class MyEvaluation extends StatelessWidget {
             color: theme.cardColor,
           ),
           child: TextField(
+            controller: controller.evaluationController,
             minLines: 2,
             maxLines: 2,
             decoration: InputDecoration(
-                hintText: 'Escreva seu comentário...',
-                hintStyle: theme.textTheme.bodyText2!.merge(
-                  TextStyle(
-                    color: theme.disabledColor,
-                  ),
-                )),
+              hintText: 'Escreva seu comentário...',
+              hintStyle: theme.textTheme.bodyText2!.merge(
+                TextStyle(
+                  color: theme.disabledColor,
+                ),
+              ),
+            ),
           ),
         ),
         Positioned(
           right: 0,
           bottom: 0,
           child: GestureDetector(
-            onTap: () {},
+            onTap: controller.updateProfessorEvaluation,
             child: CircleAvatar(
               radius: 25,
               backgroundColor: ColorsMeLivra().lightPurple,

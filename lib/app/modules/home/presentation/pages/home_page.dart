@@ -127,6 +127,7 @@ class HomePage extends StatelessWidget {
                                     itemCount: state.professors.length,
                                     clipBehavior: Clip.none,
                                     itemBuilder: (context, index) {
+                                      final item = state.professors[index];
                                       return GestureDetector(
                                         onTap: () => Modular.to.pushNamed(
                                           ProfessoresDetailsModule.routeName,
@@ -148,10 +149,9 @@ class HomePage extends StatelessWidget {
                                                 children: [
                                                   SizedBox(height: 4.scale),
                                                   ScoreWidget(
-                                                    score: state
-                                                        .professors[index]
-                                                        .grades
-                                                        ?.average,
+                                                    score:
+                                                        item.grades?.average ??
+                                                            item.averageGrade,
                                                   ),
                                                   SizedBox(height: 16.scale),
                                                   Flexible(

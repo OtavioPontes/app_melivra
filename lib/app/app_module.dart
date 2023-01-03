@@ -43,6 +43,7 @@ import 'modules/professores/domain/usecases/get_professor_details_usecase.dart';
 import 'modules/professores/domain/usecases/get_professor_grades_usecase.dart';
 import 'modules/professores/domain/usecases/get_professors_rank_usecase.dart';
 import 'modules/professores/domain/usecases/get_professors_usecase.dart';
+import 'modules/professores/domain/usecases/update_professor_grade_usecase.dart';
 import 'modules/professores/presentation/bloc/professors_bloc.dart';
 import 'modules/professores/presentation/controllers/professores_controller.dart';
 import 'modules/professores_details/professores_details_module.dart';
@@ -96,6 +97,7 @@ class AppModule extends Module {
         Bind((i) => GetProfessorsRankUsecase(repository: i())),
         Bind((i) => GetProfessorsUsecase(repository: i())),
         Bind((i) => PostProfessorGradeUsecase(repository: i())),
+        Bind((i) => UpdateProfessorGradeUsecase(repository: i())),
         Bind((i) => GetProfessorGradesUsecase(repository: i())),
 
         Bind(

@@ -126,12 +126,25 @@ class ProfessorsDatasource implements IProfessorDatasource {
       final response = await _dio.get(
         Endpoints.evaluateProfessor(id: id),
       );
-      if (response.data['data'] == null) {
-        throw ServerException(
-          message: 'Nenhuma avaliação foi encontrada',
-        );
-      }
       return GradesResponseConfig.fromMap(response.data);
+    } on DioError catch (e) {
+      throw ServerException(
+        message: e.response?.data['message'],
+        statusCode: e.response?.statusCode,
+      );
+    }
+  }
+
+  @override
+  Future<void> updateGrade({
+    required int id,
+    required String description,
+  }) async {
+    try {
+      await _dio.put(
+        Endpoints.evaluateProfessor(id: id),
+        data: {'description': description},
+      );
     } on DioError catch (e) {
       throw ServerException(
         message: e.response?.data['message'],

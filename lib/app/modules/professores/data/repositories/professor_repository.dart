@@ -119,4 +119,19 @@ class ProfessorRepository implements IProfessorRepository {
       );
     }
   }
+
+  @override
+  Future<Either<IFailure, void>> updateProfessorGrade(
+      {required int id, required String description}) async {
+    try {
+      await _datasource.updateGrade(id: id, description: description);
+      return Right(voidRight);
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(
+          message: e.message,
+        ),
+      );
+    }
+  }
 }

@@ -30,4 +30,8 @@ abstract class IProfessorRepository {
   Future<Either<IFailure, GradesResponseConfig>> getProfessorGrades({
     required int id,
   });
+  Future<Either<IFailure, void>> updateProfessorGrade({
+    required int id,
+    required String description,
+  });
 }

@@ -53,8 +53,10 @@ class GradesResponseConfig extends Equatable {
       totalItems: map['total_items']?.toInt() ?? 0,
       totalPages: map['total_pages']?.toInt() ?? 0,
       itemsPerPage: map['items_per_page']?.toInt() ?? 0,
-      response: List<GradeResponse>.from(
-          map['data']?.map((x) => GradeResponse.fromMap(x))),
+      response: map['data'] != null
+          ? List<GradeResponse>.from(
+              map['data']?.map((x) => GradeResponse.fromMap(x)))
+          : [],
     );
   }
 

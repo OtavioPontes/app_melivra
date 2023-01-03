@@ -225,14 +225,19 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                               score: professor.averageGrade ??
                                                   professor.grades?.average),
                                           SizedBox(height: 24.scale),
-                                          Text(
-                                            "${controller.grades.length} avaliações",
-                                            style:
-                                                theme.textTheme.overline!.merge(
-                                              TextStyle(
-                                                color: theme.disabledColor,
-                                              ),
-                                            ),
+                                          BlocBuilder(
+                                            bloc: controller.gradesBloc,
+                                            builder: (context, state) {
+                                              return Text(
+                                                "${controller.grades.length} avaliações",
+                                                style: theme.textTheme.overline!
+                                                    .merge(
+                                                  TextStyle(
+                                                    color: theme.disabledColor,
+                                                  ),
+                                                ),
+                                              );
+                                            },
                                           ),
                                           SizedBox(height: 16.scale),
                                           GridView.count(
