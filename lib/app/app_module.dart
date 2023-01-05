@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/bloc/user_bloc.dart';
 import 'package:app_melivra/app/core/network/network_info.dart';
 import 'package:app_melivra/app/core/stores/user_store.dart';
 import 'package:app_melivra/app/core/utils/appinfo.dart';
@@ -10,9 +11,11 @@ import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
 import 'package:app_melivra/app/modules/cadastro/cadastro_module.dart';
 import 'package:app_melivra/app/modules/institutos/institutos_module.dart';
 import 'package:app_melivra/app/modules/login/login_module.dart';
+import 'package:app_melivra/app/modules/meu_perfil/meu_perfil_module.dart';
 import 'package:app_melivra/app/modules/perfil/perfil_module.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/post_professor_grade_usecase.dart';
 import 'package:app_melivra/app/modules/professores/professores_module.dart';
+import 'package:app_melivra/app/modules/sobre_app/sobre_app_module.dart';
 import 'package:app_melivra/app/modules/splash/domain/usecases/splash_pipeline_usecase.dart';
 import 'package:app_melivra/app/modules/splash/splash_module.dart';
 import 'package:app_melivra/main.dart';
@@ -56,9 +59,10 @@ class AppModule extends Module {
   @override
   List<Bind> get binds => [
         // ------------------------ STORES ------------------------
-        Bind((i) => UserStore(hiveBox: i())),
+        Bind((i) => UserStore(bloc: i(), hiveBox: i())),
         Bind((i) => TopInstitutosBloc()),
         Bind((i) => UltimosPesquisadosBloc()),
+        Bind((i) => UserBloc()),
         Bind(
           (i) => HomeController(
             store: i(),
@@ -194,6 +198,14 @@ class AppModule extends Module {
     ModuleRoute(
       SearchModule.routeName,
       module: SearchModule(),
+    ),
+    ModuleRoute(
+      MeuPerfilModule.routeName,
+      module: MeuPerfilModule(),
+    ),
+    ModuleRoute(
+      SobreAppModule.routeName,
+      module: SobreAppModule(),
     ),
   ];
 }

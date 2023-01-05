@@ -12,4 +12,5 @@ class AssetsMeLivra {
   static const String waveChat = "${url}wave_chat.svg";
   static const String success = "${url}success.svg";
   static const String failure = "${url}failure.svg";
+  static const String sobre = "${url}sobre_app.svg";
 }

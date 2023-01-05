@@ -4,9 +4,11 @@ import 'package:app_melivra/app/modules/perfil/presentation/controllers/perfil_c
 import 'package:app_melivra/app/modules/perfil/presentation/widgets/logout_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../core/bloc/user_bloc.dart';
 import '../widgets/card_deslogar_widget.dart';
 import '../widgets/card_meu_perfil_widget.dart';
 import '../widgets/card_retirada_widget.dart';
@@ -15,6 +17,7 @@ import '../widgets/card_sobre_widget.dart';
 class PerfilPage extends StatelessWidget {
   PerfilPage({Key? key}) : super(key: key);
   final PerfilController controller = Modular.get<PerfilController>();
+  final UserBloc bloc = Modular.get<UserBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,32 +40,37 @@ class PerfilPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 40.scale,
-                        backgroundColor: theme.backgroundColor,
-                        child: Text(
-                          'OP',
-                          style: theme.textTheme.headline4!.merge(
-                            TextStyle(
-                              color: theme.colorScheme.onPrimary,
+                BlocBuilder(
+                  bloc: bloc,
+                  builder: (context, state) {
+                    return Center(
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 40.scale,
+                            backgroundColor: theme.backgroundColor,
+                            child: Text(
+                              controller.nameInitials,
+                              style: theme.textTheme.headline4!.merge(
+                                TextStyle(
+                                  color: theme.colorScheme.onPrimary,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          SizedBox(height: 16.scale),
+                          Text(
+                            controller.user.name,
+                            style: theme.textTheme.headline5!.merge(
+                              TextStyle(
+                                color: theme.backgroundColor,
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                      SizedBox(height: 16.scale),
-                      Text(
-                        'Otávio Pontes',
-                        style: theme.textTheme.headline5!.merge(
-                          TextStyle(
-                            color: theme.backgroundColor,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                    );
+                  },
                 ),
                 Stack(
                   children: [

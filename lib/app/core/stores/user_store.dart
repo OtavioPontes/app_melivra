@@ -1,15 +1,18 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'package:app_melivra/app/core/bloc/user_bloc.dart';
 import 'package:app_melivra/app/core/domain/entities/user.dart';
 import 'package:app_melivra/app/modules/login/data/models/user_model.dart';
 
 class UserStore {
+  final UserBloc bloc;
   final Box _hiveBox;
 
   User? loggedUser;
 
   UserStore({
     required Box hiveBox,
+    required this.bloc,
     this.loggedUser,
   }) : _hiveBox = hiveBox {
     pipeline();
@@ -29,11 +32,20 @@ class UserStore {
   }
 
   Future<void> setUser(User user) async {
-    loggedUser = user;
-    await _hiveBox.put(
-      'user',
-      UserModel.fromEntity(user: user).toMap(),
-    );
+    try {
+      loggedUser = user;
+      await _hiveBox.put(
+        'user',
+        UserModel.fromEntity(user: user).toMap(),
+      );
+      bloc.add(UserSuccessEvent());
+    } catch (e) {
+      bloc.add(
+        UserFailureEvent(
+          message: 'Falha ao setar usuário',
+        ),
+      );
+    }
   }
 
   Future<void> clearUser() async {

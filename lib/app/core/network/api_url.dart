@@ -3,7 +3,7 @@
 import 'package:dio/dio.dart';
 
 class Api {
-  static const String url = 'http://192.168.1.19:8080';
+  static const String url = 'http://192.168.1.14:8080';
 
   static Future<void> test() async {
     try {

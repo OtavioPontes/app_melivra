@@ -1,10 +1,10 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
-import 'package:app_melivra/app/modules/sobre_app/sobre_app_module.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class CardSobre extends StatelessWidget {
-  const CardSobre({Key? key}) : super(key: key);
+class CardDesenvolvedores extends StatelessWidget {
+  const CardDesenvolvedores({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CardSobre extends StatelessWidget {
     return SizedBox(
       width: size.width * 0.85,
       child: GestureDetector(
-        onTap: () => Modular.to.pushNamed(SobreAppModule.routeName),
+        onTap: () => {},
         child: Card(
           child: Padding(
             padding: EdgeInsets.only(
@@ -30,7 +30,7 @@ class CardSobre extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(
-                        Icons.info,
+                        Icons.developer_mode_rounded,
                         size: 32.scale,
                       ),
                       SizedBox(width: 24.scale),
@@ -39,7 +39,7 @@ class CardSobre extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Sobre o App',
+                              'Desenvolvedores',
                               style: theme.textTheme.headline6!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,
@@ -48,7 +48,7 @@ class CardSobre extends StatelessWidget {
                             ),
                             SizedBox(height: 4.scale),
                             Text(
-                              'Informações do projeto',
+                              'Quem somos',
                               style: theme.textTheme.caption,
                             ),
                           ],
@@ -57,6 +57,7 @@ class CardSobre extends StatelessWidget {
                     ],
                   ),
                 ),
+                SizedBox(width: 24.scale),
                 GestureDetector(
                   onTap: () {},
                   child: Icon(
