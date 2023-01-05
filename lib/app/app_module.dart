@@ -2,6 +2,7 @@ import 'package:app_melivra/app/core/bloc/user_bloc.dart';
 import 'package:app_melivra/app/core/network/network_info.dart';
 import 'package:app_melivra/app/core/stores/user_store.dart';
 import 'package:app_melivra/app/core/utils/appinfo.dart';
+import 'package:app_melivra/app/modules/about_us/about_us_module.dart';
 import 'package:app_melivra/app/modules/bottom_navigation/bottom_navigation_module.dart';
 import 'package:app_melivra/app/modules/esqueci_senha/esqueci_senha_module.dart';
 import 'package:app_melivra/app/modules/home/home_module.dart';
@@ -18,6 +19,7 @@ import 'package:app_melivra/app/modules/professores/professores_module.dart';
 import 'package:app_melivra/app/modules/sobre_app/sobre_app_module.dart';
 import 'package:app_melivra/app/modules/splash/domain/usecases/splash_pipeline_usecase.dart';
 import 'package:app_melivra/app/modules/splash/splash_module.dart';
+import 'package:app_melivra/app/modules/suggestions/suggestions_module.dart';
 import 'package:app_melivra/main.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -206,6 +208,14 @@ class AppModule extends Module {
     ModuleRoute(
       SobreAppModule.routeName,
       module: SobreAppModule(),
+    ),
+    ModuleRoute(
+      SuggestionModule.routeName,
+      module: SuggestionModule(),
+    ),
+    ModuleRoute(
+      AboutUsModule.routeName,
+      module: AboutUsModule(),
     ),
   ];
 }

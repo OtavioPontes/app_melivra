@@ -1,4 +1,5 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/modules/suggestions/suggestions_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -12,7 +13,7 @@ class CardSugestoes extends StatelessWidget {
     return SizedBox(
       width: size.width * 0.85,
       child: GestureDetector(
-        onTap: () => {},
+        onTap: () => Modular.to.pushNamed(SuggestionModule.routeName),
         child: Card(
           child: Padding(
             padding: EdgeInsets.only(

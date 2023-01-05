@@ -13,4 +13,6 @@ class AssetsMeLivra {
   static const String success = "${url}success.svg";
   static const String failure = "${url}failure.svg";
   static const String sobre = "${url}sobre_app.svg";
+  static const String linkedin = "${url}linkedin.svg";
+  static const String github = "${url}github.svg";
 }

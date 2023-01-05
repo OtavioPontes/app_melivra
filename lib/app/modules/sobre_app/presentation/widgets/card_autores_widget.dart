@@ -1,4 +1,5 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/modules/about_us/about_us_module.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,7 +14,7 @@ class CardDesenvolvedores extends StatelessWidget {
     return SizedBox(
       width: size.width * 0.85,
       child: GestureDetector(
-        onTap: () => {},
+        onTap: () => Modular.to.pushNamed(AboutUsModule.routeName),
         child: Card(
           child: Padding(
             padding: EdgeInsets.only(
@@ -39,7 +40,7 @@ class CardDesenvolvedores extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Desenvolvedores',
+                              'Quem somos',
                               style: theme.textTheme.headline6!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,
@@ -48,7 +49,7 @@ class CardDesenvolvedores extends StatelessWidget {
                             ),
                             SizedBox(height: 4.scale),
                             Text(
-                              'Quem somos',
+                              'Equipe de desenvolvedores do projeto',
                               style: theme.textTheme.caption,
                             ),
                           ],

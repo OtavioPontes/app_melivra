@@ -1,10 +1,8 @@
 import 'package:app_melivra/app/core/utils/appinfo.dart';
-import 'package:app_melivra/app/modules/perfil/presentation/widgets/card_meu_perfil_widget.dart';
 import 'package:app_melivra/app/modules/sobre_app/presentation/widgets/card_autores_widget.dart';
 import 'package:app_melivra/app/modules/sobre_app/presentation/widgets/card_sugestoes_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -12,7 +10,7 @@ import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 
 class SobreAppPage extends StatelessWidget {
-  SobreAppPage({Key? key}) : super(key: key);
+  const SobreAppPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
