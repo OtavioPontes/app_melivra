@@ -17,6 +17,7 @@ import 'package:app_melivra/app/modules/perfil/perfil_module.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/post_professor_grade_usecase.dart';
 import 'package:app_melivra/app/modules/professores/professores_module.dart';
 import 'package:app_melivra/app/modules/sobre_app/sobre_app_module.dart';
+import 'package:app_melivra/app/modules/solicitar_retirada/solicitar_retirada_module.dart';
 import 'package:app_melivra/app/modules/splash/domain/usecases/splash_pipeline_usecase.dart';
 import 'package:app_melivra/app/modules/splash/splash_module.dart';
 import 'package:app_melivra/app/modules/suggestions/suggestions_module.dart';
@@ -53,6 +54,8 @@ import 'modules/professores/presentation/bloc/professors_bloc.dart';
 import 'modules/professores/presentation/controllers/professores_controller.dart';
 import 'modules/professores_details/professores_details_module.dart';
 import 'modules/ranking_institutos/ranking_institutos_module.dart';
+import 'modules/search/presentation/bloc/search_institutes_bloc.dart';
+import 'modules/search/presentation/bloc/search_professor_bloc.dart';
 import 'modules/search/search_module.dart';
 
 class AppModule extends Module {
@@ -65,6 +68,8 @@ class AppModule extends Module {
         Bind((i) => TopInstitutosBloc()),
         Bind((i) => UltimosPesquisadosBloc()),
         Bind((i) => UserBloc()),
+        Bind((i) => SearchProfessorsBloc()),
+        Bind((i) => SearchInstitutesBloc()),
         Bind(
           (i) => HomeController(
             store: i(),
@@ -216,6 +221,10 @@ class AppModule extends Module {
     ModuleRoute(
       AboutUsModule.routeName,
       module: AboutUsModule(),
+    ),
+    ModuleRoute(
+      SolicitarRetiradaModule.routeName,
+      module: SolicitarRetiradaModule(),
     ),
   ];
 }

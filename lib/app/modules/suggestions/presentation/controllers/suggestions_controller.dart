@@ -1,5 +1,4 @@
 import 'package:app_melivra/app/modules/suggestions/data/services/send_suggestion_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 

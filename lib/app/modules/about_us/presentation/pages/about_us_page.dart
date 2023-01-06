@@ -89,11 +89,41 @@ class AboutUsPage extends StatelessWidget {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const CircleAvatar(
-                                    radius: 50,
-                                    foregroundImage: NetworkImage(
-                                      'https://avatars.githubusercontent.com/u/39846965?v=4',
-                                    ),
+                                  Column(
+                                    children: [
+                                      const CircleAvatar(
+                                        radius: 50,
+                                        foregroundImage: NetworkImage(
+                                          'https://avatars.githubusercontent.com/u/39846965?v=4',
+                                        ),
+                                      ),
+                                      SizedBox(height: 8.scale),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '#Flutter',
+                                            style:
+                                                theme.textTheme.caption!.merge(
+                                              TextStyle(
+                                                color: theme.backgroundColor,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 4.scale,
+                                          ),
+                                          Text(
+                                            '#Figma',
+                                            style:
+                                                theme.textTheme.caption!.merge(
+                                              TextStyle(
+                                                color: theme.backgroundColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
                                   SizedBox(width: 32.scale),
                                   Flexible(
@@ -259,11 +289,41 @@ class AboutUsPage extends StatelessWidget {
                                     ),
                                   ),
                                   SizedBox(width: 32.scale),
-                                  const CircleAvatar(
-                                    radius: 50,
-                                    foregroundImage: NetworkImage(
-                                      'https://avatars.githubusercontent.com/u/36369156?v=4',
-                                    ),
+                                  Column(
+                                    children: [
+                                      const CircleAvatar(
+                                        radius: 50,
+                                        foregroundImage: NetworkImage(
+                                          'https://avatars.githubusercontent.com/u/36369156?v=4',
+                                        ),
+                                      ),
+                                      SizedBox(height: 8.scale),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '#Go',
+                                            style:
+                                                theme.textTheme.caption!.merge(
+                                              TextStyle(
+                                                color: theme.backgroundColor,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 4.scale,
+                                          ),
+                                          Text(
+                                            '#Docker',
+                                            style:
+                                                theme.textTheme.caption!.merge(
+                                              TextStyle(
+                                                color: theme.backgroundColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),

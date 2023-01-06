@@ -1,5 +1,3 @@
-import 'package:app_melivra/app/modules/search/presentation/bloc/search_institutes_bloc.dart';
-import 'package:app_melivra/app/modules/search/presentation/bloc/search_professor_bloc.dart';
 import 'package:app_melivra/app/modules/search/presentation/controllers/search_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -10,8 +8,6 @@ class SearchModule extends Module {
 
   @override
   List<Bind> get binds => [
-        Bind((i) => SearchProfessorsBloc()),
-        Bind((i) => SearchInstitutesBloc()),
         Bind(
           (i) => SearchController(
             searchProfessorsBloc: i(),

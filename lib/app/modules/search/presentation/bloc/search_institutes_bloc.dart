@@ -6,6 +6,7 @@ class SearchInstitutesBloc extends Bloc {
     on<SearchInstitutesLoadingEvent>(handleSearchInstitutesLoadingEvent);
     on<SearchInstitutesSuccessEvent>(handleSearchInstitutesSuccessEvent);
     on<SearchInstitutesFailureEvent>(handleSearchInstitutesFailureEvent);
+    on<SearchInstitutesResetEvent>(handleSearchInstitutesResetEvent);
   }
 
   void handleSearchInstitutesLoadingEvent(
@@ -25,6 +26,11 @@ class SearchInstitutesBloc extends Bloc {
   void handleSearchInstitutesFailureEvent(
       SearchInstitutesFailureEvent event, Emitter emit) {
     emit(SearchInstitutesFailureState(message: event.message));
+  }
+
+  void handleSearchInstitutesResetEvent(
+      SearchInstitutesResetEvent event, Emitter emit) {
+    emit(SearchInstitutesEmptyState());
   }
 }
 
@@ -63,3 +69,5 @@ class SearchInstitutesFailureEvent extends SearchInstitutesEvent {
 
   SearchInstitutesFailureEvent({required this.message});
 }
+
+class SearchInstitutesResetEvent extends SearchInstitutesEvent {}

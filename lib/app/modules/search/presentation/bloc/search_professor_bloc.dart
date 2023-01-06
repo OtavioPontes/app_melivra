@@ -7,6 +7,7 @@ class SearchProfessorsBloc extends Bloc {
     on<SearchProfessorsLoadingEvent>(handleSearchProfessorsLoadingEvent);
     on<SearchProfessorsSuccessEvent>(handleSearchProfessorsSuccessEvent);
     on<SearchProfessorsFailureEvent>(handleSearchProfessorsFailureEvent);
+    on<SearchProfessorsResetEvent>(handleSearchProfessorsResetEvent);
   }
 
   void handleSearchProfessorsLoadingEvent(
@@ -26,6 +27,11 @@ class SearchProfessorsBloc extends Bloc {
   void handleSearchProfessorsFailureEvent(
       SearchProfessorsFailureEvent event, Emitter emit) {
     emit(SearchProfessorsFailureState(message: event.message));
+  }
+
+  void handleSearchProfessorsResetEvent(
+      SearchProfessorsResetEvent event, Emitter emit) {
+    emit(SearchProfessorsEmptyState());
   }
 }
 
@@ -66,3 +72,5 @@ class SearchProfessorsFailureEvent extends SearchProfessorsEvent {
 
   SearchProfessorsFailureEvent({required this.message});
 }
+
+class SearchProfessorsResetEvent extends SearchProfessorsEvent {}

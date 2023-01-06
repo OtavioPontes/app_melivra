@@ -1,74 +1,47 @@
-import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
 import 'package:app_melivra/app/modules/institutos/domain/usecases/get_institutos_usecase.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_response.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/get_professors_usecase.dart';
 import 'package:app_melivra/app/modules/search/presentation/bloc/search_professor_bloc.dart';
+import 'package:app_melivra/app/modules/solicitar_retirada/data/services/send_solicitacao_retirada_service.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../../institutos/domain/entities/institutos_response.dart';
 import '../../../professores/domain/entities/professor_entity.dart';
-import '../bloc/search_institutes_bloc.dart';
 
-class SearchController {
-  final GetInstitutosUsecase _getInstitutosUsecase;
+class SolicitarRetiradaController {
   final GetProfessorsUsecase _getProfessorsUsecase;
   final SearchProfessorsBloc searchProfessorsBloc;
-  final SearchInstitutesBloc searchInstitutesBloc;
+  final SendSolicitacaoRetiradaService _sendSolicitacaoRetiradaService;
 
   TextEditingController searchController = TextEditingController();
-  InstitutosResponse? institutoResponse;
+  TextEditingController descriptionController = TextEditingController();
   ProfessorResponse? professorResponse;
+  Professor? selectedProfessor;
   int page = 1;
+
   final List<Professor> professors = [];
-  final List<Instituto> institutes = [];
 
-  SearchController({
+  SolicitarRetiradaController({
     required this.searchProfessorsBloc,
-    required this.searchInstitutesBloc,
-    required GetInstitutosUsecase getInstitutosUsecase,
     required GetProfessorsUsecase getProfessorsUsecase,
-  })  : _getInstitutosUsecase = getInstitutosUsecase,
-        _getProfessorsUsecase = getProfessorsUsecase;
-
-  Future<void> getInstitutos() async {
-    final result = await _getInstitutosUsecase(
-      ParamsGetInstitutosUsecase(
-        searchText: searchController.text,
-      ),
-    );
-
-    result.fold(
-      (failure) {
-        searchInstitutesBloc.add(
-          SearchInstitutesFailureEvent(message: failure.message),
-        );
-      },
-      (response) {
-        institutoResponse = response;
-        institutes.addAll(response.institutos);
-        searchInstitutesBloc.add(
-          SearchInstitutesSuccessEvent(institutes: institutes),
-        );
-      },
-    );
-  }
+    required SendSolicitacaoRetiradaService sendSolicitacaoRetiradaService,
+  })  : _getProfessorsUsecase = getProfessorsUsecase,
+        _sendSolicitacaoRetiradaService = sendSolicitacaoRetiradaService;
 
   void setNextPage() => page = page + 1;
 
   void dispose() {
     page = 1;
     resetLists();
+    searchController.clear();
     searchProfessorsBloc.add(
       SearchProfessorsResetEvent(),
-    );
-    searchInstitutesBloc.add(
-      SearchInstitutesResetEvent(),
     );
   }
 
   void resetLists() {
     professors.clear();
-    institutes.clear();
   }
 
   Future<void> getProfessores() async {
@@ -90,6 +63,38 @@ class SearchController {
         professors.addAll(response.professors);
         searchProfessorsBloc.add(
           SearchProfessorsSuccessEvent(professors: professors),
+        );
+      },
+    );
+  }
+
+  Future<void> sendExclusionRequest() async {
+    final result = await _sendSolicitacaoRetiradaService(
+      description: descriptionController.text,
+      id: selectedProfessor!.id,
+    );
+
+    result.fold(
+      (failure) async => await Fluttertoast.showToast(
+        msg: failure.message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.redAccent,
+        textColor: Colors.black,
+        fontSize: 12.0,
+      ),
+      (success) async {
+        descriptionController.clear();
+        selectedProfessor = null;
+        return await Fluttertoast.showToast(
+          msg: "Solicitação enviada com sucesso ✅",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.greenAccent,
+          textColor: Colors.black,
+          fontSize: 12.0,
         );
       },
     );

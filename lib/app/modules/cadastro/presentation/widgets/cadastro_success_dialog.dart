@@ -65,6 +65,18 @@ class CadastroSuccessDialog extends StatelessWidget {
             ),
           ),
         ),
+        Positioned(
+          top: 50 - MediaQuery.of(context).viewInsets.bottom * 0.5,
+          right: 20,
+          child: GestureDetector(
+            onTap: Modular.to.pop,
+            child: Icon(
+              Icons.close,
+              size: 50,
+              color: theme.backgroundColor,
+            ),
+          ),
+        ),
       ],
     );
   }

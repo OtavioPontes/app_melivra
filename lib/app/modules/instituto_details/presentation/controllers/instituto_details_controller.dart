@@ -28,7 +28,7 @@ class InstitutoDetailsController {
     pipeline();
   }
 
-  pipeline() async {
+  void pipeline() async {
     await getInstitutoDetails();
     await getProfessoresByInstituto();
   }

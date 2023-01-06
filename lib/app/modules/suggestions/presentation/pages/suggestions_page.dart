@@ -7,8 +7,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 
-class SuggestionsPage extends StatelessWidget {
+class SuggestionsPage extends StatefulWidget {
   const SuggestionsPage({Key? key}) : super(key: key);
+
+  @override
+  State<SuggestionsPage> createState() => _SuggestionsPageState();
+}
+
+class _SuggestionsPageState extends State<SuggestionsPage> {
+  bool isPreenchido = false;
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +111,17 @@ class SuggestionsPage extends StatelessWidget {
                                   ),
                                   width: size.width * 0.85,
                                   child: TextField(
+                                    onChanged: (value) {
+                                      setState(
+                                        () {
+                                          if (value.isNotEmpty) {
+                                            isPreenchido = true;
+                                          } else {
+                                            isPreenchido = false;
+                                          }
+                                        },
+                                      );
+                                    },
                                     controller: controller.suggestionController,
                                     minLines: 3,
                                     maxLines: 3,
@@ -120,27 +138,33 @@ class SuggestionsPage extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 64.scale),
-                              Center(
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      // Change your radius here
-                                      borderRadius: BorderRadius.circular(12),
+                              if (isPreenchido)
+                                Center(
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        // Change your radius here
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      fixedSize: Size(140.scale, 50.scale),
+                                      backgroundColor: theme.backgroundColor,
                                     ),
-                                    fixedSize: Size(140.scale, 50.scale),
-                                    backgroundColor: theme.backgroundColor,
-                                  ),
-                                  onPressed: controller.sendSuggestion,
-                                  child: Text(
-                                    'Enviar',
-                                    style: theme.textTheme.headline6!.merge(
-                                      TextStyle(
-                                        color: theme.primaryColor,
+                                    onPressed: () async {
+                                      await controller.sendSuggestion();
+                                      setState(() {
+                                        isPreenchido = false;
+                                      });
+                                    },
+                                    child: Text(
+                                      'Enviar',
+                                      style: theme.textTheme.headline6!.merge(
+                                        TextStyle(
+                                          color: theme.primaryColor,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
                             ],
                           ),
                         )

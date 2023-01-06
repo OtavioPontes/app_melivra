@@ -1,21 +1,23 @@
 import 'dart:convert';
 
-import 'package:app_melivra/app/modules/home/presentation/bloc/ultimos_pesquisados_bloc.dart';
-import 'package:app_melivra/app/modules/professores/data/model/professor_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hive/hive.dart';
 
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/widgets/score_widget.dart';
+import 'package:app_melivra/app/modules/home/presentation/bloc/ultimos_pesquisados_bloc.dart';
+import 'package:app_melivra/app/modules/professores/data/model/professor_model.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:app_melivra/app/modules/professores_details/professores_details_module.dart';
-import 'package:hive/hive.dart';
 
 class CardInfoProfessor extends StatelessWidget {
   final Professor professor;
+  final bool isTiny;
   const CardInfoProfessor({
     Key? key,
     required this.professor,
+    this.isTiny = false,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class CardInfoProfessor extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     final Size size = MediaQuery.of(context).size;
     return SizedBox(
-      width: size.width * 0.85,
+      width: isTiny ? size.width * 0.65 : size.width * 0.85,
       child: GestureDetector(
         onTap: () async {
           final rawData = await Hive.box('melivra').get('lastProfessors');

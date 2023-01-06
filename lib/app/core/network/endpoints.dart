@@ -17,4 +17,8 @@ class Endpoints {
 
   /// [SUGGESTIONS]
   static const String suggestions = '/suggestions/';
+
+  /// [EXCLUSION REQUEST]
+  static String exclusionRequests({required int id}) =>
+      '/professors/$id/exclusion-requests';
 }
