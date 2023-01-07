@@ -49,8 +49,8 @@ class SplashPipelineUseCase implements UseCase {
     } on UserFailure catch (e) {
       Modular.to.navigate(InicioModule.routeName);
       return Left(e);
-    } on InternetConectionFailure {
-      rethrow;
+    } on InternetConectionFailure catch (e) {
+      return Left(e);
     } on TokenFailure {
       await _store.clearUser();
       Modular.to.navigate(InicioModule.routeName);

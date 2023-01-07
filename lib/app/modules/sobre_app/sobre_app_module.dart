@@ -10,7 +10,7 @@ class SobreAppModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) => SobreAppPage(),
+          child: (context, args) => const SobreAppPage(),
         ),
       ];
 }

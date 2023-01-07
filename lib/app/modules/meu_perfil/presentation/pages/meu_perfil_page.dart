@@ -192,7 +192,6 @@ class MeuPerfilTextField extends StatelessWidget {
         ),
         width: size.width * 0.8,
         child: TextFormField(
-          autofocus: true,
           onChanged: (value) {},
           controller: controller,
           validator: validator,

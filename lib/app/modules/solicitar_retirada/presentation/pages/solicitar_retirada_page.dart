@@ -226,6 +226,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                               if (controller.selectedProfessor != null)
                                 Column(
                                   children: [
+                                    SizedBox(height: 16.scale),
                                     Row(
                                       children: [
                                         AbsorbPointer(

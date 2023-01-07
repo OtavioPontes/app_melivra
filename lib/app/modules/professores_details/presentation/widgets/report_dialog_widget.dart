@@ -2,9 +2,6 @@ import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../inicio/inicio_module.dart';
-import '../../../login/login_module.dart';
-
 class ReportDialog extends StatelessWidget {
   const ReportDialog({Key? key}) : super(key: key);
 

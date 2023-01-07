@@ -1,4 +1,5 @@
 import 'package:app_melivra/app/core/utils/appinfo.dart';
+import 'package:app_melivra/app/modules/splash/presentation/bloc/splash_bloc.dart';
 
 import 'package:app_melivra/app/modules/splash/presentation/controller/splash_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,8 +14,10 @@ class SplashModule extends Module {
         // ------------------------ STORES ------------------------
 
         // --------------------- CONTROLLERS ----------------------
+        Bind((i) => SplashBloc()),
         Bind(
           (i) => SplashController(
+            bloc: i(),
             appInfo: AppInfo.instance,
             pipeline: i(),
           ),

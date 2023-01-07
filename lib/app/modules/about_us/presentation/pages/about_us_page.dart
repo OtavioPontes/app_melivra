@@ -1,6 +1,3 @@
-import 'package:app_melivra/app/core/utils/appinfo.dart';
-import 'package:app_melivra/app/modules/sobre_app/presentation/widgets/card_autores_widget.dart';
-import 'package:app_melivra/app/modules/sobre_app/presentation/widgets/card_sugestoes_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';

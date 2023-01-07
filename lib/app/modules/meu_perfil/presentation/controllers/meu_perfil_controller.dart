@@ -1,13 +1,8 @@
-import 'package:app_melivra/app/core/style/colors.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'package:app_melivra/app/core/stores/user_store.dart';
 import 'package:app_melivra/app/modules/meu_perfil/domain/services/i_update_perfil_service.dart';
 import 'package:app_melivra/app/modules/meu_perfil/presentation/bloc/meu_perfil_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import '../../../../core/domain/entities/user.dart';
 
 class MeuPerfilController {
   final IUpdatePerfilService _updatePerfilService;

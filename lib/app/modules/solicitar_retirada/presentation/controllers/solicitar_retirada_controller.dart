@@ -1,9 +1,7 @@
-import 'package:app_melivra/app/modules/institutos/domain/usecases/get_institutos_usecase.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_response.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/get_professors_usecase.dart';
 import 'package:app_melivra/app/modules/search/presentation/bloc/search_professor_bloc.dart';
 import 'package:app_melivra/app/modules/solicitar_retirada/data/services/send_solicitacao_retirada_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
