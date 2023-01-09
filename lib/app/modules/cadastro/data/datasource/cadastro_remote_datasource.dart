@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/network/endpoints.dart';
 import 'package:app_melivra/app/modules/cadastro/data/models/user_creation_model.dart';
 import 'package:dio/dio.dart';
 
@@ -16,7 +17,7 @@ class CadastroRemoteDatasource implements ICadastroRemoteDatasource {
   }) async {
     try {
       await _dio.post(
-        '/users/',
+        Endpoints.createUser,
         data: user.toMap(),
       );
     } on DioError catch (e) {
@@ -25,7 +26,8 @@ class CadastroRemoteDatasource implements ICadastroRemoteDatasource {
         message: 'Erro no cadastro, por favor tente novamente',
       );
     } catch (e) {
-      throw ServerException();
+      throw ServerException(
+          message: 'Erro no cadastro, por favor tente novamente');
     }
   }
 }

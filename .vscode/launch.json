@@ -5,6 +5,12 @@
   "version": "1.0.0",
   "configurations": [
     {
+      "name": "Dart: Run all Tests",
+      "type": "dart",
+      "request": "launch",
+      "program": "./test/"
+    },
+    {
       "name": "Me Livra",
       "request": "launch",
       "type": "dart",

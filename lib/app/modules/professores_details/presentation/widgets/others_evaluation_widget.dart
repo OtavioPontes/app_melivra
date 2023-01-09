@@ -1,10 +1,7 @@
 import 'package:app_melivra/app/core/domain/entities/grade_response.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/widgets/score_tiny_widget.dart';
-import 'package:app_melivra/app/modules/professores_details/presentation/widgets/report_dialog_widget.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/style/colors.dart';
 
 class OthersEvaluation extends StatelessWidget {
   final GradeResponse response;

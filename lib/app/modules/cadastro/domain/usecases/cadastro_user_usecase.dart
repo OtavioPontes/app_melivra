@@ -13,14 +13,7 @@ class CadastroUserUsecase implements UseCase<void, ParamsCadastroUserUsecase> {
   @override
   Future<Either<IFailure, void>> call(params) async {
     try {
-      return await _service(
-        user: UserCreationModel(
-          name: params.name,
-          email: params.email,
-          password: params.password,
-          passwordConfirmation: params.passwordConfirmation,
-        ),
-      );
+      return await _service(user: params.user);
     } catch (_) {
       rethrow;
     }
@@ -28,15 +21,9 @@ class CadastroUserUsecase implements UseCase<void, ParamsCadastroUserUsecase> {
 }
 
 class ParamsCadastroUserUsecase extends IParams {
-  final String name;
-  final String email;
-  final String password;
-  final String passwordConfirmation;
+  final UserCreationModel user;
 
   ParamsCadastroUserUsecase({
-    required this.name,
-    required this.email,
-    required this.password,
-    required this.passwordConfirmation,
+    required this.user,
   });
 }
