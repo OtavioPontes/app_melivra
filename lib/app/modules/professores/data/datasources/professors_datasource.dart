@@ -152,4 +152,19 @@ class ProfessorsDatasource implements IProfessorDatasource {
       );
     }
   }
+
+  @override
+  Future<Grade> getGlobalGrades() async {
+    try {
+      final response = await _dio.get(
+        Endpoints.globalGrades,
+      );
+      return Grade.fromMap(response.data);
+    } on DioError catch (e) {
+      throw ServerException(
+        message: e.response?.data['message'],
+        statusCode: e.response?.statusCode,
+      );
+    }
+  }
 }

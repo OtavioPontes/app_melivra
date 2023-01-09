@@ -134,4 +134,18 @@ class ProfessorRepository implements IProfessorRepository {
       );
     }
   }
+
+  @override
+  Future<Either<IFailure, Grade>> getGlobalGrades() async {
+    try {
+      final Grade globalGrade = await _datasource.getGlobalGrades();
+      return Right(globalGrade);
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(
+          message: e.message,
+        ),
+      );
+    }
+  }
 }

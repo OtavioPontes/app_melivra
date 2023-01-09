@@ -14,7 +14,9 @@ import 'package:app_melivra/app/modules/institutos/institutos_module.dart';
 import 'package:app_melivra/app/modules/login/login_module.dart';
 import 'package:app_melivra/app/modules/meu_perfil/meu_perfil_module.dart';
 import 'package:app_melivra/app/modules/perfil/perfil_module.dart';
+import 'package:app_melivra/app/modules/professores/domain/usecases/get_global_grade_usecase.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/post_professor_grade_usecase.dart';
+import 'package:app_melivra/app/modules/professores/presentation/bloc/global_grade_bloc.dart';
 import 'package:app_melivra/app/modules/professores/professores_module.dart';
 import 'package:app_melivra/app/modules/sobre_app/sobre_app_module.dart';
 import 'package:app_melivra/app/modules/solicitar_retirada/solicitar_retirada_module.dart';
@@ -68,6 +70,7 @@ class AppModule extends Module {
         Bind((i) => TopInstitutosBloc()),
         Bind((i) => UltimosPesquisadosBloc()),
         Bind((i) => UserBloc()),
+        Bind((i) => GlobalGradeBloc()),
         Bind((i) => SearchProfessorsBloc()),
         Bind((i) => SearchInstitutesBloc()),
         Bind(
@@ -84,6 +87,8 @@ class AppModule extends Module {
         Bind((i) => InstitutosBloc()),
         Bind(
           (i) => InstitutosController(
+            getGlobalGradeUsecase: i(),
+            globalGradeBloc: i(),
             getInstitutosUsecase: i(),
             bloc: i(),
           ),
@@ -91,7 +96,9 @@ class AppModule extends Module {
         Bind((i) => ProfessorsBloc()),
         Bind(
           (i) => ProfessorsController(
+            getGlobalGradeUsecase: i(),
             getProfessorsUsecase: i(),
+            globalGradeBloc: i(),
             bloc: i(),
           ),
         ),
@@ -110,6 +117,7 @@ class AppModule extends Module {
         Bind((i) => PostProfessorGradeUsecase(repository: i())),
         Bind((i) => UpdateProfessorGradeUsecase(repository: i())),
         Bind((i) => GetProfessorGradesUsecase(repository: i())),
+        Bind((i) => GetGlobalGradeUsecase(repository: i())),
 
         Bind(
           (i) => SplashPipelineUseCase(

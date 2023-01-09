@@ -30,7 +30,8 @@ class OthersEvaluation extends StatelessWidget {
                 bottomLeft: Radius.circular(20),
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
-                bottomRight: Radius.circular(30),
+                //bottomRight: Radius.circular(30),
+                bottomRight: Radius.circular(20),
               ),
               boxShadow: [
                 BoxShadow(
@@ -59,60 +60,60 @@ class OthersEvaluation extends StatelessWidget {
                 Text(
                   response.description,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: 32.scale),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Icon(
-                        Icons.thumb_up,
-                        color: ColorsMeLivra().green,
-                        size: 20,
-                      ),
-                      SizedBox(width: 4.scale),
-                      Text(
-                        '(1)',
-                        style: theme.textTheme.caption,
-                      ),
-                      SizedBox(width: 8.scale),
-                      Icon(
-                        Icons.thumb_down,
-                        color: ColorsMeLivra().red,
-                        size: 20,
-                      ),
-                      SizedBox(width: 4.scale),
-                      Text(
-                        '(5)',
-                        style: theme.textTheme.caption,
-                      ),
-                    ],
-                  ),
-                )
+                // Padding(
+                //   padding: EdgeInsets.only(right: 32.scale),
+                //   child: Row(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     mainAxisAlignment: MainAxisAlignment.end,
+                //     children: [
+                //       Icon(
+                //         Icons.thumb_up,
+                //         color: ColorsMeLivra().green,
+                //         size: 20,
+                //       ),
+                //       SizedBox(width: 4.scale),
+                //       Text(
+                //         '(1)',
+                //         style: theme.textTheme.caption,
+                //       ),
+                //       SizedBox(width: 8.scale),
+                //       Icon(
+                //         Icons.thumb_down,
+                //         color: ColorsMeLivra().red,
+                //         size: 20,
+                //       ),
+                //       SizedBox(width: 4.scale),
+                //       Text(
+                //         '(5)',
+                //         style: theme.textTheme.caption,
+                //       ),
+                //     ],
+                //   ),
+                // )
               ],
             )),
-        Positioned(
-          right: 0,
-          bottom: 0,
-          child: GestureDetector(
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return const ReportDialog();
-                },
-              );
-            },
-            child: CircleAvatar(
-              radius: 20,
-              backgroundColor: ColorsMeLivra().yellow,
-              child: Icon(
-                Icons.warning,
-                color: theme.backgroundColor,
-              ),
-            ),
-          ),
-        ),
+        // Positioned(
+        //   right: 0,
+        //   bottom: 0,
+        //   child: GestureDetector(
+        //     onTap: () {
+        //       showDialog(
+        //         context: context,
+        //         builder: (context) {
+        //           return const ReportDialog();
+        //         },
+        //       );
+        //     },
+        //     child: CircleAvatar(
+        //       radius: 20,
+        //       backgroundColor: ColorsMeLivra().yellow,
+        //       child: Icon(
+        //         Icons.warning,
+        //         color: theme.backgroundColor,
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

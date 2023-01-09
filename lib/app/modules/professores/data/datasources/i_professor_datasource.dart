@@ -33,4 +33,6 @@ abstract class IProfessorDatasource {
     required int id,
     required String description,
   });
+
+  Future<Grade> getGlobalGrades();
 }

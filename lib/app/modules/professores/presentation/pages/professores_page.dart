@@ -1,6 +1,7 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/widgets/card_info_professor_widget.dart';
+import 'package:app_melivra/app/modules/professores/presentation/bloc/global_grade_bloc.dart';
 import 'package:app_melivra/app/modules/professores/presentation/controllers/professores_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -122,40 +123,52 @@ class ProfessoresPage extends StatelessWidget {
                                       ),
                                     ),
                                     SizedBox(width: 16.scale),
-                                    ConstrainedBox(
-                                      constraints: BoxConstraints(
-                                        minWidth: 100.scale,
-                                        minHeight: 100.scale,
-                                      ),
-                                      child: Card(
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 16.scale,
-                                            vertical: 8.scale,
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              SizedBox(height: 4.scale),
-                                              const ScoreWidget(score: 79),
-                                              SizedBox(height: 12.scale),
-                                              Text(
-                                                'Nota média global',
-                                                style: theme.textTheme.caption!
-                                                    .merge(
-                                                  TextStyle(
-                                                    color: theme
-                                                        .colorScheme.onPrimary,
-                                                  ),
+                                    BlocBuilder(
+                                        bloc: controller.globalGradeBloc,
+                                        builder: (context, state) {
+                                          return ConstrainedBox(
+                                            constraints: BoxConstraints(
+                                              minWidth: 100.scale,
+                                              minHeight: 100.scale,
+                                            ),
+                                            child: Card(
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: 16.scale,
+                                                  vertical: 8.scale,
                                                 ),
-                                                textAlign: TextAlign.center,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    SizedBox(height: 4.scale),
+                                                    ScoreWidget(
+                                                      score: (state
+                                                              is GlobalGradeSuccessState)
+                                                          ? state.grade.average
+                                                          : null,
+                                                    ),
+                                                    SizedBox(height: 12.scale),
+                                                    Text(
+                                                      'Nota média global',
+                                                      style: theme
+                                                          .textTheme.caption!
+                                                          .merge(
+                                                        TextStyle(
+                                                          color: theme
+                                                              .colorScheme
+                                                              .onPrimary,
+                                                        ),
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                                            ),
+                                          );
+                                        }),
                                   ],
                                 ),
                                 SizedBox(height: 40.scale),

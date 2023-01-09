@@ -34,4 +34,5 @@ abstract class IProfessorRepository {
     required int id,
     required String description,
   });
+  Future<Either<IFailure, Grade>> getGlobalGrades();
 }

@@ -1,18 +1,26 @@
 import 'package:app_melivra/app/modules/institutos/domain/entities/institutos_response.dart';
 import 'package:app_melivra/app/modules/institutos/domain/usecases/get_institutos_usecase.dart';
 
+import '../../../../core/domain/usecases/i_usecase.dart';
+import '../../../professores/domain/usecases/get_global_grade_usecase.dart';
+import '../../../professores/presentation/bloc/global_grade_bloc.dart';
 import '../bloc/institutos_bloc.dart';
 
 class InstitutosController {
   final GetInstitutosUsecase _getInstitutosUsecase;
   final InstitutosBloc bloc;
+  final GetGlobalGradeUsecase _getGlobalGradeUsecase;
+  final GlobalGradeBloc globalGradeBloc;
 
   InstitutosResponse? response;
 
   InstitutosController({
+    required GetGlobalGradeUsecase getGlobalGradeUsecase,
+    required this.globalGradeBloc,
     required GetInstitutosUsecase getInstitutosUsecase,
     required this.bloc,
-  }) : _getInstitutosUsecase = getInstitutosUsecase {
+  })  : _getInstitutosUsecase = getInstitutosUsecase,
+        _getGlobalGradeUsecase = getGlobalGradeUsecase {
     pipeline();
   }
 
@@ -37,6 +45,23 @@ class InstitutosController {
           InstitutosSuccessEvent(
             institutes: response.institutos,
           ),
+        );
+      },
+    );
+  }
+
+  Future<void> getGlobalGrade() async {
+    final result = await _getGlobalGradeUsecase(const NoParams());
+
+    result.fold(
+      (failure) {
+        globalGradeBloc.add(
+          GlobalGradeFailureEvent(message: failure.message),
+        );
+      },
+      (grade) {
+        return globalGradeBloc.add(
+          GlobalGradeSuccessEvent(grade: grade),
         );
       },
     );

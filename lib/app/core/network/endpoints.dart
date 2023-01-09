@@ -21,4 +21,7 @@ class Endpoints {
   /// [EXCLUSION REQUEST]
   static String exclusionRequests({required int id}) =>
       '/professors/$id/exclusion-requests';
+
+  /// [GRADES]
+  static const String globalGrades = '/grades/global/';
 }

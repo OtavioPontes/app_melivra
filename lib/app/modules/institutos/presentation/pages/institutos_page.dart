@@ -5,6 +5,7 @@ import 'package:app_melivra/app/core/widgets/search_widget.dart';
 import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
 import 'package:app_melivra/app/modules/institutos/presentation/bloc/institutos_bloc.dart';
 import 'package:app_melivra/app/modules/institutos/presentation/controllers/institutos_controller.dart';
+import 'package:app_melivra/app/modules/professores/presentation/bloc/global_grade_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -122,41 +123,55 @@ class InstitutosPage extends StatelessWidget {
                                         ),
                                       ),
                                       SizedBox(width: 16.scale),
-                                      ConstrainedBox(
-                                        constraints: BoxConstraints(
-                                          minHeight: 100.scale,
-                                          minWidth: 120.scale,
-                                        ),
-                                        child: Card(
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: 16.scale,
-                                              vertical: 8.scale,
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                SizedBox(height: 4.scale),
-                                                const ScoreWidget(score: 79),
-                                                SizedBox(height: 12.scale),
-                                                Text(
-                                                  'Nota média global',
-                                                  style: theme
-                                                      .textTheme.caption!
-                                                      .merge(
-                                                    TextStyle(
-                                                      color: theme.colorScheme
-                                                          .onPrimary,
-                                                    ),
+                                      BlocBuilder(
+                                          bloc: controller.globalGradeBloc,
+                                          builder: (context, state) {
+                                            return ConstrainedBox(
+                                              constraints: BoxConstraints(
+                                                minHeight: 100.scale,
+                                                minWidth: 120.scale,
+                                              ),
+                                              child: Card(
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: 16.scale,
+                                                    vertical: 8.scale,
                                                   ),
-                                                  textAlign: TextAlign.center,
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      SizedBox(height: 4.scale),
+                                                      ScoreWidget(
+                                                        score: (state
+                                                                is GlobalGradeSuccessState)
+                                                            ? state
+                                                                .grade.average
+                                                            : null,
+                                                      ),
+                                                      SizedBox(
+                                                          height: 12.scale),
+                                                      Text(
+                                                        'Nota média global',
+                                                        style: theme
+                                                            .textTheme.caption!
+                                                            .merge(
+                                                          TextStyle(
+                                                            color: theme
+                                                                .colorScheme
+                                                                .onPrimary,
+                                                          ),
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                              ),
+                                            );
+                                          }),
                                     ],
                                   ),
                                   SizedBox(height: 40.scale),
