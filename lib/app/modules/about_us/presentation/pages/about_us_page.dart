@@ -196,6 +196,23 @@ class AboutUsPage extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
+                                            SizedBox(width: 16.scale),
+                                            GestureDetector(
+                                              onTap: () => launchUrl(
+                                                Uri(
+                                                  scheme: 'https',
+                                                  host: 'otaviopontes.com',
+                                                ),
+                                                mode: LaunchMode
+                                                    .externalApplication,
+                                                webOnlyWindowName: '_blank',
+                                              ),
+                                              child: Icon(
+                                                Icons.language,
+                                                size: 40,
+                                                color: theme.backgroundColor,
+                                              ),
+                                            ),
                                           ],
                                         )
                                       ],
