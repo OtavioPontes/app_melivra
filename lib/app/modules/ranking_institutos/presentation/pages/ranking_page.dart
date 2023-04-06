@@ -206,7 +206,7 @@ class RankingPage extends StatelessWidget {
               ),
               Positioned(
                 right: 2.scale,
-                top: size.height * 0.13,
+                top: 70.scale,
                 child: SvgPicture.asset(
                   AssetsMeLivra.trophy,
                   height: 85.scale,

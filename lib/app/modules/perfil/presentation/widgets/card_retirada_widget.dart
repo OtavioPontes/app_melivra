@@ -31,7 +31,7 @@ class CardRetirada extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.cancel,
-                        color: theme.errorColor,
+                        color: theme.primaryColor,
                         size: 32.scale,
                       ),
                       SizedBox(width: 24.scale),

@@ -15,40 +15,43 @@ class ScoreBigWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final ScoreEnum scoreEnum = UtilsScoreEnum.getEnumFromScore(score: score);
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        SizedBox(
-          height: 130.scale,
-          width: 130.scale,
-          child: Transform.rotate(
-            angle: pi,
-            child: CircularProgressIndicator(
-              color: scoreEnum.getColor,
-              value: score != null ? score! / 100 : 0,
-              strokeWidth: 8,
+    return Hero(
+      tag: 'scoreBig',
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SizedBox(
+            height: 130.scale,
+            width: 130.scale,
+            child: Transform.rotate(
+              angle: pi,
+              child: CircularProgressIndicator(
+                color: scoreEnum.getColor,
+                value: score != null ? score! / 100 : 0,
+                strokeWidth: 8,
+              ),
             ),
           ),
-        ),
-        Container(
-          height: 100.scale,
-          width: 100.scale,
-          decoration: BoxDecoration(
-            color: theme.cardColor,
-            borderRadius: BorderRadius.circular(50),
-            border: Border.all(
+          Container(
+            height: 100.scale,
+            width: 100.scale,
+            decoration: BoxDecoration(
               color: theme.cardColor,
-              width: 15,
+              borderRadius: BorderRadius.circular(50),
+              border: Border.all(
+                color: theme.cardColor,
+                width: 15,
+              ),
+            ),
+            child: Center(
+              child: Text(
+                score != null ? score.toString() : '-',
+                style: theme.textTheme.headline3,
+              ),
             ),
           ),
-          child: Center(
-            child: Text(
-              score != null ? score.toString() : '-',
-              style: theme.textTheme.headline3,
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

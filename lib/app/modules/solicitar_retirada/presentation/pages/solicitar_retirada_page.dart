@@ -22,6 +22,23 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
   final SolicitarRetiradaController controller =
       Modular.get<SolicitarRetiradaController>();
 
+  late final ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(infiniteScrolling);
+    super.initState();
+  }
+
+  Future<void> infiniteScrolling() async {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      controller.setNextPage();
+      await controller.getProfessores();
+    }
+  }
+
   bool hasProfessor = false;
 
   @override
@@ -43,6 +60,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
         ),
         child: SafeArea(
           child: SingleChildScrollView(
+            controller: _scrollController,
             padding: EdgeInsets.only(
               top: 32.scale,
               bottom: 40.scale,

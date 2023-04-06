@@ -28,142 +28,150 @@ class EvaluateProfessorDialog extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     return Stack(
       children: [
-        Dialog(
-          elevation: 10,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-            ),
-            width: size.width * 0.9,
-            height: size.height * 0.7,
-            child: BlocBuilder(
-                bloc: controller.bloc,
-                builder: (context, state) {
-                  if (state is EvaluateProfessorSuccessState) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16.scale,
-                        vertical: 40.scale,
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Avaliação feita com sucesso',
-                            style: theme.textTheme.headline4,
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: 16.scale),
-                          SvgPicture.asset(
-                            AssetsMeLivra.success,
-                          ),
-                          SizedBox(height: 16.scale),
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                // Change your radius here
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              fixedSize: Size(80.scale, 40.scale),
-                              backgroundColor: theme.primaryColor,
+        Positioned(
+          top: 40.scale,
+          width: size.width,
+          child: Dialog(
+            elevation: 10,
+            child: Container(
+              height: 450.scale,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: BlocBuilder(
+                  bloc: controller.bloc,
+                  builder: (context, state) {
+                    if (state is EvaluateProfessorSuccessState) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.scale,
+                          vertical: 40.scale,
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Avaliação feita com sucesso',
+                              style: theme.textTheme.headline4,
+                              textAlign: TextAlign.center,
                             ),
-                            onPressed: Modular.to.pop,
-                            child: Text(
-                              'Ok',
-                              style: theme.textTheme.headline6!.merge(
-                                TextStyle(
-                                  color: theme.backgroundColor,
+                            SizedBox(height: 16.scale),
+                            SvgPicture.asset(
+                              AssetsMeLivra.success,
+                            ),
+                            SizedBox(height: 40.scale),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  // Change your radius here
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
+                                fixedSize: Size(80.scale, 40.scale),
+                                backgroundColor: theme.primaryColor,
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                  if (state is EvaluateProfessorFailureState) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16.scale,
-                        vertical: 40.scale,
-                      ),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: 120.scale,
-                            child: Opacity(
-                              opacity: 0.3,
-                              child: SvgPicture.asset(
-                                AssetsMeLivra.failure,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                state.message,
-                                style:
-                                    theme.textTheme.headline4!.merge(TextStyle(
-                                  color: theme.colorScheme.onPrimary,
-                                )),
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.visible,
-                              ),
-                              const Spacer(),
-                              TextButton(
-                                style: TextButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    // Change your radius here
-                                    borderRadius: BorderRadius.circular(12),
+                              onPressed: Modular.to.pop,
+                              child: Text(
+                                'Ok',
+                                style: theme.textTheme.headline6!.merge(
+                                  TextStyle(
+                                    color: theme.backgroundColor,
                                   ),
-                                  fixedSize: Size(80.scale, 40.scale),
-                                  backgroundColor: theme.primaryColor,
                                 ),
-                                onPressed: Modular.to.pop,
-                                child: Text(
-                                  'Ok',
-                                  style: theme.textTheme.headline6!.merge(
-                                    TextStyle(
-                                      color: theme.backgroundColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                    if (state is EvaluateProfessorFailureState) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.scale,
+                          vertical: 40.scale,
+                        ),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              top: 120.scale,
+                              child: Opacity(
+                                opacity: 0.3,
+                                child: SvgPicture.asset(
+                                  AssetsMeLivra.failure,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(16.scale),
+                                  child: Text(
+                                    state.message,
+                                    style: theme.textTheme.headline4!.merge(
+                                      TextStyle(
+                                        color: theme.colorScheme.onPrimary,
+                                      ),
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                const Spacer(),
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      // Change your radius here
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    fixedSize: Size(80.scale, 40.scale),
+                                    backgroundColor: theme.primaryColor,
+                                  ),
+                                  onPressed: Modular.to.pop,
+                                  child: Text(
+                                    'Ok',
+                                    style: theme.textTheme.headline6!.merge(
+                                      TextStyle(
+                                        color: theme.backgroundColor,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                  if (state is EvaluateProfessorLoadingState) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  return Column(
-                    children: [
-                      SizedBox(height: 48.scale),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 32.scale),
-                        child: Text(
-                          'Avalie ${professor.name.split(' ')[0]}',
-                          style: theme.textTheme.headline5,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
+                              ],
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(height: 8.scale),
-                      const EvaluateProfessorPage(),
-                      const SteppersMenu(),
-                    ],
-                  );
-                }),
+                      );
+                    }
+                    if (state is EvaluateProfessorLoadingState) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return Column(
+                      children: [
+                        SizedBox(height: 24.scale),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 32.scale),
+                          child: Text(
+                            'Avalie ${professor.name.split(' ')[0]}',
+                            style: theme.textTheme.headline5,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        SizedBox(height: 16.scale),
+                        const EvaluateProfessorPage(),
+                        const SteppersMenu(),
+                      ],
+                    );
+                  }),
+            ),
           ),
         ),
-        Positioned.fill(
-          top: size.height * 0.05,
+        Positioned(
+          right: 0,
+          left: 0,
           child: Align(
-            alignment: Alignment.topCenter,
+            alignment: Alignment.center,
             child: Container(
               width: 80.scale,
               height: 80.scale,
@@ -181,9 +189,9 @@ class EvaluateProfessorDialog extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.thumb_up,
-                size: 50,
+                size: 40.scale,
               ),
             ),
           ),

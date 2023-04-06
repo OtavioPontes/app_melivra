@@ -6,6 +6,7 @@ class ProfessorGradesBloc extends Bloc {
     on<ProfessorGradesLoadingEvent>(handleProfessorGradesLoadingEvent);
     on<ProfessorGradesSuccessEvent>(handleProfessorGradesSuccessEvent);
     on<ProfessorGradesFailureEvent>(handleProfessorGradesFailureEvent);
+    on<ProfessorGradesBadWordEvent>(handleProfessorGradesBadWordEvent);
   }
 
   void handleProfessorGradesLoadingEvent(
@@ -21,6 +22,11 @@ class ProfessorGradesBloc extends Bloc {
   void handleProfessorGradesFailureEvent(
       ProfessorGradesFailureEvent event, Emitter emit) {
     emit(ProfessorGradesFailureState(message: event.message));
+  }
+
+  void handleProfessorGradesBadWordEvent(
+      ProfessorGradesBadWordEvent event, Emitter emit) {
+    emit(ProfessorGradesBadWordState());
   }
 }
 
@@ -43,6 +49,8 @@ class ProfessorGradesFailureState extends ProfessorGradesState {
   ProfessorGradesFailureState({required this.message});
 }
 
+class ProfessorGradesBadWordState extends ProfessorGradesState {}
+
 abstract class ProfessorGradesEvent {}
 
 class ProfessorGradesLoadingEvent extends ProfessorGradesEvent {}
@@ -59,3 +67,5 @@ class ProfessorGradesFailureEvent extends ProfessorGradesEvent {
 
   ProfessorGradesFailureEvent({required this.message});
 }
+
+class ProfessorGradesBadWordEvent extends ProfessorGradesEvent {}

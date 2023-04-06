@@ -61,11 +61,11 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                         evaluateController.dispose();
                       },
                       style: TextButton.styleFrom(
-                        fixedSize: Size(60.scale, 60.scale),
+                        fixedSize: Size(70.scale, 70.scale),
                         backgroundColor: ColorsMeLivra().lightPurple,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
-                            100,
+                            50,
                           ),
                         ),
                       ),
@@ -88,7 +88,10 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
             onRefresh: () => controller.pipeline(),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
-              padding: EdgeInsets.symmetric(vertical: 32.scale),
+              padding: EdgeInsets.only(
+                top: 32.scale,
+                bottom: 80.scale,
+              ),
               child: Stack(
                 children: [
                   SvgPicture.asset(

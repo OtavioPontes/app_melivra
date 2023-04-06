@@ -45,7 +45,7 @@ class InstitutosPage extends StatelessWidget {
                   Stack(
                     children: [
                       Positioned(
-                        height: size.height,
+                        height: size.height * 0.85,
                         child: SvgPicture.asset(
                           AssetsMeLivra.waveHome,
                           width: size.width,
@@ -174,7 +174,7 @@ class InstitutosPage extends StatelessWidget {
                                           }),
                                     ],
                                   ),
-                                  SizedBox(height: 40.scale),
+                                  SizedBox(height: size.height * 0.08),
                                   Padding(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 32.scale),

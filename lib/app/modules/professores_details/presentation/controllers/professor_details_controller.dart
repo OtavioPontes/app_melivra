@@ -4,7 +4,9 @@ import 'package:app_melivra/app/modules/professores/domain/usecases/get_professo
 import 'package:app_melivra/app/modules/professores/domain/usecases/update_professor_grade_usecase.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/show_button_bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:profanity_filter/profanity_filter.dart';
 
+import '../../../../core/utils/bad_words.dart';
 import '../../../professores/domain/usecases/get_professor_details_usecase.dart';
 import '../bloc/professor_details_bloc.dart';
 import '../bloc/professor_grades_bloc.dart';
@@ -109,6 +111,7 @@ class ProfessorDetailsController {
     gradesBloc.add(
       ProfessorGradesLoadingEvent(),
     );
+
     final result = await _updateProfessorGradeUsecase(
       ParamsUpdateProfessorGradeUsecase(
         id: id,

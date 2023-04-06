@@ -37,8 +37,6 @@ class _CadastroPageState extends State<CadastroPage> {
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 64.scale),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          mainAxisSize: MainAxisSize.max,
           children: [
             Align(
               alignment: Alignment.centerLeft,
@@ -60,16 +58,11 @@ class _CadastroPageState extends State<CadastroPage> {
               children: [
                 Stack(
                   children: [
-                    SizedBox(
-                      height: size.height * 0.85,
-                      width: size.width,
-                      child: SvgPicture.asset(
-                        AssetsMeLivra.wave,
-                        alignment: Alignment.topCenter,
-                        height: size.height * 0.5,
-                        color: theme.primaryColor,
-                        fit: BoxFit.cover,
-                      ),
+                    SvgPicture.asset(
+                      AssetsMeLivra.wave,
+                      height: size.height,
+                      color: theme.primaryColor,
+                      fit: BoxFit.fitHeight,
                     ),
                     Positioned(
                       top: size.height * 0.1,

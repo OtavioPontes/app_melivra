@@ -18,12 +18,16 @@ class ScoreTinyWidget extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Transform.rotate(
-          angle: pi,
-          child: CircularProgressIndicator(
-            color: scoreEnum.getColor,
-            value: score != null ? score! / 100 : 0,
-            strokeWidth: 5,
+        SizedBox(
+          height: 30.scale,
+          width: 30.scale,
+          child: Transform.rotate(
+            angle: pi,
+            child: CircularProgressIndicator(
+              color: scoreEnum.getColor,
+              value: score != null ? score! / 100 : 0,
+              strokeWidth: 5,
+            ),
           ),
         ),
         Container(

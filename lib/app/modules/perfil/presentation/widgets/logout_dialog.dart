@@ -23,7 +23,7 @@ class LogoutDialog extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
-            height: size.height * 0.5,
+            height: 300.scale,
             width: size.width * 0.8,
             child: Padding(
               padding: EdgeInsets.symmetric(

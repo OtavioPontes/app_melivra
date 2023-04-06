@@ -61,16 +61,12 @@ class EsqueciSenhaPage extends StatelessWidget {
                   children: [
                     Stack(
                       children: [
-                        SizedBox(
+                        SvgPicture.asset(
+                          AssetsMeLivra.waveLogin,
+                          alignment: Alignment.topCenter,
                           width: size.width,
-                          height: size.height * 0.6,
-                          child: SvgPicture.asset(
-                            AssetsMeLivra.waveLogin,
-                            alignment: Alignment.topCenter,
-                            width: size.width,
-                            fit: BoxFit.cover,
-                            color: theme.primaryColor,
-                          ),
+                          fit: BoxFit.cover,
+                          color: theme.primaryColor,
                         ),
                         Positioned(
                           top: size.height * 0.12,

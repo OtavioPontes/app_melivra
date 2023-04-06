@@ -22,23 +22,26 @@ class LoginFailureDialog extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
             ),
-            height: size.height * 0.5,
+            height: 250.scale,
             width: size.width * 0.6,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.scale),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  SizedBox(height: 64.scale),
-                  Text(
-                    message,
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.headline5,
+                  const Spacer(),
+                  Padding(
+                    padding: EdgeInsets.all(12.scale),
+                    child: Text(
+                      message,
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.headlineSmall,
+                    ),
                   ),
                   const Spacer(),
                   TextButton(
-                    style:
-                        TextButton.styleFrom(backgroundColor: theme.errorColor),
+                    style: TextButton.styleFrom(
+                        backgroundColor: theme.colorScheme.error),
                     onPressed: Modular.to.pop,
                     child: Text(
                       'Ok',
@@ -54,7 +57,7 @@ class LoginFailureDialog extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: size.height * 0.2,
+          top: 220.scale,
           width: size.width,
           child: CircleAvatar(
             backgroundColor: theme.cardColor,

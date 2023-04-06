@@ -24,7 +24,7 @@ class _InicioPageState extends State<InicioPage> {
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.light,
+          statusBarIconBrightness: Brightness.dark,
           statusBarColor: theme.cardColor,
         ),
         child: Stack(

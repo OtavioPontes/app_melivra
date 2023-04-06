@@ -20,7 +20,7 @@ class CadastroSuccessDialog extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
             ),
-            height: size.height * 0.5,
+            height: 300.scale,
             width: size.width * 0.6,
             child: Padding(
               padding: const EdgeInsets.all(8.0),

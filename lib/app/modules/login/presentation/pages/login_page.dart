@@ -87,23 +87,17 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Stack(
                         children: [
-                          SizedBox(
+                          SvgPicture.asset(
+                            AssetsMeLivra.waveLogin,
                             width: size.width,
-                            height: size.height * 0.6,
-                            child: SvgPicture.asset(
-                              AssetsMeLivra.waveLogin,
-                              alignment: Alignment.topCenter,
-                              width: size.width,
-                              fit: BoxFit.cover,
-                              color: theme.primaryColor,
-                            ),
+                            color: theme.primaryColor,
                           ),
                           Positioned(
-                            right: 10,
+                            right: 10.scale,
                             child: SvgPicture.asset(
                               AssetsMeLivra.loginDrawing,
                               width: size.width,
-                              height: 100,
+                              height: 100.scale,
                             ),
                           ),
                           Positioned(

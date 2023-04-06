@@ -36,9 +36,9 @@ class _AppWidgetState extends State<AppWidget> {
           routerDelegate: Modular.routerDelegate,
           debugShowCheckedModeBanner: false,
           title: 'Me Livra',
-          theme: ThemesMeLivra.light,
+          theme: lightTheme,
           themeMode: ThemeMode.light,
-          darkTheme: ThemesMeLivra.dark,
+          darkTheme: darkTheme,
         );
       },
     );

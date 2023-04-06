@@ -81,6 +81,7 @@ class SobreAppPage extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: 40.scale,
+                            vertical: 24.scale,
                           ),
                           child: Column(
                             children: [

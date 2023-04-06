@@ -72,22 +72,20 @@ class PerfilPage extends StatelessWidget {
                     );
                   },
                 ),
+                SizedBox(height: 24.scale),
                 Stack(
                   children: [
-                    Positioned(
-                      height: size.height * 0.8,
-                      child: SvgPicture.asset(
-                        AssetsMeLivra.waveHome,
-                        width: size.width,
-                        fit: BoxFit.fitWidth,
-                      ),
+                    SvgPicture.asset(
+                      AssetsMeLivra.waveHome,
+                      width: size.width,
+                      fit: BoxFit.fill,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 32.scale),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 64.scale),
+                          SizedBox(height: size.height * 0.1),
                           const CardMeuPerfil(),
                           SizedBox(height: 16.scale),
                           const CardSobre(),

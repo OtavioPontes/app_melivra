@@ -126,7 +126,6 @@ class HomePage extends StatelessWidget {
                                       separatorBuilder: (context, index) =>
                                           SizedBox(width: 16.scale),
                                       scrollDirection: Axis.horizontal,
-                                      shrinkWrap: true,
                                       itemCount: state.professors.length,
                                       clipBehavior: Clip.none,
                                       itemBuilder: (context, index) {
@@ -158,9 +157,12 @@ class HomePage extends StatelessWidget {
                                                     ),
                                                     SizedBox(height: 16.scale),
                                                     Flexible(
-                                                      child: Text(state
-                                                          .professors[index]
-                                                          .name),
+                                                      child: Text(
+                                                        state.professors[index]
+                                                            .name,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
