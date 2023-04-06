@@ -104,6 +104,26 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                           ),
                           SizedBox(height: 32.scale),
                           MyEvaluation(controller: widget.controller),
+                          BlocBuilder(
+                            bloc: widget.controller.gradesBloc,
+                            builder: (context, state) {
+                              if (state is ProfessorGradesBadWordState) {
+                                return Padding(
+                                  padding: EdgeInsets.all(8.scale),
+                                  child: Text(
+                                    'Não é permitido fazer comentários de natureza desrespeitosa ⛔',
+                                    textAlign: TextAlign.center,
+                                    style: theme.textTheme.headline6!.merge(
+                                      TextStyle(
+                                        color: theme.backgroundColor,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              return SizedBox.shrink();
+                            },
+                          ),
                           SizedBox(height: 16.scale),
                           BlocBuilder(
                             bloc: widget.controller.gradesBloc,
