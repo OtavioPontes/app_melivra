@@ -123,7 +123,8 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                               SizedBox(height: 64.scale),
                               Center(
                                 child: CircularProgressIndicator(
-                                    color: theme.colorScheme.background,),
+                                  color: theme.colorScheme.background,
+                                ),
                               ),
                             ],
                           );
@@ -153,7 +154,8 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                       child: Text(
                                         instituto.name,
                                         textAlign: TextAlign.center,
-                                        style: theme.textTheme.headlineSmall!.merge(
+                                        style: theme.textTheme.headlineSmall!
+                                            .merge(
                                           TextStyle(
                                             color: theme.colorScheme.background,
                                           ),
@@ -172,7 +174,9 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                     EdgeInsets.symmetric(horizontal: 32.scale),
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
-                                      vertical: 32.scale, horizontal: 16.scale,),
+                                    vertical: 32.scale,
+                                    horizontal: 16.scale,
+                                  ),
                                   child: Column(
                                     children: [
                                       ScoreBigWidget(
@@ -289,7 +293,8 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                     SizedBox(width: 16.scale),
                                     Text(
                                       'Professores (${controller.response?.totalItems})',
-                                      style: theme.textTheme.headlineSmall!.merge(
+                                      style:
+                                          theme.textTheme.headlineSmall!.merge(
                                         TextStyle(
                                           color: theme.colorScheme.background,
                                         ),

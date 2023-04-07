@@ -178,7 +178,6 @@ ThemeData get lightTheme => ThemeData(
         ),
         elevation: 4,
         shadowColor: ColorsMeLivra().purple.withOpacity(.2),
-        color: ColorsMeLivra().white,
         margin: EdgeInsets.zero,
       ),
     );

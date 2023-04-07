@@ -21,8 +21,8 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
   @override
   Widget build(BuildContext context) {
     final barColor = UtilsScoreEnum.getEnumFromScore(
-            score: controller.respectfulTreatmentValue,)
-        .getColor;
+      score: controller.respectfulTreatmentValue,
+    ).getColor;
     final theme = Theme.of(context);
     return SingleChildScrollView(
       child: Padding(
@@ -68,10 +68,13 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
             SizedBox(
               height: 16.scale,
             ),
-            Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.scale),
+              child: Text(
+                'O tratamento respeitoso pode ajudar a estabelecer uma atmosfera de aprendizado colaborativa e eficaz.',
+                style: theme.textTheme.bodyMedium,
+                textAlign: TextAlign.justify,
+              ),
             ),
             SizedBox(
               height: 24.scale,

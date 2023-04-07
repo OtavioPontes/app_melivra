@@ -67,10 +67,13 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
             SizedBox(
               height: 16.scale,
             ),
-            Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.scale),
+              child: Text(
+                'Uma boa explicação não é apenas sobre transmitir informações, mas também sobre se conectar com os alunos e ajudá-los a entender e aplicar essas informações.',
+                style: theme.textTheme.bodyMedium,
+                textAlign: TextAlign.justify,
+              ),
             ),
           ],
         ),

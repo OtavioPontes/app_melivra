@@ -20,8 +20,8 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
   @override
   Widget build(BuildContext context) {
     final barColor = UtilsScoreEnum.getEnumFromScore(
-            score: controller.boardOrganizationValue,)
-        .getColor;
+      score: controller.boardOrganizationValue,
+    ).getColor;
     final theme = Theme.of(context);
     return SingleChildScrollView(
       child: Padding(
@@ -65,10 +65,13 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
             SizedBox(
               height: 16.scale,
             ),
-            Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.scale),
+              child: Text(
+                'Ao manter o quadro organizado e informativo, pode-se ajudar a reforçar o que está sendo discutido em sala de aula e ajudar os alunos a acompanhar melhor o material.',
+                style: theme.textTheme.bodyMedium,
+                textAlign: TextAlign.justify,
+              ),
             ),
           ],
         ),

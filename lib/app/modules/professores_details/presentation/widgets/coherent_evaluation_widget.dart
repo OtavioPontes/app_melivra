@@ -21,8 +21,8 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
   @override
   Widget build(BuildContext context) {
     final barColor = UtilsScoreEnum.getEnumFromScore(
-            score: controller.coherentEvaluationValue,)
-        .getColor;
+      score: controller.coherentEvaluationValue,
+    ).getColor;
     final theme = Theme.of(context);
     return SingleChildScrollView(
       child: Padding(
@@ -68,10 +68,13 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
             SizedBox(
               height: 16.scale,
             ),
-            Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.scale),
+              child: Text(
+                'Uma avaliação coerente durante a aula pode ajudar a avaliar o progresso dos alunos e informar as próximas etapas do processo de ensino e aprendizagem.',
+                style: theme.textTheme.bodyMedium,
+                textAlign: TextAlign.justify,
+              ),
             ),
           ],
         ),
