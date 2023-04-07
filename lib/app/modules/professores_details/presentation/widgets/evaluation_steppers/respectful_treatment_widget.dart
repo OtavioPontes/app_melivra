@@ -3,25 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
-import '../../../../core/domain/enums/score_enum.dart';
-import '../controllers/evalute_professor_controller.dart';
+import '../../../../../core/domain/enums/score_enum.dart';
+import '../../controllers/evalute_professor_controller.dart';
 
-class ClearExplanationWidget extends StatefulWidget {
-  const ClearExplanationWidget({Key? key}) : super(key: key);
+class RespectfulTreatmentWidget extends StatefulWidget {
+  const RespectfulTreatmentWidget({Key? key}) : super(key: key);
 
   @override
-  State<ClearExplanationWidget> createState() => _ClearExplanationWidgetState();
+  State<RespectfulTreatmentWidget> createState() =>
+      _RespectfulTreatmentWidgetState();
 }
 
-class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
+class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
   final EvaluateProfessorController controller =
       Modular.get<EvaluateProfessorController>();
 
   @override
   Widget build(BuildContext context) {
-    final barColor =
-        UtilsScoreEnum.getEnumFromScore(score: controller.clearExplanationValue)
-            .getColor;
+    final barColor = UtilsScoreEnum.getEnumFromScore(
+      score: controller.respectfulTreatmentValue,
+    ).getColor;
     final theme = Theme.of(context);
     return SingleChildScrollView(
       child: Padding(
@@ -30,14 +31,14 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
           children: [
             SleekCircularSlider(
               onChange: (value) {
-                controller.clearExplanationValue = value.toInt();
+                controller.respectfulTreatmentValue = value.toInt();
                 setState(
                   () {
-                    controller.clearExplanationValue = value.toInt();
+                    controller.respectfulTreatmentValue = value.toInt();
                   },
                 );
               },
-              initialValue: controller.clearExplanationValue.toDouble(),
+              initialValue: controller.respectfulTreatmentValue.toDouble(),
               innerWidget: (percentage) => Center(
                 child: Text(
                   percentage.toInt().toString(),
@@ -61,7 +62,7 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
               height: 32.scale,
             ),
             Text(
-              'Explicação Clara',
+              'Tratamento Respeitoso',
               style: theme.textTheme.titleLarge,
             ),
             SizedBox(
@@ -70,9 +71,32 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.scale),
               child: Text(
-                'Uma boa explicação não é apenas sobre transmitir informações, mas também sobre se conectar com os alunos e ajudá-los a entender e aplicar essas informações.',
+                'O tratamento respeitoso pode ajudar a estabelecer uma atmosfera de aprendizado colaborativa e eficaz.',
                 style: theme.textTheme.bodyMedium,
                 textAlign: TextAlign.justify,
+              ),
+            ),
+            SizedBox(
+              height: 24.scale,
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  // Change your radius here
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                fixedSize: Size(140.scale, 40.scale),
+                backgroundColor: theme.primaryColor,
+              ),
+              onPressed: () =>
+                  controller.evaluateProfessor(id: controller.professor!.id),
+              child: Text(
+                'Finalizar',
+                style: theme.textTheme.titleLarge!.merge(
+                  TextStyle(
+                    color: theme.colorScheme.background,
+                  ),
+                ),
               ),
             ),
           ],

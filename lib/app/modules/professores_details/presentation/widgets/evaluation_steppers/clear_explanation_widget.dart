@@ -3,26 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
-import '../../../../core/domain/enums/score_enum.dart';
-import '../controllers/evalute_professor_controller.dart';
+import '../../../../../core/domain/enums/score_enum.dart';
 
-class CoherentEvaluationWidget extends StatefulWidget {
-  const CoherentEvaluationWidget({Key? key}) : super(key: key);
+import '../../controllers/evalute_professor_controller.dart';
+
+class ClearExplanationWidget extends StatefulWidget {
+  const ClearExplanationWidget({Key? key}) : super(key: key);
 
   @override
-  State<CoherentEvaluationWidget> createState() =>
-      _CoherentEvaluationWidgetState();
+  State<ClearExplanationWidget> createState() => _ClearExplanationWidgetState();
 }
 
-class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
+class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
   final EvaluateProfessorController controller =
       Modular.get<EvaluateProfessorController>();
 
   @override
   Widget build(BuildContext context) {
-    final barColor = UtilsScoreEnum.getEnumFromScore(
-      score: controller.coherentEvaluationValue,
-    ).getColor;
+    final barColor =
+        UtilsScoreEnum.getEnumFromScore(score: controller.clearExplanationValue)
+            .getColor;
     final theme = Theme.of(context);
     return SingleChildScrollView(
       child: Padding(
@@ -31,14 +31,14 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
           children: [
             SleekCircularSlider(
               onChange: (value) {
-                controller.coherentEvaluationValue = value.toInt();
+                controller.clearExplanationValue = value.toInt();
                 setState(
                   () {
-                    controller.coherentEvaluationValue = value.toInt();
+                    controller.clearExplanationValue = value.toInt();
                   },
                 );
               },
-              initialValue: controller.coherentEvaluationValue.toDouble(),
+              initialValue: controller.clearExplanationValue.toDouble(),
               innerWidget: (percentage) => Center(
                 child: Text(
                   percentage.toInt().toString(),
@@ -62,7 +62,7 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
               height: 32.scale,
             ),
             Text(
-              'Avaliação Coerente',
+              'Explicação Clara',
               style: theme.textTheme.titleLarge,
             ),
             SizedBox(
@@ -71,7 +71,7 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.scale),
               child: Text(
-                'Uma avaliação coerente durante a aula pode ajudar a avaliar o progresso dos alunos e informar as próximas etapas do processo de ensino e aprendizagem.',
+                'Uma boa explicação não é apenas sobre transmitir informações, mas também sobre se conectar com os alunos e ajudá-los a entender e aplicar essas informações.',
                 style: theme.textTheme.bodyMedium,
                 textAlign: TextAlign.justify,
               ),
