@@ -32,12 +32,12 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final ThemeData theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
-          statusBarColor: theme.backgroundColor,
+          statusBarColor: theme.colorScheme.background,
           statusBarIconBrightness: Brightness.dark,
         ),
         child: SingleChildScrollView(
@@ -76,14 +76,13 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Text(
                           'Me Livra',
-                          style: theme.textTheme.headline2,
+                          style: theme.textTheme.displayMedium,
                         ),
                       ],
                     ),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    mainAxisSize: MainAxisSize.max,
                     children: [
                       Stack(
                         children: [
@@ -114,7 +113,8 @@ class _LoginPageState extends State<LoginPage> {
                                   children: [
                                     Text(
                                       'Login',
-                                      style: theme.textTheme.headline4!.merge(
+                                      style:
+                                          theme.textTheme.headlineMedium!.merge(
                                         TextStyle(
                                           color: theme.colorScheme.background,
                                         ),
@@ -147,9 +147,10 @@ class _LoginPageState extends State<LoginPage> {
                                         child: Text(
                                           'Esqueci minha senha',
                                           style:
-                                              theme.textTheme.bodyText2!.merge(
+                                              theme.textTheme.bodyMedium!.merge(
                                             TextStyle(
-                                              color: theme.backgroundColor,
+                                              color:
+                                                  theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
@@ -159,20 +160,17 @@ class _LoginPageState extends State<LoginPage> {
                                     BlocConsumer(
                                       bloc: controller.bloc,
                                       listener: (context, state) {
-                                        if (state.runtimeType ==
-                                            LoginSuccessState) {
+                                        if (state is LoginSuccessState) {
                                           Modular.to.navigate(
-                                              BottomNavigationModule.routeName);
+                                            BottomNavigationModule.routeName,
+                                          );
                                         }
-                                        if (state.runtimeType ==
-                                            LoginFailureState) {
+                                        if (state is LoginFailureState) {
                                           showDialog(
                                             context: context,
                                             builder: (context) {
                                               return LoginFailureDialog(
-                                                message:
-                                                    (state as LoginFailureState)
-                                                        .message,
+                                                message: state.message,
                                               );
                                             },
                                           );
@@ -190,12 +188,12 @@ class _LoginPageState extends State<LoginPage> {
                                               fixedSize:
                                                   Size(140.scale, 50.scale),
                                               backgroundColor:
-                                                  theme.backgroundColor,
+                                                  theme.colorScheme.background,
                                             ),
                                             onPressed: controller.login,
                                             child: Text(
                                               'Entrar',
-                                              style: theme.textTheme.headline6!
+                                              style: theme.textTheme.titleLarge!
                                                   .merge(
                                                 TextStyle(
                                                   color: theme.primaryColor,

@@ -29,7 +29,7 @@ class ProfessoresDetailsModule extends Module {
         ),
         Bind(
           (i) => EvaluateProfessorController(
-              postProfessorGradeUsecase: i(), bloc: i()),
+              postProfessorGradeUsecase: i(), bloc: i(),),
         )
       ];
 

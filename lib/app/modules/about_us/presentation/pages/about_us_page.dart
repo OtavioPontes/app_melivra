@@ -1,10 +1,9 @@
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:app_melivra/app/core/extensions/screen_extension.dart';
-import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutUsPage extends StatelessWidget {
@@ -12,8 +11,8 @@ class AboutUsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: theme.primaryColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -38,7 +37,7 @@ class AboutUsPage extends StatelessWidget {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 40.scale,
-                      color: theme.backgroundColor,
+                      color: theme.colorScheme.background,
                     ),
                   ),
                 ),
@@ -50,15 +49,15 @@ class AboutUsPage extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.developer_mode_rounded,
-                            color: theme.backgroundColor,
+                            color: theme.colorScheme.background,
                             size: 40.scale,
                           ),
                           SizedBox(height: 16.scale),
                           Text(
                             'Quem somos',
-                            style: theme.textTheme.headline5!.merge(
+                            style: theme.textTheme.headlineSmall!.merge(
                               TextStyle(
-                                color: theme.backgroundColor,
+                                color: theme.colorScheme.background,
                               ),
                             ),
                           )
@@ -100,9 +99,9 @@ class AboutUsPage extends StatelessWidget {
                                           Text(
                                             '#Flutter',
                                             style:
-                                                theme.textTheme.caption!.merge(
+                                                theme.textTheme.bodySmall!.merge(
                                               TextStyle(
-                                                color: theme.backgroundColor,
+                                                color: theme.colorScheme.background,
                                               ),
                                             ),
                                           ),
@@ -112,9 +111,9 @@ class AboutUsPage extends StatelessWidget {
                                           Text(
                                             '#Figma',
                                             style:
-                                                theme.textTheme.caption!.merge(
+                                                theme.textTheme.bodySmall!.merge(
                                               TextStyle(
-                                                color: theme.backgroundColor,
+                                                color: theme.colorScheme.background,
                                               ),
                                             ),
                                           ),
@@ -131,9 +130,9 @@ class AboutUsPage extends StatelessWidget {
                                         Text(
                                           'Otávio Pontes',
                                           style:
-                                              theme.textTheme.headline5!.merge(
+                                              theme.textTheme.headlineSmall!.merge(
                                             TextStyle(
-                                              color: theme.backgroundColor,
+                                              color: theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
@@ -141,9 +140,9 @@ class AboutUsPage extends StatelessWidget {
                                         Text(
                                           'Desenvolvedor Mobile',
                                           style:
-                                              theme.textTheme.bodyText2!.merge(
+                                              theme.textTheme.bodyMedium!.merge(
                                             TextStyle(
-                                              color: theme.backgroundColor,
+                                              color: theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
@@ -165,7 +164,7 @@ class AboutUsPage extends StatelessWidget {
                                               ),
                                               child: CircleAvatar(
                                                 backgroundColor:
-                                                    theme.backgroundColor,
+                                                    theme.colorScheme.background,
                                                 child: SvgPicture.asset(
                                                   AssetsMeLivra.github,
                                                   height: 30.scale,
@@ -186,7 +185,7 @@ class AboutUsPage extends StatelessWidget {
                                               ),
                                               child: CircleAvatar(
                                                 backgroundColor:
-                                                    theme.backgroundColor,
+                                                    theme.colorScheme.background,
                                                 child: SvgPicture.asset(
                                                   AssetsMeLivra.linkedin,
                                                   fit: BoxFit.cover,
@@ -211,7 +210,7 @@ class AboutUsPage extends StatelessWidget {
                                                 child: Icon(
                                                   Icons.language,
                                                   size: 40,
-                                                  color: theme.backgroundColor,
+                                                  color: theme.colorScheme.background,
                                                 ),
                                               ),
                                             ),
@@ -234,9 +233,9 @@ class AboutUsPage extends StatelessWidget {
                                         Text(
                                           'Thiago de Mello',
                                           style:
-                                              theme.textTheme.headline5!.merge(
+                                              theme.textTheme.headlineSmall!.merge(
                                             TextStyle(
-                                              color: theme.backgroundColor,
+                                              color: theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
@@ -244,16 +243,14 @@ class AboutUsPage extends StatelessWidget {
                                         Text(
                                           'Desenvolvedor Backend',
                                           style:
-                                              theme.textTheme.bodyText2!.merge(
+                                              theme.textTheme.bodyMedium!.merge(
                                             TextStyle(
-                                              color: theme.backgroundColor,
+                                              color: theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
                                         SizedBox(height: 16.scale),
                                         Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
                                           children: [
                                             GestureDetector(
                                               onTap: () => launchUrl(
@@ -268,7 +265,7 @@ class AboutUsPage extends StatelessWidget {
                                               ),
                                               child: CircleAvatar(
                                                 backgroundColor:
-                                                    theme.backgroundColor,
+                                                    theme.colorScheme.background,
                                                 child: SvgPicture.asset(
                                                   AssetsMeLivra.github,
                                                   height: 30.scale,
@@ -289,7 +286,7 @@ class AboutUsPage extends StatelessWidget {
                                               ),
                                               child: CircleAvatar(
                                                 backgroundColor:
-                                                    theme.backgroundColor,
+                                                    theme.colorScheme.background,
                                                 child: SvgPicture.asset(
                                                   AssetsMeLivra.linkedin,
                                                   fit: BoxFit.cover,
@@ -319,9 +316,9 @@ class AboutUsPage extends StatelessWidget {
                                           Text(
                                             '#Go',
                                             style:
-                                                theme.textTheme.caption!.merge(
+                                                theme.textTheme.bodySmall!.merge(
                                               TextStyle(
-                                                color: theme.backgroundColor,
+                                                color: theme.colorScheme.background,
                                               ),
                                             ),
                                           ),
@@ -331,9 +328,9 @@ class AboutUsPage extends StatelessWidget {
                                           Text(
                                             '#Docker',
                                             style:
-                                                theme.textTheme.caption!.merge(
+                                                theme.textTheme.bodySmall!.merge(
                                               TextStyle(
-                                                color: theme.backgroundColor,
+                                                color: theme.colorScheme.background,
                                               ),
                                             ),
                                           ),

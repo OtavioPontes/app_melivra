@@ -16,7 +16,7 @@ class LoginController {
   LoginController(
       {required this.bloc,
       required UserStore store,
-      required LoginUsecase loginUsecase})
+      required LoginUsecase loginUsecase,})
       : _loginUsecase = loginUsecase,
         _store = store;
 

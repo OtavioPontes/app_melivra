@@ -8,8 +8,8 @@ class CardRetirada extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width * 0.85,
       child: GestureDetector(
@@ -41,7 +41,7 @@ class CardRetirada extends StatelessWidget {
                           children: [
                             Text(
                               'Solicitar Retirada',
-                              style: theme.textTheme.headline6!.merge(
+                              style: theme.textTheme.titleLarge!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,
                                 ),
@@ -50,7 +50,7 @@ class CardRetirada extends StatelessWidget {
                             SizedBox(height: 4.scale),
                             Text(
                               'Sou professor e gostaria de retirar meu nome do app',
-                              style: theme.textTheme.caption,
+                              style: theme.textTheme.bodySmall,
                             ),
                           ],
                         ),

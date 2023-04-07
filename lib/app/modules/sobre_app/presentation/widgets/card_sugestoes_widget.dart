@@ -8,8 +8,8 @@ class CardSugestoes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width * 0.85,
       child: GestureDetector(
@@ -40,7 +40,7 @@ class CardSugestoes extends StatelessWidget {
                           children: [
                             Text(
                               'Sugestões',
-                              style: theme.textTheme.headline6!.merge(
+                              style: theme.textTheme.titleLarge!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,
                                 ),
@@ -49,7 +49,7 @@ class CardSugestoes extends StatelessWidget {
                             SizedBox(height: 4.scale),
                             Text(
                               'Sugira melhorias e nos informe sobre erros no app',
-                              style: theme.textTheme.caption,
+                              style: theme.textTheme.bodySmall,
                             ),
                           ],
                         ),

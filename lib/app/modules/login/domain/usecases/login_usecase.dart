@@ -1,8 +1,7 @@
-import 'package:dartz/dartz.dart';
-
 import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
 import 'package:app_melivra/app/core/error/failures.dart';
 import 'package:app_melivra/app/modules/login/domain/services/i_login_service.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../../../core/domain/entities/user.dart';
 
@@ -12,7 +11,7 @@ class LoginUsecase implements UseCase<User, ParamsLoginUsecase> {
     required ILoginService service,
   }) : _service = service;
   @override
-  Future<Either<IFailure, User>> call(params) async {
+  Future<Either<IFailure, User>> call(ParamsLoginUsecase params) async {
     try {
       return await _service.login(
         email: params.email,

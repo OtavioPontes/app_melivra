@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_constructors_over_static_methods
+
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
@@ -39,12 +41,16 @@ class ScreenUtil {
     )
         builder,
   }) {
-    return OrientationBuilder(builder: (context, orientation) {
-      return LayoutBuilder(builder: (context, constraints) {
-        ScreenUtil.init(designUI, designUITablet, constraints, orientation);
-        return builder(context, constraints, orientation);
-      });
-    });
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            ScreenUtil.init(designUI, designUITablet, constraints, orientation);
+            return builder(context, constraints, orientation);
+          },
+        );
+      },
+    );
   }
 
   static void init(
@@ -58,8 +64,8 @@ class ScreenUtil {
     double block;
     double blockVertical;
 
-    const double bottomBarHeight = kBottomNavigationBarHeight;
-    final ScreenUtil instance = ScreenUtil._();
+    const bottomBarHeight = kBottomNavigationBarHeight;
+    final instance = ScreenUtil._();
 
     width = constraints.maxWidth;
     height = constraints.maxHeight;
@@ -77,13 +83,14 @@ class ScreenUtil {
     width = constraints.maxWidth;
     height = constraints.maxHeight;
 
-    instance._width = width;
-    instance._orientation = orientation;
-    instance._height = height;
-    instance._block = block;
-    instance._blockVertical = blockVertical;
-    instance._bottomBarHeight = bottomBarHeight;
-    instance._designBlock = instance._designUI.size.width / 100;
+    instance
+      .._width = width
+      .._orientation = orientation
+      .._height = height
+      .._block = block
+      .._blockVertical = blockVertical
+      .._bottomBarHeight = bottomBarHeight
+      .._designBlock = instance._designUI.size.width / 100;
 
     _instanceAux = instance;
   }
@@ -102,14 +109,14 @@ class ScreenUtil {
   static bool get isTablet => min(width, height) > _kTabletBreakpoint;
 
   static double pageViewHeight(BuildContext context) {
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final mediaQuery = MediaQuery.of(context);
     return mediaQuery.size.height -
         (kToolbarHeight * 2).scale -
         MediaQueryData.fromWindow(window).padding.top;
   }
 
   static double pageViewHeightLegacy(BuildContext context) {
-    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final mediaQuery = MediaQuery.of(context);
     return mediaQuery.size.height -
         kToolbarHeight.scale -
         MediaQueryData.fromWindow(window).padding.top;

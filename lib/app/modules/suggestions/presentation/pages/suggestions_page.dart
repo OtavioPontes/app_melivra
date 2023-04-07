@@ -1,11 +1,10 @@
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/modules/suggestions/presentation/controllers/suggestions_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:app_melivra/app/core/extensions/screen_extension.dart';
-import 'package:app_melivra/app/core/style/assets.dart';
 
 class SuggestionsPage extends StatefulWidget {
   const SuggestionsPage({Key? key}) : super(key: key);
@@ -19,10 +18,10 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final SuggestionsController controller =
+    final controller =
         Modular.get<SuggestionsController>();
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: theme.primaryColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -47,7 +46,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 40.scale,
-                      color: theme.backgroundColor,
+                      color: theme.colorScheme.background,
                     ),
                   ),
                 ),
@@ -59,15 +58,15 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                         children: [
                           Icon(
                             Icons.rocket_launch,
-                            color: theme.backgroundColor,
+                            color: theme.colorScheme.background,
                             size: 40.scale,
                           ),
                           SizedBox(height: 16.scale),
                           Text(
                             'Sugestões',
-                            style: theme.textTheme.headline5!.merge(
+                            style: theme.textTheme.headlineSmall!.merge(
                               TextStyle(
-                                color: theme.backgroundColor,
+                                color: theme.colorScheme.background,
                               ),
                             ),
                           ),
@@ -95,9 +94,9 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                               SizedBox(height: 48.scale),
                               Text(
                                 'Mande suas sugestões e/ou críticas do app no campo abaixo:',
-                                style: theme.textTheme.headline5!.merge(
+                                style: theme.textTheme.headlineSmall!.merge(
                                   TextStyle(
-                                    color: theme.backgroundColor,
+                                    color: theme.colorScheme.background,
                                   ),
                                 ),
                               ),
@@ -130,7 +129,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                                       hintText:
                                           'Coloque sua sugestão e/ou crítica aqui...',
                                       hintStyle:
-                                          theme.textTheme.bodyText1!.merge(
+                                          theme.textTheme.bodyLarge!.merge(
                                         TextStyle(color: theme.disabledColor),
                                       ),
                                     ),
@@ -147,7 +146,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       fixedSize: Size(140.scale, 50.scale),
-                                      backgroundColor: theme.backgroundColor,
+                                      backgroundColor: theme.colorScheme.background,
                                     ),
                                     onPressed: () async {
                                       await controller.sendSuggestion();
@@ -157,7 +156,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                                     },
                                     child: Text(
                                       'Enviar',
-                                      style: theme.textTheme.headline6!.merge(
+                                      style: theme.textTheme.titleLarge!.merge(
                                         TextStyle(
                                           color: theme.primaryColor,
                                         ),

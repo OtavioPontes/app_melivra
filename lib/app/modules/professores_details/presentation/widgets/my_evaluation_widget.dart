@@ -1,7 +1,6 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:profanity_filter/profanity_filter.dart';
 
 import '../../../../core/style/colors.dart';
@@ -9,7 +8,7 @@ import '../../../../core/utils/bad_words.dart';
 
 class MyEvaluation extends StatefulWidget {
   final ProfessorDetailsController controller;
-  MyEvaluation({Key? key, required this.controller}) : super(key: key);
+  const MyEvaluation({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<MyEvaluation> createState() => _MyEvaluationState();
@@ -19,8 +18,8 @@ class _MyEvaluationState extends State<MyEvaluation> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Stack(
       children: [
         Form(
@@ -56,7 +55,7 @@ class _MyEvaluationState extends State<MyEvaluation> {
                 if (value == null || value.isEmpty) {
                   return 'Escreva alguma coisa...';
                 }
-                final ProfanityFilter filter =
+                final filter =
                     ProfanityFilter.filterOnly(badWords);
                 if (filter.hasProfanity(value)) {
                   return 'Comentário desrespeitoso ⛔';
@@ -65,7 +64,7 @@ class _MyEvaluationState extends State<MyEvaluation> {
               },
               decoration: InputDecoration(
                 hintText: 'Escreva seu comentário...',
-                hintStyle: theme.textTheme.bodyText2!.merge(
+                hintStyle: theme.textTheme.bodyMedium!.merge(
                   TextStyle(
                     color: theme.disabledColor,
                   ),

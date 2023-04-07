@@ -1,8 +1,7 @@
-import 'package:hive_flutter/hive_flutter.dart';
-
 import 'package:app_melivra/app/core/bloc/user_bloc.dart';
 import 'package:app_melivra/app/core/domain/entities/user.dart';
 import 'package:app_melivra/app/modules/login/data/models/user_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class UserStore {
   final UserBloc bloc;
@@ -17,13 +16,13 @@ class UserStore {
   }) : _hiveBox = hiveBox {
     pipeline();
   }
-  pipeline() async {
+  Future<void> pipeline() async {
     loggedUser = await getUser();
   }
 
   Future<User?> getUser() async {
     if (_hiveBox.get('user') != null) {
-      User user =
+      final user =
           UserModel.fromMap(Map<String, dynamic>.from(_hiveBox.get('user')))
               .toEntity();
       return user;

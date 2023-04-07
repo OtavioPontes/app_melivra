@@ -11,12 +11,12 @@ class SearchProfessorsBloc extends Bloc {
   }
 
   void handleSearchProfessorsLoadingEvent(
-      SearchProfessorsLoadingEvent event, Emitter emit) {
+      SearchProfessorsLoadingEvent event, Emitter emit,) {
     emit(SearchProfessorsLoadingState());
   }
 
   void handleSearchProfessorsSuccessEvent(
-      SearchProfessorsSuccessEvent event, Emitter emit) {
+      SearchProfessorsSuccessEvent event, Emitter emit,) {
     emit(
       SearchProfessorsSuccessState(
         professors: event.professors,
@@ -25,12 +25,12 @@ class SearchProfessorsBloc extends Bloc {
   }
 
   void handleSearchProfessorsFailureEvent(
-      SearchProfessorsFailureEvent event, Emitter emit) {
+      SearchProfessorsFailureEvent event, Emitter emit,) {
     emit(SearchProfessorsFailureState(message: event.message));
   }
 
   void handleSearchProfessorsResetEvent(
-      SearchProfessorsResetEvent event, Emitter emit) {
+      SearchProfessorsResetEvent event, Emitter emit,) {
     emit(SearchProfessorsEmptyState());
   }
 }

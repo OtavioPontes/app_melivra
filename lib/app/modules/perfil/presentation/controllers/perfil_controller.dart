@@ -18,7 +18,7 @@ class PerfilController {
   User get user => _store.loggedUser!;
 
   String get nameInitials {
-    List<String> nameparts = user.name.split(" ");
+    final nameparts = user.name.split(" ");
     if (nameparts.length > 1) {
       return nameparts[0][0].toUpperCase() + nameparts[1][0].toUpperCase();
     }

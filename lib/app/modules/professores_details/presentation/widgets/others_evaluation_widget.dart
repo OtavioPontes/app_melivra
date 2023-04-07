@@ -12,8 +12,8 @@ class OthersEvaluation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Stack(
       children: [
         Container(
@@ -49,7 +49,7 @@ class OthersEvaluation extends StatelessWidget {
                     SizedBox(width: 16.scale),
                     Text(
                       response.userName,
-                      style: theme.textTheme.bodyText1,
+                      style: theme.textTheme.bodyLarge,
                     )
                   ],
                 ),
@@ -88,7 +88,7 @@ class OthersEvaluation extends StatelessWidget {
                 //   ),
                 // )
               ],
-            )),
+            ),),
         // Positioned(
         //   right: 0,
         //   bottom: 0,

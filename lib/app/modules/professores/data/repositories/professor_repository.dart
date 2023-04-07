@@ -1,12 +1,11 @@
 import 'package:app_melivra/app/core/domain/entities/grade.dart';
 import 'package:app_melivra/app/core/domain/entities/grades_response_config.dart';
 import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
-import 'package:app_melivra/app/modules/professores/domain/entities/professor_response.dart';
-import 'package:dartz/dartz.dart';
-
 import 'package:app_melivra/app/core/error/failures.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
+import 'package:app_melivra/app/modules/professores/domain/entities/professor_response.dart';
 import 'package:app_melivra/app/modules/professores/domain/repositories/i_professor_repository.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../domain/entities/ranking_professors_config.dart';
@@ -19,7 +18,7 @@ class ProfessorRepository implements IProfessorRepository {
   }) : _datasource = datasource;
   @override
   Future<Either<IFailure, Professor>> getProfessorDetails(
-      {required int id}) async {
+      {required int id,}) async {
     try {
       final model = await _datasource.getProfessorDetails(id: id);
       return Right(model.toEntity());
@@ -102,9 +101,9 @@ class ProfessorRepository implements IProfessorRepository {
 
   @override
   Future<Either<IFailure, GradesResponseConfig>> getProfessorGrades(
-      {required int id}) async {
+      {required int id,}) async {
     try {
-      final GradesResponseConfig gradesConfig =
+      final gradesConfig =
           await _datasource.getProfessorGrades(
         id: id,
       );
@@ -122,7 +121,7 @@ class ProfessorRepository implements IProfessorRepository {
 
   @override
   Future<Either<IFailure, void>> updateProfessorGrade(
-      {required int id, required String description}) async {
+      {required int id, required String description,}) async {
     try {
       await _datasource.updateGrade(id: id, description: description);
       return Right(voidRight);
@@ -138,7 +137,7 @@ class ProfessorRepository implements IProfessorRepository {
   @override
   Future<Either<IFailure, Grade>> getGlobalGrades() async {
     try {
-      final Grade globalGrade = await _datasource.getGlobalGrades();
+      final globalGrade = await _datasource.getGlobalGrades();
       return Right(globalGrade);
     } on ServerException catch (e) {
       return Left(

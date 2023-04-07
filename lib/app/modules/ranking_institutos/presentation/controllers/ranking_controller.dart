@@ -16,8 +16,8 @@ class RankController {
     pipeline();
   }
 
-  void pipeline() async {
-    getInstitutos();
+  Future<void> pipeline() async {
+    await getInstitutos();
   }
 
   Future<void> getInstitutos() async {

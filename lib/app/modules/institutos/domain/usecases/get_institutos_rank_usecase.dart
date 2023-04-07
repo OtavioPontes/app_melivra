@@ -1,8 +1,7 @@
-import 'package:app_melivra/app/modules/institutos/domain/repositories/i_instituto_repository.dart';
-import 'package:dartz/dartz.dart';
-
 import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
 import 'package:app_melivra/app/core/error/failures.dart';
+import 'package:app_melivra/app/modules/institutos/domain/repositories/i_instituto_repository.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../../ranking_institutos/domain/entities/ranking_config_entity.dart';
 
@@ -14,8 +13,10 @@ class GetInstitutosRankUsecase
     required IInstitutoRepository repository,
   }) : _repository = repository;
   @override
-  Future<Either<IFailure, RankingConfig>> call(params) async {
-    return await _repository.getInstitutosRank(
+  Future<Either<IFailure, RankingConfig>> call(
+    ParamsGetInstitutosRankUsecase params,
+  ) async {
+    return _repository.getInstitutosRank(
       params.page,
       params.itemsPerPage,
     );

@@ -13,8 +13,8 @@ class ScoreTinyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final ScoreEnum scoreEnum = UtilsScoreEnum.getEnumFromScore(score: score);
+    final theme = Theme.of(context);
+    final scoreEnum = UtilsScoreEnum.getEnumFromScore(score: score);
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -38,13 +38,12 @@ class ScoreTinyWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(50),
             border: Border.all(
               color: theme.cardColor,
-              width: 1,
             ),
           ),
           child: Center(
             child: Text(
               score != null ? score.toString() : '-',
-              style: theme.textTheme.bodyText2,
+              style: theme.textTheme.bodyMedium,
             ),
           ),
         ),

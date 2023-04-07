@@ -11,7 +11,7 @@ class EvaluateProfessorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final EvaluateProfessorController controller =
+    final controller =
         Modular.get<EvaluateProfessorController>();
     return Expanded(
       child: PageView(

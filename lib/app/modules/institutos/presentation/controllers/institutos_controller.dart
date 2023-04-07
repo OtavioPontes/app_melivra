@@ -24,7 +24,7 @@ class InstitutosController {
     pipeline();
   }
 
-  void pipeline() async {
+  Future<void> pipeline() async {
     await getInstitutos();
   }
 

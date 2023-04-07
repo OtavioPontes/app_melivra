@@ -1,6 +1,5 @@
-import 'package:bloc/bloc.dart';
-
 import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
+import 'package:bloc/bloc.dart';
 
 class RankingBloc extends Bloc {
   RankingBloc() : super(RankingEmptyState()) {

@@ -18,7 +18,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget>
   final controller = Modular.get<BottomNavigationController>();
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
 
     return Stack(
       children: [
@@ -26,9 +26,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget>
           iconSize: 30.scale,
           showUnselectedLabels: false,
           selectedLabelStyle: TextStyle(
-            fontSize: theme.textTheme.bodyText2!.fontSize,
+            fontSize: theme.textTheme.bodyMedium!.fontSize,
           ),
-          backgroundColor: theme.backgroundColor,
+          backgroundColor: theme.colorScheme.background,
           onTap: (value) {
             controller.animatedToIndex(value);
             setState(() {});

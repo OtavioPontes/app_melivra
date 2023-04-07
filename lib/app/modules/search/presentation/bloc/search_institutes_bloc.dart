@@ -10,12 +10,12 @@ class SearchInstitutesBloc extends Bloc {
   }
 
   void handleSearchInstitutesLoadingEvent(
-      SearchInstitutesLoadingEvent event, Emitter emit) {
+      SearchInstitutesLoadingEvent event, Emitter emit,) {
     emit(SearchInstitutesLoadingState());
   }
 
   void handleSearchInstitutesSuccessEvent(
-      SearchInstitutesSuccessEvent event, Emitter emit) {
+      SearchInstitutesSuccessEvent event, Emitter emit,) {
     emit(
       SearchInstitutesSuccessState(
         institutes: event.institutes,
@@ -24,12 +24,12 @@ class SearchInstitutesBloc extends Bloc {
   }
 
   void handleSearchInstitutesFailureEvent(
-      SearchInstitutesFailureEvent event, Emitter emit) {
+      SearchInstitutesFailureEvent event, Emitter emit,) {
     emit(SearchInstitutesFailureState(message: event.message));
   }
 
   void handleSearchInstitutesResetEvent(
-      SearchInstitutesResetEvent event, Emitter emit) {
+      SearchInstitutesResetEvent event, Emitter emit,) {
     emit(SearchInstitutesEmptyState());
   }
 }

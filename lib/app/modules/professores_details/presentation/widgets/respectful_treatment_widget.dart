@@ -20,10 +20,10 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Color barColor = UtilsScoreEnum.getEnumFromScore(
-            score: controller.respectfulTreatmentValue)
+    final barColor = UtilsScoreEnum.getEnumFromScore(
+            score: controller.respectfulTreatmentValue,)
         .getColor;
-    final ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(16.scale),
@@ -42,7 +42,7 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
               innerWidget: (percentage) => Center(
                 child: Text(
                   percentage.toInt().toString(),
-                  style: theme.textTheme.headline4,
+                  style: theme.textTheme.headlineMedium,
                 ),
               ),
               min: 1,
@@ -55,7 +55,6 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
                 customColors: CustomSliderColors(
                   trackColor: Colors.transparent,
                   progressBarColor: barColor,
-                  dynamicGradient: false,
                 ),
               ),
             ),
@@ -64,7 +63,7 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
             ),
             Text(
               'Tratamento Respeitoso',
-              style: theme.textTheme.headline6,
+              style: theme.textTheme.titleLarge,
             ),
             SizedBox(
               height: 16.scale,
@@ -72,7 +71,7 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
             Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
               textAlign: TextAlign.center,
-              style: theme.textTheme.bodyText2,
+              style: theme.textTheme.bodyMedium,
             ),
             SizedBox(
               height: 24.scale,
@@ -90,9 +89,9 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
                   controller.evaluateProfessor(id: controller.professor!.id),
               child: Text(
                 'Finalizar',
-                style: theme.textTheme.headline6!.merge(
+                style: theme.textTheme.titleLarge!.merge(
                   TextStyle(
-                    color: theme.backgroundColor,
+                    color: theme.colorScheme.background,
                   ),
                 ),
               ),

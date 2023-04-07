@@ -34,7 +34,7 @@ class CadastroController {
     result.fold(
       (failure) {
         bloc.add(
-            ReceivedFailureCadastroResponseEvent(message: failure.message));
+            ReceivedFailureCadastroResponseEvent(message: failure.message),);
       },
       (success) {
         bloc.add(ReceivedSuccessCadastroResponseEvent());

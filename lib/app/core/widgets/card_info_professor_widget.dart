@@ -1,15 +1,14 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hive/hive.dart';
-
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/widgets/score_widget.dart';
 import 'package:app_melivra/app/modules/home/presentation/bloc/ultimos_pesquisados_bloc.dart';
 import 'package:app_melivra/app/modules/professores/data/model/professor_model.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:app_melivra/app/modules/professores_details/professores_details_module.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hive/hive.dart';
 
 class CardInfoProfessor extends StatelessWidget {
   final Professor professor;
@@ -22,9 +21,9 @@ class CardInfoProfessor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UltimosPesquisadosBloc bloc = Modular.get<UltimosPesquisadosBloc>();
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final bloc = Modular.get<UltimosPesquisadosBloc>();
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return SizedBox(
       width: isTiny ? size.width * 0.65 : size.width * 0.85,
       child: GestureDetector(
@@ -32,7 +31,7 @@ class CardInfoProfessor extends StatelessWidget {
           final rawData = await Hive.box('melivra').get('lastProfessors');
           final decodedData = rawData != null ? jsonDecode(rawData) : null;
 
-          List<Professor> professors = [];
+          var professors = <Professor>[];
           if (decodedData != null) {
             professors = List.generate(
               decodedData.length,
@@ -61,9 +60,9 @@ class CardInfoProfessor extends StatelessWidget {
             );
           }
 
-          Modular.to.pushNamed(ProfessoresDetailsModule.routeName, arguments: {
+          await Modular.to.pushNamed(ProfessoresDetailsModule.routeName, arguments: {
             'id': professor.id,
-          });
+          },);
         },
         child: Card(
           child: Padding(
@@ -86,7 +85,7 @@ class CardInfoProfessor extends StatelessWidget {
                             Text(
                               professor.name,
                               overflow: TextOverflow.ellipsis,
-                              style: theme.textTheme.headline6!.merge(
+                              style: theme.textTheme.titleLarge!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,
                                 ),
@@ -96,7 +95,7 @@ class CardInfoProfessor extends StatelessWidget {
                             Text(
                               professor.instituto.initials ??
                                   professor.instituto.name,
-                              style: theme.textTheme.caption,
+                              style: theme.textTheme.bodySmall,
                             ),
                           ],
                         ),
@@ -106,7 +105,7 @@ class CardInfoProfessor extends StatelessWidget {
                   ),
                 ),
                 ScoreWidget(
-                    score: professor.grades?.average ?? professor.averageGrade),
+                    score: professor.grades?.average ?? professor.averageGrade,),
               ],
             ),
           ),

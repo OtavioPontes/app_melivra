@@ -27,7 +27,7 @@ class CadastroRemoteDatasource implements ICadastroRemoteDatasource {
       );
     } catch (e) {
       throw ServerException(
-          message: 'Erro no cadastro, por favor tente novamente');
+          message: 'Erro no cadastro, por favor tente novamente',);
     }
   }
 }

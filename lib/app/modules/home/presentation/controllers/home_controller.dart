@@ -29,9 +29,9 @@ class HomeController {
     pipeline();
   }
 
-  pipeline() async {
-    getListInstitutes();
-    getLastProfessors();
+  Future<void> pipeline() async {
+    await getListInstitutes();
+    await getLastProfessors();
   }
 
   Future<void> getLastProfessors() async {
@@ -39,7 +39,7 @@ class HomeController {
     final rawData = await Hive.box('melivra').get('lastProfessors');
     final decodedData = rawData != null ? jsonDecode(rawData) : null;
 
-    List<Professor> professors = [];
+    var professors = <Professor>[];
     if (decodedData != null) {
       professors = List<Professor>.generate(
         decodedData.length,
@@ -54,9 +54,9 @@ class HomeController {
       );
       return;
     }
-    List<Professor> listFromServer = [];
-    for (Professor professor in professors) {
-      Professor? item = await getProfessor(id: professor.id);
+    final listFromServer = <Professor>[];
+    for (final professor in professors) {
+      final item = await getProfessor(id: professor.id);
       if (item != null) {
         listFromServer.add(item);
       }

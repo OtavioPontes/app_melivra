@@ -1,11 +1,10 @@
 import 'package:app_melivra/app/core/error/exceptions.dart';
 import 'package:app_melivra/app/core/network/endpoints.dart';
+import 'package:app_melivra/app/modules/institutos/data/datasources/i_instituto_datasource.dart';
+import 'package:app_melivra/app/modules/institutos/data/models/instituto_model.dart';
 import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
 import 'package:app_melivra/app/modules/ranking_institutos/domain/entities/ranking_config_entity.dart';
 import 'package:dio/dio.dart';
-
-import 'package:app_melivra/app/modules/institutos/data/datasources/i_instituto_datasource.dart';
-import 'package:app_melivra/app/modules/institutos/data/models/instituto_model.dart';
 
 import '../../domain/entities/institutos_response.dart';
 
@@ -45,7 +44,7 @@ class InstitutoDatasource implements IInstitutoDatasource {
           'q': searchText,
         },
       );
-      final List<Instituto> institutos = List.from(
+      final institutos = List<Instituto>.from(
         response.data['data']
             .map(
               (item) => InstitutoModel.fromMap(item).toEntity(),
@@ -79,7 +78,7 @@ class InstitutoDatasource implements IInstitutoDatasource {
           'items_per_page': itemsPerPage,
         },
       );
-      final List<Instituto> institutos = List.from(
+      final institutos = List<Instituto>.from(
         response.data['data']
             .map(
               (item) => InstitutoModel.fromMap(item).toEntity(),

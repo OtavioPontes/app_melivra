@@ -1,7 +1,7 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
-import 'package:app_melivra/app/modules/inicio/presentation/controller/inicio_controller.dart';
 import 'package:app_melivra/app/modules/cadastro/cadastro_module.dart';
+import 'package:app_melivra/app/modules/inicio/presentation/controller/inicio_controller.dart';
 import 'package:app_melivra/app/modules/login/login_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,8 +19,8 @@ class _InicioPageState extends State<InicioPage> {
   final InicioController controller = Modular.get<InicioController>();
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    ThemeData theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
@@ -47,7 +47,7 @@ class _InicioPageState extends State<InicioPage> {
                     ),
                     Text(
                       'Me Livra',
-                      style: theme.textTheme.headline2,
+                      style: theme.textTheme.displayMedium,
                     ),
                   ],
                 ),
@@ -76,7 +76,7 @@ class _InicioPageState extends State<InicioPage> {
                   children: [
                     Text(
                       'Bem vindo (a)',
-                      style: theme.textTheme.headline4!.merge(
+                      style: theme.textTheme.headlineMedium!.merge(
                         TextStyle(
                           color: theme.colorScheme.background,
                         ),
@@ -99,7 +99,7 @@ class _InicioPageState extends State<InicioPage> {
                           Modular.to.pushNamed(LoginModule.routeName),
                       child: Text(
                         "Fazer Login",
-                        style: theme.textTheme.headline5!.merge(
+                        style: theme.textTheme.headlineSmall!.merge(
                           TextStyle(
                             color: theme.primaryColor,
                           ),
@@ -127,7 +127,7 @@ class _InicioPageState extends State<InicioPage> {
                           Modular.to.pushNamed(CadastroModule.routeName),
                       child: Text(
                         "Cadastrar",
-                        style: theme.textTheme.headline5!.merge(
+                        style: theme.textTheme.headlineSmall!.merge(
                           TextStyle(
                             color: theme.colorScheme.background,
                           ),

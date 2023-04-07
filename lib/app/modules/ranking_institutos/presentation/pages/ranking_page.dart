@@ -9,7 +9,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/style/assets.dart';
 import '../../../../core/widgets/score_widget.dart';
-import '../../../institutos/domain/entities/instituto_entity.dart';
 
 class RankingPage extends StatelessWidget {
   RankingPage({Key? key}) : super(key: key);
@@ -17,8 +16,8 @@ class RankingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: theme.primaryColor,
       body: RefreshIndicator(
@@ -49,16 +48,16 @@ class RankingPage extends StatelessWidget {
                             icon: Icon(
                               Icons.arrow_back_ios,
                               size: 40.scale,
-                              color: theme.backgroundColor,
+                              color: theme.colorScheme.background,
                             ),
                           ),
                           SizedBox(width: 16.scale),
                           Flexible(
                             child: Text(
                               'Ranking dos Institutos',
-                              style: theme.textTheme.headline4!.merge(
+                              style: theme.textTheme.headlineMedium!.merge(
                                 TextStyle(
-                                  color: theme.backgroundColor,
+                                  color: theme.colorScheme.background,
                                 ),
                               ),
                             ),
@@ -80,9 +79,9 @@ class RankingPage extends StatelessWidget {
                                   child: Center(
                                     child: Text(
                                       'Não encontramos nada aqui 😥',
-                                      style: theme.textTheme.headline6!.merge(
+                                      style: theme.textTheme.titleLarge!.merge(
                                         TextStyle(
-                                          color: theme.backgroundColor,
+                                          color: theme.colorScheme.background,
                                         ),
                                       ),
                                     ),
@@ -100,13 +99,13 @@ class RankingPage extends StatelessWidget {
                                   children: [
                                     ListView.separated(
                                       padding: EdgeInsets.symmetric(
-                                          vertical: 24.scale),
+                                          vertical: 24.scale,),
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: list.length,
                                       itemBuilder: (context, index) {
-                                        final Instituto item = list[index];
+                                        final item = list[index];
                                         return Padding(
                                           padding: EdgeInsets.symmetric(
                                             horizontal: 24.scale,
@@ -124,9 +123,9 @@ class RankingPage extends StatelessWidget {
                                                     Text(
                                                       controller.page > 1
                                                           ? "${(index + 1) + controller.config!.itemsPerPage * (controller.page - 1)}º"
-                                                          : "${(index + 1)}º",
+                                                          : "${index + 1}º",
                                                       style: theme
-                                                          .textTheme.headline6!
+                                                          .textTheme.titleLarge!
                                                           .merge(
                                                         TextStyle(
                                                           color: theme
@@ -145,7 +144,7 @@ class RankingPage extends StatelessWidget {
                                                             item.initials!,
                                                             style: theme
                                                                 .textTheme
-                                                                .headline6!
+                                                                .titleLarge!
                                                                 .merge(
                                                               TextStyle(
                                                                 color: theme
@@ -154,12 +153,12 @@ class RankingPage extends StatelessWidget {
                                                             ),
                                                           ),
                                                           SizedBox(
-                                                              height: 2.scale),
+                                                              height: 2.scale,),
                                                           Text(
                                                             item.name,
                                                             style: theme
                                                                 .textTheme
-                                                                .caption,
+                                                                .bodySmall,
                                                           ),
                                                         ],
                                                       ),
@@ -188,9 +187,9 @@ class RankingPage extends StatelessWidget {
                                 child: Center(
                                   child: Text(
                                     'Não encontramos nada aqui 😥',
-                                    style: theme.textTheme.headline6!.merge(
+                                    style: theme.textTheme.titleLarge!.merge(
                                       TextStyle(
-                                        color: theme.backgroundColor,
+                                        color: theme.colorScheme.background,
                                       ),
                                     ),
                                   ),

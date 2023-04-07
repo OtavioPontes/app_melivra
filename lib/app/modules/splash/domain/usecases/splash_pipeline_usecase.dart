@@ -1,13 +1,13 @@
-import 'package:app_melivra/app/core/domain/entities/user.dart';
-import 'package:app_melivra/app/modules/bottom_navigation/bottom_navigation_module.dart';
-import 'package:dartz/dartz.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+// ignore_for_file: type_annotate_public_apis
 
 import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
 import 'package:app_melivra/app/core/error/failures.dart';
 import 'package:app_melivra/app/core/network/network_info.dart';
 import 'package:app_melivra/app/core/stores/user_store.dart';
+import 'package:app_melivra/app/modules/bottom_navigation/bottom_navigation_module.dart';
 import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../../../../core/network/dio_config.dart';
@@ -68,7 +68,7 @@ class SplashPipelineUseCase implements UseCase {
   }
 
   Future<void> _verifyIntenetConnection() async {
-    final bool hasInternetConnection = await _networkInfo.isConnected;
+    final hasInternetConnection = await _networkInfo.isConnected;
 
     if (!hasInternetConnection) {
       throw const InternetConectionFailure();
@@ -76,9 +76,9 @@ class SplashPipelineUseCase implements UseCase {
   }
 
   Future<bool> _verifyUser() async {
-    User? user = _store.loggedUser;
+    final user = _store.loggedUser;
     if (user != null) {
-      bool hasExpired = JwtDecoder.isExpired(user.token);
+      final hasExpired = JwtDecoder.isExpired(user.token);
       if (hasExpired) {
         throw const TokenFailure();
       }

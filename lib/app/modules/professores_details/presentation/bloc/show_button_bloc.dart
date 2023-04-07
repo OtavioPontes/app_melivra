@@ -3,31 +3,31 @@ import 'package:bloc/bloc.dart';
 class ShowEvaluationButtonBloc extends Bloc {
   ShowEvaluationButtonBloc() : super(ShowEvaluationButtonEmptyState()) {
     on<ShowEvaluationButtonLoadingEvent>(
-        handleShowEvaluationButtonLoadingEvent);
+        handleShowEvaluationButtonLoadingEvent,);
     on<ShowEvaluationButtonSuccessEvent>(
-        handleShowEvaluationButtonSuccessEvent);
+        handleShowEvaluationButtonSuccessEvent,);
     on<ShowEvaluationButtonFailureEvent>(
-        handleShowEvaluationButtonFailureEvent);
+        handleShowEvaluationButtonFailureEvent,);
     on<ShowEvaluationButtonResetEvent>(handleShowEvaluationButtonResetEvent);
   }
 
   void handleShowEvaluationButtonLoadingEvent(
-      ShowEvaluationButtonLoadingEvent event, Emitter emit) {
+      ShowEvaluationButtonLoadingEvent event, Emitter emit,) {
     emit(ShowEvaluationButtonLoadingState());
   }
 
   void handleShowEvaluationButtonSuccessEvent(
-      ShowEvaluationButtonSuccessEvent event, Emitter emit) {
+      ShowEvaluationButtonSuccessEvent event, Emitter emit,) {
     emit(ShowEvaluationButtonSuccessState());
   }
 
   void handleShowEvaluationButtonFailureEvent(
-      ShowEvaluationButtonFailureEvent event, Emitter emit) {
+      ShowEvaluationButtonFailureEvent event, Emitter emit,) {
     emit(ShowEvaluationButtonFailureState(message: event.message));
   }
 
   void handleShowEvaluationButtonResetEvent(
-      ShowEvaluationButtonResetEvent event, Emitter emit) {
+      ShowEvaluationButtonResetEvent event, Emitter emit,) {
     emit(ShowEvaluationButtonEmptyState());
   }
 }

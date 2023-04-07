@@ -11,8 +11,8 @@ class EsqueciSenhaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final ThemeData theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: ConstrainedBox(
@@ -50,14 +50,13 @@ class EsqueciSenhaPage extends StatelessWidget {
                       ),
                       Text(
                         'Me Livra',
-                        style: theme.textTheme.headline2,
+                        style: theme.textTheme.displayMedium,
                       ),
                     ],
                   ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.max,
                   children: [
                     Stack(
                       children: [
@@ -78,7 +77,7 @@ class EsqueciSenhaPage extends StatelessWidget {
                               children: [
                                 Text(
                                   'Esqueci minha senha',
-                                  style: theme.textTheme.headline4!.merge(
+                                  style: theme.textTheme.headlineMedium!.merge(
                                     TextStyle(
                                       color: theme.colorScheme.background,
                                     ),
@@ -87,7 +86,7 @@ class EsqueciSenhaPage extends StatelessWidget {
                                 SizedBox(height: 16.scale),
                                 Text(
                                   'Insira seu email e logo mandaremos o link de troca de senha',
-                                  style: theme.textTheme.bodyText2!.merge(
+                                  style: theme.textTheme.bodyMedium!.merge(
                                     TextStyle(
                                       color: theme.colorScheme.background,
                                     ),
@@ -108,12 +107,12 @@ class EsqueciSenhaPage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       fixedSize: Size(140.scale, 50.scale),
-                                      backgroundColor: theme.backgroundColor,
+                                      backgroundColor: theme.colorScheme.background,
                                     ),
                                     onPressed: () {},
                                     child: Text(
                                       'Enviar',
-                                      style: theme.textTheme.headline6!.merge(
+                                      style: theme.textTheme.titleLarge!.merge(
                                         TextStyle(
                                           color: theme.primaryColor,
                                         ),

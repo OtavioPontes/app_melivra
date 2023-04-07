@@ -11,7 +11,7 @@ class DioConfig {
   }) : _dio = dio;
 
   Future<void> init() async {
-    final BaseOptions baseOptions = BaseOptions(
+    final baseOptions = BaseOptions(
       baseUrl: Api.url,
       connectTimeout: 10000,
       receiveTimeout: 10000,

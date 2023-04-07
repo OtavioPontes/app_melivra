@@ -1,7 +1,6 @@
-import 'package:dartz/dartz.dart';
-
 import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
 import 'package:app_melivra/app/core/error/failures.dart';
+import 'package:dartz/dartz.dart';
 
 import '../entities/professor_response.dart';
 import '../repositories/i_professor_repository.dart';
@@ -14,8 +13,10 @@ class GetProfessorsUsecase
     required IProfessorRepository repository,
   }) : _repository = repository;
   @override
-  Future<Either<IFailure, ProfessorResponse>> call(params) async {
-    return await _repository.getProfessors(
+  Future<Either<IFailure, ProfessorResponse>> call(
+    ParamsGetProfessorsUsecase params,
+  ) async {
+    return _repository.getProfessors(
       instituteId: params.instituteId,
       itemsPerPage: params.itemsPerPage,
       page: params.page,

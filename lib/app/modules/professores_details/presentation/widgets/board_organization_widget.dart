@@ -19,10 +19,10 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Color barColor = UtilsScoreEnum.getEnumFromScore(
-            score: controller.boardOrganizationValue)
+    final barColor = UtilsScoreEnum.getEnumFromScore(
+            score: controller.boardOrganizationValue,)
         .getColor;
-    final ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(16.scale),
@@ -39,7 +39,7 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
               innerWidget: (percentage) => Center(
                 child: Text(
                   percentage.toInt().toString(),
-                  style: theme.textTheme.headline4,
+                  style: theme.textTheme.headlineMedium,
                 ),
               ),
               min: 1,
@@ -52,7 +52,6 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
                 customColors: CustomSliderColors(
                   trackColor: Colors.transparent,
                   progressBarColor: barColor,
-                  dynamicGradient: false,
                 ),
               ),
             ),
@@ -61,7 +60,7 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
             ),
             Text(
               'Organização do Quadro',
-              style: theme.textTheme.headline6,
+              style: theme.textTheme.titleLarge,
             ),
             SizedBox(
               height: 16.scale,
@@ -69,7 +68,7 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
             Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
               textAlign: TextAlign.center,
-              style: theme.textTheme.bodyText2,
+              style: theme.textTheme.bodyMedium,
             ),
           ],
         ),

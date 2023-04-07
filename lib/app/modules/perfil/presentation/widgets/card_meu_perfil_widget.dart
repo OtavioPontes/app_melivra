@@ -8,8 +8,8 @@ class CardMeuPerfil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width * 0.85,
       child: GestureDetector(
@@ -40,7 +40,7 @@ class CardMeuPerfil extends StatelessWidget {
                           children: [
                             Text(
                               'Meu Perfil',
-                              style: theme.textTheme.headline6!.merge(
+                              style: theme.textTheme.titleLarge!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,
                                 ),
@@ -49,7 +49,7 @@ class CardMeuPerfil extends StatelessWidget {
                             SizedBox(height: 4.scale),
                             Text(
                               'Ver e editar perfil',
-                              style: theme.textTheme.caption,
+                              style: theme.textTheme.bodySmall,
                             ),
                           ],
                         ),

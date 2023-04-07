@@ -1,7 +1,6 @@
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 
 class LoginFailureDialog extends StatelessWidget {
   final String message;
@@ -12,8 +11,8 @@ class LoginFailureDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final ThemeData theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Stack(
       children: [
         Dialog(
@@ -27,7 +26,6 @@ class LoginFailureDialog extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(8.scale),
               child: Column(
-                mainAxisSize: MainAxisSize.max,
                 children: [
                   const Spacer(),
                   Padding(
@@ -41,7 +39,7 @@ class LoginFailureDialog extends StatelessWidget {
                   const Spacer(),
                   TextButton(
                     style: TextButton.styleFrom(
-                        backgroundColor: theme.colorScheme.error),
+                        backgroundColor: theme.colorScheme.error,),
                     onPressed: Modular.to.pop,
                     child: Text(
                       'Ok',
@@ -64,7 +62,7 @@ class LoginFailureDialog extends StatelessWidget {
             radius: 30,
             child: Icon(
               Icons.cancel,
-              color: theme.errorColor,
+              color: theme.colorScheme.error,
               size: 50,
             ),
           ),
@@ -77,7 +75,7 @@ class LoginFailureDialog extends StatelessWidget {
             child: Icon(
               Icons.close,
               size: 50,
-              color: theme.backgroundColor,
+              color: theme.colorScheme.background,
             ),
           ),
         ),

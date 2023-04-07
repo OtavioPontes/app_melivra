@@ -1,3 +1,5 @@
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/core/style/colors.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/show_button_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
@@ -7,13 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:app_melivra/app/core/extensions/screen_extension.dart';
-import 'package:app_melivra/app/core/style/colors.dart';
-
 import '../../../../core/style/assets.dart';
 import '../../../../core/widgets/score_big_widget.dart';
 import '../../../../core/widgets/score_tiny_widget.dart';
-import '../../../professores/domain/entities/professor_entity.dart';
 import '../bloc/professor_details_bloc.dart';
 import '../widgets/evaluate_professor_dialog_widget.dart';
 
@@ -32,8 +30,8 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
       Modular.get<EvaluateProfessorController>();
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: theme.primaryColor,
@@ -85,7 +83,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
       body: Stack(
         children: [
           RefreshIndicator(
-            onRefresh: () => controller.pipeline(),
+            onRefresh: controller.pipeline,
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.only(
@@ -100,81 +98,78 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                     fit: BoxFit.fitWidth,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 40.scale, bottom: 80.scale),
+                    padding: EdgeInsets.only(
+                      top: 40.scale,
+                      bottom: 80.scale,
+                    ),
                     child: Column(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 24.scale),
-                          child: BlocBuilder(
-                            bloc: controller.bloc,
-                            builder: (context, state) {
-                              if (state is ProfessorDetailsEmptyState) {
-                                return Padding(
-                                  padding: EdgeInsets.all(16.scale),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: IconButton(
-                                          highlightColor: Colors.transparent,
-                                          splashColor: Colors.transparent,
-                                          onPressed: Modular.to.pop,
-                                          icon: Icon(
-                                            Icons.arrow_back_ios,
-                                            size: 40.scale,
-                                            color: theme.backgroundColor,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 64.scale),
-                                      Center(
-                                        child: Text(
-                                          'Não encontramos nada aqui 😥',
-                                          style:
-                                              theme.textTheme.headline6!.merge(
-                                            TextStyle(
-                                              color: theme.backgroundColor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }
-                              if (state is ProfessorDetailsLoadingState) {
-                                return Column(
-                                  mainAxisSize: MainAxisSize.max,
+                        BlocBuilder(
+                          bloc: controller.bloc,
+                          builder: (context, state) {
+                            if (state is ProfessorDetailsEmptyState) {
+                              return Padding(
+                                padding: EdgeInsets.all(16.scale),
+                                child: Column(
                                   children: [
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: IconButton(
-                                        highlightColor: Colors.transparent,
-                                        splashColor: Colors.transparent,
-                                        onPressed: Modular.to.pop,
-                                        icon: Icon(
-                                          Icons.arrow_back_ios,
-                                          size: 40.scale,
-                                          color: theme.backgroundColor,
-                                        ),
+                                    IconButton(
+                                      highlightColor: Colors.transparent,
+                                      splashColor: Colors.transparent,
+                                      onPressed: Modular.to.pop,
+                                      icon: Icon(
+                                        Icons.arrow_back_ios,
+                                        size: 40.scale,
+                                        color: theme.colorScheme.background,
                                       ),
                                     ),
                                     SizedBox(height: 64.scale),
                                     Center(
-                                      child: CircularProgressIndicator(
-                                          color: theme.backgroundColor),
+                                      child: Text(
+                                        'Não encontramos nada aqui 😥',
+                                        style: theme.textTheme.titleLarge!.merge(
+                                          TextStyle(
+                                            color: theme.colorScheme.background,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ],
-                                );
-                              }
-                              if (state is ProfessorDetailsSuccessState) {
-                                final Professor professor = state.professor;
-                                return Column(
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                ),
+                              );
+                            }
+                            if (state is ProfessorDetailsLoadingState) {
+                              return Column(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: IconButton(
+                                      highlightColor: Colors.transparent,
+                                      splashColor: Colors.transparent,
+                                      onPressed: Modular.to.pop,
+                                      icon: Icon(
+                                        Icons.arrow_back_ios,
+                                        size: 40.scale,
+                                        color: theme.colorScheme.background,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 64.scale),
+                                  Center(
+                                    child: CircularProgressIndicator(
+                                        color: theme.colorScheme.background,),
+                                  ),
+                                ],
+                              );
+                            }
+                            if (state is ProfessorDetailsSuccessState) {
+                              final professor = state.professor;
+                              return Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 16.scale,
+                                    ),
+                                    child: Row(
                                       children: [
                                         IconButton(
                                           highlightColor: Colors.transparent,
@@ -183,7 +178,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                           icon: Icon(
                                             Icons.arrow_back_ios,
                                             size: 40.scale,
-                                            color: theme.backgroundColor,
+                                            color: theme.colorScheme.background,
                                           ),
                                         ),
                                         SizedBox(width: 16.scale),
@@ -194,11 +189,11 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                                 professor.name,
                                                 textAlign: TextAlign.center,
                                                 style: theme
-                                                    .textTheme.headline4!
+                                                    .textTheme.headlineMedium!
                                                     .merge(
                                                   TextStyle(
                                                     color:
-                                                        theme.backgroundColor,
+                                                        theme.colorScheme.background,
                                                   ),
                                                 ),
                                               ),
@@ -207,11 +202,11 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                                 professor.instituto.name,
                                                 textAlign: TextAlign.center,
                                                 style: theme
-                                                    .textTheme.bodyText2!
+                                                    .textTheme.bodyMedium!
                                                     .merge(
                                                   TextStyle(
                                                     color:
-                                                        theme.backgroundColor,
+                                                        theme.colorScheme.background,
                                                   ),
                                                 ),
                                               ),
@@ -221,95 +216,95 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                         SizedBox(width: 64.scale),
                                       ],
                                     ),
-                                    SizedBox(height: 40.scale),
-                                    Card(
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: 32.scale),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 32.scale,
-                                            horizontal: 16.scale),
-                                        child: Column(
-                                          children: [
-                                            ScoreBigWidget(
-                                                score: professor.averageGrade ??
-                                                    professor.grades?.average),
-                                            SizedBox(height: 24.scale),
-                                            BlocBuilder(
-                                              bloc: controller.gradesBloc,
-                                              builder: (context, state) {
-                                                return Text(
-                                                  "${controller.grades.length} avaliações",
-                                                  style: theme
-                                                      .textTheme.overline!
-                                                      .merge(
-                                                    TextStyle(
-                                                      color:
-                                                          theme.disabledColor,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                            SizedBox(height: 16.scale),
-                                            GridView.count(
-                                              physics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              shrinkWrap: true,
-                                              crossAxisCount: 2,
-                                              crossAxisSpacing: 20,
-                                              childAspectRatio: 2,
-                                              padding: EdgeInsets.only(
-                                                  left: 32.scale),
-                                              children: [
-                                                const Center(
-                                                  child: Text(
-                                                    'Organização do Quadro',
+                                  ),
+                                  SizedBox(height: 40.scale),
+                                  Card(
+                                    margin: EdgeInsets.symmetric(
+                                      horizontal: 32.scale,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 32.scale,
+                                        horizontal: 16.scale,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          ScoreBigWidget(
+                                              score: professor.averageGrade ??
+                                                  professor.grades?.average,),
+                                          SizedBox(height: 24.scale),
+                                          BlocBuilder(
+                                            bloc: controller.gradesBloc,
+                                            builder: (context, state) {
+                                              return Text(
+                                                "${controller.grades.length} avaliações",
+                                                style: theme.textTheme.labelSmall!
+                                                    .merge(
+                                                  TextStyle(
+                                                    color: theme.disabledColor,
                                                   ),
                                                 ),
-                                                ScoreTinyWidget(
-                                                  score: professor.grades
-                                                      ?.boardOrganization,
+                                              );
+                                            },
+                                          ),
+                                          SizedBox(height: 16.scale),
+                                          GridView.count(
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 20,
+                                            childAspectRatio: 2,
+                                            padding:
+                                                EdgeInsets.only(left: 32.scale),
+                                            children: [
+                                              const Center(
+                                                child: Text(
+                                                  'Organização do Quadro',
                                                 ),
-                                                const Center(
-                                                  child: Text(
-                                                    'Clareza na Explicação',
-                                                  ),
+                                              ),
+                                              ScoreTinyWidget(
+                                                score: professor
+                                                    .grades?.boardOrganization,
+                                              ),
+                                              const Center(
+                                                child: Text(
+                                                  'Clareza na Explicação',
                                                 ),
-                                                ScoreTinyWidget(
-                                                  score: professor
-                                                      .grades?.clearExplanation,
+                                              ),
+                                              ScoreTinyWidget(
+                                                score: professor
+                                                    .grades?.clearExplanation,
+                                              ),
+                                              const Center(
+                                                child: Text(
+                                                  'Avaliação Coerente',
                                                 ),
-                                                const Center(
-                                                  child: Text(
-                                                    'Avaliação Coerente',
-                                                  ),
+                                              ),
+                                              ScoreTinyWidget(
+                                                score: professor
+                                                    .grades?.coherentEvaluation,
+                                              ),
+                                              const Center(
+                                                child: Text(
+                                                  'Tratamento Respeitoso',
                                                 ),
-                                                ScoreTinyWidget(
-                                                  score: professor.grades
-                                                      ?.coherentEvaluation,
-                                                ),
-                                                const Center(
-                                                  child: Text(
-                                                    'Tratamento Respeitoso',
-                                                  ),
-                                                ),
-                                                ScoreTinyWidget(
-                                                  score: professor.grades
-                                                      ?.respectfulTreatment,
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
+                                              ),
+                                              ScoreTinyWidget(
+                                                score: professor.grades
+                                                    ?.respectfulTreatment,
+                                              ),
+                                            ],
+                                          )
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                );
-                              }
-                              return const SizedBox.shrink();
-                            },
-                          ),
+                                  ),
+                                ],
+                              );
+                            }
+                            return const SizedBox.shrink();
+                          },
                         ),
                       ],
                     ),
@@ -332,8 +327,8 @@ class BadgeBottomSheet extends SliverPersistentHeaderDelegate {
   });
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    final ThemeData theme = Theme.of(context);
+      BuildContext context, double shrinkOffset, bool overlapsContent,) {
+    final theme = Theme.of(context);
     return Material(
       borderRadius: const BorderRadius.vertical(
         top: Radius.circular(20),

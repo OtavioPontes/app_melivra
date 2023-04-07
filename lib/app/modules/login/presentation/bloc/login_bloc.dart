@@ -14,12 +14,12 @@ class LoginBloc extends Bloc {
   }
 
   void handleLoginSuccessResponseEvent(
-      LoginSuccessResponseEvent event, Emitter emit) {
+      LoginSuccessResponseEvent event, Emitter emit,) {
     emit(LoginSuccessState());
   }
 
   void handleLoginFailureResponseEvent(
-      LoginFailureResponseEvent event, Emitter emit) {
+      LoginFailureResponseEvent event, Emitter emit,) {
     emit(LoginFailureState(message: event.message));
   }
 }

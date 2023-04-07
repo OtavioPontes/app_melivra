@@ -18,7 +18,7 @@ class UpdatePerfilDatasource implements IUpdatePerfilDatasource {
       await _dio.put('/users/', data: {
         'email': email,
         'name': name,
-      });
+      },);
     } on DioError catch (e) {
       throw ServerException(
         statusCode: e.response?.statusCode,

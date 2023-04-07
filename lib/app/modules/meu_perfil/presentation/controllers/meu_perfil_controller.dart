@@ -27,13 +27,13 @@ class MeuPerfilController {
       email: emailController!.text,
       name: nameController!.text,
     );
-    result.fold(
+    await result.fold(
       (failure) {
         bloc.add(MeuPerfilFailureEvent(message: failure.message));
       },
       (success) async {
         bloc.add(MeuPerfilSuccessEvent());
-        store.setUser(
+        await store.setUser(
           store.loggedUser!.copyWith(
             email: emailController!.text,
             name: nameController!.text,
@@ -43,10 +43,9 @@ class MeuPerfilController {
           msg: "Perfil atualizado com sucesso ✅",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
           backgroundColor: Colors.greenAccent,
           textColor: Colors.black,
-          fontSize: 12.0,
+          fontSize: 12,
         );
       },
     );

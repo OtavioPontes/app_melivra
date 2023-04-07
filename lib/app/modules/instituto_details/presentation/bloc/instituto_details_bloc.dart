@@ -1,6 +1,5 @@
-import 'package:bloc/bloc.dart';
-
 import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
+import 'package:bloc/bloc.dart';
 
 class InstitutoDetailsBloc extends Bloc {
   InstitutoDetailsBloc() : super(InstitutoDetailsEmptyState()) {
@@ -10,17 +9,17 @@ class InstitutoDetailsBloc extends Bloc {
   }
 
   void handleInstitutoDetailsLoadingEvent(
-      InstitutoDetailsLoadingEvent event, Emitter emit) {
+      InstitutoDetailsLoadingEvent event, Emitter emit,) {
     emit(InstitutoDetailsLoadingState());
   }
 
   void handleInstitutoDetailsSuccessEvent(
-      InstitutoDetailsSuccessEvent event, Emitter emit) {
+      InstitutoDetailsSuccessEvent event, Emitter emit,) {
     emit(InstitutoDetailsSuccessState(institute: event.institute));
   }
 
   void handleInstitutoDetailsFailureEvent(
-      InstitutoDetailsFailureEvent event, Emitter emit) {
+      InstitutoDetailsFailureEvent event, Emitter emit,) {
     emit(InstitutoDetailsFailureState(message: event.message));
   }
 }

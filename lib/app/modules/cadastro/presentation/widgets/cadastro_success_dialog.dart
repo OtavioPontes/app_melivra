@@ -10,8 +10,8 @@ class CadastroSuccessDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final ThemeData theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Stack(
       children: [
         Dialog(
@@ -23,20 +23,19 @@ class CadastroSuccessDialog extends StatelessWidget {
             height: 300.scale,
             width: size.width * 0.6,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Column(
-                mainAxisSize: MainAxisSize.max,
                 children: [
                   SizedBox(height: 64.scale),
                   Text(
                     'Cadastro realizado com Sucesso',
                     textAlign: TextAlign.center,
-                    style: theme.textTheme.headline5,
+                    style: theme.textTheme.headlineSmall,
                   ),
                   const Spacer(),
                   TextButton(
                     style: TextButton.styleFrom(
-                        backgroundColor: theme.primaryColor),
+                        backgroundColor: theme.primaryColor,),
                     onPressed: () {
                       Modular.to.navigate(InicioModule.routeName);
                       Modular.to.pushNamed(LoginModule.routeName);
@@ -73,7 +72,7 @@ class CadastroSuccessDialog extends StatelessWidget {
             child: Icon(
               Icons.close,
               size: 50,
-              color: theme.backgroundColor,
+              color: theme.colorScheme.background,
             ),
           ),
         ),

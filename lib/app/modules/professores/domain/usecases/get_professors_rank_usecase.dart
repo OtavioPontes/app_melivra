@@ -14,8 +14,10 @@ class GetProfessorsRankUsecase
     required IProfessorRepository repository,
   }) : _repository = repository;
   @override
-  Future<Either<IFailure, RankingProfessorsConfig>> call(params) async {
-    return await _repository.getProfessorsRank(
+  Future<Either<IFailure, RankingProfessorsConfig>> call(
+    ParamsGetProfessorsRankUsecase params,
+  ) async {
+    return _repository.getProfessorsRank(
       page: params.page,
       itemsPerPage: params.itemsPerPage,
     );

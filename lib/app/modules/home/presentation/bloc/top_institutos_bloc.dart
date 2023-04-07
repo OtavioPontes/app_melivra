@@ -1,6 +1,5 @@
-import 'package:bloc/bloc.dart';
-
 import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
+import 'package:bloc/bloc.dart';
 
 class TopInstitutosBloc extends Bloc {
   TopInstitutosBloc() : super(TopInstitutosEmptyState()) {
@@ -10,17 +9,17 @@ class TopInstitutosBloc extends Bloc {
   }
 
   void handleTopInstitutosLoadingEvent(
-      TopInstitutosLoadingEvent event, Emitter emit) {
+      TopInstitutosLoadingEvent event, Emitter emit,) {
     emit(TopInstitutosLoadingState());
   }
 
   void handleTopInstitutosSuccessEvent(
-      TopInstitutosSuccessEvent event, Emitter emit) {
+      TopInstitutosSuccessEvent event, Emitter emit,) {
     emit(TopInstitutosSuccessState(rankInstitutes: event.rankInstitutes));
   }
 
   void handleTopInstitutosFailureEvent(
-      TopInstitutosFailureEvent event, Emitter emit) {
+      TopInstitutosFailureEvent event, Emitter emit,) {
     emit(TopInstitutosFailureState(message: event.message));
   }
 }

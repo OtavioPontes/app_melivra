@@ -6,9 +6,9 @@ class CadastroBloc extends Bloc {
   CadastroBloc() : super(CadastroEmptyState()) {
     on<SendCadastroEvent>(handleSendCadastroEvent);
     on<ReceivedSuccessCadastroResponseEvent>(
-        handleReceivedCadastroResponseEvent);
+        handleReceivedCadastroResponseEvent,);
     on<ReceivedFailureCadastroResponseEvent>(
-        handleReceivedFailureCadastroResponseEvent);
+        handleReceivedFailureCadastroResponseEvent,);
   }
 
   void handleSendCadastroEvent(SendCadastroEvent event, Emitter emit) {
@@ -16,12 +16,12 @@ class CadastroBloc extends Bloc {
   }
 
   void handleReceivedCadastroResponseEvent(
-      ReceivedSuccessCadastroResponseEvent event, Emitter emit) {
+      ReceivedSuccessCadastroResponseEvent event, Emitter emit,) {
     emit(CadastroSuccessState());
   }
 
   void handleReceivedFailureCadastroResponseEvent(
-      ReceivedFailureCadastroResponseEvent event, Emitter emit) {
+      ReceivedFailureCadastroResponseEvent event, Emitter emit,) {
     emit(
       CadastroFailureState(message: event.message),
     );

@@ -36,8 +36,6 @@ extension ScoreEnumExtension on ScoreEnum {
         return ColorsMeLivra().yellow;
       case ScoreEnum.good:
         return ColorsMeLivra().green;
-      default:
-        return ColorsMeLivra().green;
     }
   }
 }

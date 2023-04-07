@@ -4,9 +4,7 @@ import 'package:app_melivra/app/modules/professores/domain/usecases/get_professo
 import 'package:app_melivra/app/modules/professores/domain/usecases/update_professor_grade_usecase.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/show_button_bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:profanity_filter/profanity_filter.dart';
 
-import '../../../../core/utils/bad_words.dart';
 import '../../../professores/domain/usecases/get_professor_details_usecase.dart';
 import '../bloc/professor_details_bloc.dart';
 import '../bloc/professor_grades_bloc.dart';
@@ -43,7 +41,7 @@ class ProfessorDetailsController {
     pipeline();
   }
 
-  pipeline() async {
+  Future<void> pipeline() async {
     showButtonBloc.add(
       ShowEvaluationButtonSuccessEvent(),
     );
@@ -51,7 +49,7 @@ class ProfessorDetailsController {
     await getProfessorGrades(id: id);
   }
 
-  void setShowButton(bool showButton) {
+  void setShowButton({required bool showButton}) {
     if (showButton) {
       showButtonBloc.add(
         ShowEvaluationButtonSuccessEvent(),
@@ -118,7 +116,7 @@ class ProfessorDetailsController {
         description: evaluationController.text,
       ),
     );
-    result.fold(
+    await result.fold(
       (failure) {
         gradesBloc.add(
           ProfessorGradesFailureEvent(message: failure.message),

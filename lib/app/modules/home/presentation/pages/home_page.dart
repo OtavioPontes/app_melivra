@@ -21,8 +21,8 @@ class HomePage extends StatelessWidget {
   final HomeController controller = Modular.get<HomeController>();
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: theme.primaryColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
         ),
         child: SafeArea(
           child: RefreshIndicator(
-            onRefresh: () => controller.pipeline(),
+            onRefresh: controller.pipeline,
             child: SingleChildScrollView(
               padding: EdgeInsets.only(
                 top: 32.scale,
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
                     padding: EdgeInsets.only(left: 32.scale),
                     child: Text(
                       'Olá, ${controller.store.loggedUser?.name}',
-                      style: theme.textTheme.headline4!.merge(
+                      style: theme.textTheme.headlineMedium!.merge(
                         TextStyle(
                           color: theme.colorScheme.background,
                         ),
@@ -75,14 +75,14 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.search,
-                                    color: theme.backgroundColor,
+                                    color: theme.colorScheme.background,
                                   ),
                                   SizedBox(width: 8.scale),
                                   Text(
                                     'Últimos Pesquisados',
-                                    style: theme.textTheme.headline5!.merge(
+                                    style: theme.textTheme.headlineSmall!.merge(
                                       TextStyle(
-                                        color: theme.backgroundColor,
+                                        color: theme.colorScheme.background,
                                       ),
                                     ),
                                   )
@@ -97,7 +97,7 @@ class HomePage extends StatelessWidget {
                                   return Padding(
                                     padding: EdgeInsets.all(8.scale),
                                     child: CircularProgressIndicator(
-                                      color: theme.backgroundColor,
+                                      color: theme.colorScheme.background,
                                     ),
                                   );
                                 }
@@ -109,7 +109,7 @@ class HomePage extends StatelessWidget {
                                         child: Text(
                                           'Você ainda não pesquisou professor 😥',
                                           style:
-                                              theme.textTheme.headline6!.merge(
+                                              theme.textTheme.titleLarge!.merge(
                                             TextStyle(
                                               color: theme.primaryColor,
                                             ),
@@ -194,9 +194,10 @@ class HomePage extends StatelessWidget {
                                       SizedBox(width: 8.scale),
                                       Text(
                                         'Top Institutos',
-                                        style: theme.textTheme.headline5!.merge(
+                                        style: theme.textTheme.headlineSmall!
+                                            .merge(
                                           TextStyle(
-                                            color: theme.backgroundColor,
+                                            color: theme.colorScheme.background,
                                           ),
                                         ),
                                       ),
@@ -204,7 +205,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                   Icon(
                                     Icons.arrow_forward_ios,
-                                    color: theme.backgroundColor,
+                                    color: theme.colorScheme.background,
                                   ),
                                 ],
                               ),
@@ -213,33 +214,29 @@ class HomePage extends StatelessWidget {
                             BlocBuilder(
                               bloc: controller.topInstitutosBloc,
                               builder: (context, state) {
-                                if (state.runtimeType ==
-                                    TopInstitutosLoadingState) {
+                                if (state is TopInstitutosLoadingState) {
                                   return CircularProgressIndicator(
-                                    color: theme.backgroundColor,
+                                    color: theme.colorScheme.background,
                                   );
                                 }
-                                if (state.runtimeType ==
-                                    TopInstitutosEmptyState) {
+                                if (state is TopInstitutosEmptyState) {
                                   return Padding(
                                     padding: EdgeInsets.all(16.scale),
                                     child: Center(
                                       child: Text(
                                         'Não encontramos nada aqui 😥',
-                                        style: theme.textTheme.headline6!.merge(
+                                        style:
+                                            theme.textTheme.titleLarge!.merge(
                                           TextStyle(
-                                            color: theme.backgroundColor,
+                                            color: theme.colorScheme.background,
                                           ),
                                         ),
                                       ),
                                     ),
                                   );
                                 }
-                                if (state.runtimeType ==
-                                    TopInstitutosSuccessState) {
-                                  final institutes =
-                                      (state as TopInstitutosSuccessState)
-                                          .rankInstitutes;
+                                if (state is TopInstitutosSuccessState) {
+                                  final institutes = state.rankInstitutes;
                                   return ListView.separated(
                                     shrinkWrap: true,
                                     physics:

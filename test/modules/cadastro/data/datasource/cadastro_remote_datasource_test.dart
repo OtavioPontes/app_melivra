@@ -15,21 +15,21 @@ void main() {
   late Dio dio;
   late ICadastroRemoteDatasource datasource;
 
-  UserCreationModel successUser = UserCreationModel(
+  final successUser = UserCreationModel(
     name: 'Otávio',
     email: 'otavio.pontes1103@gmail.com',
     password: '12345',
     passwordConfirmation: '12345',
   );
 
-  UserCreationModel errorUser = UserCreationModel(
+  final errorUser = UserCreationModel(
     name: 'Otávio',
     email: 'otavio.pontes1103@gmail.com',
     password: '1234',
     passwordConfirmation: '12345',
   );
 
-  UserCreationModel errorEmailUser = UserCreationModel(
+  final errorEmailUser = UserCreationModel(
     name: 'Otávio',
     email: 'otavio.pontes1103@gmail.com',
     password: '12345',
@@ -71,7 +71,7 @@ void main() {
       ).thenThrow(ServerException());
 
       expect(() => datasource.register(user: errorUser),
-          throwsA(isA<ServerException>()));
+          throwsA(isA<ServerException>()),);
     },
   );
 
@@ -83,7 +83,7 @@ void main() {
       ).thenThrow(ServerException());
 
       expect(() => datasource.register(user: errorEmailUser),
-          throwsA(isA<ServerException>()));
+          throwsA(isA<ServerException>()),);
     },
   );
 }

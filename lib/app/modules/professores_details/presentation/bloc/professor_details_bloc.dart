@@ -10,17 +10,17 @@ class ProfessorDetailsBloc extends Bloc {
   }
 
   void handleProfessorDetailsLoadingEvent(
-      ProfessorDetailsLoadingEvent event, Emitter emit) {
+      ProfessorDetailsLoadingEvent event, Emitter emit,) {
     emit(ProfessorDetailsLoadingState());
   }
 
   void handleProfessorDetailsSuccessEvent(
-      ProfessorDetailsSuccessEvent event, Emitter emit) {
+      ProfessorDetailsSuccessEvent event, Emitter emit,) {
     emit(ProfessorDetailsSuccessState(professor: event.professor));
   }
 
   void handleProfessorDetailsFailureEvent(
-      ProfessorDetailsFailureEvent event, Emitter emit) {
+      ProfessorDetailsFailureEvent event, Emitter emit,) {
     emit(ProfessorDetailsFailureState(message: event.message));
   }
 }

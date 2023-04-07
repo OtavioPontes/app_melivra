@@ -30,7 +30,7 @@ class AppInfo {
 
     try {
       _instance._packageInfo = await PackageInfo.fromPlatform();
-      final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+      final deviceInfoPlugin = DeviceInfoPlugin();
 
       if (Platform.isAndroid) {
         _instance._androidDeviceInfo = await deviceInfoPlugin.androidInfo;

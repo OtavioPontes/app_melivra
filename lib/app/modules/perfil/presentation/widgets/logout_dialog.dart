@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/modules/perfil/presentation/controllers/perfil_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LogoutDialog extends StatelessWidget {
   final PerfilController controller;
@@ -13,8 +12,8 @@ class LogoutDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final ThemeData theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Stack(
       children: [
         Dialog(
@@ -32,7 +31,6 @@ class LogoutDialog extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
                 children: [
                   SizedBox(height: 16.scale),
                   Icon(
@@ -42,14 +40,14 @@ class LogoutDialog extends StatelessWidget {
                   SizedBox(height: 16.scale),
                   Text(
                     'Você vai deslogar do app',
-                    style: theme.textTheme.headline5!.merge(
+                    style: theme.textTheme.headlineSmall!.merge(
                       TextStyle(color: theme.primaryColor),
                     ),
                   ),
                   SizedBox(height: 40.scale),
                   Text(
                     'Tem certeza?',
-                    style: theme.textTheme.headline5,
+                    style: theme.textTheme.headlineSmall,
                   ),
                   const Spacer(),
                   Row(
@@ -57,11 +55,11 @@ class LogoutDialog extends StatelessWidget {
                     children: [
                       TextButton(
                         style: TextButton.styleFrom(
-                            backgroundColor: theme.cardColor),
+                            backgroundColor: theme.cardColor,),
                         onPressed: controller.logout,
                         child: Text(
                           'Sim',
-                          style: theme.textTheme.headline6!.merge(
+                          style: theme.textTheme.titleLarge!.merge(
                             TextStyle(
                               color: theme.primaryColor,
                             ),
@@ -75,7 +73,7 @@ class LogoutDialog extends StatelessWidget {
                         onPressed: Modular.to.pop,
                         child: Text(
                           'Não',
-                          style: theme.textTheme.headline6!.merge(
+                          style: theme.textTheme.titleLarge!.merge(
                             TextStyle(
                               color: theme.cardColor,
                             ),
@@ -97,7 +95,7 @@ class LogoutDialog extends StatelessWidget {
             child: Icon(
               Icons.close,
               size: 50,
-              color: theme.backgroundColor,
+              color: theme.colorScheme.background,
             ),
           ),
         ),

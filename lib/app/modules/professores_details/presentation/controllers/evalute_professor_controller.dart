@@ -1,15 +1,14 @@
-import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
-import 'package:flutter/material.dart';
-
 import 'package:app_melivra/app/core/domain/entities/grade.dart';
+import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/evaluate_professor_bloc.dart';
+import 'package:flutter/material.dart';
 
 import '../../../professores/domain/usecases/post_professor_grade_usecase.dart';
 
 class EvaluateProfessorController {
   final PostProfessorGradeUsecase _postProfessorGradeUsecase;
   final EvaluateProfessorBloc bloc;
-  final PageController pageController = PageController(initialPage: 0);
+  final PageController pageController = PageController();
 
   Professor? professor;
 

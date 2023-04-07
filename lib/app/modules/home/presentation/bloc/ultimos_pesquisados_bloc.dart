@@ -10,22 +10,22 @@ class UltimosPesquisadosBloc extends Bloc {
   }
 
   void handleUltimosPesquisadosLoadingEvent(
-      UltimosPesquisadosLoadingEvent event, Emitter emit) {
+      UltimosPesquisadosLoadingEvent event, Emitter emit,) {
     emit(UltimosPesquisadosLoadingState());
   }
 
   void handleUltimosPesquisadosSuccessEvent(
-      UltimosPesquisadosSuccessEvent event, Emitter emit) {
+      UltimosPesquisadosSuccessEvent event, Emitter emit,) {
     emit(UltimosPesquisadosSuccessState(professors: event.professors));
   }
 
   void handleUltimosPesquisadosFailureEvent(
-      UltimosPesquisadosFailureEvent event, Emitter emit) {
+      UltimosPesquisadosFailureEvent event, Emitter emit,) {
     emit(UltimosPesquisadosFailureState(message: event.message));
   }
 
   void handleUltimosPesquisadosEmptyEvent(
-      UltimosPesquisadosEmptyEvent event, Emitter emit) {
+      UltimosPesquisadosEmptyEvent event, Emitter emit,) {
     emit(UltimosPesquisadosEmptyState());
   }
 }

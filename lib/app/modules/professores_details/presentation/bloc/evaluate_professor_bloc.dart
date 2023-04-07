@@ -9,22 +9,22 @@ class EvaluateProfessorBloc extends Bloc {
   }
 
   void handleEvaluateProfessorLoadingEvent(
-      EvaluateProfessorLoadingEvent event, Emitter emit) {
+      EvaluateProfessorLoadingEvent event, Emitter emit,) {
     emit(EvaluateProfessorLoadingState());
   }
 
   void handleEvaluateProfessorSuccessEvent(
-      EvaluateProfessorSuccessEvent event, Emitter emit) {
+      EvaluateProfessorSuccessEvent event, Emitter emit,) {
     emit(EvaluateProfessorSuccessState());
   }
 
   void handleEvaluateProfessorFailureEvent(
-      EvaluateProfessorFailureEvent event, Emitter emit) {
+      EvaluateProfessorFailureEvent event, Emitter emit,) {
     emit(EvaluateProfessorFailureState(message: event.message));
   }
 
   void handleEvaluateProfessorResetEvent(
-      EvaluateProfessorResetEvent event, Emitter emit) {
+      EvaluateProfessorResetEvent event, Emitter emit,) {
     emit(EvaluateProfessorEmptyState());
   }
 }

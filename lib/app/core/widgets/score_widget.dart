@@ -13,8 +13,8 @@ class ScoreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final ScoreEnum scoreEnum = UtilsScoreEnum.getEnumFromScore(score: score);
+    final theme = Theme.of(context);
+    final scoreEnum = UtilsScoreEnum.getEnumFromScore(score: score);
     return SizedBox(
       height: 50.scale,
       width: 50.scale,
@@ -47,7 +47,7 @@ class ScoreWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 score != null ? score.toString() : '-',
-                style: theme.textTheme.bodyText1,
+                style: theme.textTheme.bodyLarge,
               ),
             ),
           ),

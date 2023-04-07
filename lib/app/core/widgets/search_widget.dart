@@ -15,13 +15,16 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: () => Modular.to.pushNamed(SearchModule.routeName, arguments: {
-        'onlyProfessores': onlyProfessor,
-        'onlyInstitutos': onlyInstitutos,
-      }),
+      onTap: () => Modular.to.pushNamed(
+        SearchModule.routeName,
+        arguments: {
+          'onlyProfessores': onlyProfessor,
+          'onlyInstitutos': onlyInstitutos,
+        },
+      ),
       child: Center(
         child: Container(
           padding: EdgeInsets.only(
@@ -44,21 +47,21 @@ class SearchWidget extends StatelessWidget {
               if (onlyInstitutos)
                 Text(
                   'Pesquisar instituto',
-                  style: theme.textTheme.bodyText1!.merge(
+                  style: theme.textTheme.bodyLarge!.merge(
                     TextStyle(color: theme.disabledColor),
                   ),
                 ),
               if (onlyProfessor)
                 Text(
                   'Pesquisar professor',
-                  style: theme.textTheme.bodyText1!.merge(
+                  style: theme.textTheme.bodyLarge!.merge(
                     TextStyle(color: theme.disabledColor),
                   ),
                 ),
               if (!onlyProfessor && !onlyInstitutos)
                 Text(
                   'Professor ou instituto',
-                  style: theme.textTheme.bodyText1!.merge(
+                  style: theme.textTheme.bodyLarge!.merge(
                     TextStyle(color: theme.disabledColor),
                   ),
                 ),

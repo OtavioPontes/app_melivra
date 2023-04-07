@@ -2,7 +2,6 @@ import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/widgets/card_info_instituto_widget.dart';
 import 'package:app_melivra/app/core/widgets/search_widget.dart';
-import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
 import 'package:app_melivra/app/modules/institutos/presentation/bloc/institutos_bloc.dart';
 import 'package:app_melivra/app/modules/institutos/presentation/controllers/institutos_controller.dart';
 import 'package:app_melivra/app/modules/professores/presentation/bloc/global_grade_bloc.dart';
@@ -20,8 +19,8 @@ class InstitutosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: theme.primaryColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -61,9 +60,9 @@ class InstitutosPage extends StatelessWidget {
                                 child: Center(
                                   child: Text(
                                     'Não encontramos nada aqui 😥',
-                                    style: theme.textTheme.headline6!.merge(
+                                    style: theme.textTheme.titleLarge!.merge(
                                       TextStyle(
-                                        color: theme.backgroundColor,
+                                        color: theme.colorScheme.background,
                                       ),
                                     ),
                                   ),
@@ -73,7 +72,7 @@ class InstitutosPage extends StatelessWidget {
                             if (state is InstitutosLoadingState) {
                               return Center(
                                 child: CircularProgressIndicator(
-                                  color: theme.backgroundColor,
+                                  color: theme.colorScheme.background,
                                 ),
                               );
                             }
@@ -108,7 +107,7 @@ class InstitutosPage extends StatelessWidget {
                                                       .response!.totalItems
                                                       .toString(),
                                                   style: theme
-                                                      .textTheme.headline4!
+                                                      .textTheme.headlineMedium!
                                                       .merge(
                                                     TextStyle(
                                                       color: theme.primaryColor,
@@ -151,11 +150,11 @@ class InstitutosPage extends StatelessWidget {
                                                             : null,
                                                       ),
                                                       SizedBox(
-                                                          height: 12.scale),
+                                                          height: 12.scale,),
                                                       Text(
                                                         'Nota média global',
                                                         style: theme
-                                                            .textTheme.caption!
+                                                            .textTheme.bodySmall!
                                                             .merge(
                                                           TextStyle(
                                                             color: theme
@@ -171,13 +170,13 @@ class InstitutosPage extends StatelessWidget {
                                                 ),
                                               ),
                                             );
-                                          }),
+                                          },),
                                     ],
                                   ),
                                   SizedBox(height: size.height * 0.08),
                                   Padding(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: 32.scale),
+                                        horizontal: 32.scale,),
                                     child: Column(
                                       children: [
                                         Row(
@@ -188,17 +187,17 @@ class InstitutosPage extends StatelessWidget {
                                               children: [
                                                 Icon(
                                                   Icons.account_balance,
-                                                  color: theme.backgroundColor,
+                                                  color: theme.colorScheme.background,
                                                 ),
                                                 SizedBox(width: 16.scale),
                                                 Text(
                                                   'Institutos',
                                                   style: theme
-                                                      .textTheme.headline5!
+                                                      .textTheme.headlineSmall!
                                                       .merge(
                                                     TextStyle(
                                                       color:
-                                                          theme.backgroundColor,
+                                                          theme.colorScheme.background,
                                                     ),
                                                   ),
                                                 ),
@@ -213,7 +212,7 @@ class InstitutosPage extends StatelessWidget {
                                               const NeverScrollableScrollPhysics(),
                                           itemCount: list.length,
                                           itemBuilder: (context, index) {
-                                            final Instituto item = list[index];
+                                            final item = list[index];
                                             return CardInfoInstituto(
                                               instituto: item,
                                             );
@@ -232,15 +231,15 @@ class InstitutosPage extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   'Não encontramos nada aqui 😥',
-                                  style: theme.textTheme.headline6!.merge(
+                                  style: theme.textTheme.titleLarge!.merge(
                                     TextStyle(
-                                      color: theme.backgroundColor,
+                                      color: theme.colorScheme.background,
                                     ),
                                   ),
                                 ),
                               ),
                             );
-                          }),
+                          },),
                     ],
                   )
                 ],

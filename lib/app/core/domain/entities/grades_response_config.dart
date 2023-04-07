@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:equatable/equatable.dart';
-
 import 'package:app_melivra/app/core/domain/entities/grade_response.dart';
+import 'package:equatable/equatable.dart';
 
 class GradesResponseConfig extends Equatable {
   final int totalItems;
@@ -55,7 +54,8 @@ class GradesResponseConfig extends Equatable {
       itemsPerPage: map['items_per_page']?.toInt() ?? 0,
       response: map['data'] != null
           ? List<GradeResponse>.from(
-              map['data']?.map((x) => GradeResponse.fromMap(x)))
+              map['data']?.map((x) => GradeResponse.fromMap(x)),
+            )
           : [],
     );
   }

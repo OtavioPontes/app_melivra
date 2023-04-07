@@ -38,7 +38,6 @@ class _AppWidgetState extends State<AppWidget> {
           title: 'Me Livra',
           theme: lightTheme,
           themeMode: ThemeMode.light,
-          darkTheme: darkTheme,
         );
       },
     );

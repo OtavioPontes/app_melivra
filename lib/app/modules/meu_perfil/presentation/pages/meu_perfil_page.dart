@@ -1,12 +1,11 @@
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/core/style/assets.dart';
+import 'package:app_melivra/app/modules/perfil/presentation/controllers/perfil_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:app_melivra/app/core/extensions/screen_extension.dart';
-import 'package:app_melivra/app/core/style/assets.dart';
-import 'package:app_melivra/app/modules/perfil/presentation/controllers/perfil_controller.dart';
 
 import '../../../../core/bloc/user_bloc.dart';
 import '../controllers/meu_perfil_controller.dart';
@@ -20,8 +19,8 @@ class MeuPerfilPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: theme.primaryColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -46,7 +45,7 @@ class MeuPerfilPage extends StatelessWidget {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 40.scale,
-                      color: theme.backgroundColor,
+                      color: theme.colorScheme.background,
                     ),
                   ),
                 ),
@@ -61,10 +60,10 @@ class MeuPerfilPage extends StatelessWidget {
                             children: [
                               CircleAvatar(
                                 radius: 40.scale,
-                                backgroundColor: theme.backgroundColor,
+                                backgroundColor: theme.colorScheme.background,
                                 child: Text(
                                   controller.nameInitials,
-                                  style: theme.textTheme.headline4!.merge(
+                                  style: theme.textTheme.headlineMedium!.merge(
                                     TextStyle(
                                       color: theme.colorScheme.onPrimary,
                                     ),
@@ -74,9 +73,9 @@ class MeuPerfilPage extends StatelessWidget {
                               SizedBox(height: 16.scale),
                               Text(
                                 controller.user.name,
-                                style: theme.textTheme.headline5!.merge(
+                                style: theme.textTheme.headlineSmall!.merge(
                                   TextStyle(
-                                    color: theme.backgroundColor,
+                                    color: theme.colorScheme.background,
                                   ),
                                 ),
                               )
@@ -99,7 +98,6 @@ class MeuPerfilPage extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 32.scale),
                           child: Column(
-                            mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(height: 80.scale),
@@ -124,12 +122,12 @@ class MeuPerfilPage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     fixedSize: Size(140.scale, 50.scale),
-                                    backgroundColor: theme.backgroundColor,
+                                    backgroundColor: theme.colorScheme.background,
                                   ),
                                   onPressed: meuPerfilController.updateProfile,
                                   child: Text(
                                     'Salvar',
-                                    style: theme.textTheme.headline6!.merge(
+                                    style: theme.textTheme.titleLarge!.merge(
                                       TextStyle(
                                         color: theme.primaryColor,
                                       ),
@@ -169,8 +167,8 @@ class MeuPerfilTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Center(
       child: Container(
         padding: EdgeInsets.only(
@@ -199,7 +197,7 @@ class MeuPerfilTextField extends StatelessWidget {
           decoration: InputDecoration(
             prefixIcon: Icon(prefixIcon),
             hintText: fieldHint,
-            hintStyle: theme.textTheme.bodyText1!.merge(
+            hintStyle: theme.textTheme.bodyLarge!.merge(
               TextStyle(color: theme.disabledColor),
             ),
           ),

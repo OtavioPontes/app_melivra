@@ -6,7 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../core/network/network_info.dart';
 
 class BottomNavigationController {
-  final PageController pageController = PageController(initialPage: 0);
+  final PageController pageController = PageController();
   final NetworkInfo _networkInfo = Modular.get<NetworkInfo>();
 
   int currentIndex = 0;

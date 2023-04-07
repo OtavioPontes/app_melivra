@@ -1,12 +1,11 @@
 import 'package:app_melivra/app/core/domain/entities/grade.dart';
 import 'package:app_melivra/app/core/domain/entities/grades_response_config.dart';
-import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
-import 'package:dio/dio.dart';
-
 import 'package:app_melivra/app/modules/professores/data/datasources/i_professor_datasource.dart';
 import 'package:app_melivra/app/modules/professores/data/model/professor_model.dart';
+import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_response.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/ranking_professors_config.dart';
+import 'package:dio/dio.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/network/endpoints.dart';
@@ -49,7 +48,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
           if (instituteId != null) 'institute_id': instituteId
         },
       );
-      final List<Professor> professors = List.from(
+      final professors = List<Professor>.from(
         response.data['data']
             .map(
               (item) => ProfessorModel.fromMap(item).toEntity(),
@@ -72,7 +71,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
 
   @override
   Future<RankingProfessorsConfig> getProfessorsRank(
-      {int? page, int? itemsPerPage}) async {
+      {int? page, int? itemsPerPage,}) async {
     try {
       final response = await _dio.get(
         Endpoints.professorsRank,
@@ -81,7 +80,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
           'items_per_page': itemsPerPage,
         },
       );
-      final List<Professor> professors = List.from(
+      final professors = List<Professor>.from(
         response.data['data']
             .map(
               (item) => ProfessorModel.fromMap(item).toEntity(),

@@ -1,9 +1,8 @@
 import 'dart:convert';
 
 import 'package:app_melivra/app/modules/institutos/data/models/instituto_model.dart';
-import 'package:equatable/equatable.dart';
-
 import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
+import 'package:equatable/equatable.dart';
 
 class InstitutosResponse extends Equatable {
   final int totalItems;

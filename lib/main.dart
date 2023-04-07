@@ -17,73 +17,73 @@ import 'app/core/utils/appinfo.dart';
 
 late final FirebaseAnalytics firebaseAnalytics;
 void main() async {
-  runZonedGuarded<Future<void>>(() async {
+  await runZonedGuarded<Future<void>>(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Future.wait([
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.logo),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.logo,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.wave),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.wave,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.splash),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.splash,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.loginDrawing),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.loginDrawing,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.waveHome),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.waveHome,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.trophy),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.trophy,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.waveChat),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.waveChat,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.success),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.success,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.failure),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.failure,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.sobre),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.sobre,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.linkedin),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.linkedin,),
         null,
       ),
       precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.github),
+            SvgPicture.svgStringDecoderBuilder, AssetsMeLivra.github,),
         null,
       ),
     ]);
 
     await Firebase.initializeApp();
-    FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.instance;
+    final firebaseAnalytics = FirebaseAnalytics.instance;
     await firebaseAnalytics.setAnalyticsCollectionEnabled(false);
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
     Isolate.current.addErrorListener(
@@ -107,5 +107,5 @@ void main() async {
     );
   },
       (error, stack) =>
-          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
+          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true),);
 }

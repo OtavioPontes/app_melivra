@@ -25,7 +25,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage>
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
     super.build(context);
 
     return Scaffold(
@@ -55,7 +55,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage>
               offset: const Offset(0, 1),
             )
           ],
-          color: theme.backgroundColor,
+          color: theme.colorScheme.background,
           borderRadius: BorderRadius.circular(
             100,
           ),

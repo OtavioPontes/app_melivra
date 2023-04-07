@@ -49,8 +49,8 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: theme.primaryColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -76,7 +76,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 40.scale,
-                      color: theme.backgroundColor,
+                      color: theme.colorScheme.background,
                     ),
                   ),
                 ),
@@ -88,15 +88,15 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                         children: [
                           Icon(
                             Icons.cancel,
-                            color: theme.backgroundColor,
+                            color: theme.colorScheme.background,
                             size: 40.scale,
                           ),
                           SizedBox(height: 16.scale),
                           Text(
                             'Solicitar Retirada',
-                            style: theme.textTheme.headline5!.merge(
+                            style: theme.textTheme.headlineSmall!.merge(
                               TextStyle(
-                                color: theme.backgroundColor,
+                                color: theme.colorScheme.background,
                               ),
                             ),
                           ),
@@ -125,9 +125,9 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                               SizedBox(height: 48.scale),
                               Text(
                                 'Fale um pouco do motivo que o levou a solicitar a retirada, por favor:',
-                                style: theme.textTheme.headline5!.merge(
+                                style: theme.textTheme.headlineSmall!.merge(
                                   TextStyle(
-                                    color: theme.backgroundColor,
+                                    color: theme.colorScheme.background,
                                   ),
                                 ),
                               ),
@@ -149,7 +149,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                     decoration: InputDecoration(
                                       hintText: 'Descreva o motivo da retirada',
                                       hintStyle:
-                                          theme.textTheme.bodyText1!.merge(
+                                          theme.textTheme.bodyLarge!.merge(
                                         TextStyle(color: theme.disabledColor),
                                       ),
                                     ),
@@ -159,9 +159,9 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                               SizedBox(height: 32.scale),
                               Text(
                                 'Escolha o Professor',
-                                style: theme.textTheme.headline5!.merge(
+                                style: theme.textTheme.headlineSmall!.merge(
                                   TextStyle(
-                                    color: theme.backgroundColor,
+                                    color: theme.colorScheme.background,
                                   ),
                                 ),
                               ),
@@ -191,7 +191,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                       prefixIcon: const Icon(Icons.search),
                                       hintText: 'Pesquisar professor',
                                       hintStyle:
-                                          theme.textTheme.bodyText1!.merge(
+                                          theme.textTheme.bodyLarge!.merge(
                                         TextStyle(color: theme.disabledColor),
                                       ),
                                     ),
@@ -204,7 +204,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                 builder: (context, state) {
                                   if (state is SearchProfessorsLoadingState) {
                                     return CircularProgressIndicator(
-                                      color: theme.backgroundColor,
+                                      color: theme.colorScheme.background,
                                     );
                                   }
                                   if (state is SearchProfessorsEmptyState) {
@@ -264,7 +264,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                           },
                                           child: Icon(
                                             Icons.delete,
-                                            color: theme.errorColor,
+                                            color: theme.colorScheme.error,
                                           ),
                                         ),
                                       ],
@@ -280,7 +280,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                           ),
                                           fixedSize: Size(140.scale, 50.scale),
                                           backgroundColor:
-                                              theme.backgroundColor,
+                                              theme.colorScheme.background,
                                         ),
                                         onPressed: () async {
                                           if (controller.descriptionController
@@ -290,10 +290,9 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                                   "Por favor, descreva o motivo de retirada",
                                               toastLength: Toast.LENGTH_SHORT,
                                               gravity: ToastGravity.BOTTOM,
-                                              timeInSecForIosWeb: 1,
                                               backgroundColor: Colors.redAccent,
                                               textColor: Colors.white,
-                                              fontSize: 16.0,
+                                              fontSize: 16,
                                             );
                                           } else {
                                             await controller
@@ -304,7 +303,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                         child: Text(
                                           'Enviar',
                                           style:
-                                              theme.textTheme.headline6!.merge(
+                                              theme.textTheme.titleLarge!.merge(
                                             TextStyle(
                                               color: theme.primaryColor,
                                             ),

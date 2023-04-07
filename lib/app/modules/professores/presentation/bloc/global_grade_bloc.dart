@@ -10,17 +10,17 @@ class GlobalGradeBloc extends Bloc {
   }
 
   void handleGlobalGradeLoadingEvent(
-      GlobalGradeLoadingEvent event, Emitter emit) {
+      GlobalGradeLoadingEvent event, Emitter emit,) {
     emit(GlobalGradeLoadingState());
   }
 
   void handleGlobalGradeSuccessEvent(
-      GlobalGradeSuccessEvent event, Emitter emit) {
+      GlobalGradeSuccessEvent event, Emitter emit,) {
     emit(GlobalGradeSuccessState(grade: event.grade));
   }
 
   void handleGlobalGradeFailureEvent(
-      GlobalGradeFailureEvent event, Emitter emit) {
+      GlobalGradeFailureEvent event, Emitter emit,) {
     emit(GlobalGradeFailureState(message: event.message));
   }
 }

@@ -12,7 +12,7 @@ class SolicitarRetiradaModule extends Module {
           (i) => SolicitarRetiradaController(
               searchProfessorsBloc: i(),
               getProfessorsUsecase: i(),
-              sendSolicitacaoRetiradaService: i()),
+              sendSolicitacaoRetiradaService: i(),),
         )
       ];
 

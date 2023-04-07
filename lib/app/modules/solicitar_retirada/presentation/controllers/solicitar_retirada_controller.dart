@@ -72,27 +72,25 @@ class SolicitarRetiradaController {
       id: selectedProfessor!.id,
     );
 
-    result.fold(
-      (failure) async => await Fluttertoast.showToast(
+    await result.fold(
+      (failure) async => Fluttertoast.showToast(
         msg: failure.message,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
         backgroundColor: Colors.redAccent,
         textColor: Colors.black,
-        fontSize: 12.0,
+        fontSize: 12,
       ),
       (success) async {
         descriptionController.clear();
         selectedProfessor = null;
-        return await Fluttertoast.showToast(
+        return Fluttertoast.showToast(
           msg: "Solicitação enviada com sucesso ✅",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
           backgroundColor: Colors.greenAccent,
           textColor: Colors.black,
-          fontSize: 12.0,
+          fontSize: 12,
         );
       },
     );

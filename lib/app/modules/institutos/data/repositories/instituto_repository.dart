@@ -1,11 +1,10 @@
 import 'package:app_melivra/app/core/error/exceptions.dart';
-import 'package:app_melivra/app/modules/institutos/domain/entities/institutos_response.dart';
-import 'package:dartz/dartz.dart';
-
 import 'package:app_melivra/app/core/error/failures.dart';
 import 'package:app_melivra/app/modules/institutos/data/datasources/i_instituto_datasource.dart';
 import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
+import 'package:app_melivra/app/modules/institutos/domain/entities/institutos_response.dart';
 import 'package:app_melivra/app/modules/institutos/domain/repositories/i_instituto_repository.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../../ranking_institutos/domain/entities/ranking_config_entity.dart';
 
@@ -16,7 +15,7 @@ class InstitutoRepository implements IInstitutoRepository {
   }) : _datasource = datasource;
   @override
   Future<Either<IFailure, Instituto>> getInstitutoDetails(
-      {required int id}) async {
+      {required int id,}) async {
     try {
       final model = await _datasource.getInstitutoDetails(id: id);
       return Right(model.toEntity());

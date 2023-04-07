@@ -10,22 +10,22 @@ class ProfessorGradesBloc extends Bloc {
   }
 
   void handleProfessorGradesLoadingEvent(
-      ProfessorGradesLoadingEvent event, Emitter emit) {
+      ProfessorGradesLoadingEvent event, Emitter emit,) {
     emit(ProfessorGradesLoadingState());
   }
 
   void handleProfessorGradesSuccessEvent(
-      ProfessorGradesSuccessEvent event, Emitter emit) {
+      ProfessorGradesSuccessEvent event, Emitter emit,) {
     emit(ProfessorGradesSuccessState(grades: event.grades));
   }
 
   void handleProfessorGradesFailureEvent(
-      ProfessorGradesFailureEvent event, Emitter emit) {
+      ProfessorGradesFailureEvent event, Emitter emit,) {
     emit(ProfessorGradesFailureState(message: event.message));
   }
 
   void handleProfessorGradesBadWordEvent(
-      ProfessorGradesBadWordEvent event, Emitter emit) {
+      ProfessorGradesBadWordEvent event, Emitter emit,) {
     emit(ProfessorGradesBadWordState());
   }
 }

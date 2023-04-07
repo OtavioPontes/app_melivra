@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/style/colors.dart';
 import 'package:app_melivra/app/modules/splash/presentation/bloc/splash_bloc.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -20,12 +20,12 @@ class _SplashPageState extends State<SplashPage> {
   final SplashController controller = Modular.get<SplashController>();
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    ThemeData theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
-        statusBarColor: theme.backgroundColor,
+        statusBarColor: theme.colorScheme.background,
         systemNavigationBarColor: theme.colorScheme.primary,
       ),
       child: Scaffold(
@@ -49,7 +49,7 @@ class _SplashPageState extends State<SplashPage> {
                     ),
                     Text(
                       'Me Livra',
-                      style: theme.textTheme.headline2,
+                      style: theme.textTheme.displayMedium,
                     ),
                   ],
                 ),
@@ -93,7 +93,7 @@ class _SplashPageState extends State<SplashPage> {
                         ),
                         Text(
                           'V ${controller.appVersion}',
-                          style: theme.textTheme.headline6!.merge(
+                          style: theme.textTheme.titleLarge!.merge(
                             TextStyle(
                               color: theme.colorScheme.surface,
                             ),
@@ -107,9 +107,9 @@ class _SplashPageState extends State<SplashPage> {
                       children: [
                         Text(
                           state.message,
-                          style: theme.textTheme.bodyText1!.merge(
+                          style: theme.textTheme.bodyLarge!.merge(
                             TextStyle(
-                              color: theme.backgroundColor,
+                              color: theme.colorScheme.background,
                             ),
                           ),
                         ),
@@ -120,7 +120,7 @@ class _SplashPageState extends State<SplashPage> {
                           onTap: controller.pipeline,
                           child: Icon(
                             Icons.refresh,
-                            color: theme.backgroundColor,
+                            color: theme.colorScheme.background,
                           ),
                         )
                       ],

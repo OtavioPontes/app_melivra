@@ -21,8 +21,8 @@ class PerfilPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: theme.primaryColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -48,10 +48,10 @@ class PerfilPage extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 40.scale,
-                            backgroundColor: theme.backgroundColor,
+                            backgroundColor: theme.colorScheme.background,
                             child: Text(
                               controller.nameInitials,
-                              style: theme.textTheme.headline4!.merge(
+                              style: theme.textTheme.headlineMedium!.merge(
                                 TextStyle(
                                   color: theme.colorScheme.onPrimary,
                                 ),
@@ -61,9 +61,9 @@ class PerfilPage extends StatelessWidget {
                           SizedBox(height: 16.scale),
                           Text(
                             controller.user.name,
-                            style: theme.textTheme.headline5!.merge(
+                            style: theme.textTheme.headlineSmall!.merge(
                               TextStyle(
-                                color: theme.backgroundColor,
+                                color: theme.colorScheme.background,
                               ),
                             ),
                           )

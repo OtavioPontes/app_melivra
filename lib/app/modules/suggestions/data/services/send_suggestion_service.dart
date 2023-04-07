@@ -1,10 +1,9 @@
 import 'package:app_melivra/app/core/domain/usecases/i_usecase.dart';
+import 'package:app_melivra/app/core/error/failures.dart';
 import 'package:app_melivra/app/core/network/endpoints.dart';
+import 'package:app_melivra/app/modules/suggestions/domain/services/i_send_suggestion_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-
-import 'package:app_melivra/app/core/error/failures.dart';
-import 'package:app_melivra/app/modules/suggestions/domain/services/i_send_suggestion_service.dart';
 
 class SendSuggestionService implements ISendSuggestionService {
   final Dio _dio;

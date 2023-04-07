@@ -7,8 +7,8 @@ class ReportDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final ThemeData theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Stack(
       children: [
         Dialog(
@@ -20,15 +20,14 @@ class ReportDialog extends StatelessWidget {
             height: size.height * 0.5,
             width: size.width,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Column(
-                mainAxisSize: MainAxisSize.max,
                 children: [
                   SizedBox(height: 40.scale),
                   Text(
                     'Denunciar Comentário',
                     textAlign: TextAlign.center,
-                    style: theme.textTheme.headline5!.merge(
+                    style: theme.textTheme.headlineSmall!.merge(
                       TextStyle(
                         color: theme.primaryColor,
                       ),
@@ -55,13 +54,13 @@ class ReportDialog extends StatelessWidget {
                         minLines: 3,
                         maxLines: 3,
                         textAlignVertical: TextAlignVertical.top,
-                        style: theme.textTheme.caption!.merge(
+                        style: theme.textTheme.bodySmall!.merge(
                           TextStyle(color: theme.colorScheme.onSecondary),
                         ),
                         decoration: InputDecoration(
                           hintText:
                               'Descreva o motivo da sua denúncia (ex.: Desrespeito, assédio, ...)',
-                          hintStyle: theme.textTheme.caption!.merge(
+                          hintStyle: theme.textTheme.bodySmall!.merge(
                             TextStyle(color: theme.disabledColor),
                           ),
                         ),
@@ -77,9 +76,9 @@ class ReportDialog extends StatelessWidget {
                     onPressed: () {},
                     child: Text(
                       'Enviar',
-                      style: theme.textTheme.headline6!.merge(
+                      style: theme.textTheme.titleLarge!.merge(
                         TextStyle(
-                          color: theme.backgroundColor,
+                          color: theme.colorScheme.background,
                         ),
                       ),
                     ),
@@ -110,7 +109,7 @@ class ReportDialog extends StatelessWidget {
             child: Icon(
               Icons.close,
               size: 50,
-              color: theme.backgroundColor,
+              color: theme.colorScheme.background,
             ),
           ),
         ),

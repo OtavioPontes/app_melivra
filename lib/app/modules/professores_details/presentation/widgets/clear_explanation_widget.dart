@@ -19,10 +19,10 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Color barColor =
+    final barColor =
         UtilsScoreEnum.getEnumFromScore(score: controller.clearExplanationValue)
             .getColor;
-    final ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(16.scale),
@@ -41,7 +41,7 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
               innerWidget: (percentage) => Center(
                 child: Text(
                   percentage.toInt().toString(),
-                  style: theme.textTheme.headline4,
+                  style: theme.textTheme.headlineMedium,
                 ),
               ),
               min: 1,
@@ -54,7 +54,6 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
                 customColors: CustomSliderColors(
                   trackColor: Colors.transparent,
                   progressBarColor: barColor,
-                  dynamicGradient: false,
                 ),
               ),
             ),
@@ -63,7 +62,7 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
             ),
             Text(
               'Explicação Clara',
-              style: theme.textTheme.headline6,
+              style: theme.textTheme.titleLarge,
             ),
             SizedBox(
               height: 16.scale,
@@ -71,7 +70,7 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
             Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
               textAlign: TextAlign.center,
-              style: theme.textTheme.bodyText2,
+              style: theme.textTheme.bodyMedium,
             ),
           ],
         ),

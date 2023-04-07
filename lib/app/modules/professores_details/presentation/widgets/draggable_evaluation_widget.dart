@@ -1,13 +1,12 @@
 import 'dart:math';
 
+import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/widgets/others_evaluation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:app_melivra/app/core/extensions/screen_extension.dart';
-import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
-import 'package:app_melivra/app/modules/professores_details/presentation/widgets/others_evaluation_widget.dart';
 
 import '../../../../core/style/assets.dart';
 import '../bloc/professor_grades_bloc.dart';
@@ -28,8 +27,8 @@ class DraggableEvaluation extends StatefulWidget {
 class _DraggableEvaluationState extends State<DraggableEvaluation> {
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return DraggableScrollableSheet(
       controller: widget.controller.scrollableController,
       maxChildSize: 0.9,
@@ -40,9 +39,9 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
           () {
             if (scrollController.position.viewportDimension >
                 size.height * 0.17) {
-              widget.controller.setShowButton(false);
+              widget.controller.setShowButton(showButton: false);
             } else {
-              widget.controller.setShowButton(true);
+              widget.controller.setShowButton(showButton: true);
             }
           },
         );
@@ -86,7 +85,6 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
-                              mainAxisSize: MainAxisSize.max,
                               children: [
                                 Icon(
                                   Icons.chat,
@@ -96,7 +94,7 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                 Flexible(
                                   child: Text(
                                     'Avaliações e Comentários',
-                                    style: theme.textTheme.headline5!,
+                                    style: theme.textTheme.headlineSmall,
                                   ),
                                 ),
                               ],
@@ -113,15 +111,15 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                   child: Text(
                                     'Não é permitido fazer comentários de natureza desrespeitosa ⛔',
                                     textAlign: TextAlign.center,
-                                    style: theme.textTheme.headline6!.merge(
+                                    style: theme.textTheme.titleLarge!.merge(
                                       TextStyle(
-                                        color: theme.backgroundColor,
+                                        color: theme.colorScheme.background,
                                       ),
                                     ),
                                   ),
                                 );
                               }
-                              return SizedBox.shrink();
+                              return const SizedBox.shrink();
                             },
                           ),
                           SizedBox(height: 16.scale),
@@ -135,9 +133,9 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                     child: Text(
                                       state.message,
                                       textAlign: TextAlign.center,
-                                      style: theme.textTheme.headline6!.merge(
+                                      style: theme.textTheme.titleLarge!.merge(
                                         TextStyle(
-                                          color: theme.backgroundColor,
+                                          color: theme.colorScheme.background,
                                         ),
                                       ),
                                     ),
@@ -146,7 +144,6 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                               }
                               if (state is ProfessorGradesLoadingState) {
                                 return Column(
-                                  mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
                                       alignment: Alignment.topLeft,
@@ -157,14 +154,15 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                         icon: Icon(
                                           Icons.arrow_back_ios,
                                           size: 40.scale,
-                                          color: theme.backgroundColor,
+                                          color: theme.colorScheme.background,
                                         ),
                                       ),
                                     ),
                                     SizedBox(height: 64.scale),
                                     Center(
                                       child: CircularProgressIndicator(
-                                          color: theme.backgroundColor),
+                                        color: theme.colorScheme.background,
+                                      ),
                                     ),
                                   ],
                                 );

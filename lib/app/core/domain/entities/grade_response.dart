@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:equatable/equatable.dart';
-
 import 'package:app_melivra/app/core/domain/entities/grade.dart';
+import 'package:equatable/equatable.dart';
 
 class GradeResponse extends Equatable {
   final int id;

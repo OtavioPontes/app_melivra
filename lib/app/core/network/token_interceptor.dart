@@ -1,4 +1,3 @@
-import 'package:app_melivra/app/core/domain/entities/user.dart';
 import 'package:app_melivra/app/modules/login/data/models/user_model.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
@@ -20,7 +19,7 @@ class TokenInterceptor extends Interceptor {
       return super.onRequest(options, handler);
     }
 
-    final Map<String, dynamic> tokenHeader = {
+    final tokenHeader = <String, dynamic>{
       'Authorization': 'Bearer $accessToken'
     };
 
@@ -30,10 +29,10 @@ class TokenInterceptor extends Interceptor {
   }
 
   Future<String?> _getAccessToken() async {
-    final User? user = Hive.box('melivra').get('user') != null
+    final user = Hive.box('melivra').get('user') != null
         ? UserModel.fromMap(
             Map.from(
-              (Hive.box('melivra').get('user')),
+              Hive.box('melivra').get('user'),
             ),
           ).toEntity()
         : null;

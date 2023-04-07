@@ -1,7 +1,6 @@
-import 'package:equatable/equatable.dart';
-
 import 'package:app_melivra/app/core/domain/entities/grade.dart';
 import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
+import 'package:equatable/equatable.dart';
 
 class Professor extends Equatable {
   final int id;

@@ -13,21 +13,21 @@ void main() {
   late CadastroUserUsecase usecase;
   late ICadastroService service;
 
-  UserCreationModel successUser = UserCreationModel(
+  final successUser = UserCreationModel(
     name: 'Otávio',
     email: 'otavio.pontes1103@gmail.com',
     password: '12345',
     passwordConfirmation: '12345',
   );
 
-  UserCreationModel errorUser = UserCreationModel(
+  final errorUser = UserCreationModel(
     name: 'Otávio',
     email: 'otavio.pontes1103@gmail.com',
     password: '1234',
     passwordConfirmation: '12345',
   );
 
-  UserCreationModel errorEmailUser = UserCreationModel(
+  final errorEmailUser = UserCreationModel(
     name: 'Otávio',
     email: 'otavio.pontes1103@gmail.com',
     password: '12345',

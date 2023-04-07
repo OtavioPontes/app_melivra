@@ -6,8 +6,8 @@ class CardDeslogar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width * 0.85,
       child: Card(
@@ -32,7 +32,7 @@ class CardDeslogar extends StatelessWidget {
                     SizedBox(width: 24.scale),
                     Text(
                       'Deslogar',
-                      style: theme.textTheme.headline6!.merge(
+                      style: theme.textTheme.titleLarge!.merge(
                         TextStyle(
                           color: theme.primaryColor,
                         ),

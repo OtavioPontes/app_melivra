@@ -19,8 +19,8 @@ class ProfessoresPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: theme.primaryColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -60,9 +60,9 @@ class ProfessoresPage extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   'Não encontramos nada aqui 😥',
-                                  style: theme.textTheme.headline6!.merge(
+                                  style: theme.textTheme.titleLarge!.merge(
                                     TextStyle(
-                                      color: theme.backgroundColor,
+                                      color: theme.colorScheme.background,
                                     ),
                                   ),
                                 ),
@@ -72,12 +72,12 @@ class ProfessoresPage extends StatelessWidget {
                           if (state is ProfessorsLoadingState) {
                             return Center(
                               child: CircularProgressIndicator(
-                                color: theme.backgroundColor,
+                                color: theme.colorScheme.background,
                               ),
                             );
                           }
                           if (state is ProfessorsSuccessState) {
-                            List list =
+                            final list =
                                 state.professors.getRange(0, 3).toList();
 
                             return Column(
@@ -108,7 +108,7 @@ class ProfessoresPage extends StatelessWidget {
                                                         .toString() ??
                                                     '',
                                                 style: theme
-                                                    .textTheme.headline4!
+                                                    .textTheme.headlineMedium!
                                                     .merge(
                                                   TextStyle(
                                                     color: theme.primaryColor,
@@ -124,57 +124,57 @@ class ProfessoresPage extends StatelessWidget {
                                     ),
                                     SizedBox(width: 16.scale),
                                     BlocBuilder(
-                                        bloc: controller.globalGradeBloc,
-                                        builder: (context, state) {
-                                          return ConstrainedBox(
-                                            constraints: BoxConstraints(
-                                              minWidth: 100.scale,
-                                              minHeight: 100.scale,
-                                            ),
-                                            child: Card(
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                  horizontal: 16.scale,
-                                                  vertical: 8.scale,
-                                                ),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(height: 4.scale),
-                                                    ScoreWidget(
-                                                      score: (state
-                                                              is GlobalGradeSuccessState)
-                                                          ? state.grade.average
-                                                          : null,
-                                                    ),
-                                                    SizedBox(height: 12.scale),
-                                                    Text(
-                                                      'Nota média global',
-                                                      style: theme
-                                                          .textTheme.caption!
-                                                          .merge(
-                                                        TextStyle(
-                                                          color: theme
-                                                              .colorScheme
-                                                              .onPrimary,
-                                                        ),
+                                      bloc: controller.globalGradeBloc,
+                                      builder: (context, state) {
+                                        return ConstrainedBox(
+                                          constraints: BoxConstraints(
+                                            minWidth: 100.scale,
+                                            minHeight: 100.scale,
+                                          ),
+                                          child: Card(
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: 16.scale,
+                                                vertical: 8.scale,
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(height: 4.scale),
+                                                  ScoreWidget(
+                                                    score: (state
+                                                            is GlobalGradeSuccessState)
+                                                        ? state.grade.average
+                                                        : null,
+                                                  ),
+                                                  SizedBox(height: 12.scale),
+                                                  Text(
+                                                    'Nota média global',
+                                                    style: theme
+                                                        .textTheme.bodySmall!
+                                                        .merge(
+                                                      TextStyle(
+                                                        color: theme.colorScheme
+                                                            .onPrimary,
                                                       ),
-                                                      textAlign:
-                                                          TextAlign.center,
                                                     ),
-                                                  ],
-                                                ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          );
-                                        }),
+                                          ),
+                                        );
+                                      },
+                                    ),
                                   ],
                                 ),
                                 SizedBox(height: size.height * 0.08),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 32.scale),
+                                    horizontal: 32.scale,
+                                  ),
                                   child: Column(
                                     children: [
                                       Row(
@@ -185,17 +185,18 @@ class ProfessoresPage extends StatelessWidget {
                                             children: [
                                               Icon(
                                                 Icons.school,
-                                                color: theme.backgroundColor,
+                                                color: theme
+                                                    .colorScheme.background,
                                               ),
                                               SizedBox(width: 16.scale),
                                               Text(
                                                 'Professores',
                                                 style: theme
-                                                    .textTheme.headline5!
+                                                    .textTheme.headlineSmall!
                                                     .merge(
                                                   TextStyle(
-                                                    color:
-                                                        theme.backgroundColor,
+                                                    color: theme
+                                                        .colorScheme.background,
                                                   ),
                                                 ),
                                               ),

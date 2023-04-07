@@ -53,8 +53,8 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final Size size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: theme.primaryColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -104,7 +104,7 @@ class _SearchPageState extends State<SearchPage> {
                             child: const Icon(Icons.cancel),
                           ),
                           hintText: 'Pesquisar instituto',
-                          hintStyle: theme.textTheme.bodyText1!.merge(
+                          hintStyle: theme.textTheme.bodyLarge!.merge(
                             TextStyle(color: theme.disabledColor),
                           ),
                         ),
@@ -141,7 +141,7 @@ class _SearchPageState extends State<SearchPage> {
                             child: const Icon(Icons.cancel),
                           ),
                           hintText: 'Pesquisar professor',
-                          hintStyle: theme.textTheme.bodyText1!.merge(
+                          hintStyle: theme.textTheme.bodyLarge!.merge(
                             TextStyle(color: theme.disabledColor),
                           ),
                         ),
@@ -179,7 +179,7 @@ class _SearchPageState extends State<SearchPage> {
                             child: const Icon(Icons.cancel),
                           ),
                           hintText: 'Professor ou instituto',
-                          hintStyle: theme.textTheme.bodyText1!.merge(
+                          hintStyle: theme.textTheme.bodyLarge!.merge(
                             TextStyle(color: theme.disabledColor),
                           ),
                         ),
@@ -204,7 +204,7 @@ class _SearchPageState extends State<SearchPage> {
                             builder: (context, state) {
                               if (state is SearchProfessorsLoadingState) {
                                 return CircularProgressIndicator(
-                                  color: theme.backgroundColor,
+                                  color: theme.colorScheme.background,
                                 );
                               }
                               if (state is SearchProfessorsEmptyState) {
@@ -218,15 +218,15 @@ class _SearchPageState extends State<SearchPage> {
                                       children: [
                                         Icon(
                                           Icons.school,
-                                          color: theme.backgroundColor,
+                                          color: theme.colorScheme.background,
                                         ),
                                         SizedBox(width: 16.scale),
                                         Text(
                                           'Professores (${controller.professorResponse?.totalItems ?? 0})',
                                           style:
-                                              theme.textTheme.headline5!.merge(
+                                              theme.textTheme.headlineSmall!.merge(
                                             TextStyle(
-                                              color: theme.backgroundColor,
+                                              color: theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
@@ -258,7 +258,7 @@ class _SearchPageState extends State<SearchPage> {
                             builder: (context, state) {
                               if (state is SearchInstitutesLoadingState) {
                                 return CircularProgressIndicator(
-                                  color: theme.backgroundColor,
+                                  color: theme.colorScheme.background,
                                 );
                               }
                               if (state is SearchInstitutesEmptyState) {
@@ -272,15 +272,15 @@ class _SearchPageState extends State<SearchPage> {
                                       children: [
                                         Icon(
                                           Icons.school,
-                                          color: theme.backgroundColor,
+                                          color: theme.colorScheme.background,
                                         ),
                                         SizedBox(width: 16.scale),
                                         Text(
                                           'Institutos (${state.institutes.length})',
                                           style:
-                                              theme.textTheme.headline5!.merge(
+                                              theme.textTheme.headlineSmall!.merge(
                                             TextStyle(
-                                              color: theme.backgroundColor,
+                                              color: theme.colorScheme.background,
                                             ),
                                           ),
                                         ),

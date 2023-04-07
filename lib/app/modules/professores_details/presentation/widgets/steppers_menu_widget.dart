@@ -16,14 +16,13 @@ class SteppersMenu extends StatefulWidget {
 class _SteppersMenuState extends State<SteppersMenu> {
   @override
   Widget build(BuildContext context) {
-    final EvaluateProfessorController controller =
+    final controller =
         Modular.get<EvaluateProfessorController>();
-    final ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
 
     return Padding(
       padding: EdgeInsets.only(bottom: 16.scale),
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Visibility(

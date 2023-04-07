@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
-
 import 'package:app_melivra/app/core/domain/entities/grade.dart';
+import 'package:app_melivra/app/modules/institutos/domain/entities/instituto_entity.dart';
 
 import '../../../institutos/data/models/instituto_model.dart';
 import '../../domain/entities/professor_entity.dart';
@@ -62,7 +61,7 @@ class ProfessorModel extends Professor {
         name: professor.name,
         instituto: professor.instituto,
         grades: professor.grades,
-        averageGrade: professor.averageGrade);
+        averageGrade: professor.averageGrade,);
   }
 
   String toJson() => json.encode(toMap());

@@ -9,17 +9,17 @@ class InstitutoProfessorsBloc extends Bloc {
   }
 
   void handleInstitutoProfessorsLoadingEvent(
-      InstitutoProfessorsLoadingEvent event, Emitter emit) {
+      InstitutoProfessorsLoadingEvent event, Emitter emit,) {
     emit(InstitutoProfessorsLoadingState());
   }
 
   void handleInstitutoProfessorsSuccessEvent(
-      InstitutoProfessorsSuccessEvent event, Emitter emit) {
+      InstitutoProfessorsSuccessEvent event, Emitter emit,) {
     emit(InstitutoProfessorsSuccessState(professor: event.professor));
   }
 
   void handleInstitutoProfessorsFailureEvent(
-      InstitutoProfessorsFailureEvent event, Emitter emit) {
+      InstitutoProfessorsFailureEvent event, Emitter emit,) {
     emit(InstitutoProfessorsFailureState(message: event.message));
   }
 }

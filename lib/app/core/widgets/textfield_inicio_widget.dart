@@ -26,12 +26,15 @@ class _TextFieldInicioState extends State<TextFieldInicio> {
   double bottomPadding = 0;
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
     return Container(
       padding: EdgeInsets.only(
-          left: 16.scale, right: 8.scale, bottom: bottomPadding),
+        left: 16.scale,
+        right: 8.scale,
+        bottom: bottomPadding,
+      ),
       decoration: BoxDecoration(
-        color: theme.backgroundColor,
+        color: theme.colorScheme.background,
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextFormField(
@@ -41,7 +44,7 @@ class _TextFieldInicioState extends State<TextFieldInicio> {
             setState(() {
               bottomPadding = 8.scale;
             });
-            String? result = widget.validator!(value);
+            final result = widget.validator!(value);
             if (result == null) {
               setState(() {
                 bottomPadding = 0;

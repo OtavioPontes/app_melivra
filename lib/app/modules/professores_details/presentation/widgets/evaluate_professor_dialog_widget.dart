@@ -1,11 +1,10 @@
-import 'package:app_melivra/app/modules/professores_details/presentation/bloc/evaluate_professor_bloc.dart';
-import 'package:app_melivra/app/modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
-import 'package:flutter/material.dart';
-
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/bloc/evaluate_professor_bloc.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/pages/evaluate_professor_page.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/widgets/steppers_menu_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,11 +20,11 @@ class EvaluateProfessorDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final EvaluateProfessorController controller =
+    final controller =
         Modular.get<EvaluateProfessorController>();
     controller.setProfessor(professor);
-    final Size size = MediaQuery.of(context).size;
-    final ThemeData theme = Theme.of(context);
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Stack(
       children: [
         Positioned(
@@ -51,7 +50,7 @@ class EvaluateProfessorDialog extends StatelessWidget {
                           children: [
                             Text(
                               'Avaliação feita com sucesso',
-                              style: theme.textTheme.headline4,
+                              style: theme.textTheme.headlineMedium,
                               textAlign: TextAlign.center,
                             ),
                             SizedBox(height: 16.scale),
@@ -71,9 +70,9 @@ class EvaluateProfessorDialog extends StatelessWidget {
                               onPressed: Modular.to.pop,
                               child: Text(
                                 'Ok',
-                                style: theme.textTheme.headline6!.merge(
+                                style: theme.textTheme.titleLarge!.merge(
                                   TextStyle(
-                                    color: theme.backgroundColor,
+                                    color: theme.colorScheme.background,
                                   ),
                                 ),
                               ),
@@ -96,7 +95,6 @@ class EvaluateProfessorDialog extends StatelessWidget {
                                 opacity: 0.3,
                                 child: SvgPicture.asset(
                                   AssetsMeLivra.failure,
-                                  fit: BoxFit.contain,
                                 ),
                               ),
                             ),
@@ -106,7 +104,7 @@ class EvaluateProfessorDialog extends StatelessWidget {
                                   padding: EdgeInsets.all(16.scale),
                                   child: Text(
                                     state.message,
-                                    style: theme.textTheme.headline4!.merge(
+                                    style: theme.textTheme.headlineMedium!.merge(
                                       TextStyle(
                                         color: theme.colorScheme.onPrimary,
                                       ),
@@ -128,9 +126,9 @@ class EvaluateProfessorDialog extends StatelessWidget {
                                   onPressed: Modular.to.pop,
                                   child: Text(
                                     'Ok',
-                                    style: theme.textTheme.headline6!.merge(
+                                    style: theme.textTheme.titleLarge!.merge(
                                       TextStyle(
-                                        color: theme.backgroundColor,
+                                        color: theme.colorScheme.background,
                                       ),
                                     ),
                                   ),
@@ -153,7 +151,7 @@ class EvaluateProfessorDialog extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 32.scale),
                           child: Text(
                             'Avalie ${professor.name.split(' ')[0]}',
-                            style: theme.textTheme.headline5,
+                            style: theme.textTheme.headlineSmall,
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -163,7 +161,7 @@ class EvaluateProfessorDialog extends StatelessWidget {
                         const SteppersMenu(),
                       ],
                     );
-                  }),
+                  },),
             ),
           ),
         ),
@@ -171,7 +169,6 @@ class EvaluateProfessorDialog extends StatelessWidget {
           right: 0,
           left: 0,
           child: Align(
-            alignment: Alignment.center,
             child: Container(
               width: 80.scale,
               height: 80.scale,
@@ -179,7 +176,7 @@ class EvaluateProfessorDialog extends StatelessWidget {
                 borderRadius: BorderRadius.circular(
                   100,
                 ),
-                color: theme.backgroundColor,
+                color: theme.colorScheme.background,
                 boxShadow: [
                   BoxShadow(
                     color: theme.colorScheme.onPrimary.withOpacity(0.2),

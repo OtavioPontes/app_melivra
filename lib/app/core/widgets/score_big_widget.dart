@@ -13,8 +13,8 @@ class ScoreBigWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final ScoreEnum scoreEnum = UtilsScoreEnum.getEnumFromScore(score: score);
+    final theme = Theme.of(context);
+    final scoreEnum = UtilsScoreEnum.getEnumFromScore(score: score);
     return Hero(
       tag: 'scoreBig',
       child: Stack(
@@ -46,7 +46,7 @@ class ScoreBigWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 score != null ? score.toString() : '-',
-                style: theme.textTheme.headline3,
+                style: theme.textTheme.displaySmall,
               ),
             ),
           ),
