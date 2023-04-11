@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/modules/professores_details/data/services/send_report_service.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/evaluate_professor_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/professor_details_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/professor_grades_bloc.dart';
@@ -16,6 +17,7 @@ class ProfessoresDetailsModule extends Module {
         Bind((i) => ProfessorGradesBloc()),
         Bind((i) => ProfessorDetailsBloc()),
         Bind((i) => ShowEvaluationButtonBloc()),
+        Bind((i) => SendReportService(dio: i())),
         Bind(
           (i) => ProfessorDetailsController(
             updateProfessorGradeUsecase: i(),
@@ -29,7 +31,10 @@ class ProfessoresDetailsModule extends Module {
         ),
         Bind(
           (i) => EvaluateProfessorController(
-              postProfessorGradeUsecase: i(), bloc: i(),),
+            sendReportService: i(),
+            postProfessorGradeUsecase: i(),
+            bloc: i(),
+          ),
         )
       ];
 

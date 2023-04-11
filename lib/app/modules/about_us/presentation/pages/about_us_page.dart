@@ -98,10 +98,11 @@ class AboutUsPage extends StatelessWidget {
                                         children: [
                                           Text(
                                             '#Flutter',
-                                            style:
-                                                theme.textTheme.bodySmall!.merge(
+                                            style: theme.textTheme.bodySmall!
+                                                .merge(
                                               TextStyle(
-                                                color: theme.colorScheme.background,
+                                                color: theme
+                                                    .colorScheme.background,
                                               ),
                                             ),
                                           ),
@@ -110,10 +111,11 @@ class AboutUsPage extends StatelessWidget {
                                           ),
                                           Text(
                                             '#Figma',
-                                            style:
-                                                theme.textTheme.bodySmall!.merge(
+                                            style: theme.textTheme.bodySmall!
+                                                .merge(
                                               TextStyle(
-                                                color: theme.colorScheme.background,
+                                                color: theme
+                                                    .colorScheme.background,
                                               ),
                                             ),
                                           ),
@@ -129,10 +131,11 @@ class AboutUsPage extends StatelessWidget {
                                       children: [
                                         Text(
                                           'Otávio Pontes',
-                                          style:
-                                              theme.textTheme.headlineSmall!.merge(
+                                          style: theme.textTheme.headlineSmall!
+                                              .merge(
                                             TextStyle(
-                                              color: theme.colorScheme.background,
+                                              color:
+                                                  theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
@@ -142,7 +145,8 @@ class AboutUsPage extends StatelessWidget {
                                           style:
                                               theme.textTheme.bodyMedium!.merge(
                                             TextStyle(
-                                              color: theme.colorScheme.background,
+                                              color:
+                                                  theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
@@ -163,8 +167,8 @@ class AboutUsPage extends StatelessWidget {
                                                 webOnlyWindowName: '_blank',
                                               ),
                                               child: CircleAvatar(
-                                                backgroundColor:
-                                                    theme.colorScheme.background,
+                                                backgroundColor: theme
+                                                    .colorScheme.background,
                                                 child: SvgPicture.asset(
                                                   AssetsMeLivra.github,
                                                   height: 30.scale,
@@ -184,8 +188,8 @@ class AboutUsPage extends StatelessWidget {
                                                 webOnlyWindowName: '_blank',
                                               ),
                                               child: CircleAvatar(
-                                                backgroundColor:
-                                                    theme.colorScheme.background,
+                                                backgroundColor: theme
+                                                    .colorScheme.background,
                                                 child: SvgPicture.asset(
                                                   AssetsMeLivra.linkedin,
                                                   fit: BoxFit.cover,
@@ -196,7 +200,7 @@ class AboutUsPage extends StatelessWidget {
                                               ),
                                             ),
                                             SizedBox(width: 16.scale),
-                                            Expanded(
+                                            Flexible(
                                               child: GestureDetector(
                                                 onTap: () => launchUrl(
                                                   Uri(
@@ -210,7 +214,8 @@ class AboutUsPage extends StatelessWidget {
                                                 child: Icon(
                                                   Icons.language,
                                                   size: 40,
-                                                  color: theme.colorScheme.background,
+                                                  color: theme
+                                                      .colorScheme.background,
                                                 ),
                                               ),
                                             ),
@@ -232,10 +237,11 @@ class AboutUsPage extends StatelessWidget {
                                       children: [
                                         Text(
                                           'Thiago de Mello',
-                                          style:
-                                              theme.textTheme.headlineSmall!.merge(
+                                          style: theme.textTheme.headlineSmall!
+                                              .merge(
                                             TextStyle(
-                                              color: theme.colorScheme.background,
+                                              color:
+                                                  theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
@@ -245,7 +251,8 @@ class AboutUsPage extends StatelessWidget {
                                           style:
                                               theme.textTheme.bodyMedium!.merge(
                                             TextStyle(
-                                              color: theme.colorScheme.background,
+                                              color:
+                                                  theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
@@ -264,8 +271,8 @@ class AboutUsPage extends StatelessWidget {
                                                 webOnlyWindowName: '_blank',
                                               ),
                                               child: CircleAvatar(
-                                                backgroundColor:
-                                                    theme.colorScheme.background,
+                                                backgroundColor: theme
+                                                    .colorScheme.background,
                                                 child: SvgPicture.asset(
                                                   AssetsMeLivra.github,
                                                   height: 30.scale,
@@ -285,8 +292,8 @@ class AboutUsPage extends StatelessWidget {
                                                 webOnlyWindowName: '_blank',
                                               ),
                                               child: CircleAvatar(
-                                                backgroundColor:
-                                                    theme.colorScheme.background,
+                                                backgroundColor: theme
+                                                    .colorScheme.background,
                                                 child: SvgPicture.asset(
                                                   AssetsMeLivra.linkedin,
                                                   fit: BoxFit.cover,
@@ -315,10 +322,11 @@ class AboutUsPage extends StatelessWidget {
                                         children: [
                                           Text(
                                             '#Go',
-                                            style:
-                                                theme.textTheme.bodySmall!.merge(
+                                            style: theme.textTheme.bodySmall!
+                                                .merge(
                                               TextStyle(
-                                                color: theme.colorScheme.background,
+                                                color: theme
+                                                    .colorScheme.background,
                                               ),
                                             ),
                                           ),
@@ -327,10 +335,11 @@ class AboutUsPage extends StatelessWidget {
                                           ),
                                           Text(
                                             '#Docker',
-                                            style:
-                                                theme.textTheme.bodySmall!.merge(
+                                            style: theme.textTheme.bodySmall!
+                                                .merge(
                                               TextStyle(
-                                                color: theme.colorScheme.background,
+                                                color: theme
+                                                    .colorScheme.background,
                                               ),
                                             ),
                                           ),

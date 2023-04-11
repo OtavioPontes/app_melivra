@@ -2,13 +2,17 @@ import 'package:app_melivra/app/core/domain/entities/grade.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/evaluate_professor_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../professores/domain/usecases/post_professor_grade_usecase.dart';
+import '../../data/services/send_report_service.dart';
 
 class EvaluateProfessorController {
   final PostProfessorGradeUsecase _postProfessorGradeUsecase;
+  final SendReportService _sendReportService;
   final EvaluateProfessorBloc bloc;
   final PageController pageController = PageController();
+  final TextEditingController reportController = TextEditingController();
 
   Professor? professor;
 
@@ -20,9 +24,11 @@ class EvaluateProfessorController {
   int currentIndex = 0;
 
   EvaluateProfessorController({
+    required SendReportService sendReportService,
     required PostProfessorGradeUsecase postProfessorGradeUsecase,
     required this.bloc,
-  }) : _postProfessorGradeUsecase = postProfessorGradeUsecase;
+  })  : _postProfessorGradeUsecase = postProfessorGradeUsecase,
+        _sendReportService = sendReportService;
 
   void setCurrentIndex(int index) => currentIndex = index;
 
@@ -60,6 +66,35 @@ class EvaluateProfessorController {
         );
       },
     );
+  }
+
+  Future<void> sendReport({required int id}) async {
+    final result = await _sendReportService(
+      description: reportController.text,
+      id: id,
+    );
+    await result.fold(
+      (l) => Fluttertoast.showToast(
+        msg: "Falha ao enviar denúncia 😥",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.redAccent,
+        textColor: Colors.white,
+        fontSize: 12,
+      ),
+      (success) {
+        reportController.clear();
+        return Fluttertoast.showToast(
+          msg: "Denúncia enviada com sucesso ✅",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.greenAccent,
+          textColor: Colors.black,
+          fontSize: 12,
+        );
+      },
+    );
+    return;
   }
 
   void dispose() {

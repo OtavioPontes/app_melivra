@@ -178,6 +178,9 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                       itemCount: state.grades.length,
                                       itemBuilder: (context, index) {
                                         final item = state.grades[index];
+                                        if (item.description.isEmpty) {
+                                          return const SizedBox.shrink();
+                                        }
                                         return Center(
                                           child:
                                               OthersEvaluation(response: item),

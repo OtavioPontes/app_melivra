@@ -12,13 +12,13 @@ class UtilsScoreEnum {
     if (score == null) {
       return ScoreEnum.undefined;
     }
-    if (score >= 0 && score <= 49) {
+    if (score >= 0 && score <= 39) {
       return ScoreEnum.bad;
     }
-    if (score >= 50 && score <= 79) {
+    if (score >= 40 && score <= 69) {
       return ScoreEnum.average;
     }
-    if (score >= 80 && score <= 100) {
+    if (score >= 70 && score <= 100) {
       return ScoreEnum.good;
     }
     return ScoreEnum.bad;

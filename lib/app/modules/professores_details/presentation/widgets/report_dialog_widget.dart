@@ -1,12 +1,24 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class ReportDialog extends StatelessWidget {
-  const ReportDialog({Key? key}) : super(key: key);
+class ReportDialog extends StatefulWidget {
+  final int id;
+  const ReportDialog({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
 
   @override
+  State<ReportDialog> createState() => _ReportDialogState();
+}
+
+class _ReportDialogState extends State<ReportDialog> {
+  @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<EvaluateProfessorController>();
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
     return Stack(
@@ -51,6 +63,7 @@ class ReportDialog extends StatelessWidget {
                       ),
                       width: size.width * 0.6,
                       child: TextField(
+                        controller: controller.reportController,
                         minLines: 3,
                         maxLines: 3,
                         textAlignVertical: TextAlignVertical.top,
@@ -68,21 +81,25 @@ class ReportDialog extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      fixedSize: Size(120.scale, 40.scale),
-                      backgroundColor: theme.primaryColor,
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      'Enviar',
-                      style: theme.textTheme.titleLarge!.merge(
-                        TextStyle(
-                          color: theme.colorScheme.background,
+                  if (controller.reportController.text.isNotEmpty)
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        fixedSize: Size(120.scale, 40.scale),
+                        backgroundColor: theme.primaryColor,
+                      ),
+                      onPressed: () =>
+                          controller.sendReport(id: widget.id).then(
+                                (value) => Modular.to.pop(),
+                              ),
+                      child: Text(
+                        'Enviar',
+                        style: theme.textTheme.titleLarge!.merge(
+                          TextStyle(
+                            color: theme.colorScheme.background,
+                          ),
                         ),
                       ),
                     ),
-                  ),
                   SizedBox(height: 16.scale),
                 ],
               ),
@@ -105,7 +122,10 @@ class ReportDialog extends StatelessWidget {
           top: 50 - MediaQuery.of(context).viewInsets.bottom * 0.5,
           right: 20,
           child: GestureDetector(
-            onTap: Modular.to.pop,
+            onTap: () {
+              controller.reportController.clear();
+              Modular.to.pop();
+            },
             child: Icon(
               Icons.close,
               size: 50,

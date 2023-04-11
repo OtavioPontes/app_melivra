@@ -95,7 +95,7 @@ class _SplashPageState extends State<SplashPage> {
                           'V ${controller.appVersion}',
                           style: theme.textTheme.titleLarge!.merge(
                             TextStyle(
-                              color: theme.colorScheme.surface,
+                              color: theme.colorScheme.background,
                             ),
                           ),
                         ),
