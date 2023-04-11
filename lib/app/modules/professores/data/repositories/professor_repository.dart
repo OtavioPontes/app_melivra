@@ -17,8 +17,9 @@ class ProfessorRepository implements IProfessorRepository {
     required IProfessorDatasource datasource,
   }) : _datasource = datasource;
   @override
-  Future<Either<IFailure, Professor>> getProfessorDetails(
-      {required int id,}) async {
+  Future<Either<IFailure, Professor>> getProfessorDetails({
+    required int id,
+  }) async {
     try {
       final model = await _datasource.getProfessorDetails(id: id);
       return Right(model.toEntity());
@@ -100,11 +101,11 @@ class ProfessorRepository implements IProfessorRepository {
   }
 
   @override
-  Future<Either<IFailure, GradesResponseConfig>> getProfessorGrades(
-      {required int id,}) async {
+  Future<Either<IFailure, GradesResponseConfig>> getProfessorGrades({
+    required int id,
+  }) async {
     try {
-      final gradesConfig =
-          await _datasource.getProfessorGrades(
+      final gradesConfig = await _datasource.getProfessorGrades(
         id: id,
       );
       return Right(
@@ -120,8 +121,30 @@ class ProfessorRepository implements IProfessorRepository {
   }
 
   @override
-  Future<Either<IFailure, void>> updateProfessorGrade(
-      {required int id, required String description,}) async {
+  Future<Either<IFailure, int>> getProfessorGradesCount({
+    required int id,
+  }) async {
+    try {
+      final gradesCount = await _datasource.getProfessorGradesCount(
+        id: id,
+      );
+      return Right(
+        gradesCount,
+      );
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(
+          message: e.message,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<IFailure, void>> updateProfessorGrade({
+    required int id,
+    required String description,
+  }) async {
     try {
       await _datasource.updateGrade(id: id, description: description);
       return Right(voidRight);

@@ -126,7 +126,8 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                     Center(
                                       child: Text(
                                         'Não encontramos nada aqui 😥',
-                                        style: theme.textTheme.titleLarge!.merge(
+                                        style:
+                                            theme.textTheme.titleLarge!.merge(
                                           TextStyle(
                                             color: theme.colorScheme.background,
                                           ),
@@ -156,7 +157,8 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                   SizedBox(height: 64.scale),
                                   Center(
                                     child: CircularProgressIndicator(
-                                        color: theme.colorScheme.background,),
+                                      color: theme.colorScheme.background,
+                                    ),
                                   ),
                                 ],
                               );
@@ -192,8 +194,8 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                                     .textTheme.headlineMedium!
                                                     .merge(
                                                   TextStyle(
-                                                    color:
-                                                        theme.colorScheme.background,
+                                                    color: theme
+                                                        .colorScheme.background,
                                                   ),
                                                 ),
                                               ),
@@ -205,8 +207,8 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                                     .textTheme.bodyMedium!
                                                     .merge(
                                                   TextStyle(
-                                                    color:
-                                                        theme.colorScheme.background,
+                                                    color: theme
+                                                        .colorScheme.background,
                                                   ),
                                                 ),
                                               ),
@@ -230,15 +232,17 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                       child: Column(
                                         children: [
                                           ScoreBigWidget(
-                                              score: professor.averageGrade ??
-                                                  professor.grades?.average,),
+                                            score: professor.averageGrade ??
+                                                professor.grades?.average,
+                                          ),
                                           SizedBox(height: 24.scale),
                                           BlocBuilder(
                                             bloc: controller.gradesBloc,
                                             builder: (context, state) {
                                               return Text(
-                                                "${controller.grades.length} avaliações",
-                                                style: theme.textTheme.labelSmall!
+                                                "${controller.gradesCount} avaliações",
+                                                style: theme
+                                                    .textTheme.labelSmall!
                                                     .merge(
                                                   TextStyle(
                                                     color: theme.disabledColor,
@@ -327,7 +331,10 @@ class BadgeBottomSheet extends SliverPersistentHeaderDelegate {
   });
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent,) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     final theme = Theme.of(context);
     return Material(
       borderRadius: const BorderRadius.vertical(

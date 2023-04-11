@@ -70,8 +70,10 @@ class ProfessorsDatasource implements IProfessorDatasource {
   }
 
   @override
-  Future<RankingProfessorsConfig> getProfessorsRank(
-      {int? page, int? itemsPerPage,}) async {
+  Future<RankingProfessorsConfig> getProfessorsRank({
+    int? page,
+    int? itemsPerPage,
+  }) async {
     try {
       final response = await _dio.get(
         Endpoints.professorsRank,
@@ -126,6 +128,21 @@ class ProfessorsDatasource implements IProfessorDatasource {
         Endpoints.evaluateProfessor(id: id),
       );
       return GradesResponseConfig.fromMap(response.data);
+    } on DioError catch (e) {
+      throw ServerException(
+        message: e.response?.data['message'],
+        statusCode: e.response?.statusCode,
+      );
+    }
+  }
+
+  @override
+  Future<int> getProfessorGradesCount({required int id}) async {
+    try {
+      final response = await _dio.get(
+        Endpoints.gradesCountbyProfessor(id: id),
+      );
+      return response.data['data'];
     } on DioError catch (e) {
       throw ServerException(
         message: e.response?.data['message'],

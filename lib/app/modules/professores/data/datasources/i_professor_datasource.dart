@@ -29,6 +29,10 @@ abstract class IProfessorDatasource {
     required int id,
   });
 
+  Future<int> getProfessorGradesCount({
+    required int id,
+  });
+
   Future<void> updateGrade({
     required int id,
     required String description,

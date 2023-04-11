@@ -6,12 +6,14 @@ import 'package:app_melivra/app/modules/professores_details/presentation/bloc/sh
 import 'package:flutter/cupertino.dart';
 
 import '../../../professores/domain/usecases/get_professor_details_usecase.dart';
+import '../../../professores/domain/usecases/get_professor_grades_count_usecase.dart';
 import '../bloc/professor_details_bloc.dart';
 import '../bloc/professor_grades_bloc.dart';
 
 class ProfessorDetailsController {
   final GetProfessorDetailsUsecase _getProfessorDetailsUsecase;
   final GetProfessorGradesUsecase _getProfessorGradesUsecase;
+  final GetProfessorGradesCountUsecase _getProfessorGradesCountUsecase;
   final UpdateProfessorGradeUsecase _updateProfessorGradeUsecase;
   final ProfessorDetailsBloc bloc;
   final ProfessorGradesBloc gradesBloc;
@@ -27,8 +29,11 @@ class ProfessorDetailsController {
 
   final List<GradeResponse> grades = [];
 
+  int gradesCount = 0;
+
   ProfessorDetailsController({
     required UpdateProfessorGradeUsecase updateProfessorGradeUsecase,
+    required GetProfessorGradesCountUsecase getProfessorGradesCountUsecase,
     required GetProfessorGradesUsecase getProfessorGradesUsecase,
     required GetProfessorDetailsUsecase getProfessorDetailsUsecase,
     required this.bloc,
@@ -37,6 +42,7 @@ class ProfessorDetailsController {
     required this.id,
   })  : _getProfessorDetailsUsecase = getProfessorDetailsUsecase,
         _updateProfessorGradeUsecase = updateProfessorGradeUsecase,
+        _getProfessorGradesCountUsecase = getProfessorGradesCountUsecase,
         _getProfessorGradesUsecase = getProfessorGradesUsecase {
     pipeline();
   }
@@ -85,6 +91,15 @@ class ProfessorDetailsController {
   Future<void> getProfessorGrades({required int id}) async {
     gradesBloc.add(
       ProfessorGradesLoadingEvent(),
+    );
+    final resultCount = await _getProfessorGradesCountUsecase(
+      ParamsGetProfessorGradesCountUsecase(id: id),
+    );
+    resultCount.fold(
+      (failure) => failure,
+      (response) {
+        gradesCount = response;
+      },
     );
     final result = await _getProfessorGradesUsecase(
       ParamsGetProfessorGradesUsecase(id: id),

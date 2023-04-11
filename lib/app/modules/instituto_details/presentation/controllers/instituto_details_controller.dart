@@ -36,9 +36,11 @@ class InstitutoDetailsController {
   void setNextPage() => page = page + 1;
 
   Future<void> getProfessoresByInstituto() async {
-    professorsBloc.add(
-      InstitutoProfessorsLoadingEvent(),
-    );
+    if (professors.isEmpty) {
+      professorsBloc.add(
+        InstitutoProfessorsLoadingEvent(),
+      );
+    }
     final result = await _getProfessorsUsecase(
       ParamsGetProfessorsUsecase(instituteId: id, page: page),
     );
