@@ -1,16 +1,20 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/modules/esqueci_senha/presentation/controllers/recover_password_controller.dart';
+import 'package:app_melivra/app/modules/esqueci_senha/presentation/send_recover_code_page.dart';
+import 'package:app_melivra/app/modules/esqueci_senha/presentation/update_password_page.dart';
+import 'package:app_melivra/app/modules/esqueci_senha/presentation/validate_recover_code_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/style/assets.dart';
-import '../../../core/widgets/textfield_inicio_widget.dart';
 
 class EsqueciSenhaPage extends StatelessWidget {
   const EsqueciSenhaPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<RecoverPasswordController>();
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
     return Scaffold(
@@ -27,7 +31,16 @@ class EsqueciSenhaPage extends StatelessWidget {
                   top: 50.scale,
                   left: 30.scale,
                   child: GestureDetector(
-                    onTap: Modular.to.pop,
+                    onTap: () async {
+                      if (controller.pageController.page == 0) {
+                        Modular.to.pop();
+                      } else {
+                        await controller.pageController.previousPage(
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.ease,
+                        );
+                      }
+                    },
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 40.scale,
@@ -67,61 +80,16 @@ class EsqueciSenhaPage extends StatelessWidget {
                           fit: BoxFit.cover,
                           color: theme.primaryColor,
                         ),
-                        Positioned(
+                        Positioned.fill(
                           top: size.height * 0.12,
-                          width: size.width,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 64.scale),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Esqueci minha senha',
-                                  style: theme.textTheme.headlineMedium!.merge(
-                                    TextStyle(
-                                      color: theme.colorScheme.background,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 16.scale),
-                                Text(
-                                  'Insira seu email e logo mandaremos o link de troca de senha',
-                                  style: theme.textTheme.bodyMedium!.merge(
-                                    TextStyle(
-                                      color: theme.colorScheme.background,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 32.scale),
-                                TextFieldInicio(
-                                  controller: TextEditingController(),
-                                  fieldHint: 'Email',
-                                  prefixIcon: Icons.email,
-                                ),
-                                SizedBox(height: 32.scale),
-                                Center(
-                                  child: TextButton(
-                                    style: TextButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        // Change your radius here
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      fixedSize: Size(140.scale, 50.scale),
-                                      backgroundColor: theme.colorScheme.background,
-                                    ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      'Enviar',
-                                      style: theme.textTheme.titleLarge!.merge(
-                                        TextStyle(
-                                          color: theme.primaryColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          child: PageView(
+                            controller: controller.pageController,
+                            physics: const NeverScrollableScrollPhysics(),
+                            children: const [
+                              SendRecoverCodePage(),
+                              ValidateRecoverCodePage(),
+                              UpdatePasswordPage()
+                            ],
                           ),
                         ),
                       ],

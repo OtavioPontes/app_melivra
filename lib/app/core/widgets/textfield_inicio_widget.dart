@@ -7,14 +7,16 @@ class TextFieldInicio extends StatefulWidget {
   final IconData prefixIcon;
   final bool isPassword;
   final String? Function(String? value)? validator;
-  final TextEditingController controller;
+  final String? Function(String? value)? onChange;
+  final TextEditingController? controller;
   const TextFieldInicio({
     Key? key,
     this.validator,
+    this.onChange,
     this.isPassword = false,
     required this.fieldHint,
     required this.prefixIcon,
-    required this.controller,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -38,6 +40,7 @@ class _TextFieldInicioState extends State<TextFieldInicio> {
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextFormField(
+        onChanged: widget.onChange,
         controller: widget.controller,
         validator: (value) {
           if (widget.validator != null) {

@@ -4,6 +4,8 @@ class Endpoints {
 
   /// [USER]
   static const String createUser = '/users/';
+  static const String sendValidationCode = '/recoverPassword/';
+  static const String validateCode = '/recoverPassword/validate';
 
   /// [INSTITUTOS]
   static const String institutos = '/institutes/';

@@ -38,6 +38,7 @@ dependencies:
   fluttertoast: ^8.1.2
   url_launcher: ^6.1.7
   profanity_filter: ^2.0.0
+  pin_code_fields: ^7.4.0
   # Images
   flutter_svg: ^1.1.6
 

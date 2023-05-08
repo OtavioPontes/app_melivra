@@ -8,8 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../core/widgets/textfield_inicio_widget.dart';
+import '../../../inicio/inicio_module.dart';
+import '../../../login/login_module.dart';
 import '../widgets/cadastro_success_dialog.dart';
 
 class CadastroPage extends StatefulWidget {
@@ -115,22 +118,27 @@ class _CadastroPageState extends State<CadastroPage> {
                               BlocConsumer(
                                 listener: (context, state) {
                                   if (state is CadastroSuccessState) {
-                                    showDialog(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      builder: (context) {
-                                        return const CadastroSuccessDialog();
-                                      },
+                                    Fluttertoast.showToast(
+                                      msg: 'Cadastro realizado com sucesso ✅',
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.greenAccent,
+                                      textColor: Colors.black,
+                                      fontSize:
+                                          theme.textTheme.bodyLarge?.fontSize,
                                     );
+                                    Modular.to.navigate(InicioModule.routeName);
+                                    Modular.to.pushNamed(LoginModule.routeName);
                                   }
                                   if (state is CadastroFailureState) {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return CadastroFailureDialog(
-                                          message: state.message,
-                                        );
-                                      },
+                                    Fluttertoast.showToast(
+                                      msg: state.message,
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.redAccent,
+                                      textColor: Colors.white,
+                                      fontSize:
+                                          theme.textTheme.bodyLarge?.fontSize,
                                     );
                                   }
                                 },

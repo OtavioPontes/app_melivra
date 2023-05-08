@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../core/style/assets.dart';
 import '../../../../core/widgets/textfield_inicio_widget.dart';
@@ -166,13 +167,14 @@ class _LoginPageState extends State<LoginPage> {
                                           );
                                         }
                                         if (state is LoginFailureState) {
-                                          showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return LoginFailureDialog(
-                                                message: state.message,
-                                              );
-                                            },
+                                          Fluttertoast.showToast(
+                                            msg: state.message,
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.BOTTOM,
+                                            backgroundColor: Colors.redAccent,
+                                            textColor: Colors.white,
+                                            fontSize: theme
+                                                .textTheme.bodyLarge?.fontSize,
                                           );
                                         }
                                       },

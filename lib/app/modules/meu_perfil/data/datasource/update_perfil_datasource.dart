@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/network/endpoints.dart';
 import 'package:app_melivra/app/modules/meu_perfil/data/datasource/i_update_perfil_datasource.dart';
 import 'package:dio/dio.dart';
 
@@ -15,10 +16,13 @@ class UpdatePerfilDatasource implements IUpdatePerfilDatasource {
     required String email,
   }) async {
     try {
-      await _dio.put('/users/', data: {
-        'email': email,
-        'name': name,
-      },);
+      await _dio.put(
+        Endpoints.createUser,
+        data: {
+          'email': email,
+          'name': name,
+        },
+      );
     } on DioError catch (e) {
       throw ServerException(
         statusCode: e.response?.statusCode,

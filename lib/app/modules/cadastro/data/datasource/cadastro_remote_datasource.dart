@@ -23,11 +23,13 @@ class CadastroRemoteDatasource implements ICadastroRemoteDatasource {
     } on DioError catch (e) {
       throw ServerException(
         statusCode: e.response?.statusCode,
-        message: 'Erro no cadastro, por favor tente novamente',
+        message: e.response?.data['message'] ??
+            'Erro no cadastro, por favor tente novamente',
       );
     } catch (e) {
       throw ServerException(
-          message: 'Erro no cadastro, por favor tente novamente',);
+        message: 'Erro no cadastro, por favor tente novamente',
+      );
     }
   }
 }
