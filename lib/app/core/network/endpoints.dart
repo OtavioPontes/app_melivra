@@ -6,6 +6,7 @@ class Endpoints {
   static const String createUser = '/users/';
   static const String sendValidationCode = '/recoverPassword/';
   static const String validateCode = '/recoverPassword/validate';
+  static const String updatePassword = '/users/updatePassword';
 
   /// [INSTITUTOS]
   static const String institutos = '/institutes/';
@@ -18,6 +19,8 @@ class Endpoints {
       '/professors/$id/grades';
   static String gradesCountbyProfessor({required int id}) =>
       '/professors/$id/grades/count';
+  static String evaluateComment({required int gradeId}) =>
+      '/grades/$gradeId/likes';
 
   /// [SUGGESTIONS]
   static const String suggestions = '/suggestions/';

@@ -51,7 +51,7 @@ void main() {
       ).thenAnswer(
         (_) async => Response(
           requestOptions: RequestOptions(
-            path: "${Api.url}${Endpoints.createUser}",
+            path: "${Api.prodUrl}${Endpoints.createUser}",
           ),
           statusCode: 200,
         ),
@@ -70,8 +70,10 @@ void main() {
         () => dio.post(any(), data: errorUser.toMap()),
       ).thenThrow(ServerException());
 
-      expect(() => datasource.register(user: errorUser),
-          throwsA(isA<ServerException>()),);
+      expect(
+        () => datasource.register(user: errorUser),
+        throwsA(isA<ServerException>()),
+      );
     },
   );
 
@@ -82,8 +84,10 @@ void main() {
         () => dio.post(any(), data: errorEmailUser.toMap()),
       ).thenThrow(ServerException());
 
-      expect(() => datasource.register(user: errorEmailUser),
-          throwsA(isA<ServerException>()),);
+      expect(
+        () => datasource.register(user: errorEmailUser),
+        throwsA(isA<ServerException>()),
+      );
     },
   );
 }

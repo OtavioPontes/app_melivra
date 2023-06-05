@@ -108,7 +108,7 @@ void main() async {
           null,
         ),
       ]);
-      AppModule.url = Api.prodUrl;
+      AppModule.url = Api.localUrl;
       await Firebase.initializeApp();
       final firebaseAnalytics = FirebaseAnalytics.instance;
       await firebaseAnalytics.setAnalyticsCollectionEnabled(false);
