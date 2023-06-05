@@ -74,14 +74,18 @@ class RankingPage extends StatelessWidget {
                             bloc: controller.bloc,
                             builder: (context, state) {
                               if (state is RankingEmptyState) {
-                                return Padding(
-                                  padding: EdgeInsets.all(16.scale),
-                                  child: Center(
-                                    child: Text(
-                                      'Não encontramos nada aqui 😥',
-                                      style: theme.textTheme.titleLarge!.merge(
-                                        TextStyle(
-                                          color: theme.colorScheme.background,
+                                return SizedBox(
+                                  height: size.height * 0.5,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(16.scale),
+                                    child: Center(
+                                      child: Text(
+                                        'Não encontramos nada aqui 😥',
+                                        style:
+                                            theme.textTheme.titleLarge!.merge(
+                                          TextStyle(
+                                            color: theme.colorScheme.onPrimary,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -99,7 +103,8 @@ class RankingPage extends StatelessWidget {
                                   children: [
                                     ListView.separated(
                                       padding: EdgeInsets.symmetric(
-                                          vertical: 24.scale,),
+                                        vertical: 24.scale,
+                                      ),
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
@@ -153,7 +158,8 @@ class RankingPage extends StatelessWidget {
                                                             ),
                                                           ),
                                                           SizedBox(
-                                                              height: 2.scale,),
+                                                            height: 2.scale,
+                                                          ),
                                                           Text(
                                                             item.name,
                                                             style: theme
@@ -182,14 +188,17 @@ class RankingPage extends StatelessWidget {
                                   ],
                                 );
                               }
-                              return Padding(
-                                padding: EdgeInsets.all(16.scale),
-                                child: Center(
-                                  child: Text(
-                                    'Não encontramos nada aqui 😥',
-                                    style: theme.textTheme.titleLarge!.merge(
-                                      TextStyle(
-                                        color: theme.colorScheme.background,
+                              return SizedBox(
+                                height: size.height * 0.5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(16.scale),
+                                  child: Center(
+                                    child: Text(
+                                      'Não encontramos nada aqui 😥',
+                                      style: theme.textTheme.titleLarge!.merge(
+                                        TextStyle(
+                                          color: theme.colorScheme.background,
+                                        ),
                                       ),
                                     ),
                                   ),

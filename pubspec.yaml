@@ -3,7 +3,7 @@ description: Aplicativo para avaliação de professores
 
 publish_to: "none"
 
-version: 1.0.0+1
+version: 0.0.1+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -39,6 +39,7 @@ dependencies:
   url_launcher: ^6.1.7
   profanity_filter: ^2.0.0
   pin_code_fields: ^7.4.0
+  pinput: ^2.2.31
   # Images
   flutter_svg: ^1.1.6
 

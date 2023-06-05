@@ -70,7 +70,7 @@ class _TextFieldInicioState extends State<TextFieldInicio> {
                     });
                   },
                   child: Icon(
-                    hidePassword
+                    !hidePassword
                         ? CupertinoIcons.eye_fill
                         : CupertinoIcons.eye_slash_fill,
                   ),

@@ -3,25 +3,33 @@ import 'package:app_melivra/app/core/error/failures.dart';
 import 'package:app_melivra/app/modules/esqueci_senha/domain/repository/i_recover_password_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class ValidateRecoverCodeUsecase
-    extends UseCase<void, ParamsValidateRecoverCodeUsecase> {
+class UpdatePasswordUsecase extends UseCase<void, ParamsUpdatePasswordUsecase> {
   final IRecoverPasswordRepository _repository;
-  ValidateRecoverCodeUsecase({
+  UpdatePasswordUsecase({
     required IRecoverPasswordRepository repository,
   }) : _repository = repository;
   @override
   Future<Either<IFailure, dynamic>> call(
-    ParamsValidateRecoverCodeUsecase params,
+    ParamsUpdatePasswordUsecase params,
   ) async {
-    return _repository.validateCode(code: params.code, email: params.email);
+    return _repository.updatePassword(
+      code: params.code,
+      email: params.email,
+      password: params.password,
+      passwordConfirm: params.passwordConfirm,
+    );
   }
 }
 
-class ParamsValidateRecoverCodeUsecase {
+class ParamsUpdatePasswordUsecase {
   final String code;
   final String email;
-  ParamsValidateRecoverCodeUsecase({
+  final String password;
+  final String passwordConfirm;
+  ParamsUpdatePasswordUsecase({
     required this.code,
     required this.email,
+    required this.password,
+    required this.passwordConfirm,
   });
 }

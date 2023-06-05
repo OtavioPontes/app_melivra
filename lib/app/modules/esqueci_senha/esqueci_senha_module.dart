@@ -1,4 +1,5 @@
 import 'package:app_melivra/app/modules/esqueci_senha/domain/usecases/send_recover_code_usecase.dart';
+import 'package:app_melivra/app/modules/esqueci_senha/domain/usecases/update_password_usecase.dart';
 import 'package:app_melivra/app/modules/esqueci_senha/domain/usecases/validate_recover_code_usecase.dart';
 import 'package:app_melivra/app/modules/esqueci_senha/presentation/controllers/recover_password_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -15,8 +16,10 @@ class EsqueciSenhaModule extends Module {
         Bind((i) => RecoverPasswordRepository(datasource: i())),
         Bind((i) => SendRecoverCodeUsecase(repository: i())),
         Bind((i) => ValidateRecoverCodeUsecase(repository: i())),
+        Bind((i) => UpdatePasswordUsecase(repository: i())),
         Bind(
           (i) => RecoverPasswordController(
+            updatePasswordUsecase: i(),
             sendRecoverCodeUsecase: i(),
             validateRecoverCodeUsecase: i(),
           ),

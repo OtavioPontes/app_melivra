@@ -32,9 +32,38 @@ class RecoverPasswordRepository implements IRecoverPasswordRepository {
   }
 
   @override
-  Future<Either<IFailure, void>> validateCode({required String code}) async {
+  Future<Either<IFailure, void>> validateCode({
+    required String code,
+    required String email,
+  }) async {
     try {
-      await _datasource.validateCode(code: code);
+      await _datasource.validateCode(code: code, email: email);
+      return Right(voidRight);
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(message: e.message),
+      );
+    } catch (e) {
+      return Left(
+        ServerFailure(message: (e as ServerException).message),
+      );
+    }
+  }
+
+  @override
+  Future<Either<IFailure, void>> updatePassword({
+    required String code,
+    required String email,
+    required String password,
+    required String passwordConfirm,
+  }) async {
+    try {
+      await _datasource.updatePassword(
+        code: code,
+        email: email,
+        password: password,
+        passwordConfirm: passwordConfirm,
+      );
       return Right(voidRight);
     } on ServerException catch (e) {
       return Left(

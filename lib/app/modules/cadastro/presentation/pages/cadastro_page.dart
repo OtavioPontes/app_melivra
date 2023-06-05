@@ -105,6 +105,12 @@ class _CadastroPageState extends State<CadastroPage> {
                                 controller: controller.passwordController,
                                 fieldHint: 'Senha',
                                 prefixIcon: Icons.lock,
+                                validator: (value) {
+                                  if ((value?.length ?? 0) < 8) {
+                                    return 'Tamanho mínimo de 8 caracteres';
+                                  }
+                                  return null;
+                                },
                               ),
                               SizedBox(height: 24.scale),
                               TextFieldInicio(
@@ -113,6 +119,12 @@ class _CadastroPageState extends State<CadastroPage> {
                                     controller.passwordConfirmationController,
                                 fieldHint: 'Confirme senha',
                                 prefixIcon: Icons.lock,
+                                validator: (value) {
+                                  if ((value?.length ?? 0) < 8) {
+                                    return 'Tamanho mínimo de 8 caracteres';
+                                  }
+                                  return null;
+                                },
                               ),
                               SizedBox(height: 48.scale),
                               BlocConsumer(

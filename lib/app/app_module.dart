@@ -52,6 +52,7 @@ import 'modules/professores/domain/usecases/get_professor_grades_count_usecase.d
 import 'modules/professores/domain/usecases/get_professor_grades_usecase.dart';
 import 'modules/professores/domain/usecases/get_professors_rank_usecase.dart';
 import 'modules/professores/domain/usecases/get_professors_usecase.dart';
+import 'modules/professores/domain/usecases/post_professor_grade_like_dislike_usecase.dart';
 import 'modules/professores/domain/usecases/update_professor_grade_usecase.dart';
 import 'modules/professores/presentation/bloc/professors_bloc.dart';
 import 'modules/professores/presentation/controllers/professores_controller.dart';
@@ -63,6 +64,7 @@ import 'modules/search/search_module.dart';
 
 class AppModule extends Module {
   static String get routeName => SplashModule.routeName;
+  static late String url;
 
   @override
   List<Bind> get binds => [
@@ -120,6 +122,7 @@ class AppModule extends Module {
         Bind((i) => GetProfessorGradesUsecase(repository: i())),
         Bind((i) => GetProfessorGradesCountUsecase(repository: i())),
         Bind((i) => GetGlobalGradeUsecase(repository: i())),
+        Bind((i) => PostProfessorGradeLikeDislikeUsecase(repository: i())),
 
         Bind(
           (i) => SplashPipelineUseCase(
@@ -149,6 +152,7 @@ class AppModule extends Module {
         ),
         Bind(
           (i) => DioConfig(
+            url: url,
             dio: i(),
           ),
         ),

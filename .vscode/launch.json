@@ -11,10 +11,16 @@
       "program": "./test/"
     },
     {
-      "name": "Me Livra",
+      "name": "[PROD] Me Livra",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart"
+    },
+    {
+      "name": "[DEV] Me Livra",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_dev.dart"
     }
   ]
 }

@@ -59,11 +59,15 @@ class PerfilPage extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 16.scale),
-                          Text(
-                            controller.user.name,
-                            style: theme.textTheme.headlineSmall!.merge(
-                              TextStyle(
-                                color: theme.colorScheme.background,
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16.scale),
+                            child: Text(
+                              controller.user.name,
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.headlineSmall!.merge(
+                                TextStyle(
+                                  color: theme.colorScheme.background,
+                                ),
                               ),
                             ),
                           )
