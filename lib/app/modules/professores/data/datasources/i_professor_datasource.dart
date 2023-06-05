@@ -25,6 +25,11 @@ abstract class IProfessorDatasource {
     required Grade grade,
   });
 
+  Future<void> evaluateGradeComment({
+    required int id,
+    required bool isLike,
+  });
+
   Future<GradesResponseConfig> getProfessorGrades({
     required int id,
   });

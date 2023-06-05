@@ -20,6 +20,7 @@ class ProfessoresDetailsModule extends Module {
         Bind((i) => SendReportService(dio: i())),
         Bind(
           (i) => ProfessorDetailsController(
+            postProfessorGradeLikeDislikeUsecase: i(),
             getProfessorGradesCountUsecase: i(),
             updateProfessorGradeUsecase: i(),
             showButtonBloc: i(),

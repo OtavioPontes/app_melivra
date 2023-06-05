@@ -101,6 +101,28 @@ class ProfessorRepository implements IProfessorRepository {
   }
 
   @override
+  Future<Either<IFailure, void>> evaluateComment({
+    required int id,
+    required bool isLike,
+  }) async {
+    try {
+      await _datasource.evaluateGradeComment(
+        isLike: isLike,
+        id: id,
+      );
+      return Right(
+        voidRight,
+      );
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(
+          message: e.message,
+        ),
+      );
+    }
+  }
+
+  @override
   Future<Either<IFailure, GradesResponseConfig>> getProfessorGrades({
     required int id,
   }) async {

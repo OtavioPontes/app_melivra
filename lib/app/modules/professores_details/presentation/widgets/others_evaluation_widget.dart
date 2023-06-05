@@ -1,8 +1,10 @@
 import 'package:app_melivra/app/core/domain/entities/grade_response.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/widgets/score_tiny_widget.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/widgets/report_dialog_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/style/colors.dart';
 
@@ -15,6 +17,7 @@ class OthersEvaluation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<ProfessorDetailsController>();
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
     return Stack(
@@ -52,9 +55,11 @@ class OthersEvaluation extends StatelessWidget {
                 children: [
                   ScoreTinyWidget(score: response.averageGrade),
                   SizedBox(width: 16.scale),
-                  Text(
-                    response.userName,
-                    style: theme.textTheme.bodyLarge,
+                  Flexible(
+                    child: Text(
+                      response.userName,
+                      style: theme.textTheme.bodyLarge,
+                    ),
                   )
                 ],
               ),
@@ -68,26 +73,46 @@ class OthersEvaluation extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Icon(
-                      Icons.thumb_up,
-                      color: ColorsMeLivra().green,
-                      size: 20,
-                    ),
-                    SizedBox(width: 4.scale),
-                    Text(
-                      '(1)',
-                      style: theme.textTheme.bodySmall,
+                    GestureDetector(
+                      onTap: () => controller.evaluateComment(
+                        gradeId: response.id,
+                        isLike: true,
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.thumb_up,
+                            color: ColorsMeLivra().green,
+                            size: 20,
+                          ),
+                          SizedBox(width: 4.scale),
+                          Text(
+                            '(${response.likes})',
+                            style: theme.textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(width: 8.scale),
-                    Icon(
-                      Icons.thumb_down,
-                      color: ColorsMeLivra().red,
-                      size: 20,
-                    ),
-                    SizedBox(width: 4.scale),
-                    Text(
-                      '(5)',
-                      style: theme.textTheme.bodySmall,
+                    GestureDetector(
+                      onTap: () => controller.evaluateComment(
+                        gradeId: response.id,
+                        isLike: false,
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.thumb_down,
+                            color: ColorsMeLivra().red,
+                            size: 20,
+                          ),
+                          SizedBox(width: 4.scale),
+                          Text(
+                            '(${response.dislikes})',
+                            style: theme.textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

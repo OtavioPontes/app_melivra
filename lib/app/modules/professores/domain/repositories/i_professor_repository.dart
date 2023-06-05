@@ -27,6 +27,11 @@ abstract class IProfessorRepository {
     required Grade grade,
   });
 
+  Future<Either<IFailure, void>> evaluateComment({
+    required int id,
+    required bool isLike,
+  });
+
   Future<Either<IFailure, GradesResponseConfig>> getProfessorGrades({
     required int id,
   });

@@ -122,6 +122,24 @@ class ProfessorsDatasource implements IProfessorDatasource {
   }
 
   @override
+  Future<void> evaluateGradeComment({
+    required int id,
+    required bool isLike,
+  }) async {
+    try {
+      await _dio.post(
+        Endpoints.evaluateComment(gradeId: id),
+        data: {'is_like': isLike},
+      );
+    } on DioError catch (e) {
+      throw ServerException(
+        message: e.response?.data['message'],
+        statusCode: e.response?.statusCode,
+      );
+    }
+  }
+
+  @override
   Future<GradesResponseConfig> getProfessorGrades({required int id}) async {
     try {
       final response = await _dio.get(

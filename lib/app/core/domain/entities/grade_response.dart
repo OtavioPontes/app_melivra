@@ -10,6 +10,8 @@ class GradeResponse extends Equatable {
   final int averageGrade;
   final DateTime date;
   final String userName;
+  final int likes;
+  final int dislikes;
 
   const GradeResponse({
     required this.id,
@@ -18,6 +20,8 @@ class GradeResponse extends Equatable {
     required this.averageGrade,
     required this.date,
     required this.userName,
+    required this.likes,
+    required this.dislikes,
   });
 
   @override
@@ -39,6 +43,8 @@ class GradeResponse extends Equatable {
     int? averageGrade,
     DateTime? date,
     String? userName,
+    int? likes,
+    int? dislikes,
   }) {
     return GradeResponse(
       id: id ?? this.id,
@@ -47,6 +53,8 @@ class GradeResponse extends Equatable {
       averageGrade: averageGrade ?? this.averageGrade,
       date: date ?? this.date,
       userName: userName ?? this.userName,
+      likes: likes ?? this.likes,
+      dislikes: dislikes ?? this.dislikes,
     );
   }
 
@@ -58,6 +66,8 @@ class GradeResponse extends Equatable {
       'averageGrade': averageGrade,
       'date': date.millisecondsSinceEpoch,
       'userName': userName,
+      'likes': likes,
+      'dislikes': dislikes,
     };
   }
 
@@ -69,6 +79,8 @@ class GradeResponse extends Equatable {
       averageGrade: map['total_grade']?.toInt() ?? 0,
       date: DateTime.parse(map['created_at']),
       userName: map['user'] ?? '',
+      likes: map['likes'],
+      dislikes: map['dislikes'],
     );
   }
 
