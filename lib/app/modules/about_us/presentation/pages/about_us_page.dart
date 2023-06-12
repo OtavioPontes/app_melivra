@@ -256,55 +256,55 @@ class AboutUsPage extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(height: 16.scale),
-                                        Row(
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () => launchUrl(
-                                                Uri(
-                                                  scheme: 'https',
-                                                  host: 'github.com',
-                                                  path: 'thiago-mello',
-                                                ),
-                                                mode: LaunchMode
-                                                    .externalApplication,
-                                                webOnlyWindowName: '_blank',
-                                              ),
-                                              child: CircleAvatar(
-                                                backgroundColor: theme
-                                                    .colorScheme.background,
-                                                child: SvgPicture.asset(
-                                                  AssetsMeLivra.github,
-                                                  height: 30.scale,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 16.scale),
-                                            GestureDetector(
-                                              onTap: () => launchUrl(
-                                                Uri(
-                                                  scheme: 'https',
-                                                  host: 'linkedin.com',
-                                                  path: 'in/thiago-de-mello',
-                                                ),
-                                                mode: LaunchMode
-                                                    .externalApplication,
-                                                webOnlyWindowName: '_blank',
-                                              ),
-                                              child: CircleAvatar(
-                                                backgroundColor: theme
-                                                    .colorScheme.background,
-                                                child: SvgPicture.asset(
-                                                  AssetsMeLivra.linkedin,
-                                                  fit: BoxFit.cover,
-                                                  height: 40.scale,
-                                                  color:
-                                                      const Color(0xFF0077B5),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )
+                                        // SizedBox(height: 16.scale),
+                                        // Row(
+                                        //   children: [
+                                        //     GestureDetector(
+                                        //       onTap: () => launchUrl(
+                                        //         Uri(
+                                        //           scheme: 'https',
+                                        //           host: 'github.com',
+                                        //           path: 'thiago-mello',
+                                        //         ),
+                                        //         mode: LaunchMode
+                                        //             .externalApplication,
+                                        //         webOnlyWindowName: '_blank',
+                                        //       ),
+                                        //       child: CircleAvatar(
+                                        //         backgroundColor: theme
+                                        //             .colorScheme.background,
+                                        //         child: SvgPicture.asset(
+                                        //           AssetsMeLivra.github,
+                                        //           height: 30.scale,
+                                        //         ),
+                                        //       ),
+                                        //     ),
+                                        //     SizedBox(width: 16.scale),
+                                        //     GestureDetector(
+                                        //       onTap: () => launchUrl(
+                                        //         Uri(
+                                        //           scheme: 'https',
+                                        //           host: 'linkedin.com',
+                                        //           path: 'in/thiago-de-mello',
+                                        //         ),
+                                        //         mode: LaunchMode
+                                        //             .externalApplication,
+                                        //         webOnlyWindowName: '_blank',
+                                        //       ),
+                                        //       child: CircleAvatar(
+                                        //         backgroundColor: theme
+                                        //             .colorScheme.background,
+                                        //         child: SvgPicture.asset(
+                                        //           AssetsMeLivra.linkedin,
+                                        //           fit: BoxFit.cover,
+                                        //           height: 40.scale,
+                                        //           color:
+                                        //               const Color(0xFF0077B5),
+                                        //         ),
+                                        //       ),
+                                        //     ),
+                                        //   ],
+                                        // )
                                       ],
                                     ),
                                   ),

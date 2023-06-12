@@ -200,6 +200,61 @@ class _SearchPageState extends State<SearchPage> {
                         children: [
                           SizedBox(height: 32.scale),
                           BlocBuilder(
+                            bloc: controller.searchInstitutesBloc,
+                            builder: (context, state) {
+                              if (state is SearchInstitutesLoadingState) {
+                                return CircularProgressIndicator(
+                                  color: theme.colorScheme.background,
+                                );
+                              }
+                              if (state is SearchInstitutesEmptyState) {
+                                return const SizedBox.shrink();
+                              }
+                              if (state is SearchInstitutesSuccessState) {
+                                final institutes = state.institutes;
+                                return Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.school,
+                                          color: theme.colorScheme.background,
+                                        ),
+                                        SizedBox(width: 16.scale),
+                                        Text(
+                                          'Institutos (${state.institutes.length})',
+                                          style: theme.textTheme.headlineSmall!
+                                              .merge(
+                                            TextStyle(
+                                              color:
+                                                  theme.colorScheme.background,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 32.scale),
+                                    ListView.separated(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemBuilder: (context, index) {
+                                        return CardInfoInstituto(
+                                          instituto: institutes[index],
+                                        );
+                                      },
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(height: 16.scale),
+                                      itemCount: institutes.length,
+                                    ),
+                                  ],
+                                );
+                              }
+                              return const SizedBox.shrink();
+                            },
+                          ),
+                          SizedBox(height: 32.scale),
+                          BlocBuilder(
                             bloc: controller.searchProfessorsBloc,
                             builder: (context, state) {
                               if (state is SearchProfessorsLoadingState) {
@@ -223,10 +278,11 @@ class _SearchPageState extends State<SearchPage> {
                                         SizedBox(width: 16.scale),
                                         Text(
                                           'Professores (${controller.professorResponse?.totalItems ?? 0})',
-                                          style:
-                                              theme.textTheme.headlineSmall!.merge(
+                                          style: theme.textTheme.headlineSmall!
+                                              .merge(
                                             TextStyle(
-                                              color: theme.colorScheme.background,
+                                              color:
+                                                  theme.colorScheme.background,
                                             ),
                                           ),
                                         ),
@@ -252,60 +308,6 @@ class _SearchPageState extends State<SearchPage> {
                               return const SizedBox.shrink();
                             },
                           ),
-                          SizedBox(height: 32.scale),
-                          BlocBuilder(
-                            bloc: controller.searchInstitutesBloc,
-                            builder: (context, state) {
-                              if (state is SearchInstitutesLoadingState) {
-                                return CircularProgressIndicator(
-                                  color: theme.colorScheme.background,
-                                );
-                              }
-                              if (state is SearchInstitutesEmptyState) {
-                                return const SizedBox.shrink();
-                              }
-                              if (state is SearchInstitutesSuccessState) {
-                                final institutes = state.institutes;
-                                return Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.school,
-                                          color: theme.colorScheme.background,
-                                        ),
-                                        SizedBox(width: 16.scale),
-                                        Text(
-                                          'Institutos (${state.institutes.length})',
-                                          style:
-                                              theme.textTheme.headlineSmall!.merge(
-                                            TextStyle(
-                                              color: theme.colorScheme.background,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 32.scale),
-                                    ListView.separated(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemBuilder: (context, index) {
-                                        return CardInfoInstituto(
-                                          instituto: institutes[index],
-                                        );
-                                      },
-                                      separatorBuilder: (context, index) =>
-                                          SizedBox(height: 16.scale),
-                                      itemCount: institutes.length,
-                                    ),
-                                  ],
-                                );
-                              }
-                              return const SizedBox.shrink();
-                            },
-                          )
                         ],
                       ),
                     )

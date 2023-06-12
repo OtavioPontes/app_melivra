@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 32.scale),
+                    padding: EdgeInsets.symmetric(horizontal: 40.scale),
                     child: Text(
                       'Olá, ${controller.store.loggedUser?.name}',
                       style: theme.textTheme.headlineMedium!.merge(
@@ -149,7 +149,6 @@ class HomePage extends StatelessWidget {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
-                                                    SizedBox(height: 4.scale),
                                                     ScoreWidget(
                                                       score: item.grades
                                                               ?.average ??
@@ -160,6 +159,15 @@ class HomePage extends StatelessWidget {
                                                       child: Text(
                                                         state.professors[index]
                                                             .name,
+                                                        style: theme
+                                                            .textTheme.bodySmall
+                                                            ?.copyWith(
+                                                          color: theme
+                                                              .colorScheme
+                                                              .onPrimary,
+                                                        ),
+                                                        overflow:
+                                                            TextOverflow.fade,
                                                         textAlign:
                                                             TextAlign.center,
                                                       ),
