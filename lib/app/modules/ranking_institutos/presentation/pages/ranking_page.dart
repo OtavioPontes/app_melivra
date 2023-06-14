@@ -178,6 +178,7 @@ class RankingPage extends StatelessWidget {
                                                   ],
                                                 ),
                                               ),
+                                              SizedBox(width: 24.scale),
                                               ScoreWidget(
                                                 score: item.averageGrade,
                                               ),
