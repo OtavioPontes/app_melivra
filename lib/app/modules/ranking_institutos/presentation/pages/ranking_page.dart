@@ -93,8 +93,14 @@ class RankingPage extends StatelessWidget {
                                 );
                               }
                               if (state is RankingLoadingState) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
+                                return SizedBox(
+                                  height: size.height * 0.5,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(16.scale),
+                                    child: const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  ),
                                 );
                               }
                               if (state is RankingSuccessState) {

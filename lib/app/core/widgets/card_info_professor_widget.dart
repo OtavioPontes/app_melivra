@@ -60,9 +60,12 @@ class CardInfoProfessor extends StatelessWidget {
             );
           }
 
-          await Modular.to.pushNamed(ProfessoresDetailsModule.routeName, arguments: {
-            'id': professor.id,
-          },);
+          await Modular.to.pushNamed(
+            ProfessoresDetailsModule.routeName,
+            arguments: {
+              'id': professor.id,
+            },
+          );
         },
         child: Card(
           child: Padding(
@@ -72,7 +75,6 @@ class CardInfoProfessor extends StatelessWidget {
               children: [
                 Flexible(
                   child: Row(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
                       const Icon(
                         Icons.school,
@@ -84,14 +86,15 @@ class CardInfoProfessor extends StatelessWidget {
                           children: [
                             Text(
                               professor.name,
-                              overflow: TextOverflow.ellipsis,
-                              style: theme.textTheme.titleLarge!.merge(
+                              maxLines: 2,
+                              overflow: TextOverflow.clip,
+                              style: theme.textTheme.titleMedium!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,
                                 ),
                               ),
                             ),
-                            SizedBox(height: 2.scale),
+                            SizedBox(height: 4.scale),
                             Text(
                               professor.instituto.initials ??
                                   professor.instituto.name,
@@ -105,7 +108,8 @@ class CardInfoProfessor extends StatelessWidget {
                   ),
                 ),
                 ScoreWidget(
-                    score: professor.grades?.average ?? professor.averageGrade,),
+                  score: professor.grades?.average ?? professor.averageGrade,
+                ),
               ],
             ),
           ),

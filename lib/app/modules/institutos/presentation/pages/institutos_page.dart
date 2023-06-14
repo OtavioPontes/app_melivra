@@ -36,7 +36,9 @@ class InstitutosPage extends StatelessWidget {
                 top: 32.scale,
                 bottom: 40.scale,
               ),
-              physics: const BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -52,180 +54,9 @@ class InstitutosPage extends StatelessWidget {
                         ),
                       ),
                       BlocBuilder(
-                          bloc: controller.bloc,
-                          builder: (context, state) {
-                            if (state is InstitutosEmptyState) {
-                              return Padding(
-                                padding: EdgeInsets.all(16.scale),
-                                child: Center(
-                                  child: Text(
-                                    'Não encontramos nada aqui 😥',
-                                    style: theme.textTheme.titleLarge!.merge(
-                                      TextStyle(
-                                        color: theme.colorScheme.background,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }
-                            if (state is InstitutosLoadingState) {
-                              return Center(
-                                child: CircularProgressIndicator(
-                                  color: theme.colorScheme.background,
-                                ),
-                              );
-                            }
-                            if (state is InstitutosSuccessState) {
-                              final list =
-                                  state.institutes.getRange(0, 3).toList();
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(height: 32.scale),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ConstrainedBox(
-                                        constraints: BoxConstraints(
-                                          minWidth: 100.scale,
-                                          minHeight: 100.scale,
-                                        ),
-                                        child: Card(
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: 16.scale,
-                                              vertical: 8.scale,
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                SizedBox(height: 4.scale),
-                                                Text(
-                                                  controller
-                                                      .response!.totalItems
-                                                      .toString(),
-                                                  style: theme
-                                                      .textTheme.headlineMedium!
-                                                      .merge(
-                                                    TextStyle(
-                                                      color: theme.primaryColor,
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(height: 12.scale),
-                                                const Text('Institutos'),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 16.scale),
-                                      BlocBuilder(
-                                          bloc: controller.globalGradeBloc,
-                                          builder: (context, state) {
-                                            return ConstrainedBox(
-                                              constraints: BoxConstraints(
-                                                minHeight: 100.scale,
-                                                minWidth: 120.scale,
-                                              ),
-                                              child: Card(
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    horizontal: 16.scale,
-                                                    vertical: 8.scale,
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      SizedBox(height: 4.scale),
-                                                      ScoreWidget(
-                                                        score: (state
-                                                                is GlobalGradeSuccessState)
-                                                            ? state
-                                                                .grade.average
-                                                            : null,
-                                                      ),
-                                                      SizedBox(
-                                                          height: 12.scale,),
-                                                      Text(
-                                                        'Nota média global',
-                                                        style: theme
-                                                            .textTheme.bodySmall!
-                                                            .merge(
-                                                          TextStyle(
-                                                            color: theme
-                                                                .colorScheme
-                                                                .onPrimary,
-                                                          ),
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },),
-                                    ],
-                                  ),
-                                  SizedBox(height: size.height * 0.08),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 32.scale,),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.account_balance,
-                                                  color: theme.colorScheme.background,
-                                                ),
-                                                SizedBox(width: 16.scale),
-                                                Text(
-                                                  'Institutos',
-                                                  style: theme
-                                                      .textTheme.headlineSmall!
-                                                      .merge(
-                                                    TextStyle(
-                                                      color:
-                                                          theme.colorScheme.background,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 32.scale),
-                                        ListView.separated(
-                                          shrinkWrap: true,
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          itemCount: list.length,
-                                          itemBuilder: (context, index) {
-                                            final item = list[index];
-                                            return CardInfoInstituto(
-                                              instituto: item,
-                                            );
-                                          },
-                                          separatorBuilder: (context, index) =>
-                                              SizedBox(height: 16.scale),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              );
-                            }
+                        bloc: controller.bloc,
+                        builder: (context, state) {
+                          if (state is InstitutosEmptyState) {
                             return Padding(
                               padding: EdgeInsets.all(16.scale),
                               child: Center(
@@ -239,7 +70,178 @@ class InstitutosPage extends StatelessWidget {
                                 ),
                               ),
                             );
-                          },),
+                          }
+                          if (state is InstitutosLoadingState) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: theme.colorScheme.background,
+                              ),
+                            );
+                          }
+                          if (state is InstitutosSuccessState) {
+                            final list =
+                                state.institutes.getRange(0, 3).toList();
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 32.scale),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                        minWidth: 100.scale,
+                                        minHeight: 100.scale,
+                                      ),
+                                      child: Card(
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 16.scale,
+                                            vertical: 8.scale,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              SizedBox(height: 4.scale),
+                                              Text(
+                                                controller.response!.totalItems
+                                                    .toString(),
+                                                style: theme
+                                                    .textTheme.headlineMedium!
+                                                    .merge(
+                                                  TextStyle(
+                                                    color: theme.primaryColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: 12.scale),
+                                              const Text('Institutos'),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 16.scale),
+                                    BlocBuilder(
+                                      bloc: controller.globalGradeBloc,
+                                      builder: (context, state) {
+                                        return ConstrainedBox(
+                                          constraints: BoxConstraints(
+                                            minHeight: 100.scale,
+                                            minWidth: 120.scale,
+                                          ),
+                                          child: Card(
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: 16.scale,
+                                                vertical: 8.scale,
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(height: 4.scale),
+                                                  ScoreWidget(
+                                                    score: (state
+                                                            is GlobalGradeSuccessState)
+                                                        ? state.grade.average
+                                                        : null,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 12.scale,
+                                                  ),
+                                                  Text(
+                                                    'Nota média global',
+                                                    style: theme
+                                                        .textTheme.bodySmall!
+                                                        .merge(
+                                                      TextStyle(
+                                                        color: theme.colorScheme
+                                                            .onPrimary,
+                                                      ),
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: size.height * 0.08),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 32.scale,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.account_balance,
+                                                color: theme
+                                                    .colorScheme.background,
+                                              ),
+                                              SizedBox(width: 16.scale),
+                                              Text(
+                                                'Institutos',
+                                                style: theme
+                                                    .textTheme.headlineSmall!
+                                                    .merge(
+                                                  TextStyle(
+                                                    color: theme
+                                                        .colorScheme.background,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 32.scale),
+                                      ListView.separated(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemCount: list.length,
+                                        itemBuilder: (context, index) {
+                                          final item = list[index];
+                                          return CardInfoInstituto(
+                                            instituto: item,
+                                          );
+                                        },
+                                        separatorBuilder: (context, index) =>
+                                            SizedBox(height: 16.scale),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                          return Padding(
+                            padding: EdgeInsets.all(16.scale),
+                            child: Center(
+                              child: Text(
+                                'Não encontramos nada aqui 😥',
+                                style: theme.textTheme.titleLarge!.merge(
+                                  TextStyle(
+                                    color: theme.colorScheme.background,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   )
                 ],

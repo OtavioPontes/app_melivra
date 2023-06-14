@@ -36,7 +36,9 @@ class ProfessoresPage extends StatelessWidget {
                 top: 32.scale,
                 bottom: 40.scale,
               ),
-              physics: const BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

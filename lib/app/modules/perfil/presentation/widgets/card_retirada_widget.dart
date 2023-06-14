@@ -41,7 +41,7 @@ class CardRetirada extends StatelessWidget {
                           children: [
                             Text(
                               'Solicitar Retirada',
-                              style: theme.textTheme.titleLarge!.merge(
+                              style: theme.textTheme.titleMedium!.merge(
                                 TextStyle(
                                   color: theme.primaryColor,
                                 ),
@@ -49,7 +49,7 @@ class CardRetirada extends StatelessWidget {
                             ),
                             SizedBox(height: 4.scale),
                             Text(
-                              'Sou professor e gostaria de retirar meu nome do app',
+                              'Gostaria de retirar meu nome do app',
                               style: theme.textTheme.bodySmall,
                             ),
                           ],
