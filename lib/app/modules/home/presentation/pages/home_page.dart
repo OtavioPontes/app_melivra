@@ -1,4 +1,5 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
+import 'package:app_melivra/app/core/extensions/string_formatter_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/style/colors.dart';
 import 'package:app_melivra/app/core/widgets/card_info_instituto_widget.dart';
@@ -45,7 +46,7 @@ class HomePage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40.scale),
                     child: Text(
-                      'Olá, ${controller.store.loggedUser?.name}',
+                      'Olá, ${controller.store.loggedUser?.name.toNameFormatted()}',
                       style: theme.textTheme.headlineMedium!.merge(
                         TextStyle(
                           color: theme.colorScheme.background,
@@ -154,7 +155,7 @@ class HomePage extends StatelessWidget {
                                                               ?.average ??
                                                           item.averageGrade,
                                                     ),
-                                                    SizedBox(height: 16.scale),
+                                                    SizedBox(height: 12.scale),
                                                     Flexible(
                                                       child: Text(
                                                         state.professors[index]
@@ -166,8 +167,9 @@ class HomePage extends StatelessWidget {
                                                               .colorScheme
                                                               .onPrimary,
                                                         ),
+                                                        maxLines: 2,
                                                         overflow:
-                                                            TextOverflow.fade,
+                                                            TextOverflow.clip,
                                                         textAlign:
                                                             TextAlign.center,
                                                       ),

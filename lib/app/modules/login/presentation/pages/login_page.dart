@@ -13,7 +13,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../core/style/assets.dart';
 import '../../../../core/widgets/textfield_inicio_widget.dart';
 import '../../../bottom_navigation/bottom_navigation_module.dart';
-import '../widgets/login_failure_dialog.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -133,6 +132,8 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     SizedBox(height: 24.scale),
                                     TextFieldInicio(
+                                      onDone: controller.login,
+                                      textInputAction: TextInputAction.done,
                                       controller: controller.passwordController,
                                       fieldHint: 'Senha',
                                       prefixIcon: Icons.lock,

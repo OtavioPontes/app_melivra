@@ -48,8 +48,8 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
               min: 1,
               max: 101,
               appearance: CircularSliderAppearance(
-                size: 140,
-                customWidths: CustomSliderWidths(progressBarWidth: 9),
+                size: 160,
+                customWidths: CustomSliderWidths(progressBarWidth: 10),
                 startAngle: 90,
                 angleRange: 360,
                 customColors: CustomSliderColors(
@@ -66,12 +66,12 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
               style: theme.textTheme.titleLarge,
             ),
             SizedBox(
-              height: 16.scale,
+              height: 24.scale,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.scale),
               child: Text(
-                'Uma avaliação coerente durante a aula pode ajudar a avaliar o progresso dos alunos e informar as próximas etapas do processo de ensino e aprendizagem.',
+                'Uma avaliação coerente pode ajudar a avaliar o progresso dos alunos e auxiliar nas próximas etapas do processo de aprendizagem.',
                 style: theme.textTheme.bodyMedium,
                 textAlign: TextAlign.justify,
               ),

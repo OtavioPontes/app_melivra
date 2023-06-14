@@ -5,4 +5,9 @@ extension ExtensionFormatterString on String {
     final ddd = substring(0, 2);
     return '($ddd) ${this[2]} ${substring(3, 7)}-${substring(7)}';
   }
+
+  String toNameFormatted() {
+    final name = split(' ');
+    return name[0];
+  }
 }

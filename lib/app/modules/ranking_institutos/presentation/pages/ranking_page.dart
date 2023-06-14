@@ -213,11 +213,11 @@ class RankingPage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                right: 2.scale,
-                top: 70.scale,
+                right: size.width * 0.05,
+                top: size.height * 0.15,
                 child: SvgPicture.asset(
                   AssetsMeLivra.trophy,
-                  height: 85.scale,
+                  height: 80,
                 ),
               ),
             ],

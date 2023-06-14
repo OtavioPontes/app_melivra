@@ -4,10 +4,12 @@ import '../../../../core/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({
+    required int userId,
     required String name,
     required String email,
     required String token,
   }) : super(
+          userId: userId,
           name: name,
           email: email,
           token: token,
@@ -15,6 +17,7 @@ class UserModel extends User {
 
   Map<String, dynamic> toMap() {
     return {
+      'user_id': userId,
       'name': name,
       'email': email,
       'token': token,
@@ -23,6 +26,7 @@ class UserModel extends User {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
+      userId: map['user_id'] ?? '',
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       token: map['token'] ?? '',
@@ -36,6 +40,7 @@ class UserModel extends User {
 
   User toEntity() {
     return User(
+      userId: userId,
       name: name,
       email: email,
       token: token,
@@ -44,6 +49,7 @@ class UserModel extends User {
 
   factory UserModel.fromEntity({required User user}) {
     return UserModel(
+      userId: user.userId,
       name: user.name,
       email: user.email,
       token: user.token,

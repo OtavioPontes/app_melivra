@@ -71,11 +71,16 @@ class MeuPerfilPage extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 16.scale),
-                              Text(
-                                controller.user.name,
-                                style: theme.textTheme.headlineSmall!.merge(
-                                  TextStyle(
-                                    color: theme.colorScheme.background,
+                              Padding(
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 32.scale),
+                                child: Text(
+                                  controller.user.name,
+                                  textAlign: TextAlign.center,
+                                  style: theme.textTheme.headlineSmall!.merge(
+                                    TextStyle(
+                                      color: theme.colorScheme.background,
+                                    ),
                                   ),
                                 ),
                               )
@@ -100,7 +105,7 @@ class MeuPerfilPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 80.scale),
+                              SizedBox(height: size.height * 0.12),
                               MeuPerfilTextField(
                                 controller: meuPerfilController.nameController!,
                                 fieldHint: 'Nome',
@@ -122,7 +127,8 @@ class MeuPerfilPage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     fixedSize: Size(140.scale, 50.scale),
-                                    backgroundColor: theme.colorScheme.background,
+                                    backgroundColor:
+                                        theme.colorScheme.background,
                                   ),
                                   onPressed: meuPerfilController.updateProfile,
                                   child: Text(
@@ -175,6 +181,7 @@ class MeuPerfilTextField extends StatelessWidget {
           left: 8.scale,
           top: 4.scale,
           bottom: 4.scale,
+          right: 8.scale,
         ),
         decoration: BoxDecoration(
           color: theme.canvasColor,

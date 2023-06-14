@@ -90,12 +90,16 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                   ),
                                 ),
                                 SizedBox(height: 64.scale),
-                                Center(
-                                  child: Text(
-                                    'Não encontramos nada aqui 😥',
-                                    style: theme.textTheme.titleLarge!.merge(
-                                      TextStyle(
-                                        color: theme.colorScheme.background,
+                                Padding(
+                                  padding: EdgeInsets.all(40.scale),
+                                  child: Center(
+                                    child: Text(
+                                      'Não encontramos nada aqui 😥',
+                                      textAlign: TextAlign.center,
+                                      style: theme.textTheme.titleLarge!.merge(
+                                        TextStyle(
+                                          color: theme.colorScheme.background,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -257,19 +261,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                           );
                         }
                         if (state is InstitutoProfessorsEmptyState) {
-                          return Padding(
-                            padding: EdgeInsets.all(16.scale),
-                            child: Center(
-                              child: Text(
-                                'Não encontramos nada aqui 😥',
-                                style: theme.textTheme.titleLarge!.merge(
-                                  TextStyle(
-                                    color: theme.colorScheme.background,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
+                          return const SizedBox.shrink();
                         }
                         if (state is InstitutoProfessorsLoadingState) {
                           return Center(

@@ -48,8 +48,8 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
               min: 1,
               max: 101,
               appearance: CircularSliderAppearance(
-                size: 140,
-                customWidths: CustomSliderWidths(progressBarWidth: 9),
+                size: 160,
+                customWidths: CustomSliderWidths(progressBarWidth: 10),
                 startAngle: 90,
                 angleRange: 360,
                 customColors: CustomSliderColors(
@@ -66,7 +66,7 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
               style: theme.textTheme.titleLarge,
             ),
             SizedBox(
-              height: 16.scale,
+              height: 24.scale,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.scale),

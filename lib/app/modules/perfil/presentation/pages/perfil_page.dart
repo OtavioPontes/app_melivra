@@ -60,7 +60,7 @@ class PerfilPage extends StatelessWidget {
                           ),
                           SizedBox(height: 16.scale),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.scale),
+                            padding: EdgeInsets.symmetric(horizontal: 24.scale),
                             child: Text(
                               controller.user.name,
                               textAlign: TextAlign.center,
@@ -89,7 +89,7 @@ class PerfilPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: size.height * 0.1),
+                          SizedBox(height: size.height * 0.08),
                           const CardMeuPerfil(),
                           SizedBox(height: 16.scale),
                           const CardSobre(),

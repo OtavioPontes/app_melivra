@@ -27,11 +27,15 @@ class ValidateRecoverCodePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 24.scale),
             child: Column(
               children: [
-                Text(
-                  'Digite seu Código',
-                  style: theme.textTheme.headlineMedium!.merge(
-                    TextStyle(
-                      color: theme.colorScheme.background,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.scale),
+                  child: Text(
+                    'Digite seu Código',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.headlineMedium!.merge(
+                      TextStyle(
+                        color: theme.colorScheme.background,
+                      ),
                     ),
                   ),
                 ),

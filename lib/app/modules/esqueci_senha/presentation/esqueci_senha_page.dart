@@ -77,7 +77,8 @@ class EsqueciSenhaPage extends StatelessWidget {
                           AssetsMeLivra.waveLogin,
                           alignment: Alignment.topCenter,
                           width: size.width,
-                          fit: BoxFit.cover,
+                          height: size.height * 0.6,
+                          fit: BoxFit.fill,
                           color: theme.primaryColor,
                         ),
                         Positioned.fill(

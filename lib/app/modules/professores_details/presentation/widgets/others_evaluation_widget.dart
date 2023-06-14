@@ -8,12 +8,29 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/style/colors.dart';
 
-class OthersEvaluation extends StatelessWidget {
+class OthersEvaluation extends StatefulWidget {
   final GradeResponse response;
   const OthersEvaluation({
     Key? key,
     required this.response,
   }) : super(key: key);
+
+  @override
+  State<OthersEvaluation> createState() => _OthersEvaluationState();
+}
+
+class _OthersEvaluationState extends State<OthersEvaluation> {
+  int likes = 0;
+  int dislikes = 0;
+  bool setLike = false;
+  bool setDislike = false;
+
+  @override
+  void initState() {
+    likes = widget.response.likes;
+    dislikes = widget.response.dislikes;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,31 +70,43 @@ class OthersEvaluation extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  ScoreTinyWidget(score: response.averageGrade),
+                  ScoreTinyWidget(score: widget.response.averageGrade),
                   SizedBox(width: 16.scale),
                   Flexible(
                     child: Text(
-                      response.userName,
-                      style: theme.textTheme.bodyLarge,
+                      widget.response.userName,
+                      style: theme.textTheme.bodyMedium,
                     ),
                   )
                 ],
               ),
               SizedBox(height: 16.scale),
               Text(
-                response.description,
+                widget.response.description,
               ),
               Padding(
-                padding: EdgeInsets.only(right: 32.scale),
+                padding: EdgeInsets.only(right: 32.scale, bottom: 8.scale),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     GestureDetector(
-                      onTap: () => controller.evaluateComment(
-                        gradeId: response.id,
-                        isLike: true,
-                      ),
+                      onTap: () {
+                        setState(() {
+                          if (!setLike) {
+                            likes++;
+                            setLike = true;
+                            if (setDislike) {
+                              dislikes--;
+                              setDislike = false;
+                            }
+                          }
+                        });
+                        controller.evaluateComment(
+                          gradeId: widget.response.id,
+                          isLike: true,
+                        );
+                      },
                       child: Row(
                         children: [
                           Icon(
@@ -87,7 +116,7 @@ class OthersEvaluation extends StatelessWidget {
                           ),
                           SizedBox(width: 4.scale),
                           Text(
-                            '(${response.likes})',
+                            '($likes)',
                             style: theme.textTheme.bodySmall,
                           ),
                         ],
@@ -95,10 +124,23 @@ class OthersEvaluation extends StatelessWidget {
                     ),
                     SizedBox(width: 8.scale),
                     GestureDetector(
-                      onTap: () => controller.evaluateComment(
-                        gradeId: response.id,
-                        isLike: false,
-                      ),
+                      onTap: () {
+                        setState(() {
+                          if (!setDislike) {
+                            dislikes++;
+                            setDislike = true;
+                            if (setLike) {
+                              setLike = false;
+                              likes--;
+                            }
+                          }
+                        });
+
+                        controller.evaluateComment(
+                          gradeId: widget.response.id,
+                          isLike: false,
+                        );
+                      },
                       child: Row(
                         children: [
                           Icon(
@@ -108,7 +150,7 @@ class OthersEvaluation extends StatelessWidget {
                           ),
                           SizedBox(width: 4.scale),
                           Text(
-                            '(${response.dislikes})',
+                            '($dislikes)',
                             style: theme.textTheme.bodySmall,
                           ),
                         ],
@@ -121,14 +163,14 @@ class OthersEvaluation extends StatelessWidget {
           ),
         ),
         Positioned(
-          right: 0,
-          bottom: 0,
+          right: 10,
+          bottom: 10,
           child: GestureDetector(
             onTap: () {
               showDialog(
                 context: context,
                 builder: (context) {
-                  return ReportDialog(id: response.id);
+                  return ReportDialog(id: widget.response.id);
                 },
               );
             },

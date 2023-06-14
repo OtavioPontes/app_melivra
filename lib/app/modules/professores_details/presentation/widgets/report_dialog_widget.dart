@@ -45,7 +45,7 @@ class _ReportDialogState extends State<ReportDialog> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16.scale),
+                  SizedBox(height: 24.scale),
                   Center(
                     child: Container(
                       padding: EdgeInsets.all(16.scale),
@@ -80,26 +80,28 @@ class _ReportDialogState extends State<ReportDialog> {
                       ),
                     ),
                   ),
-                  const Spacer(),
-                  if (controller.reportController.text.isNotEmpty)
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        fixedSize: Size(120.scale, 40.scale),
-                        backgroundColor: theme.primaryColor,
-                      ),
-                      onPressed: () =>
-                          controller.sendReport(id: widget.id).then(
-                                (value) => Modular.to.pop(),
-                              ),
-                      child: Text(
-                        'Enviar',
-                        style: theme.textTheme.titleLarge!.merge(
-                          TextStyle(
-                            color: theme.colorScheme.background,
-                          ),
+                  SizedBox(height: 64.scale),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      fixedSize: Size(120.scale, 40.scale),
+                      backgroundColor: theme.primaryColor,
+                    ),
+                    onPressed: () {
+                      if (controller.reportController.text.isNotEmpty) {
+                        controller.sendReport(id: widget.id).then(
+                              (value) => Modular.to.pop(),
+                            );
+                      }
+                    },
+                    child: Text(
+                      'Enviar',
+                      style: theme.textTheme.titleLarge!.merge(
+                        TextStyle(
+                          color: theme.colorScheme.background,
                         ),
                       ),
                     ),
+                  ),
                   SizedBox(height: 16.scale),
                 ],
               ),
