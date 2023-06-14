@@ -19,8 +19,8 @@ class SearchController {
   InstitutosResponse? institutoResponse;
   ProfessorResponse? professorResponse;
   int page = 1;
-  final List<Professor> professors = [];
-  final List<Instituto> institutes = [];
+  List<Professor> professors = [];
+  List<Instituto> institutes = [];
 
   SearchController({
     required this.searchProfessorsBloc,
@@ -46,6 +46,7 @@ class SearchController {
       (response) {
         institutoResponse = response;
         institutes.addAll(response.institutos);
+        institutes = institutes.toSet().toList();
         searchInstitutesBloc.add(
           SearchInstitutesSuccessEvent(institutes: institutes),
         );
@@ -88,6 +89,7 @@ class SearchController {
       (response) {
         professorResponse = response;
         professors.addAll(response.professors);
+        professors = professors.toSet().toList();
         searchProfessorsBloc.add(
           SearchProfessorsSuccessEvent(professors: professors),
         );

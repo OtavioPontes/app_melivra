@@ -11,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/style/assets.dart';
 import '../../../../core/widgets/card_info_professor_widget.dart';
 import '../../../../core/widgets/score_big_widget.dart';
+import '../../../../core/widgets/search_widget.dart';
 
 class InstitutoDetailsPage extends StatefulWidget {
   const InstitutoDetailsPage({Key? key}) : super(key: key);
@@ -23,6 +24,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
   final InstitutoDetailsController controller =
       Modular.get<InstitutoDetailsController>();
   late final ScrollController _scrollController;
+  final professorEditText = TextEditingController();
 
   @override
   void initState() {
@@ -276,6 +278,50 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                             padding: EdgeInsets.symmetric(horizontal: 32.scale),
                             child: Column(
                               children: [
+                                Center(
+                                  child: Container(
+                                    padding: EdgeInsets.only(
+                                      left: 8.scale,
+                                      top: 4.scale,
+                                      bottom: 4.scale,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: theme.canvasColor,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    width: size.width * 0.85,
+                                    child: TextField(
+                                      controller: professorEditText,
+                                      onChanged: (value) async {
+                                        controller.searchText = value;
+                                        if (value.length > 1) {
+                                          await controller
+                                              .getProfessoresByInstituto();
+                                        }
+                                      },
+                                      textAlignVertical:
+                                          TextAlignVertical.center,
+                                      decoration: InputDecoration(
+                                        prefixIcon: const Icon(Icons.search),
+                                        suffixIcon: GestureDetector(
+                                          onTap: () async {
+                                            professorEditText.clear();
+                                            controller.searchText = null;
+                                            await controller
+                                                .getProfessoresByInstituto();
+                                          },
+                                          child: const Icon(Icons.cancel),
+                                        ),
+                                        hintText: 'Pesquisar professor',
+                                        hintStyle:
+                                            theme.textTheme.bodyLarge!.merge(
+                                          TextStyle(color: theme.disabledColor),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 24.scale),
                                 Row(
                                   children: [
                                     Icon(

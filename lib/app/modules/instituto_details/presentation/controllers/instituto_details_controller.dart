@@ -14,8 +14,9 @@ class InstitutoDetailsController {
   final int id;
 
   int page = 1;
+  String? searchText;
   ProfessorResponse? response;
-  final List<Professor> professors = [];
+  List<Professor> professors = [];
 
   InstitutoDetailsController({
     required GetInstitutoDetailsUsecase getInstitutoDetailsUsecase,
@@ -42,7 +43,11 @@ class InstitutoDetailsController {
       );
     }
     final result = await _getProfessorsUsecase(
-      ParamsGetProfessorsUsecase(instituteId: id, page: page),
+      ParamsGetProfessorsUsecase(
+        instituteId: id,
+        page: page,
+        searchText: searchText,
+      ),
     );
     result.fold(
       (failure) {
@@ -54,7 +59,7 @@ class InstitutoDetailsController {
       },
       (response) {
         this.response = response;
-        professors.addAll(response.professors);
+        professors = (response.professors);
         professorsBloc.add(
           InstitutoProfessorsSuccessEvent(
             professor: professors,

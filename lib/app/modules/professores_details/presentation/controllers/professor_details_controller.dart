@@ -120,6 +120,11 @@ class ProfessorDetailsController {
       (response) {
         responseConfig = response;
         grades = response.response;
+        if (grades.isEmpty) {
+          return gradesBloc.add(
+            ProfessorGradesEmptyEvent(),
+          );
+        }
         return gradesBloc.add(
           ProfessorGradesSuccessEvent(grades: grades),
         );

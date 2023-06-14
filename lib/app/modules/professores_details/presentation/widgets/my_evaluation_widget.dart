@@ -49,20 +49,24 @@ class _MyEvaluationState extends State<MyEvaluation> {
             ),
             child: TextFormField(
               controller: widget.controller.evaluationController,
+              maxLength: 50,
               minLines: 2,
               maxLines: 2,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Escreva alguma coisa...';
                 }
-                final filter =
-                    ProfanityFilter.filterOnly(badWords);
-                if (filter.hasProfanity(value)) {
+                final filter = ProfanityFilter.filterOnly(badWords);
+                if (filter.hasProfanity(
+                  value.replaceAll(RegExp(r'[\p{P}\p{S}]+', unicode: true), ''),
+                )) {
                   return 'Comentário desrespeitoso ⛔';
                 }
                 return null;
               },
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(right: 40.scale),
+                counterText: '',
                 hintText: 'Escreva seu comentário...',
                 hintStyle: theme.textTheme.bodyMedium!.merge(
                   TextStyle(

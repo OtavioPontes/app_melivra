@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 
 class ProfessorGradesBloc extends Bloc {
   ProfessorGradesBloc() : super(ProfessorGradesEmptyState()) {
+    on<ProfessorGradesEmptyEvent>(handleProfessorGradesEmptyEvent);
     on<ProfessorGradesLoadingEvent>(handleProfessorGradesLoadingEvent);
     on<ProfessorGradesSuccessEvent>(handleProfessorGradesSuccessEvent);
     on<ProfessorGradesFailureEvent>(handleProfessorGradesFailureEvent);
@@ -10,23 +11,38 @@ class ProfessorGradesBloc extends Bloc {
   }
 
   void handleProfessorGradesLoadingEvent(
-      ProfessorGradesLoadingEvent event, Emitter emit,) {
+    ProfessorGradesLoadingEvent event,
+    Emitter emit,
+  ) {
     emit(ProfessorGradesLoadingState());
   }
 
   void handleProfessorGradesSuccessEvent(
-      ProfessorGradesSuccessEvent event, Emitter emit,) {
+    ProfessorGradesSuccessEvent event,
+    Emitter emit,
+  ) {
     emit(ProfessorGradesSuccessState(grades: event.grades));
   }
 
   void handleProfessorGradesFailureEvent(
-      ProfessorGradesFailureEvent event, Emitter emit,) {
+    ProfessorGradesFailureEvent event,
+    Emitter emit,
+  ) {
     emit(ProfessorGradesFailureState(message: event.message));
   }
 
   void handleProfessorGradesBadWordEvent(
-      ProfessorGradesBadWordEvent event, Emitter emit,) {
+    ProfessorGradesBadWordEvent event,
+    Emitter emit,
+  ) {
     emit(ProfessorGradesBadWordState());
+  }
+
+  void handleProfessorGradesEmptyEvent(
+    ProfessorGradesEmptyEvent event,
+    Emitter emit,
+  ) {
+    emit(ProfessorGradesEmptyState());
   }
 }
 
@@ -52,6 +68,8 @@ class ProfessorGradesFailureState extends ProfessorGradesState {
 class ProfessorGradesBadWordState extends ProfessorGradesState {}
 
 abstract class ProfessorGradesEvent {}
+
+class ProfessorGradesEmptyEvent extends ProfessorGradesEvent {}
 
 class ProfessorGradesLoadingEvent extends ProfessorGradesEvent {}
 

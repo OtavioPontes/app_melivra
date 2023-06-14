@@ -1,5 +1,6 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
@@ -18,10 +19,18 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
   final EvaluateProfessorController controller =
       Modular.get<EvaluateProfessorController>();
 
+  double value = 0;
+
+  @override
+  void initState() {
+    value = controller.coherentEvaluationValue.toDouble();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final barColor = UtilsScoreEnum.getEnumFromScore(
-      score: controller.coherentEvaluationValue,
+      score: value.toInt(),
     ).getColor;
     final theme = Theme.of(context);
     return SingleChildScrollView(
@@ -30,21 +39,47 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
         child: Column(
           children: [
             SleekCircularSlider(
-              onChange: (value) {
+              onChange: (value) => setState(() => this.value = value),
+              onChangeEnd: (value) {
                 controller.coherentEvaluationValue = value.toInt();
-                setState(
-                  () {
-                    controller.coherentEvaluationValue = value.toInt();
-                  },
+              },
+              initialValue: value,
+              innerWidget: (percentage) {
+                return Center(
+                  child: IntrinsicWidth(
+                    child: TextFormField(
+                      inputFormatters: [
+                        FilteringTextInputFormatter.deny(RegExp('')),
+                        FilteringTextInputFormatter.allow(
+                          RegExp(
+                            r'\b([1-9]|[1-9][0-9]|100)\b',
+                          ),
+                          replacementString:
+                              controller.coherentEvaluationValue.toString(),
+                        )
+                      ],
+                      onChanged: (value) {
+                        if (value.isNotEmpty) {
+                          setState(() {
+                            this.value = double.parse(value);
+                            controller.coherentEvaluationValue =
+                                int.parse(value);
+                          });
+                        }
+                      },
+                      maxLength: 3,
+                      style: theme.textTheme.headlineMedium,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        counterText: "",
+                        contentPadding: EdgeInsets.zero,
+                        hintText: percentage.toInt().toString(),
+                        hintStyle: theme.textTheme.headlineMedium,
+                      ),
+                    ),
+                  ),
                 );
               },
-              initialValue: controller.coherentEvaluationValue.toDouble(),
-              innerWidget: (percentage) => Center(
-                child: Text(
-                  percentage.toInt().toString(),
-                  style: theme.textTheme.headlineMedium,
-                ),
-              ),
               min: 1,
               max: 101,
               appearance: CircularSliderAppearance(

@@ -84,19 +84,21 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                               horizontal: 24.scale,
                             ),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Icon(
                                   Icons.chat,
                                   color: theme.colorScheme.onPrimary,
+                                  size: 25,
                                 ),
-                                SizedBox(width: 32.scale),
                                 Flexible(
                                   child: Text(
                                     'Avaliações e Comentários',
+                                    textAlign: TextAlign.center,
                                     style: theme.textTheme.headlineSmall,
                                   ),
                                 ),
+                                const SizedBox(width: 25),
                               ],
                             ),
                           ),
@@ -165,6 +167,18 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                       ),
                                     ),
                                   ],
+                                );
+                              }
+                              if (state is ProfessorGradesEmptyState) {
+                                return Padding(
+                                  padding: EdgeInsets.all(40.scale),
+                                  child: Text(
+                                    'Ainda não há comentários, seja o primeiro a comentar 😎',
+                                    textAlign: TextAlign.center,
+                                    style: theme.textTheme.bodyLarge?.copyWith(
+                                      color: theme.colorScheme.background,
+                                    ),
+                                  ),
                                 );
                               }
                               if (state is ProfessorGradesSuccessState) {

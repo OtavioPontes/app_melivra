@@ -85,9 +85,11 @@ class _OthersEvaluationState extends State<OthersEvaluation> {
                 widget.response.description,
               ),
               Padding(
-                padding: EdgeInsets.only(right: 32.scale, bottom: 8.scale),
+                padding: EdgeInsets.only(
+                  top: 16.scale,
+                  bottom: 8.scale,
+                ),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     GestureDetector(
@@ -156,32 +158,29 @@ class _OthersEvaluationState extends State<OthersEvaluation> {
                         ],
                       ),
                     ),
+                    SizedBox(width: 16.scale),
+                    GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return ReportDialog(id: widget.response.id);
+                          },
+                        );
+                      },
+                      child: CircleAvatar(
+                        radius: 20,
+                        backgroundColor: ColorsMeLivra().yellow,
+                        child: Icon(
+                          Icons.warning,
+                          color: theme.colorScheme.background,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               )
             ],
-          ),
-        ),
-        Positioned(
-          right: 10,
-          bottom: 10,
-          child: GestureDetector(
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return ReportDialog(id: widget.response.id);
-                },
-              );
-            },
-            child: CircleAvatar(
-              radius: 20,
-              backgroundColor: ColorsMeLivra().yellow,
-              child: Icon(
-                Icons.warning,
-                color: theme.colorScheme.background,
-              ),
-            ),
           ),
         ),
       ],
