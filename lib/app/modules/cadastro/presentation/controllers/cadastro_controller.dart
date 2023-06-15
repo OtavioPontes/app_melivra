@@ -24,17 +24,18 @@ class CadastroController {
     final result = await _cadastroUserUsecase(
       ParamsCadastroUserUsecase(
         user: UserCreationModel(
-          email: emailController.text,
-          name: nameController.text,
-          password: passwordController.text,
-          passwordConfirmation: passwordConfirmationController.text,
+          email: emailController.text.trim(),
+          name: nameController.text.trim(),
+          password: passwordController.text.trim(),
+          passwordConfirmation: passwordConfirmationController.text.trim(),
         ),
       ),
     );
     result.fold(
       (failure) {
         bloc.add(
-            ReceivedFailureCadastroResponseEvent(message: failure.message),);
+          ReceivedFailureCadastroResponseEvent(message: failure.message),
+        );
       },
       (success) {
         bloc.add(ReceivedSuccessCadastroResponseEvent());

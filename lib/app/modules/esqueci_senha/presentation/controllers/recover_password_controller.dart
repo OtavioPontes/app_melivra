@@ -33,7 +33,7 @@ class RecoverPasswordController {
 
   Future<void> sendRecoverCode() async {
     final result = await _sendRecoverCodeUsecase(
-      ParamsSendRecoverCodeUsecase(email: email),
+      ParamsSendRecoverCodeUsecase(email: email.trim()),
     );
 
     result.fold(
@@ -93,9 +93,9 @@ class RecoverPasswordController {
     final result = await _updatePasswordUsecase(
       ParamsUpdatePasswordUsecase(
         code: code,
-        email: email,
-        password: password,
-        passwordConfirm: passwordConfirmation,
+        email: email.trim(),
+        password: password.trim(),
+        passwordConfirm: passwordConfirmation.trim(),
       ),
     );
 

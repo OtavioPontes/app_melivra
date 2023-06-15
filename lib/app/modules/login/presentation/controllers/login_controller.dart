@@ -13,19 +13,19 @@ class LoginController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  LoginController(
-      {required this.bloc,
-      required UserStore store,
-      required LoginUsecase loginUsecase,})
-      : _loginUsecase = loginUsecase,
+  LoginController({
+    required this.bloc,
+    required UserStore store,
+    required LoginUsecase loginUsecase,
+  })  : _loginUsecase = loginUsecase,
         _store = store;
 
   Future<void> login() async {
     bloc.add(LoginSubmitEvent());
     final result = await _loginUsecase(
       ParamsLoginUsecase(
-        email: emailController.text,
-        password: passwordController.text,
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
       ),
     );
     result.fold(
