@@ -293,7 +293,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                     child: TextField(
                                       controller: professorEditText,
                                       onChanged: (value) async {
-                                        controller.searchText = value;
+                                        controller.setSearchText(value);
                                         if (value.length > 1) {
                                           await controller
                                               .getProfessoresByInstituto();
@@ -306,7 +306,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                         suffixIcon: GestureDetector(
                                           onTap: () async {
                                             professorEditText.clear();
-                                            controller.searchText = null;
+                                            controller.setSearchText(null);
                                             await controller
                                                 .getProfessoresByInstituto();
                                           },

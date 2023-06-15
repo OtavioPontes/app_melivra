@@ -36,6 +36,11 @@ class InstitutoDetailsController {
 
   void setNextPage() => page = page + 1;
 
+  void setSearchText(String? text) {
+    searchText = text;
+    page = 1;
+  }
+
   Future<void> getProfessoresByInstituto() async {
     if (professors.isEmpty) {
       professorsBloc.add(
@@ -58,8 +63,12 @@ class InstitutoDetailsController {
         );
       },
       (response) {
+        if (page == 1) {
+          professors.clear();
+        }
         this.response = response;
-        professors = (response.professors);
+        professors.addAll(response.professors);
+        professors = professors.toSet().toList();
         professorsBloc.add(
           InstitutoProfessorsSuccessEvent(
             professor: professors,

@@ -27,6 +27,8 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
     super.initState();
   }
 
+  final textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final barColor =
@@ -38,7 +40,12 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
         child: Column(
           children: [
             SleekCircularSlider(
-              onChange: (value) => setState(() => this.value = value),
+              onChange: (value) {
+                setState(() {
+                  textController.text = value.toStringAsFixed(0);
+                  this.value = value;
+                });
+              },
               onChangeEnd: (value) {
                 controller.clearExplanationValue = value.toInt();
               },
@@ -47,6 +54,7 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
                 return Center(
                   child: IntrinsicWidth(
                     child: TextFormField(
+                      controller: textController,
                       inputFormatters: [
                         FilteringTextInputFormatter.deny(RegExp('')),
                         FilteringTextInputFormatter.allow(
@@ -68,6 +76,7 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
                       maxLength: 3,
                       style: theme.textTheme.headlineMedium,
                       keyboardType: TextInputType.number,
+                      textDirection: TextDirection.rtl,
                       decoration: InputDecoration(
                         counterText: "",
                         contentPadding: EdgeInsets.zero,

@@ -27,6 +27,7 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
     super.initState();
   }
 
+  final textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final barColor = UtilsScoreEnum.getEnumFromScore(
@@ -39,7 +40,10 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
         child: Column(
           children: [
             SleekCircularSlider(
-              onChange: (value) => setState(() => this.value = value),
+              onChange: (value) => setState(() {
+                textController.text = value.toStringAsFixed(0);
+                this.value = value;
+              }),
               onChangeEnd: (value) {
                 controller.respectfulTreatmentValue = value.toInt();
               },
@@ -48,6 +52,7 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
                 return Center(
                   child: IntrinsicWidth(
                     child: TextFormField(
+                      controller: textController,
                       inputFormatters: [
                         FilteringTextInputFormatter.deny(RegExp('')),
                         FilteringTextInputFormatter.allow(
@@ -70,6 +75,7 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
                       maxLength: 3,
                       style: theme.textTheme.headlineMedium,
                       keyboardType: TextInputType.number,
+                      textDirection: TextDirection.rtl,
                       decoration: InputDecoration(
                         counterText: "",
                         contentPadding: EdgeInsets.zero,

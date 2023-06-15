@@ -79,8 +79,8 @@ class GradeResponse extends Equatable {
       averageGrade: map['total_grade']?.toInt() ?? 0,
       date: DateTime.parse(map['created_at']),
       userName: map['user'] ?? '',
-      likes: map['likes'],
-      dislikes: map['dislikes'],
+      likes: map['likes'] ?? 0,
+      dislikes: map['dislikes'] ?? 0,
     );
   }
 

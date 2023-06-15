@@ -27,6 +27,7 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
     super.initState();
   }
 
+  final textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final barColor = UtilsScoreEnum.getEnumFromScore(
@@ -39,7 +40,12 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
         child: Column(
           children: [
             SleekCircularSlider(
-              onChange: (value) => setState(() => this.value = value),
+              onChange: (value) {
+                setState(() {
+                  this.value = value;
+                  textController.text = value.toStringAsFixed(0);
+                });
+              },
               onChangeEnd: (value) {
                 controller.coherentEvaluationValue = value.toInt();
               },
@@ -48,6 +54,7 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
                 return Center(
                   child: IntrinsicWidth(
                     child: TextFormField(
+                      controller: textController,
                       inputFormatters: [
                         FilteringTextInputFormatter.deny(RegExp('')),
                         FilteringTextInputFormatter.allow(
@@ -70,6 +77,7 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
                       maxLength: 3,
                       style: theme.textTheme.headlineMedium,
                       keyboardType: TextInputType.number,
+                      textDirection: TextDirection.rtl,
                       decoration: InputDecoration(
                         counterText: "",
                         contentPadding: EdgeInsets.zero,
