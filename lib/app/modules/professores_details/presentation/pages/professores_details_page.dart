@@ -24,12 +24,10 @@ class ProfessoresDetailsPage extends StatefulWidget {
 
 class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
     with TickerProviderStateMixin {
-  final ProfessorDetailsController controller =
-      Modular.get<ProfessorDetailsController>();
-  final EvaluateProfessorController evaluateController =
-      Modular.get<EvaluateProfessorController>();
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<ProfessorDetailsController>();
+    final evaluateController = Modular.get<EvaluateProfessorController>();
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
 
@@ -317,7 +315,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
               ),
             ),
           ),
-          DraggableEvaluation(controller: controller),
+          const DraggableEvaluation(),
         ],
       ),
     );

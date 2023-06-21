@@ -12,33 +12,7 @@ import 'presentation/pages/professores_details_page.dart';
 class ProfessoresDetailsModule extends Module {
   static const String routeName = "/professoresDetails/";
   @override
-  List<Bind> get binds => [
-        Bind((i) => EvaluateProfessorBloc()),
-        Bind((i) => ProfessorGradesBloc()),
-        Bind((i) => ProfessorDetailsBloc()),
-        Bind((i) => ShowEvaluationButtonBloc()),
-        Bind((i) => SendReportService(dio: i())),
-        Bind(
-          (i) => ProfessorDetailsController(
-            postProfessorGradeLikeDislikeUsecase: i(),
-            getProfessorGradesCountUsecase: i(),
-            updateProfessorGradeUsecase: i(),
-            showButtonBloc: i(),
-            getProfessorGradesUsecase: i(),
-            getProfessorDetailsUsecase: i(),
-            gradesBloc: i(),
-            bloc: i(),
-            id: i.args.data['id'],
-          ),
-        ),
-        Bind(
-          (i) => EvaluateProfessorController(
-            sendReportService: i(),
-            postProfessorGradeUsecase: i(),
-            bloc: i(),
-          ),
-        )
-      ];
+  List<Bind> get binds => [];
 
   @override
   List<ModularRoute> get routes => [

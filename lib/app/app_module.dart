@@ -56,6 +56,13 @@ import 'modules/professores/domain/usecases/post_professor_grade_like_dislike_us
 import 'modules/professores/domain/usecases/update_professor_grade_usecase.dart';
 import 'modules/professores/presentation/bloc/professors_bloc.dart';
 import 'modules/professores/presentation/controllers/professores_controller.dart';
+import 'modules/professores_details/data/services/send_report_service.dart';
+import 'modules/professores_details/presentation/bloc/evaluate_professor_bloc.dart';
+import 'modules/professores_details/presentation/bloc/professor_details_bloc.dart';
+import 'modules/professores_details/presentation/bloc/professor_grades_bloc.dart';
+import 'modules/professores_details/presentation/bloc/show_button_bloc.dart';
+import 'modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
+import 'modules/professores_details/presentation/controllers/professor_details_controller.dart';
 import 'modules/professores_details/professores_details_module.dart';
 import 'modules/ranking_institutos/ranking_institutos_module.dart';
 import 'modules/search/presentation/bloc/search_institutes_bloc.dart';
@@ -157,9 +164,34 @@ class AppModule extends Module {
           ),
         ),
 
-        Bind<Box>((i) => Hive.box('melivra'))
+        Bind<Box>((i) => Hive.box('melivra')),
 
         // -------------------- NOTIFICATIONS ---------------------
+        Bind((i) => EvaluateProfessorBloc()),
+        Bind((i) => ProfessorGradesBloc()),
+        Bind((i) => ProfessorDetailsBloc()),
+        Bind((i) => ShowEvaluationButtonBloc()),
+        Bind((i) => SendReportService(dio: i())),
+        Bind(
+          (i) => ProfessorDetailsController(
+            postProfessorGradeLikeDislikeUsecase: i(),
+            getProfessorGradesCountUsecase: i(),
+            updateProfessorGradeUsecase: i(),
+            showButtonBloc: i(),
+            getProfessorGradesUsecase: i(),
+            getProfessorDetailsUsecase: i(),
+            gradesBloc: i(),
+            bloc: i(),
+            id: i.args.data['id'],
+          ),
+        ),
+        Bind(
+          (i) => EvaluateProfessorController(
+            sendReportService: i(),
+            postProfessorGradeUsecase: i(),
+            bloc: i(),
+          ),
+        )
       ];
 
   @override

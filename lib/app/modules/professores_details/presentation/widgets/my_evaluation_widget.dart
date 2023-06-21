@@ -1,14 +1,16 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:profanity_filter/profanity_filter.dart';
 
 import '../../../../core/style/colors.dart';
 import '../../../../core/utils/bad_words.dart';
 
 class MyEvaluation extends StatefulWidget {
-  final ProfessorDetailsController controller;
-  const MyEvaluation({Key? key, required this.controller}) : super(key: key);
+  const MyEvaluation({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MyEvaluation> createState() => _MyEvaluationState();
@@ -18,6 +20,7 @@ class _MyEvaluationState extends State<MyEvaluation> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<ProfessorDetailsController>();
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
     return Stack(
@@ -48,7 +51,7 @@ class _MyEvaluationState extends State<MyEvaluation> {
               color: theme.cardColor,
             ),
             child: TextFormField(
-              controller: widget.controller.evaluationController,
+              controller: controller.evaluationController,
               maxLength: 50,
               minLines: 2,
               maxLines: 2,
@@ -83,7 +86,7 @@ class _MyEvaluationState extends State<MyEvaluation> {
           child: GestureDetector(
             onTap: () {
               if (_formKey.currentState!.validate()) {
-                widget.controller.updateProfessorEvaluation();
+                controller.updateProfessorEvaluation();
               }
             },
             child: CircleAvatar(

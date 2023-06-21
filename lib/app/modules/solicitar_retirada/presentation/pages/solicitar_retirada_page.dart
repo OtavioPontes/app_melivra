@@ -180,10 +180,15 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                   width: size.width * 0.85,
                                   child: TextField(
                                     controller: controller.searchController,
-                                    onChanged: (value) {
+                                    onChanged: (value) async {
                                       if (value.length > 1) {
                                         controller.resetLists();
-                                        controller.getProfessores();
+                                        await Future.delayed(
+                                          const Duration(
+                                            milliseconds: 500,
+                                          ),
+                                        );
+                                        await controller.getProfessores();
                                       }
                                     },
                                     textAlignVertical: TextAlignVertical.center,

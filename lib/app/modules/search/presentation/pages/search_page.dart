@@ -90,10 +90,15 @@ class _SearchPageState extends State<SearchPage> {
                       child: TextField(
                         autofocus: true,
                         controller: controller.searchController,
-                        onChanged: (value) {
+                        onChanged: (value) async {
                           if (value.length > 1) {
                             controller.resetLists();
-                            controller.getInstitutos();
+                            await Future.delayed(
+                              const Duration(
+                                milliseconds: 500,
+                              ),
+                            );
+                            await controller.getInstitutos();
                           }
                         },
                         textAlignVertical: TextAlignVertical.center,
@@ -127,10 +132,15 @@ class _SearchPageState extends State<SearchPage> {
                       child: TextField(
                         autofocus: true,
                         controller: controller.searchController,
-                        onChanged: (value) {
+                        onChanged: (value) async {
                           if (value.length > 1) {
                             controller.resetLists();
-                            controller.getProfessores();
+                            await Future.delayed(
+                              const Duration(
+                                milliseconds: 500,
+                              ),
+                            );
+                            await controller.getProfessores();
                           }
                         },
                         textAlignVertical: TextAlignVertical.center,
@@ -164,11 +174,14 @@ class _SearchPageState extends State<SearchPage> {
                       child: TextField(
                         autofocus: true,
                         controller: controller.searchController,
-                        onChanged: (value) {
+                        onChanged: (value) async {
                           if (value.length > 1) {
                             controller.resetLists();
-                            controller.getProfessores();
-                            controller.getInstitutos();
+                            await Future.delayed(
+                              const Duration(milliseconds: 500),
+                            );
+                            await controller.getProfessores();
+                            await controller.getInstitutos();
                           }
                         },
                         textAlignVertical: TextAlignVertical.center,

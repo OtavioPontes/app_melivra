@@ -11,7 +11,6 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/style/assets.dart';
 import '../../../../core/widgets/card_info_professor_widget.dart';
 import '../../../../core/widgets/score_big_widget.dart';
-import '../../../../core/widgets/search_widget.dart';
 
 class InstitutoDetailsPage extends StatefulWidget {
   const InstitutoDetailsPage({Key? key}) : super(key: key);
@@ -295,6 +294,11 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                       onChanged: (value) async {
                                         controller.setSearchText(value);
                                         if (value.length > 1) {
+                                          await Future.delayed(
+                                            const Duration(
+                                              milliseconds: 500,
+                                            ),
+                                          );
                                           await controller
                                               .getProfessoresByInstituto();
                                         }

@@ -14,10 +14,8 @@ import '../pages/professores_details_page.dart';
 import 'my_evaluation_widget.dart';
 
 class DraggableEvaluation extends StatefulWidget {
-  final ProfessorDetailsController controller;
   const DraggableEvaluation({
     Key? key,
-    required this.controller,
   }) : super(key: key);
 
   @override
@@ -27,21 +25,22 @@ class DraggableEvaluation extends StatefulWidget {
 class _DraggableEvaluationState extends State<DraggableEvaluation> {
   @override
   Widget build(BuildContext context) {
+    final controller = Modular.get<ProfessorDetailsController>();
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
     return DraggableScrollableSheet(
-      controller: widget.controller.scrollableController,
+      controller: controller.scrollableController,
       maxChildSize: 0.9,
       initialChildSize: 0.15,
       minChildSize: 0.1,
       builder: (context, scrollController) {
-        widget.controller.scrollableController?.addListener(
+        controller.scrollableController?.addListener(
           () {
             if (scrollController.position.viewportDimension >
                 size.height * 0.17) {
-              widget.controller.setShowButton(showButton: false);
+              controller.setShowButton(showButton: false);
             } else {
-              widget.controller.setShowButton(showButton: true);
+              controller.setShowButton(showButton: true);
             }
           },
         );
@@ -86,26 +85,30 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Icon(
-                                  Icons.chat,
-                                  color: theme.colorScheme.onPrimary,
-                                  size: 25,
+                                Expanded(
+                                  child: Icon(
+                                    Icons.chat,
+                                    color: theme.colorScheme.onPrimary,
+                                    size: 25,
+                                  ),
                                 ),
-                                Flexible(
+                                Expanded(
+                                  flex: 2,
                                   child: Text(
                                     'Avaliações e Comentários',
                                     textAlign: TextAlign.center,
+                                    textScaleFactor: 1,
                                     style: theme.textTheme.headlineSmall,
                                   ),
                                 ),
-                                const SizedBox(width: 25),
+                                const Expanded(child: SizedBox()),
                               ],
                             ),
                           ),
                           SizedBox(height: 32.scale),
-                          MyEvaluation(controller: widget.controller),
+                          const MyEvaluation(),
                           BlocBuilder(
-                            bloc: widget.controller.gradesBloc,
+                            bloc: controller.gradesBloc,
                             builder: (context, state) {
                               if (state is ProfessorGradesBadWordState) {
                                 return Padding(
@@ -126,7 +129,7 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                           ),
                           SizedBox(height: 16.scale),
                           BlocBuilder(
-                            bloc: widget.controller.gradesBloc,
+                            bloc: controller.gradesBloc,
                             builder: (context, state) {
                               if (state is ProfessorGradesFailureState) {
                                 return Padding(

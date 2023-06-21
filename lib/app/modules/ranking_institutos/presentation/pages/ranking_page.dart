@@ -65,7 +65,16 @@ class RankingPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 40.scale),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 16.scale),
+                        child: SvgPicture.asset(
+                          AssetsMeLivra.trophy,
+                          height: 70.scale,
+                        ),
+                      ),
+                    ),
                     Card(
                       margin: EdgeInsets.symmetric(horizontal: 32.scale),
                       child: Column(
@@ -109,7 +118,7 @@ class RankingPage extends StatelessWidget {
                                   children: [
                                     ListView.separated(
                                       padding: EdgeInsets.symmetric(
-                                        vertical: 24.scale,
+                                        vertical: 16.scale,
                                       ),
                                       physics:
                                           const NeverScrollableScrollPhysics(),
@@ -217,14 +226,6 @@ class RankingPage extends StatelessWidget {
                       ),
                     )
                   ],
-                ),
-              ),
-              Positioned(
-                right: size.width * 0.05,
-                top: size.height * 0.15,
-                child: SvgPicture.asset(
-                  AssetsMeLivra.trophy,
-                  height: 80,
                 ),
               ),
             ],
