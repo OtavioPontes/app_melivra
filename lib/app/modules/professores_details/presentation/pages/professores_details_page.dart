@@ -24,10 +24,17 @@ class ProfessoresDetailsPage extends StatefulWidget {
 
 class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
     with TickerProviderStateMixin {
+  final controller = Modular.get<ProfessorDetailsController>();
+  final evaluateController = Modular.get<EvaluateProfessorController>();
+
+  @override
+  void initState() {
+    controller.pipeline();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final controller = Modular.get<ProfessorDetailsController>();
-    final evaluateController = Modular.get<EvaluateProfessorController>();
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
 

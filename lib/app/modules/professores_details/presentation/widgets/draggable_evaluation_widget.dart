@@ -23,9 +23,9 @@ class DraggableEvaluation extends StatefulWidget {
 }
 
 class _DraggableEvaluationState extends State<DraggableEvaluation> {
+  final controller = Modular.get<ProfessorDetailsController>();
   @override
   Widget build(BuildContext context) {
-    final controller = Modular.get<ProfessorDetailsController>();
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
     return DraggableScrollableSheet(

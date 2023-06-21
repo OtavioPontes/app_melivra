@@ -18,9 +18,9 @@ class MyEvaluation extends StatefulWidget {
 
 class _MyEvaluationState extends State<MyEvaluation> {
   final _formKey = GlobalKey<FormState>();
+  final controller = Modular.get<ProfessorDetailsController>();
   @override
   Widget build(BuildContext context) {
-    final controller = Modular.get<ProfessorDetailsController>();
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
     return Stack(

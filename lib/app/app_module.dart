@@ -167,32 +167,6 @@ class AppModule extends Module {
         Bind<Box>((i) => Hive.box('melivra')),
 
         // -------------------- NOTIFICATIONS ---------------------
-        Bind((i) => EvaluateProfessorBloc()),
-        Bind((i) => ProfessorGradesBloc()),
-        Bind((i) => ProfessorDetailsBloc()),
-        Bind((i) => ShowEvaluationButtonBloc()),
-        Bind((i) => SendReportService(dio: i())),
-        Bind(
-          (i) => ProfessorDetailsController(
-            postProfessorGradeLikeDislikeUsecase: i(),
-            getProfessorGradesCountUsecase: i(),
-            updateProfessorGradeUsecase: i(),
-            showButtonBloc: i(),
-            getProfessorGradesUsecase: i(),
-            getProfessorDetailsUsecase: i(),
-            gradesBloc: i(),
-            bloc: i(),
-            id: i.args.data['id'],
-          ),
-        ),
-        Bind(
-          (i) => EvaluateProfessorController(
-            box: i(),
-            sendReportService: i(),
-            postProfessorGradeUsecase: i(),
-            bloc: i(),
-          ),
-        )
       ];
 
   @override
