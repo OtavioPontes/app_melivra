@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class BoardOrganizationWidget extends StatefulWidget {
   const BoardOrganizationWidget({Key? key}) : super(key: key);
@@ -18,18 +19,73 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
   final EvaluateProfessorController controller =
       Modular.get<EvaluateProfessorController>();
 
+  final tutorialKey = GlobalKey();
+
   double value = 0;
 
   @override
   void initState() {
     value = controller.boardOrganizationValue.toDouble();
+
     super.initState();
   }
 
   final textController = TextEditingController();
 
+  Future<void> showTutorial(BuildContext context) async {
+    if (!await controller.getHasTutorial()) {
+      return;
+    }
+    // ignore: use_build_context_synchronously
+    TutorialCoachMark(
+      targets: [
+        TargetFocus(
+          identify: "evaluate",
+          keyTarget: tutorialKey,
+          contents: [
+            TargetContent(
+              padding: EdgeInsets.all(50.scale),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20.scale),
+                  const Text(
+                    "Como avaliar o Professor? 🤔",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      "Basta arrastar o círculo acima, ou clicar no número e digitar a nota",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ],
+      textSkip: 'Pular',
+      onSkip: controller.setHasTutorial,
+      textStyleSkip: const TextStyle(
+        fontSize: 16,
+        color: Colors.white,
+      ),
+    ).show(context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    showTutorial(context);
     final barColor = UtilsScoreEnum.getEnumFromScore(
       score: value.toInt(),
     ).getColor;
@@ -40,6 +96,7 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
         child: Column(
           children: [
             SleekCircularSlider(
+              key: tutorialKey,
               onChange: (value) {
                 setState(() {
                   this.value = value;

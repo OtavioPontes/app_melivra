@@ -187,6 +187,7 @@ class AppModule extends Module {
         ),
         Bind(
           (i) => EvaluateProfessorController(
+            box: i(),
             sendReportService: i(),
             postProfessorGradeUsecase: i(),
             bloc: i(),
