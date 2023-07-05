@@ -38,8 +38,4 @@ class TokenInterceptor extends Interceptor {
         : null;
     return user?.token;
   }
-
-  Future<void> initialize() async {
-    accessToken = await _getAccessToken();
-  }
 }

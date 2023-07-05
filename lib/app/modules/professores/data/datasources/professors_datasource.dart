@@ -23,9 +23,9 @@ class ProfessorsDatasource implements IProfessorDatasource {
         "${Endpoints.professors}$id",
       );
       return ProfessorModel.fromMap(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
-        message: e.message,
+        message: e.message ?? "",
         statusCode: e.response?.statusCode,
       );
     }
@@ -61,9 +61,9 @@ class ProfessorsDatasource implements IProfessorDatasource {
         itemsPerPage: response.data['items_per_page'],
         professors: professors,
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
-        message: e.message,
+        message: e.message ?? "",
         statusCode: e.response?.statusCode,
       );
     }
@@ -95,9 +95,9 @@ class ProfessorsDatasource implements IProfessorDatasource {
         itemsPerPage: response.data['items_per_page'],
         professors: professors,
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
-        message: e.message,
+        message: e.message ?? "",
         statusCode: e.response?.statusCode,
       );
     }
@@ -113,7 +113,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
         Endpoints.evaluateProfessor(id: id),
         data: grade.toJson(),
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         message: e.response?.data['message'],
         statusCode: e.response?.statusCode,
@@ -131,7 +131,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
         Endpoints.evaluateComment(gradeId: id),
         data: {'is_like': isLike},
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         message: e.response?.data['message'],
         statusCode: e.response?.statusCode,
@@ -146,7 +146,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
         Endpoints.evaluateProfessor(id: id),
       );
       return GradesResponseConfig.fromMap(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         message: e.response?.data['message'],
         statusCode: e.response?.statusCode,
@@ -161,7 +161,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
         Endpoints.gradesCountbyProfessor(id: id),
       );
       return response.data['data'];
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         message: e.response?.data['message'],
         statusCode: e.response?.statusCode,
@@ -179,7 +179,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
         Endpoints.evaluateProfessor(id: id),
         data: {'description': description},
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         message: e.response?.data['message'],
         statusCode: e.response?.statusCode,
@@ -194,7 +194,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
         Endpoints.globalGrades,
       );
       return Grade.fromMap(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         message: e.response?.data['message'],
         statusCode: e.response?.statusCode,

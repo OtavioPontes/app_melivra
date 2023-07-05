@@ -14,8 +14,9 @@ class DioConfig {
   Future<void> init() async {
     final baseOptions = BaseOptions(
       baseUrl: url,
-      connectTimeout: 10000,
-      receiveTimeout: 10000,
+      contentType: Headers.jsonContentType,
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 10),
     );
     _dio.options = baseOptions;
 

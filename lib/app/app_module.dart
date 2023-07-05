@@ -56,13 +56,6 @@ import 'modules/professores/domain/usecases/post_professor_grade_like_dislike_us
 import 'modules/professores/domain/usecases/update_professor_grade_usecase.dart';
 import 'modules/professores/presentation/bloc/professors_bloc.dart';
 import 'modules/professores/presentation/controllers/professores_controller.dart';
-import 'modules/professores_details/data/services/send_report_service.dart';
-import 'modules/professores_details/presentation/bloc/evaluate_professor_bloc.dart';
-import 'modules/professores_details/presentation/bloc/professor_details_bloc.dart';
-import 'modules/professores_details/presentation/bloc/professor_grades_bloc.dart';
-import 'modules/professores_details/presentation/bloc/show_button_bloc.dart';
-import 'modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
-import 'modules/professores_details/presentation/controllers/professor_details_controller.dart';
 import 'modules/professores_details/professores_details_module.dart';
 import 'modules/ranking_institutos/ranking_institutos_module.dart';
 import 'modules/search/presentation/bloc/search_institutes_bloc.dart';

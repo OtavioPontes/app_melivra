@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_constructors_over_static_methods
+// ignore_for_file: prefer_constructors_over_static_methods, deprecated_member_use
 
 import 'dart:math';
 import 'dart:ui';
@@ -38,8 +38,7 @@ class ScreenUtil {
       BuildContext context,
       BoxConstraints constraints,
       Orientation orientation,
-    )
-        builder,
+    ) builder,
   }) {
     return OrientationBuilder(
       builder: (context, orientation) {
@@ -112,14 +111,14 @@ class ScreenUtil {
     final mediaQuery = MediaQuery.of(context);
     return mediaQuery.size.height -
         (kToolbarHeight * 2).scale -
-        MediaQueryData.fromWindow(window).padding.top;
+        MediaQueryData.fromView(window).padding.top;
   }
 
   static double pageViewHeightLegacy(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     return mediaQuery.size.height -
         kToolbarHeight.scale -
-        MediaQueryData.fromWindow(window).padding.top;
+        MediaQueryData.fromView(window).padding.top;
   }
 
   static double scaleDevicePixelRatio(BuildContext context) {

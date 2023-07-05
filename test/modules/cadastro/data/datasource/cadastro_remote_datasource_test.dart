@@ -5,7 +5,8 @@ import 'package:app_melivra/app/modules/cadastro/data/datasource/cadastro_remote
 import 'package:app_melivra/app/modules/cadastro/data/datasource/i_cadastro_remote_datasource.dart';
 import 'package:app_melivra/app/modules/cadastro/data/models/user_creation_model.dart';
 import 'package:dio/dio.dart';
-import 'package:dio/native_imp.dart';
+import 'package:dio/io.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

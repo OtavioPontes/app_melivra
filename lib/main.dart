@@ -9,7 +9,6 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app/app_module.dart';
@@ -22,92 +21,7 @@ void main() async {
   await runZonedGuarded<Future<void>>(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-      await Future.wait([
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.logo,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.wave,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.splash,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.loginDrawing,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.waveHome,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.trophy,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.waveChat,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.success,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.failure,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.sobre,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.linkedin,
-          ),
-          null,
-        ),
-        precachePicture(
-          ExactAssetPicture(
-            SvgPicture.svgStringDecoderBuilder,
-            AssetsMeLivra.github,
-          ),
-          null,
-        ),
-      ]);
+
       AppModule.url = Api.prodUrl;
       await Firebase.initializeApp();
       final firebaseAnalytics = FirebaseAnalytics.instance;

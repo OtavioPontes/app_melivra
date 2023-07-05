@@ -3,14 +3,14 @@ import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/widgets/card_info_instituto_widget.dart';
 import 'package:app_melivra/app/core/widgets/card_info_professor_widget.dart';
 import 'package:app_melivra/app/modules/search/presentation/bloc/search_professor_bloc.dart';
-import 'package:app_melivra/app/modules/search/presentation/controllers/search_controller.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide SearchController;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../bloc/search_institutes_bloc.dart';
+import '../controllers/search_controller.dart';
 
 class SearchPage extends StatefulWidget {
   final bool onlyProfessor;

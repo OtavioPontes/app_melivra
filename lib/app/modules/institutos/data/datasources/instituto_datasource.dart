@@ -21,9 +21,9 @@ class InstitutoDatasource implements IInstitutoDatasource {
         "${Endpoints.institutos}$id",
       );
       return InstitutoModel.fromMap(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
-        message: e.message,
+        message: e.message ?? "",
         statusCode: e.response?.statusCode,
       );
     }
@@ -57,9 +57,9 @@ class InstitutoDatasource implements IInstitutoDatasource {
         itemsPerPage: response.data['items_per_page'],
         institutos: institutos,
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
-        message: e.message,
+        message: e.message ?? "",
         statusCode: e.response?.statusCode,
       );
     }
@@ -91,9 +91,9 @@ class InstitutoDatasource implements IInstitutoDatasource {
         itemsPerPage: response.data['items_per_page'],
         institutos: institutos,
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
-        message: e.message,
+        message: e.message ?? "",
         statusCode: e.response?.statusCode,
       );
     }

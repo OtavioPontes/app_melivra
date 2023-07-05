@@ -3,7 +3,7 @@ description: Aplicativo para avaliação de professores
 
 publish_to: "none"
 
-version: 0.0.5+5
+version: 0.0.6+6
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -20,7 +20,7 @@ dependencies:
   hive_flutter: ^1.1.0
 
   # Network
-  dio: ^4.0.6
+  dio: ^5.2.1+1
 
   # Gerência de Estados
   bloc: ^8.1.0
@@ -32,17 +32,17 @@ dependencies:
   version: ^3.0.2
   package_info: ^2.0.2
   device_info: ^2.0.3
-  connectivity_plus: ^3.0.2
+  connectivity_plus: ^4.0.1
   jwt_decoder: ^2.0.1
   sleek_circular_slider: ^2.0.1
   fluttertoast: ^8.1.2
   url_launcher: ^6.1.7
   profanity_filter: ^2.0.0
-  pin_code_fields: ^7.4.0
+  pin_code_fields: ^8.0.1
   pinput: ^2.2.31
   tutorial_coach_mark: ^1.2.9
   # Images
-  flutter_svg: ^1.1.6
+  flutter_svg: ^2.0.7
 
   # Firebase
   firebase_core: ^2.1.1
