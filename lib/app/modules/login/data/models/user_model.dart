@@ -4,7 +4,7 @@ import '../../../../core/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({
-    required int userId,
+    required String userId,
     required String name,
     required String email,
     required String token,
@@ -17,7 +17,7 @@ class UserModel extends User {
 
   Map<String, dynamic> toMap() {
     return {
-      'user_id': userId,
+      'user_id': int.parse(userId),
       'name': name,
       'email': email,
       'token': token,
@@ -26,7 +26,7 @@ class UserModel extends User {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      userId: map['user_id'] ?? '',
+      userId: map['user_id'].toString(),
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       token: map['token'] ?? '',

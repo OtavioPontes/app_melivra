@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
-  final int userId;
+  final String userId;
   final String name;
   final String email;
   final String token;
@@ -17,7 +17,7 @@ class User extends Equatable {
   List<Object> get props => [name, email, token];
 
   User copyWith({
-    int? userId,
+    String? userId,
     String? name,
     String? email,
     String? token,
