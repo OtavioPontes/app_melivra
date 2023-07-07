@@ -24,6 +24,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
       Modular.get<InstitutoDetailsController>();
   late final ScrollController _scrollController;
   final professorEditText = TextEditingController();
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -36,7 +37,13 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
       controller.setNextPage();
+      setState(() {
+        isLoading = true;
+      });
       await controller.getProfessoresByInstituto();
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -57,7 +64,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
         child: SingleChildScrollView(
           controller: _scrollController,
           physics: const BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(vertical: 32.scale),
+          padding: EdgeInsets.only(bottom: 64.scale, top: 32.scale),
           child: Stack(
             children: [
               SvgPicture.asset(
@@ -359,7 +366,16 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                   },
                                   separatorBuilder: (context, index) =>
                                       SizedBox(height: 16.scale),
-                                )
+                                ),
+                                if (isLoading)
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 16.scale,
+                                    ),
+                                    child: CircularProgressIndicator(
+                                      color: theme.colorScheme.background,
+                                    ),
+                                  ),
                               ],
                             ),
                           );

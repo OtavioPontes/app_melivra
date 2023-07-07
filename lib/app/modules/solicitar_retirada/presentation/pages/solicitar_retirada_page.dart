@@ -23,6 +23,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
       Modular.get<SolicitarRetiradaController>();
 
   late final ScrollController _scrollController;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -34,8 +35,14 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
   Future<void> infiniteScrolling() async {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
+      setState(() {
+        isLoading = true;
+      });
       controller.setNextPage();
       await controller.getProfessores();
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -246,6 +253,17 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                   return const SizedBox.shrink();
                                 },
                               ),
+                              if (isLoading)
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 16.scale,
+                                  ),
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      color: theme.colorScheme.background,
+                                    ),
+                                  ),
+                                ),
                               if (controller.selectedProfessor != null)
                                 Column(
                                   children: [
