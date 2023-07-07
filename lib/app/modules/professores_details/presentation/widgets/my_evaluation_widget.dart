@@ -52,9 +52,8 @@ class _MyEvaluationState extends State<MyEvaluation> {
             ),
             child: TextFormField(
               controller: controller.evaluationController,
-              maxLength: 50,
-              minLines: 2,
-              maxLines: 2,
+              maxLength: 200,
+              maxLines: 3,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Escreva alguma coisa...';

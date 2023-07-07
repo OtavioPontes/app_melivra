@@ -26,13 +26,13 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
   @override
   void initState() {
     value = controller.boardOrganizationValue.toDouble();
-
+    showTutorial();
     super.initState();
   }
 
   final textController = TextEditingController();
 
-  Future<void> showTutorial(BuildContext context) async {
+  Future<void> showTutorial() async {
     if (!await controller.getHasTutorial()) {
       return;
     }
@@ -85,7 +85,6 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    showTutorial(context);
     final barColor = UtilsScoreEnum.getEnumFromScore(
       score: value.toInt(),
     ).getColor;
