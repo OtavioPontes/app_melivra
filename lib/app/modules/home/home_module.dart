@@ -18,6 +18,6 @@ class HomeModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => HomePage(),
-        )
+        ),
       ];
 }

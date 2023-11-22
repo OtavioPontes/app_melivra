@@ -60,7 +60,7 @@ class AboutUsPage extends StatelessWidget {
                                 color: theme.colorScheme.background,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -194,8 +194,11 @@ class AboutUsPage extends StatelessWidget {
                                                   AssetsMeLivra.linkedin,
                                                   fit: BoxFit.cover,
                                                   height: 40.scale,
-                                                  color:
-                                                      const Color(0xFF0077B5),
+                                                  colorFilter:
+                                                      const ColorFilter.mode(
+                                                    Color(0xFF0077B5),
+                                                    BlendMode.srcIn,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -220,10 +223,10 @@ class AboutUsPage extends StatelessWidget {
                                               ),
                                             ),
                                           ],
-                                        )
+                                        ),
                                       ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                               SizedBox(height: 80.scale),
@@ -351,7 +354,7 @@ class AboutUsPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],

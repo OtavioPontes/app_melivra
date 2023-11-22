@@ -304,7 +304,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                                     ?.respectfulTreatment,
                                               ),
                                             ],
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ),

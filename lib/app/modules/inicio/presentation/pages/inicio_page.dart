@@ -59,7 +59,10 @@ class _InicioPageState extends State<InicioPage> {
               child: SvgPicture.asset(
                 AssetsMeLivra.inicio,
                 fit: BoxFit.fill,
-                color: theme.primaryColor,
+                colorFilter: ColorFilter.mode(
+                  theme.primaryColor,
+                  BlendMode.srcATop,
+                ),
                 width: size.width,
                 height: size.height * 0.65,
               ),

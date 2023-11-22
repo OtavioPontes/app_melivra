@@ -10,10 +10,11 @@ class SolicitarRetiradaModule extends Module {
         Bind((i) => SendSolicitacaoRetiradaService(dio: i())),
         Bind(
           (i) => SolicitarRetiradaController(
-              searchProfessorsBloc: i(),
-              getProfessorsUsecase: i(),
-              sendSolicitacaoRetiradaService: i(),),
-        )
+            searchProfessorsBloc: i(),
+            getProfessorsUsecase: i(),
+            sendSolicitacaoRetiradaService: i(),
+          ),
+        ),
       ];
 
   @override
@@ -21,6 +22,6 @@ class SolicitarRetiradaModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => const SolicitarRetiradaPage(),
-        )
+        ),
       ];
 }

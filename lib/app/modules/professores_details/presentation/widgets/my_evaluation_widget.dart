@@ -46,7 +46,7 @@ class _MyEvaluationState extends State<MyEvaluation> {
                   offset: const Offset(-1, 2),
                   blurRadius: 5,
                   spreadRadius: 2,
-                )
+                ),
               ],
               color: theme.cardColor,
             ),

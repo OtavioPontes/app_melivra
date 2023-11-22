@@ -60,7 +60,10 @@ class _CadastroPageState extends State<CadastroPage> {
                     children: [
                       SvgPicture.asset(
                         AssetsMeLivra.wave,
-                        color: theme.primaryColor,
+                        colorFilter: ColorFilter.mode(
+                          theme.primaryColor,
+                          BlendMode.srcATop,
+                        ),
                         width: size.width,
                         height: size.height * 0.8,
                         fit: BoxFit.fitHeight,
@@ -193,7 +196,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                       ),
                                     );
                                   },
-                                )
+                                ),
                               ],
                             ),
                           ),

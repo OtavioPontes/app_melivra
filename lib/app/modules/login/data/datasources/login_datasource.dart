@@ -28,7 +28,7 @@ class LoginDatasource implements ILoginDatasource {
         ),
       );
       return UserModel.fromMap(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         message: e.response?.data['message'] ?? 'Erro ao Logar usuário',
         statusCode: e.response?.statusCode,

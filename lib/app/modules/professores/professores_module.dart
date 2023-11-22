@@ -18,6 +18,6 @@ class ProfessoresModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => ProfessoresPage(),
-        )
+        ),
       ];
 }

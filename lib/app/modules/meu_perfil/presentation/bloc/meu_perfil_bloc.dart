@@ -5,6 +5,7 @@ class MeuPerfilBloc extends Bloc {
     on<MeuPerfilLoadingEvent>(handleMeuPerfilLoadingEvent);
     on<MeuPerfilSuccessEvent>(handleMeuPerfilSuccessEvent);
     on<MeuPerfilFailureEvent>(handleMeuPerfilFailureEvent);
+    on<MeuPerfilDeleteEvent>(handleMeuPerfilDeleteEvent);
   }
 
   void handleMeuPerfilLoadingEvent(MeuPerfilLoadingEvent event, Emitter emit) {
@@ -18,6 +19,10 @@ class MeuPerfilBloc extends Bloc {
   void handleMeuPerfilFailureEvent(MeuPerfilFailureEvent event, Emitter emit) {
     emit(MeuPerfilFailureState(message: event.message));
   }
+
+  void handleMeuPerfilDeleteEvent(MeuPerfilDeleteEvent event, Emitter emit) {
+    emit(MeuPerfilDeleteState());
+  }
 }
 
 abstract class MeuPerfilState {}
@@ -27,6 +32,8 @@ class MeuPerfilEmptyState extends MeuPerfilState {}
 class MeuPerfilLoadingState extends MeuPerfilState {}
 
 class MeuPerfilSuccessState extends MeuPerfilState {}
+
+class MeuPerfilDeleteState extends MeuPerfilState {}
 
 class MeuPerfilFailureState extends MeuPerfilState {
   final String message;
@@ -39,6 +46,8 @@ abstract class MeuPerfilEvent {}
 class MeuPerfilLoadingEvent extends MeuPerfilEvent {}
 
 class MeuPerfilSuccessEvent extends MeuPerfilEvent {}
+
+class MeuPerfilDeleteEvent extends MeuPerfilEvent {}
 
 class MeuPerfilFailureEvent extends MeuPerfilEvent {
   final String message;

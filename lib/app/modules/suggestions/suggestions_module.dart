@@ -16,6 +16,6 @@ class SuggestionModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => const SuggestionsPage(),
-        )
+        ),
       ];
 }

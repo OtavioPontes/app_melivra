@@ -14,7 +14,7 @@ class RankingInstitutosModule extends Module {
             bloc: i(),
             getInstitutosRankUsecase: i(),
           ),
-        )
+        ),
       ];
 
   @override

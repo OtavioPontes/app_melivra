@@ -62,7 +62,7 @@ class SobreAppPage extends StatelessWidget {
                                 color: theme.colorScheme.background,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -98,7 +98,7 @@ class SobreAppPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                     SizedBox(height: 32.scale),
@@ -133,7 +133,7 @@ class SobreAppPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Positioned(

@@ -45,7 +45,7 @@ class ProfessorsDatasource implements IProfessorDatasource {
           if (page != null) 'page': page,
           if (itemsPerPage != null) 'items_per_page': itemsPerPage,
           if (searchText != null) 'q': searchText,
-          if (instituteId != null) 'institute_id': instituteId
+          if (instituteId != null) 'institute_id': instituteId,
         },
       );
       final professors = List<Professor>.from(

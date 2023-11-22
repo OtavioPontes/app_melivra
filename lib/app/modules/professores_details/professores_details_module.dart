@@ -38,7 +38,7 @@ class ProfessoresDetailsModule extends Module {
             postProfessorGradeUsecase: i(),
             bloc: i(),
           ),
-        )
+        ),
       ];
 
   @override

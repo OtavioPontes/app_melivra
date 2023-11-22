@@ -27,6 +27,6 @@ class SearchModule extends Module {
             onlyInstitutos: args.data?['onlyInstitutos'],
             onlyProfessor: args.data?['onlyProfessores'],
           ),
-        )
+        ),
       ];
 }

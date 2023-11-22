@@ -79,7 +79,10 @@ class EsqueciSenhaPage extends StatelessWidget {
                           width: size.width,
                           height: size.height * 0.6,
                           fit: BoxFit.fill,
-                          color: theme.primaryColor,
+                          colorFilter: ColorFilter.mode(
+                            theme.primaryColor,
+                            BlendMode.srcATop,
+                          ),
                         ),
                         Positioned.fill(
                           top: size.height * 0.12,
@@ -89,7 +92,7 @@ class EsqueciSenhaPage extends StatelessWidget {
                             children: const [
                               SendRecoverCodePage(),
                               ValidateRecoverCodePage(),
-                              UpdatePasswordPage()
+                              UpdatePasswordPage(),
                             ],
                           ),
                         ),

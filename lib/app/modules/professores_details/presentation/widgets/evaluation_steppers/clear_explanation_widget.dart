@@ -63,7 +63,7 @@ class _ClearExplanationWidgetState extends State<ClearExplanationWidget> {
                           ),
                           replacementString:
                               controller.clearExplanationValue.toString(),
-                        )
+                        ),
                       ],
                       onChanged: (value) {
                         if (value.isNotEmpty) {

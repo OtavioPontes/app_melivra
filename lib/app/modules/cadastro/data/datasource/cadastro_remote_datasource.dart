@@ -17,10 +17,10 @@ class CadastroRemoteDatasource implements ICadastroRemoteDatasource {
   }) async {
     try {
       await _dio.post(
-        Endpoints.createUser,
+        Endpoints.user,
         data: user.toMap(),
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         statusCode: e.response?.statusCode,
         message: e.response?.data['message'] ??

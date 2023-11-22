@@ -16,7 +16,7 @@ class RecoverRemoteDatasource implements IRecoverRemoteDatasource {
         Endpoints.sendValidationCode,
         data: {"email": email},
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         statusCode: e.response?.statusCode,
         message: e.response?.data['message'] ??
@@ -42,7 +42,7 @@ class RecoverRemoteDatasource implements IRecoverRemoteDatasource {
           'email': email,
         },
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         statusCode: e.response?.statusCode,
         message: e.response?.data['message'] ??
@@ -72,7 +72,7 @@ class RecoverRemoteDatasource implements IRecoverRemoteDatasource {
           'password_confirm': passwordConfirm,
         },
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw ServerException(
         statusCode: e.response?.statusCode,
         message: e.response?.data['message'] ??

@@ -67,10 +67,10 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
                         fontSize: 18,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ],
@@ -120,7 +120,7 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
                           ),
                           replacementString:
                               controller.boardOrganizationValue.toString(),
-                        )
+                        ),
                       ],
                       onChanged: (value) {
                         if (value.isNotEmpty) {

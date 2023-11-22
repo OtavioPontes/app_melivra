@@ -61,7 +61,7 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
                           ),
                           replacementString:
                               controller.respectfulTreatmentValue.toString(),
-                        )
+                        ),
                       ],
                       onChanged: (value) {
                         if (value.isNotEmpty) {

@@ -23,6 +23,6 @@ class LoginModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => const LoginPage(),
-        )
+        ),
       ];
 }

@@ -61,7 +61,7 @@ class RankingPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -224,7 +224,7 @@ class RankingPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

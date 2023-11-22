@@ -63,7 +63,7 @@ class CardMeuPerfil extends StatelessWidget {
                     Icons.arrow_forward_ios,
                     size: 24.scale,
                   ),
-                )
+                ),
               ],
             ),
           ),

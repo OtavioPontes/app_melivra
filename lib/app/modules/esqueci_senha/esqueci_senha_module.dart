@@ -31,6 +31,6 @@ class EsqueciSenhaModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => const EsqueciSenhaPage(),
-        )
+        ),
       ];
 }

@@ -61,7 +61,7 @@ class _OthersEvaluationState extends State<OthersEvaluation> {
                 offset: const Offset(-1, 2),
                 blurRadius: 5,
                 spreadRadius: 2,
-              )
+              ),
             ],
             color: theme.cardColor,
           ),
@@ -77,7 +77,7 @@ class _OthersEvaluationState extends State<OthersEvaluation> {
                       widget.response.userName,
                       style: theme.textTheme.bodyMedium,
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: 16.scale),
@@ -179,7 +179,7 @@ class _OthersEvaluationState extends State<OthersEvaluation> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

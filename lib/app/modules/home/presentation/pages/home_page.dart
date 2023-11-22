@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
                                         color: theme.colorScheme.background,
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
                                           onTap: () => Modular.to.pushNamed(
                                             ProfessoresDetailsModule.routeName,
                                             arguments: {
-                                              'id': state.professors[index].id
+                                              'id': state.professors[index].id,
                                             },
                                           ),
                                           child: SizedBox(
@@ -263,12 +263,12 @@ class HomePage extends StatelessWidget {
                                 }
                                 return const SizedBox.shrink();
                               },
-                            )
+                            ),
                           ],
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

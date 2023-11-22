@@ -48,11 +48,11 @@ void main() {
     'should register user',
     () async {
       when(
-        () => dio.post(Endpoints.createUser, data: successUser.toMap()),
+        () => dio.post(Endpoints.user, data: successUser.toMap()),
       ).thenAnswer(
         (_) async => Response(
           requestOptions: RequestOptions(
-            path: "${Api.prodUrl}${Endpoints.createUser}",
+            path: "${Api.prodUrl}${Endpoints.user}",
           ),
           statusCode: 200,
         ),

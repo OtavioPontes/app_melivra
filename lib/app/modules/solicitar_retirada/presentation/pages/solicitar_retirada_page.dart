@@ -338,7 +338,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                 ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],

@@ -27,7 +27,7 @@ class ProfessorModel extends Professor {
       'name': name,
       'institute': InstitutoModel.fromEntity(instituto).toMap(),
       'grades': grades?.toMap(),
-      'grade': averageGrade
+      'grade': averageGrade,
     };
   }
 
@@ -57,11 +57,12 @@ class ProfessorModel extends Professor {
 
   factory ProfessorModel.fromEntity(Professor professor) {
     return ProfessorModel(
-        id: professor.id,
-        name: professor.name,
-        instituto: professor.instituto,
-        grades: professor.grades,
-        averageGrade: professor.averageGrade,);
+      id: professor.id,
+      name: professor.name,
+      instituto: professor.instituto,
+      grades: professor.grades,
+      averageGrade: professor.averageGrade,
+    );
   }
 
   String toJson() => json.encode(toMap());

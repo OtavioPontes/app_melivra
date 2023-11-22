@@ -19,7 +19,7 @@ class InstitutoDetailsModule extends Module {
             bloc: i(),
             id: i.args.data['id'],
           ),
-        )
+        ),
       ];
 
   @override
@@ -27,6 +27,6 @@ class InstitutoDetailsModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => const InstitutoDetailsPage(),
-        )
+        ),
       ];
 }

@@ -20,7 +20,7 @@ class TokenInterceptor extends Interceptor {
     }
 
     final tokenHeader = <String, dynamic>{
-      'Authorization': 'Bearer $accessToken'
+      'Authorization': 'Bearer $accessToken',
     };
 
     options.headers.addAll(tokenHeader);

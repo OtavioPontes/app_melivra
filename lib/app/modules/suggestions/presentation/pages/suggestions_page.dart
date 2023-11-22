@@ -18,8 +18,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final controller =
-        Modular.get<SuggestionsController>();
+    final controller = Modular.get<SuggestionsController>();
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
@@ -146,7 +145,8 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       fixedSize: Size(140.scale, 50.scale),
-                                      backgroundColor: theme.colorScheme.background,
+                                      backgroundColor:
+                                          theme.colorScheme.background,
                                     ),
                                     onPressed: () async {
                                       await controller.sendSuggestion();
@@ -166,7 +166,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                                 ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],

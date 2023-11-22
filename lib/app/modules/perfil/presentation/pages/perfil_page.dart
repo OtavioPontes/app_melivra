@@ -70,7 +70,7 @@ class PerfilPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     );
@@ -110,7 +110,7 @@ class PerfilPage extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

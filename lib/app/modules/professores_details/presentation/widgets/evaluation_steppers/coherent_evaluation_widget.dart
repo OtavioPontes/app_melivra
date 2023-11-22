@@ -63,7 +63,7 @@ class _CoherentEvaluationWidgetState extends State<CoherentEvaluationWidget> {
                           ),
                           replacementString:
                               controller.coherentEvaluationValue.toString(),
-                        )
+                        ),
                       ],
                       onChanged: (value) {
                         if (value.isNotEmpty) {

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_lambdas
+
 import 'dart:convert';
 
 import 'package:app_melivra/app/core/domain/entities/grade_response.dart';

@@ -3,7 +3,7 @@ class Endpoints {
   static const String login = '/auth/';
 
   /// [USER]
-  static const String createUser = '/users/';
+  static const String user = '/users/';
   static const String sendValidationCode = '/recoverPassword/';
   static const String validateCode = '/recoverPassword/validate';
   static const String updatePassword = '/users/updatePassword';

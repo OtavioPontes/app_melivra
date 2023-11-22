@@ -64,7 +64,7 @@ class CardDesenvolvedores extends StatelessWidget {
                     Icons.arrow_forward_ios,
                     size: 24.scale,
                   ),
-                )
+                ),
               ],
             ),
           ),

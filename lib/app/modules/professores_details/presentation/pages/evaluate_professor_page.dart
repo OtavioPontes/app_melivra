@@ -23,7 +23,7 @@ class EvaluateProfessorPage extends StatelessWidget {
           BoardOrganizationWidget(),
           ClearExplanationWidget(),
           CoherentEvaluationWidget(),
-          RespectfulTreatmentWidget()
+          RespectfulTreatmentWidget(),
         ],
       ),
     );

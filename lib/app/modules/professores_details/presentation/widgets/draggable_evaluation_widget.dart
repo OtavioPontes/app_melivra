@@ -70,7 +70,10 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                           angle: -pi,
                           child: SvgPicture.asset(
                             AssetsMeLivra.waveChat,
-                            color: theme.cardColor,
+                            colorFilter: ColorFilter.mode(
+                              theme.cardColor,
+                              BlendMode.srcATop,
+                            ),
                             width: size.width,
                           ),
                         ),

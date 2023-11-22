@@ -62,7 +62,10 @@ class _SplashPageState extends State<SplashPage> {
                 children: [
                   SvgPicture.asset(
                     AssetsMeLivra.splash,
-                    color: theme.primaryColor,
+                    colorFilter: ColorFilter.mode(
+                      theme.primaryColor,
+                      BlendMode.srcATop,
+                    ),
                     width: size.width,
                   ),
                 ],
@@ -122,7 +125,7 @@ class _SplashPageState extends State<SplashPage> {
                             Icons.refresh,
                             color: theme.colorScheme.background,
                           ),
-                        )
+                        ),
                       ],
                     );
                   }

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:isolate';
 
 import 'package:app_melivra/app/core/network/api_url.dart';
-import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';

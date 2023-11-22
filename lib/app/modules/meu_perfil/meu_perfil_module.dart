@@ -1,5 +1,5 @@
-import 'package:app_melivra/app/modules/meu_perfil/data/datasource/update_perfil_datasource.dart';
-import 'package:app_melivra/app/modules/meu_perfil/data/services/update_perfil_service.dart';
+import 'package:app_melivra/app/modules/meu_perfil/data/datasource/perfil_datasource.dart';
+import 'package:app_melivra/app/modules/meu_perfil/data/repository/perfil_repository.dart';
 import 'package:app_melivra/app/modules/meu_perfil/presentation/bloc/meu_perfil_bloc.dart';
 import 'package:app_melivra/app/modules/meu_perfil/presentation/controllers/meu_perfil_controller.dart';
 import 'package:app_melivra/app/modules/meu_perfil/presentation/pages/meu_perfil_page.dart';
@@ -10,17 +10,17 @@ class MeuPerfilModule extends Module {
   @override
   List<Bind> get binds => [
         Bind(
-          (i) => UpdatePerfilService(updatePerfilRemoteDatasource: i()),
+          (i) => PerfilRepository(perfilRemoteDatasource: i()),
         ),
         Bind(
-          (i) => UpdatePerfilDatasource(dio: i()),
+          (i) => PerfilDatasource(dio: i()),
         ),
         Bind(
           (i) => MeuPerfilBloc(),
         ),
         Bind(
           (i) => MeuPerfilController(
-            updatePerfilService: i(),
+            repository: i(),
             bloc: i(),
             store: i(),
           ),
@@ -32,6 +32,6 @@ class MeuPerfilModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => MeuPerfilPage(),
-        )
+        ),
       ];
 }

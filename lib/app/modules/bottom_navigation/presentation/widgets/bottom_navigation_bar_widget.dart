@@ -56,7 +56,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget>
             BottomNavigationBarItem(
               label: 'Meu Perfil',
               icon: Icon(Icons.person),
-            )
+            ),
           ],
         ),
       ],

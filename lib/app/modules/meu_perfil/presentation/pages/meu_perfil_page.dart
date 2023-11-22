@@ -1,14 +1,18 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
+import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
+import 'package:app_melivra/app/modules/meu_perfil/presentation/bloc/meu_perfil_bloc.dart';
 import 'package:app_melivra/app/modules/perfil/presentation/controllers/perfil_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../core/bloc/user_bloc.dart';
 import '../controllers/meu_perfil_controller.dart';
+import '../widgets/delete_perfil_dialog.dart';
 
 class MeuPerfilPage extends StatelessWidget {
   MeuPerfilPage({Key? key}) : super(key: key);
@@ -52,7 +56,20 @@ class MeuPerfilPage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BlocBuilder(
+                    BlocConsumer(
+                      listener: (context, state) async {
+                        if (state is MeuPerfilDeleteState) {
+                          Modular.to.navigate(InicioModule.routeName);
+                          await Fluttertoast.showToast(
+                            msg: "Perfil deletado com sucesso ✅",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: Colors.greenAccent,
+                            textColor: Colors.black,
+                            fontSize: 12,
+                          );
+                        }
+                      },
                       bloc: bloc,
                       builder: (context, state) {
                         return Center(
@@ -83,7 +100,7 @@ class MeuPerfilPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         );
@@ -141,11 +158,51 @@ class MeuPerfilPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              SizedBox(height: 40.scale),
+                              Center(
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      side: const BorderSide(
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    fixedSize: Size(160.scale, 40.scale),
+                                  ),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          const DeletePerfilDialog(),
+                                    );
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                      ),
+                                      SizedBox(width: 8.scale),
+                                      Text(
+                                        'Deletar a Conta',
+                                        style:
+                                            theme.textTheme.titleSmall!.merge(
+                                          TextStyle(
+                                            color: theme.colorScheme.background,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ],
@@ -192,7 +249,7 @@ class MeuPerfilTextField extends StatelessWidget {
               spreadRadius: 2,
               blurRadius: 4,
               offset: const Offset(0, 1),
-            )
+            ),
           ],
         ),
         width: size.width * 0.8,

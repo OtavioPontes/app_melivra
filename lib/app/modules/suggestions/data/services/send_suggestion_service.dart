@@ -22,7 +22,7 @@ class SendSuggestionService implements ISendSuggestionService {
         },
       );
       return Right(voidRight);
-    } on DioError catch (_) {
+    } on DioException catch (_) {
       return const Left(
         ServerFailure(message: 'Erro ao enviar sugestão, tente novamente,'),
       );

@@ -16,8 +16,7 @@ class SteppersMenu extends StatefulWidget {
 class _SteppersMenuState extends State<SteppersMenu> {
   @override
   Widget build(BuildContext context) {
-    final controller =
-        Modular.get<EvaluateProfessorController>();
+    final controller = Modular.get<EvaluateProfessorController>();
     final theme = Theme.of(context);
 
     return Padding(
@@ -43,7 +42,7 @@ class _SteppersMenuState extends State<SteppersMenu> {
                     size: 15.scale,
                   ),
                   SizedBox(width: 2.scale),
-                  const Text('Anterior')
+                  const Text('Anterior'),
                 ],
               ),
             ),
@@ -105,7 +104,7 @@ class _SteppersMenuState extends State<SteppersMenu> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

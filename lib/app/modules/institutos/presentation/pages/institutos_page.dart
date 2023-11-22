@@ -220,7 +220,7 @@ class InstitutosPage extends StatelessWidget {
                                         },
                                         separatorBuilder: (context, index) =>
                                             SizedBox(height: 16.scale),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -243,7 +243,7 @@ class InstitutosPage extends StatelessWidget {
                         },
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

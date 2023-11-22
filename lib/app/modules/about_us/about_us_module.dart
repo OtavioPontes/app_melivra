@@ -11,6 +11,6 @@ class AboutUsModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => const AboutUsPage(),
-        )
+        ),
       ];
 }

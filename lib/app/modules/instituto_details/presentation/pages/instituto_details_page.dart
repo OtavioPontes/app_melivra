@@ -176,7 +176,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                     ),
                                     SizedBox(
                                       width: 16.scale,
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -238,7 +238,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                                 .grades?.respectfulTreatment,
                                           ),
                                         ],
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),

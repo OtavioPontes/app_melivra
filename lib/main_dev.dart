@@ -2,14 +2,12 @@ import 'dart:async';
 import 'dart:isolate';
 
 import 'package:app_melivra/app/core/network/api_url.dart';
-import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app/app_module.dart';

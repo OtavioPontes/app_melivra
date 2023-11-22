@@ -26,7 +26,7 @@ class SendReportService implements ISendReportService {
         },
       );
       return Right(voidRight);
-    } on DioError catch (_) {
+    } on DioException catch (_) {
       return const Left(
         ServerFailure(message: 'Erro ao enviar solicitação, tente novamente,'),
       );

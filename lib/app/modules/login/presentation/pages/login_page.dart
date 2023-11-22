@@ -89,7 +89,10 @@ class _LoginPageState extends State<LoginPage> {
                           SvgPicture.asset(
                             AssetsMeLivra.waveLogin,
                             width: size.width,
-                            color: theme.primaryColor,
+                            colorFilter: ColorFilter.mode(
+                              theme.primaryColor,
+                              BlendMode.srcATop,
+                            ),
                           ),
                           Positioned(
                             right: 10.scale,
