@@ -10,7 +10,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../../../core/bloc/user_bloc.dart';
 import '../controllers/meu_perfil_controller.dart';
 import '../widgets/delete_perfil_dialog.dart';
 
@@ -19,7 +18,7 @@ class MeuPerfilPage extends StatelessWidget {
   final PerfilController controller = Modular.get<PerfilController>();
   final MeuPerfilController meuPerfilController =
       Modular.get<MeuPerfilController>();
-  final UserBloc bloc = Modular.get<UserBloc>();
+  final bloc = Modular.get<MeuPerfilBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +67,7 @@ class MeuPerfilPage extends StatelessWidget {
                             textColor: Colors.black,
                             fontSize: 12,
                           );
+                          await meuPerfilController.store.clearUser();
                         }
                       },
                       bloc: bloc,

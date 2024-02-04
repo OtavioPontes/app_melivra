@@ -60,7 +60,6 @@ class MeuPerfilController {
       },
       (success) async {
         bloc.add(MeuPerfilDeleteEvent());
-        await store.clearUser();
       },
     );
   }
