@@ -101,8 +101,9 @@ class EvaluateProfessorController {
     return;
   }
 
-  Future<void> setHasTutorial() async {
+  Future<bool> setHasTutorial() async {
     await _box.put('hasTutorial', false);
+    return true;
   }
 
   Future<bool> getHasTutorial() async {

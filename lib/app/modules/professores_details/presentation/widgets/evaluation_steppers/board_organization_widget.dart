@@ -75,7 +75,10 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
         ),
       ],
       textSkip: 'Pular',
-      onSkip: controller.setHasTutorial,
+      onSkip: () {
+        controller.setHasTutorial();
+        return true;
+      },
       textStyleSkip: const TextStyle(
         fontSize: 16,
         color: Colors.white,
