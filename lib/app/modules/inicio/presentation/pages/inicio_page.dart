@@ -28,115 +28,119 @@ class _InicioPageState extends State<InicioPage> {
           statusBarIconBrightness: Brightness.dark,
           statusBarColor: theme.cardColor,
         ),
-        child: Stack(
-          children: [
-            Center(
-              child: Padding(
-                padding: EdgeInsets.only(
-                  top: 48.scale,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 48.scale),
+                  child: Column(
+                    children: [
+                      SvgPicture.asset(
+                        AssetsMeLivra.logo,
+                        width: 85.scale,
+                        height: 85.scale,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      SizedBox(height: 16.scale),
+                      Text(
+                        'Me Livra',
+                        style: theme.textTheme.displayMedium,
+                      ),
+                    ],
+                  ),
                 ),
-                child: Column(
+              ),
+              SizedBox(
+                height: size.height * 0.7,
+                child: Stack(
                   children: [
-                    SvgPicture.asset(
-                      AssetsMeLivra.logo,
-                      width: 85.scale,
-                      height: 85.scale,
-                      fit: BoxFit.fitWidth,
+                    Positioned(
+                      width: size.width,
+                      child: CustomPaint(
+                        painter: InitialCustomPath(),
+                        size: Size(size.width, size.height * 0.8),
+                      ),
                     ),
-                    SizedBox(
-                      height: 16.scale,
-                    ),
-                    Text(
-                      'Me Livra',
-                      style: theme.textTheme.displayMedium,
+                    Positioned(
+                      top: 40.scale,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 36.scale,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 80.scale),
+                            Text(
+                              'Bem vindo (a)',
+                              style: theme.textTheme.headlineMedium!.merge(
+                                TextStyle(
+                                  color: theme.colorScheme.background,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 24.scale,
+                            ),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                fixedSize: Size(size.width * 0.8, 54.scale),
+                                backgroundColor: theme.colorScheme.background,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                ),
+                              ),
+                              onPressed: () =>
+                                  Modular.to.pushNamed(LoginModule.routeName),
+                              child: Text(
+                                "Fazer Login",
+                                style: theme.textTheme.headlineSmall!.merge(
+                                  TextStyle(
+                                    color: theme.primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 16.scale,
+                            ),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                fixedSize: Size(size.width * 0.8, 54.scale),
+                                backgroundColor: theme.colorScheme.primary,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                ),
+                                side: BorderSide(
+                                  color: theme.colorScheme.background,
+                                  width: 2,
+                                ),
+                              ),
+                              onPressed: () => Modular.to
+                                  .pushNamed(CadastroModule.routeName),
+                              child: Text(
+                                "Cadastrar",
+                                style: theme.textTheme.headlineSmall!.merge(
+                                  TextStyle(
+                                    color: theme.colorScheme.background,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-            ),
-            Positioned(
-              bottom: 0,
-              width: size.width,
-              child: CustomPaint(
-                painter: InitialCustomPath(),
-                size: Size(size.width, size.height * 0.6),
-              ),
-            ),
-            Positioned(
-              bottom: size.height * 0.16,
-              width: size.width,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 36.scale,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Bem vindo (a)',
-                      style: theme.textTheme.headlineMedium!.merge(
-                        TextStyle(
-                          color: theme.colorScheme.background,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 24.scale,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        fixedSize: Size(size.width * 0.8, 54.scale),
-                        backgroundColor: theme.colorScheme.background,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                      ),
-                      onPressed: () =>
-                          Modular.to.pushNamed(LoginModule.routeName),
-                      child: Text(
-                        "Fazer Login",
-                        style: theme.textTheme.headlineSmall!.merge(
-                          TextStyle(
-                            color: theme.primaryColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 16.scale,
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        fixedSize: Size(size.width * 0.8, 54.scale),
-                        backgroundColor: theme.colorScheme.primary,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        side: BorderSide(
-                          color: theme.colorScheme.background,
-                          width: 2,
-                        ),
-                      ),
-                      onPressed: () =>
-                          Modular.to.pushNamed(CadastroModule.routeName),
-                      child: Text(
-                        "Cadastrar",
-                        style: theme.textTheme.headlineSmall!.merge(
-                          TextStyle(
-                            color: theme.colorScheme.background,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

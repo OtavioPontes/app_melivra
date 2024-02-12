@@ -22,8 +22,8 @@ class ScoreWidget extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           SizedBox(
-            height: 50,
-            width: 50,
+            height: 50.scale,
+            width: 50.scale,
             child: Transform.rotate(
               angle: pi,
               child: CircularProgressIndicator(

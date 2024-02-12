@@ -73,6 +73,7 @@ class _SplashPageState extends State<SplashPage> {
               bottom: size.height * 0.36,
               child: Image.asset(
                 'assets/images/professor_splash.png',
+                height: 85.scale,
                 fit: BoxFit.fitHeight,
               ),
             ),

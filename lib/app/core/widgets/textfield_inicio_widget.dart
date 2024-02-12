@@ -36,57 +36,61 @@ class _TextFieldInicioState extends State<TextFieldInicio> {
     final theme = Theme.of(context);
     return Container(
       width: size.width,
+      height: 40.scale,
       padding: EdgeInsets.only(
         left: 16.scale,
         right: 8.scale,
-        bottom: bottomPadding.scale,
+        bottom: bottomPadding,
       ),
       decoration: BoxDecoration(
         color: theme.colorScheme.background,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: TextFormField(
-        onChanged: widget.onChange,
-        controller: widget.controller,
-        textInputAction: widget.textInputAction,
-        onEditingComplete: widget.onDone,
-        validator: (value) {
-          if (widget.validator != null) {
-            setState(() {
-              bottomPadding = 8.scale;
-            });
-            final result = widget.validator!(value);
-            if (result == null) {
+      child: Center(
+        child: TextFormField(
+          onChanged: widget.onChange,
+          controller: widget.controller,
+          textInputAction: widget.textInputAction,
+          onEditingComplete: widget.onDone,
+          validator: (value) {
+            if (widget.validator != null) {
               setState(() {
                 bottomPadding = 0;
               });
+              final result = widget.validator!(value);
+              if (result == null) {
+                setState(() {
+                  bottomPadding = 8;
+                });
+              }
+              return result;
             }
-            return result;
-          }
-          return null;
-        },
-        textAlignVertical: TextAlignVertical.center,
-        obscureText: widget.isPassword && hidePassword,
-        decoration: InputDecoration(
-          errorBorder: const UnderlineInputBorder(),
-          hintText: widget.fieldHint,
-          suffixIcon: widget.isPassword
-              ? GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      hidePassword = !hidePassword;
-                    });
-                  },
-                  child: Icon(
-                    !hidePassword
-                        ? CupertinoIcons.eye_fill
-                        : CupertinoIcons.eye_slash_fill,
-                  ),
-                )
-              : null,
-          prefixIcon: Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Icon(widget.prefixIcon),
+            return null;
+          },
+          textAlignVertical: TextAlignVertical.center,
+          obscureText: widget.isPassword && hidePassword,
+          decoration: InputDecoration(
+            errorBorder: const UnderlineInputBorder(),
+            hintText: widget.fieldHint,
+            suffixIcon: widget.isPassword
+                ? GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        hidePassword = !hidePassword;
+                      });
+                    },
+                    child: Icon(
+                      !hidePassword
+                          ? CupertinoIcons.eye_fill
+                          : CupertinoIcons.eye_slash_fill,
+                      size: 15.scale,
+                    ),
+                  )
+                : null,
+            prefixIcon: Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: Icon(widget.prefixIcon, size: 15.scale),
+            ),
           ),
         ),
       ),

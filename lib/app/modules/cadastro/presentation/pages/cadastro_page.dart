@@ -34,16 +34,12 @@ class _CadastroPageState extends State<CadastroPage> {
     final theme = Theme.of(context);
     return Scaffold(
       body: SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: size.height,
-            maxWidth: size.width,
-          ),
-          child: Stack(
-            children: [
-              Positioned(
-                top: 50.scale,
-                left: 30.scale,
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.all(40.scale),
                 child: GestureDetector(
                   onTap: Modular.to.pop,
                   child: Icon(
@@ -52,155 +48,151 @@ class _CadastroPageState extends State<CadastroPage> {
                   ),
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Stack(
-                    children: [
-                      CustomPaint(
-                        painter: WaveLogin(),
-                        size: Size(size.width, size.height * 0.8),
-                      ),
-                      Positioned(
-                        top: size.height * 0.1,
-                        width: size.width,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 64.scale),
-                          child: Form(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Cadastro',
-                                  style: theme.textTheme.headlineMedium!.merge(
-                                    TextStyle(
-                                      color: theme.colorScheme.background,
-                                    ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Stack(
+                  children: [
+                    CustomPaint(
+                      painter: WaveLogin(),
+                      size: Size(size.width, size.height),
+                    ),
+                    Positioned(
+                      top: size.height * 0.1,
+                      width: size.width,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 64.scale),
+                        child: Form(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Cadastro',
+                                style: theme.textTheme.headlineMedium!.merge(
+                                  TextStyle(
+                                    color: theme.colorScheme.background,
                                   ),
                                 ),
-                                SizedBox(height: 32.scale),
-                                TextFieldInicio(
-                                  controller: controller.nameController,
-                                  fieldHint: 'Nome',
-                                  prefixIcon: Icons.person,
+                              ),
+                              SizedBox(height: 32.scale),
+                              TextFieldInicio(
+                                controller: controller.nameController,
+                                fieldHint: 'Nome',
+                                prefixIcon: Icons.person,
+                              ),
+                              SizedBox(height: 24.scale),
+                              TextFieldInicio(
+                                validator: (value) => Validators.validateEmail(
+                                  controller.emailController.text,
                                 ),
-                                SizedBox(height: 24.scale),
-                                TextFieldInicio(
-                                  validator: (value) =>
-                                      Validators.validateEmail(
-                                    controller.emailController.text,
-                                  ),
-                                  controller: controller.emailController,
-                                  fieldHint: 'Email',
-                                  prefixIcon: Icons.email,
-                                ),
-                                SizedBox(height: 24.scale),
-                                TextFieldInicio(
-                                  isPassword: true,
-                                  controller: controller.passwordController,
-                                  fieldHint: 'Senha',
-                                  prefixIcon: Icons.lock,
-                                  validator: (value) {
-                                    if ((value?.length ?? 0) < 8) {
-                                      return 'Tamanho mínimo de 8 caracteres';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                SizedBox(height: 24.scale),
-                                TextFieldInicio(
-                                  isPassword: true,
-                                  controller:
-                                      controller.passwordConfirmationController,
-                                  fieldHint: 'Confirme senha',
-                                  prefixIcon: Icons.lock,
-                                  validator: (value) {
-                                    if ((value?.length ?? 0) < 8) {
-                                      return 'Tamanho mínimo de 8 caracteres';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                SizedBox(height: 48.scale),
-                                BlocConsumer(
-                                  listener: (context, state) {
-                                    if (state is CadastroSuccessState) {
-                                      Fluttertoast.showToast(
-                                        msg: 'Cadastro realizado com sucesso ✅',
-                                        toastLength: Toast.LENGTH_LONG,
-                                        gravity: ToastGravity.BOTTOM,
-                                        backgroundColor: Colors.greenAccent,
-                                        textColor: Colors.black,
-                                        fontSize:
-                                            theme.textTheme.bodyLarge?.fontSize,
-                                      );
-                                      Modular.to
-                                          .navigate(InicioModule.routeName);
-                                      Modular.to
-                                          .pushNamed(LoginModule.routeName);
-                                    }
-                                    if (state is CadastroFailureState) {
-                                      Fluttertoast.showToast(
-                                        msg: state.message,
-                                        toastLength: Toast.LENGTH_LONG,
-                                        gravity: ToastGravity.BOTTOM,
-                                        backgroundColor: Colors.redAccent,
-                                        textColor: Colors.white,
-                                        fontSize:
-                                            theme.textTheme.bodyLarge?.fontSize,
-                                      );
-                                    }
-                                  },
-                                  bloc: controller.bloc,
-                                  builder: (context, state) {
-                                    if (state is CadastroLoadingState) {
-                                      return Center(
-                                        child: CircularProgressIndicator(
-                                          backgroundColor: theme.cardColor,
-                                        ),
-                                      );
-                                    }
+                                controller: controller.emailController,
+                                fieldHint: 'Email',
+                                prefixIcon: Icons.email,
+                              ),
+                              SizedBox(height: 24.scale),
+                              TextFieldInicio(
+                                isPassword: true,
+                                controller: controller.passwordController,
+                                fieldHint: 'Senha',
+                                prefixIcon: Icons.lock,
+                                validator: (value) {
+                                  if ((value?.length ?? 0) < 8) {
+                                    return 'Tamanho mínimo de 8 caracteres';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              SizedBox(height: 24.scale),
+                              TextFieldInicio(
+                                isPassword: true,
+                                controller:
+                                    controller.passwordConfirmationController,
+                                fieldHint: 'Confirme senha',
+                                prefixIcon: Icons.lock,
+                                validator: (value) {
+                                  if ((value?.length ?? 0) < 8) {
+                                    return 'Tamanho mínimo de 8 caracteres';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              SizedBox(height: 48.scale),
+                              BlocConsumer(
+                                listener: (context, state) {
+                                  if (state is CadastroSuccessState) {
+                                    Fluttertoast.showToast(
+                                      msg: 'Cadastro realizado com sucesso ✅',
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.greenAccent,
+                                      textColor: Colors.black,
+                                      fontSize:
+                                          theme.textTheme.bodyLarge?.fontSize,
+                                    );
+                                    Modular.to.navigate(InicioModule.routeName);
+                                    Modular.to.pushNamed(LoginModule.routeName);
+                                  }
+                                  if (state is CadastroFailureState) {
+                                    Fluttertoast.showToast(
+                                      msg: state.message,
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.redAccent,
+                                      textColor: Colors.white,
+                                      fontSize:
+                                          theme.textTheme.bodyLarge?.fontSize,
+                                    );
+                                  }
+                                },
+                                bloc: controller.bloc,
+                                builder: (context, state) {
+                                  if (state is CadastroLoadingState) {
                                     return Center(
-                                      child: TextButton(
-                                        style: TextButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                            // Change your radius here
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                          ),
-                                          fixedSize: Size(140.scale, 50.scale),
-                                          backgroundColor:
-                                              theme.colorScheme.background,
+                                      child: CircularProgressIndicator(
+                                        backgroundColor: theme.cardColor,
+                                      ),
+                                    );
+                                  }
+                                  return Center(
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          // Change your radius here
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                         ),
-                                        onPressed: controller.isNotEmpty
-                                            ? controller.cadastro
-                                            : null,
-                                        child: Text(
-                                          'Cadastrar',
-                                          style:
-                                              theme.textTheme.titleLarge!.merge(
-                                            TextStyle(
-                                              color: theme.primaryColor,
-                                            ),
+                                        fixedSize: Size(140.scale, 50.scale),
+                                        backgroundColor:
+                                            theme.colorScheme.background,
+                                      ),
+                                      onPressed: controller.isNotEmpty
+                                          ? controller.cadastro
+                                          : null,
+                                      child: Text(
+                                        'Cadastrar',
+                                        style:
+                                            theme.textTheme.titleLarge!.merge(
+                                          TextStyle(
+                                            color: theme.primaryColor,
                                           ),
                                         ),
                                       ),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
