@@ -32,12 +32,14 @@ class _TextFieldInicioState extends State<TextFieldInicio> {
   double bottomPadding = 0;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
     return Container(
+      width: size.width,
       padding: EdgeInsets.only(
         left: 16.scale,
         right: 8.scale,
-        bottom: bottomPadding,
+        bottom: bottomPadding.scale,
       ),
       decoration: BoxDecoration(
         color: theme.colorScheme.background,

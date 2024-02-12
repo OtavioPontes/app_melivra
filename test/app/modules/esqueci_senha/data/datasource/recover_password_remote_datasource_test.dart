@@ -1,7 +1,6 @@
 import 'package:app_melivra/app/core/error/exceptions.dart';
 import 'package:app_melivra/app/core/network/api_url.dart';
 import 'package:app_melivra/app/core/network/endpoints.dart';
-import 'package:app_melivra/app/modules/cadastro/data/models/user_creation_model.dart';
 import 'package:app_melivra/app/modules/esqueci_senha/data/datasource/i_recover_password_remote_datasource.dart';
 import 'package:app_melivra/app/modules/esqueci_senha/data/datasource/recover_password_remote_datasource.dart';
 import 'package:dio/dio.dart';

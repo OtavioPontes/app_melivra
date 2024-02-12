@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/assets/wave_login.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/utils/validators.dart';
 import 'package:app_melivra/app/modules/esqueci_senha/esqueci_senha_module.dart';
@@ -86,13 +87,9 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Stack(
                         children: [
-                          SvgPicture.asset(
-                            AssetsMeLivra.waveLogin,
-                            width: size.width,
-                            colorFilter: ColorFilter.mode(
-                              theme.primaryColor,
-                              BlendMode.srcATop,
-                            ),
+                          CustomPaint(
+                            painter: WaveLogin(),
+                            size: Size(size.width, size.height * 0.6),
                           ),
                           Positioned(
                             right: 10.scale,

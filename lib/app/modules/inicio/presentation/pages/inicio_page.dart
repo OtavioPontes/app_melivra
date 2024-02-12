@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/assets/initial_custom_path.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/modules/cadastro/cadastro_module.dart';
@@ -56,15 +57,9 @@ class _InicioPageState extends State<InicioPage> {
             Positioned(
               bottom: 0,
               width: size.width,
-              child: SvgPicture.asset(
-                AssetsMeLivra.inicio,
-                fit: BoxFit.fill,
-                colorFilter: ColorFilter.mode(
-                  theme.primaryColor,
-                  BlendMode.srcATop,
-                ),
-                width: size.width,
-                height: size.height * 0.65,
+              child: CustomPaint(
+                painter: InitialCustomPath(),
+                size: Size(size.width, size.height * 0.6),
               ),
             ),
             Positioned(

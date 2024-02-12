@@ -1,6 +1,6 @@
+import 'package:app_melivra/app/core/assets/wave_home.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/extensions/string_formatter_extension.dart';
-import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/style/colors.dart';
 import 'package:app_melivra/app/core/widgets/card_info_instituto_widget.dart';
 import 'package:app_melivra/app/modules/home/presentation/bloc/top_institutos_bloc.dart';
@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/widgets/score_widget.dart';
 import '../../../../core/widgets/search_widget.dart';
@@ -59,10 +58,9 @@ class HomePage extends StatelessWidget {
                   SizedBox(height: 24.scale),
                   Stack(
                     children: [
-                      SvgPicture.asset(
-                        AssetsMeLivra.waveHome,
-                        width: size.width,
-                        fit: BoxFit.fitWidth,
+                      CustomPaint(
+                        painter: WaveHome(),
+                        size: Size(size.width, size.height * 0.4),
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 32.scale),

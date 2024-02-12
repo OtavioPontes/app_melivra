@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/assets/splash_circle.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/style/colors.dart';
@@ -60,13 +61,9 @@ class _SplashPageState extends State<SplashPage> {
               bottom: 0,
               child: Column(
                 children: [
-                  SvgPicture.asset(
-                    AssetsMeLivra.splash,
-                    colorFilter: ColorFilter.mode(
-                      theme.primaryColor,
-                      BlendMode.srcATop,
-                    ),
-                    width: size.width,
+                  CustomPaint(
+                    painter: SplashCircle(),
+                    size: Size(size.width, size.height * 0.45),
                   ),
                 ],
               ),

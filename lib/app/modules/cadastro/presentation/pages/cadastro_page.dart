@@ -1,12 +1,11 @@
+import 'package:app_melivra/app/core/assets/wave_login.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
-import 'package:app_melivra/app/core/style/assets.dart';
 import 'package:app_melivra/app/core/utils/validators.dart';
 import 'package:app_melivra/app/modules/cadastro/presentation/bloc/cadastro_bloc_states.dart';
 import 'package:app_melivra/app/modules/cadastro/presentation/controllers/cadastro_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../core/widgets/textfield_inicio_widget.dart';
@@ -58,15 +57,9 @@ class _CadastroPageState extends State<CadastroPage> {
                 children: [
                   Stack(
                     children: [
-                      SvgPicture.asset(
-                        AssetsMeLivra.wave,
-                        colorFilter: ColorFilter.mode(
-                          theme.primaryColor,
-                          BlendMode.srcATop,
-                        ),
-                        width: size.width,
-                        height: size.height * 0.8,
-                        fit: BoxFit.fitHeight,
+                      CustomPaint(
+                        painter: WaveLogin(),
+                        size: Size(size.width, size.height * 0.8),
                       ),
                       Positioned(
                         top: size.height * 0.1,
