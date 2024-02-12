@@ -51,93 +51,87 @@ class _InicioPageState extends State<InicioPage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: size.height * 0.7,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      width: size.width,
-                      child: CustomPaint(
-                        painter: InitialCustomPath(),
-                        size: Size(size.width, size.height * 0.8),
+              Stack(
+                children: [
+                  CustomPaint(
+                    painter: InitialCustomPath(),
+                    size: Size(size.width, size.height * 0.75),
+                  ),
+                  Positioned(
+                    top: 40.scale,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 36.scale,
                       ),
-                    ),
-                    Positioned(
-                      top: 40.scale,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 36.scale,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 80.scale),
-                            Text(
-                              'Bem vindo (a)',
-                              style: theme.textTheme.headlineMedium!.merge(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 80.scale),
+                          Text(
+                            'Bem vindo (a)',
+                            style: theme.textTheme.headlineMedium!.merge(
+                              TextStyle(
+                                color: theme.colorScheme.background,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 24.scale,
+                          ),
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              fixedSize: Size(size.width * 0.8, 54.scale),
+                              backgroundColor: theme.colorScheme.background,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                            ),
+                            onPressed: () =>
+                                Modular.to.pushNamed(LoginModule.routeName),
+                            child: Text(
+                              "Fazer Login",
+                              style: theme.textTheme.headlineSmall!.merge(
+                                TextStyle(
+                                  color: theme.primaryColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16.scale,
+                          ),
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              fixedSize: Size(size.width * 0.8, 54.scale),
+                              backgroundColor: theme.colorScheme.primary,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              side: BorderSide(
+                                color: theme.colorScheme.background,
+                                width: 2,
+                              ),
+                            ),
+                            onPressed: () =>
+                                Modular.to.pushNamed(CadastroModule.routeName),
+                            child: Text(
+                              "Cadastrar",
+                              style: theme.textTheme.headlineSmall!.merge(
                                 TextStyle(
                                   color: theme.colorScheme.background,
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 24.scale,
-                            ),
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                fixedSize: Size(size.width * 0.8, 54.scale),
-                                backgroundColor: theme.colorScheme.background,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
-                                ),
-                              ),
-                              onPressed: () =>
-                                  Modular.to.pushNamed(LoginModule.routeName),
-                              child: Text(
-                                "Fazer Login",
-                                style: theme.textTheme.headlineSmall!.merge(
-                                  TextStyle(
-                                    color: theme.primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16.scale,
-                            ),
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                fixedSize: Size(size.width * 0.8, 54.scale),
-                                backgroundColor: theme.colorScheme.primary,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
-                                ),
-                                side: BorderSide(
-                                  color: theme.colorScheme.background,
-                                  width: 2,
-                                ),
-                              ),
-                              onPressed: () => Modular.to
-                                  .pushNamed(CadastroModule.routeName),
-                              child: Text(
-                                "Cadastrar",
-                                style: theme.textTheme.headlineSmall!.merge(
-                                  TextStyle(
-                                    color: theme.colorScheme.background,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
