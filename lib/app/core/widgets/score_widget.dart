@@ -16,8 +16,8 @@ class ScoreWidget extends StatelessWidget {
     final theme = Theme.of(context);
     final scoreEnum = UtilsScoreEnum.getEnumFromScore(score: score);
     return SizedBox(
-      height: 50.scale,
-      width: 50.scale,
+      height: 45.scale,
+      width: 45.scale,
       child: Stack(
         alignment: Alignment.center,
         children: [
