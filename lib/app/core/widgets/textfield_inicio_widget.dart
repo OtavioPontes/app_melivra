@@ -36,7 +36,7 @@ class _TextFieldInicioState extends State<TextFieldInicio> {
     final theme = Theme.of(context);
     return Container(
       width: size.width,
-      height: 40.scale,
+      constraints: BoxConstraints(minHeight: 40.scale),
       padding: EdgeInsets.only(
         left: 16.scale,
         right: 8.scale,
@@ -55,12 +55,12 @@ class _TextFieldInicioState extends State<TextFieldInicio> {
           validator: (value) {
             if (widget.validator != null) {
               setState(() {
-                bottomPadding = 0;
+                bottomPadding = 8.scale;
               });
               final result = widget.validator!(value);
               if (result == null) {
                 setState(() {
-                  bottomPadding = 8;
+                  bottomPadding = 0;
                 });
               }
               return result;
