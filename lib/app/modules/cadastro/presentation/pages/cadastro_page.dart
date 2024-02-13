@@ -167,8 +167,8 @@ class _CadastroPageState extends State<CadastroPage> {
                                         backgroundColor:
                                             theme.colorScheme.background,
                                       ),
-                                      onPressed: controller.isNotEmpty
-                                          ? controller.cadastro
+                                      onPressed: () => controller.isNotEmpty
+                                          ? controller.cadastro()
                                           : null,
                                       child: Text(
                                         'Cadastrar',
