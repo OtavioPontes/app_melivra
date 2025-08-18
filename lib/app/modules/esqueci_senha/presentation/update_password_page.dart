@@ -23,7 +23,7 @@ class UpdatePasswordPage extends StatelessWidget {
               'Digite sua nova senha',
               style: theme.textTheme.headlineMedium!.merge(
                 TextStyle(
-                  color: theme.colorScheme.background,
+                  color: theme.colorScheme.surface,
                 ),
               ),
             ),
@@ -65,7 +65,7 @@ class UpdatePasswordPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   fixedSize: Size(140.scale, 50.scale),
-                  backgroundColor: theme.colorScheme.background,
+                  backgroundColor: theme.colorScheme.surface,
                 ),
                 onPressed: controller.updatePassword,
                 child: Text(

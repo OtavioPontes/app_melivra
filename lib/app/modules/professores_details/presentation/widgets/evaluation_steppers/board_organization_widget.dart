@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:app_melivra/app/core/domain/enums/score_enum.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
@@ -36,7 +38,6 @@ class _BoardOrganizationWidgetState extends State<BoardOrganizationWidget> {
     if (!await controller.getHasTutorial()) {
       return;
     }
-    // ignore: use_build_context_synchronously
     TutorialCoachMark(
       targets: [
         TargetFocus(

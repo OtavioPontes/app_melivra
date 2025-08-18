@@ -1,244 +1,104 @@
-import 'package:app_melivra/app/core/bloc/user_bloc.dart';
-import 'package:app_melivra/app/core/network/network_info.dart';
-import 'package:app_melivra/app/core/stores/user_store.dart';
-import 'package:app_melivra/app/core/utils/appinfo.dart';
 import 'package:app_melivra/app/modules/about_us/about_us_module.dart';
 import 'package:app_melivra/app/modules/bottom_navigation/bottom_navigation_module.dart';
 import 'package:app_melivra/app/modules/cadastro/cadastro_module.dart';
 import 'package:app_melivra/app/modules/esqueci_senha/esqueci_senha_module.dart';
 import 'package:app_melivra/app/modules/home/home_module.dart';
-import 'package:app_melivra/app/modules/home/presentation/bloc/ultimos_pesquisados_bloc.dart';
-import 'package:app_melivra/app/modules/home/presentation/controllers/home_controller.dart';
 import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
 import 'package:app_melivra/app/modules/institutos/institutos_module.dart';
 import 'package:app_melivra/app/modules/login/login_module.dart';
 import 'package:app_melivra/app/modules/meu_perfil/meu_perfil_module.dart';
 import 'package:app_melivra/app/modules/perfil/perfil_module.dart';
-import 'package:app_melivra/app/modules/professores/domain/usecases/get_global_grade_usecase.dart';
-import 'package:app_melivra/app/modules/professores/domain/usecases/post_professor_grade_usecase.dart';
-import 'package:app_melivra/app/modules/professores/presentation/bloc/global_grade_bloc.dart';
 import 'package:app_melivra/app/modules/professores/professores_module.dart';
 import 'package:app_melivra/app/modules/sobre_app/sobre_app_module.dart';
 import 'package:app_melivra/app/modules/solicitar_retirada/solicitar_retirada_module.dart';
-import 'package:app_melivra/app/modules/splash/domain/usecases/splash_pipeline_usecase.dart';
 import 'package:app_melivra/app/modules/splash/splash_module.dart';
 import 'package:app_melivra/app/modules/suggestions/suggestions_module.dart';
-import 'package:app_melivra/main.dart';
-import 'package:dio/dio.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
-import 'core/network/dio_config.dart';
-import 'modules/home/presentation/bloc/top_institutos_bloc.dart';
 import 'modules/instituto_details/instituto_details_module.dart';
-import 'modules/institutos/data/datasources/i_instituto_datasource.dart';
-import 'modules/institutos/data/datasources/instituto_datasource.dart';
-import 'modules/institutos/data/repositories/instituto_repository.dart';
-import 'modules/institutos/domain/repositories/i_instituto_repository.dart';
-import 'modules/institutos/domain/usecases/get_instituto_details.dart';
-import 'modules/institutos/domain/usecases/get_institutos_rank_usecase.dart';
-import 'modules/institutos/domain/usecases/get_institutos_usecase.dart';
-import 'modules/institutos/presentation/bloc/institutos_bloc.dart';
-import 'modules/institutos/presentation/controllers/institutos_controller.dart';
-import 'modules/perfil/presentation/controllers/perfil_controller.dart';
-import 'modules/professores/data/datasources/i_professor_datasource.dart';
-import 'modules/professores/data/datasources/professors_datasource.dart';
-import 'modules/professores/data/repositories/professor_repository.dart';
-import 'modules/professores/domain/repositories/i_professor_repository.dart';
-import 'modules/professores/domain/usecases/get_professor_details_usecase.dart';
-import 'modules/professores/domain/usecases/get_professor_grades_count_usecase.dart';
-import 'modules/professores/domain/usecases/get_professor_grades_usecase.dart';
-import 'modules/professores/domain/usecases/get_professors_rank_usecase.dart';
-import 'modules/professores/domain/usecases/get_professors_usecase.dart';
-import 'modules/professores/domain/usecases/post_professor_grade_like_dislike_usecase.dart';
-import 'modules/professores/domain/usecases/update_professor_grade_usecase.dart';
-import 'modules/professores/presentation/bloc/professors_bloc.dart';
-import 'modules/professores/presentation/controllers/professores_controller.dart';
 import 'modules/professores_details/professores_details_module.dart';
 import 'modules/ranking_institutos/ranking_institutos_module.dart';
-import 'modules/search/presentation/bloc/search_institutes_bloc.dart';
-import 'modules/search/presentation/bloc/search_professor_bloc.dart';
 import 'modules/search/search_module.dart';
 
 class AppModule extends Module {
   static String get routeName => SplashModule.routeName;
-  static late String url;
 
-  @override
-  List<Bind> get binds => [
-        // ------------------------ STORES ------------------------
-        Bind((i) => UserStore(bloc: i(), hiveBox: i())),
-        Bind((i) => TopInstitutosBloc()),
-        Bind((i) => UltimosPesquisadosBloc()),
-        Bind((i) => UserBloc()),
-        Bind((i) => GlobalGradeBloc()),
-        Bind((i) => SearchProfessorsBloc()),
-        Bind((i) => SearchInstitutesBloc()),
-        Bind(
-          (i) => HomeController(
-            store: i(),
-            getProfessorDetailsUsecase: i(),
-            getInstitutosRankUsecase: i(),
-            topInstitutosBloc: i(),
-            ultimosPesquisadosBloc: i(),
-            box: i(),
-          ),
-        ),
-        Bind((i) => PerfilController(store: i())),
-        Bind((i) => InstitutosBloc()),
-        Bind(
-          (i) => InstitutosController(
-            getGlobalGradeUsecase: i(),
-            globalGradeBloc: i(),
-            getInstitutosUsecase: i(),
-            bloc: i(),
-          ),
-        ),
-        Bind((i) => ProfessorsBloc()),
-        Bind(
-          (i) => ProfessorsController(
-            getGlobalGradeUsecase: i(),
-            getProfessorsUsecase: i(),
-            globalGradeBloc: i(),
-            bloc: i(),
-          ),
-        ),
-
-        // --------------------- CONTROLLERS ----------------------
-
-        // ---------------------- USE CASES -----------------------
-
-        Bind((i) => GetInstitutoDetailsUsecase(repository: i())),
-        Bind((i) => GetInstitutosRankUsecase(repository: i())),
-        Bind((i) => GetInstitutosUsecase(repository: i())),
-
-        Bind((i) => GetProfessorDetailsUsecase(repository: i())),
-        Bind((i) => GetProfessorsRankUsecase(repository: i())),
-        Bind((i) => GetProfessorsUsecase(repository: i())),
-        Bind((i) => PostProfessorGradeUsecase(repository: i())),
-        Bind((i) => UpdateProfessorGradeUsecase(repository: i())),
-        Bind((i) => GetProfessorGradesUsecase(repository: i())),
-        Bind((i) => GetProfessorGradesCountUsecase(repository: i())),
-        Bind((i) => GetGlobalGradeUsecase(repository: i())),
-        Bind((i) => PostProfessorGradeLikeDislikeUsecase(repository: i())),
-
-        Bind(
-          (i) => SplashPipelineUseCase(
-            dioConfig: i(),
-            store: i(),
-            networkInfo: i(),
-          ),
-        ),
-
-        // --------------------- REPOSITORIES ---------------------
-        Bind<IInstitutoRepository>((i) => InstitutoRepository(datasource: i())),
-        Bind<IProfessorRepository>((i) => ProfessorRepository(datasource: i())),
-
-        // --------------------- DATA SOURCES ---------------------
-        Bind<IInstitutoDatasource>((i) => InstitutoDatasource(dio: i())),
-        Bind<IProfessorDatasource>((i) => ProfessorsDatasource(dio: i())),
-
-        // ----------------------- SERVICES -----------------------
-        Bind((i) => AppInfo.instance),
-        Bind<INetworkInfo>((i) => NetworkInfo()),
-        Bind<FirebaseCrashlytics>((i) => FirebaseCrashlytics.instance),
-        Bind<FirebaseAnalytics>(
-          (i) => firebaseAnalytics,
-        ),
-        Bind(
-          (i) => Dio(),
-        ),
-        Bind(
-          (i) => DioConfig(
-            url: url,
-            dio: i(),
-          ),
-        ),
-
-        Bind<Box>((i) => Hive.box('melivra')),
-
-        // -------------------- NOTIFICATIONS ---------------------
-      ];
-
-  @override
-  final List<ModularRoute> routes = [
-    ModuleRoute(
+  void routes(RouteManager r) {
+    r.module(
       SplashModule.routeName,
       module: SplashModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       InicioModule.routeName,
       module: InicioModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       CadastroModule.routeName,
       module: CadastroModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       LoginModule.routeName,
       module: LoginModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       EsqueciSenhaModule.routeName,
       module: EsqueciSenhaModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       HomeModule.routeName,
       module: HomeModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       BottomNavigationModule.routeName,
       module: BottomNavigationModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       RankingInstitutosModule.routeName,
       module: RankingInstitutosModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       ProfessoresModule.routeName,
       module: ProfessoresModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       InstitutosModule.routeName,
       module: InstitutosModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       PerfilModule.routeName,
       module: PerfilModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       InstitutoDetailsModule.routeName,
       module: InstitutoDetailsModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       ProfessoresDetailsModule.routeName,
       module: ProfessoresDetailsModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       SearchModule.routeName,
       module: SearchModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       MeuPerfilModule.routeName,
       module: MeuPerfilModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       SobreAppModule.routeName,
       module: SobreAppModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       SuggestionModule.routeName,
       module: SuggestionModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       AboutUsModule.routeName,
       module: AboutUsModule(),
-    ),
-    ModuleRoute(
+    );
+    r.module(
       SolicitarRetiradaModule.routeName,
       module: SolicitarRetiradaModule(),
-    ),
-  ];
+    );
+  }
 }

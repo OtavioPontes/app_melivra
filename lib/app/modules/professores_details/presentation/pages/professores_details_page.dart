@@ -124,7 +124,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                       icon: Icon(
                                         Icons.arrow_back_ios,
                                         size: 40.scale,
-                                        color: theme.colorScheme.background,
+                                        color: theme.colorScheme.surface,
                                       ),
                                     ),
                                     SizedBox(height: 64.scale),
@@ -134,7 +134,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                         style:
                                             theme.textTheme.titleLarge!.merge(
                                           TextStyle(
-                                            color: theme.colorScheme.background,
+                                            color: theme.colorScheme.surface,
                                           ),
                                         ),
                                       ),
@@ -155,14 +155,14 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                       icon: Icon(
                                         Icons.arrow_back_ios,
                                         size: 40.scale,
-                                        color: theme.colorScheme.background,
+                                        color: theme.colorScheme.surface,
                                       ),
                                     ),
                                   ),
                                   SizedBox(height: 64.scale),
                                   Center(
                                     child: CircularProgressIndicator(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   ),
                                 ],
@@ -185,7 +185,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                           icon: Icon(
                                             Icons.arrow_back_ios,
                                             size: 40.scale,
-                                            color: theme.colorScheme.background,
+                                            color: theme.colorScheme.surface,
                                           ),
                                         ),
                                         SizedBox(width: 16.scale),
@@ -200,7 +200,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                                     .merge(
                                                   TextStyle(
                                                     color: theme
-                                                        .colorScheme.background,
+                                                        .colorScheme.surface,
                                                   ),
                                                 ),
                                               ),
@@ -213,7 +213,7 @@ class _ProfessoresDetailsPageState extends State<ProfessoresDetailsPage>
                                                     .merge(
                                                   TextStyle(
                                                     color: theme
-                                                        .colorScheme.background,
+                                                        .colorScheme.surface,
                                                   ),
                                                 ),
                                               ),

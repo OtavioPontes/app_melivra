@@ -48,7 +48,7 @@ class PerfilPage extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 40.scale,
-                            backgroundColor: theme.colorScheme.background,
+                            backgroundColor: theme.colorScheme.surface,
                             child: Text(
                               controller.nameInitials,
                               style: theme.textTheme.headlineMedium!.merge(
@@ -66,7 +66,7 @@ class PerfilPage extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: theme.textTheme.headlineSmall!.merge(
                                 TextStyle(
-                                  color: theme.colorScheme.background,
+                                  color: theme.colorScheme.surface,
                                 ),
                               ),
                             ),

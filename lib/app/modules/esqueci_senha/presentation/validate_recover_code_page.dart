@@ -12,13 +12,13 @@ class ValidateRecoverCodePage extends StatelessWidget {
     final theme = Theme.of(context);
     final controller = Modular.get<RecoverPasswordController>();
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
         await controller.pageController.previousPage(
           duration: const Duration(milliseconds: 200),
           curve: Curves.ease,
         );
-        return false;
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class ValidateRecoverCodePage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: theme.textTheme.headlineMedium!.merge(
                       TextStyle(
-                        color: theme.colorScheme.background,
+                        color: theme.colorScheme.surface,
                       ),
                     ),
                   ),
@@ -47,7 +47,7 @@ class ValidateRecoverCodePage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyMedium!.merge(
                       TextStyle(
-                        color: theme.colorScheme.background,
+                        color: theme.colorScheme.surface,
                       ),
                     ),
                   ),
@@ -63,7 +63,7 @@ class ValidateRecoverCodePage extends StatelessWidget {
                 width: 60.scale,
                 height: 40.scale,
                 decoration: BoxDecoration(
-                  color: theme.colorScheme.background,
+                  color: theme.colorScheme.surface,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
@@ -80,7 +80,7 @@ class ValidateRecoverCodePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 fixedSize: Size(140.scale, 50.scale),
-                backgroundColor: theme.colorScheme.background,
+                backgroundColor: theme.colorScheme.surface,
               ),
               onPressed: controller.validateRecoverCode,
               child: Text(

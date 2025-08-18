@@ -1,5 +1,7 @@
+import 'package:app_melivra/app/core/domain/entities/grade.dart';
 import 'package:app_melivra/app/core/domain/entities/grade_response.dart';
 import 'package:app_melivra/app/core/domain/entities/grades_response_config.dart';
+import 'package:app_melivra/app/modules/professores/domain/usecases/get_professor_grade_by_user_usecase.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/get_professor_grades_usecase.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/post_professor_grade_like_dislike_usecase.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/update_professor_grade_usecase.dart';
@@ -12,6 +14,7 @@ import '../bloc/professor_details_bloc.dart';
 import '../bloc/professor_grades_bloc.dart';
 
 class ProfessorDetailsController {
+  final GetProfessorGradeByUserUsecase _getProfessorGradeByUserUsecase;
   final GetProfessorDetailsUsecase _getProfessorDetailsUsecase;
   final GetProfessorGradesUsecase _getProfessorGradesUsecase;
   final GetProfessorGradesCountUsecase _getProfessorGradesCountUsecase;
@@ -34,7 +37,10 @@ class ProfessorDetailsController {
 
   int gradesCount = 0;
 
+  Grade? myGrade;
+
   ProfessorDetailsController({
+    required GetProfessorGradeByUserUsecase getProfessorGradeByUserUsecase,
     required PostProfessorGradeLikeDislikeUsecase
         postProfessorGradeLikeDislikeUsecase,
     required UpdateProfessorGradeUsecase updateProfessorGradeUsecase,
@@ -50,7 +56,8 @@ class ProfessorDetailsController {
             postProfessorGradeLikeDislikeUsecase,
         _updateProfessorGradeUsecase = updateProfessorGradeUsecase,
         _getProfessorGradesCountUsecase = getProfessorGradesCountUsecase,
-        _getProfessorGradesUsecase = getProfessorGradesUsecase {
+        _getProfessorGradesUsecase = getProfessorGradesUsecase,
+        _getProfessorGradeByUserUsecase = getProfessorGradeByUserUsecase {
     pipeline();
   }
 
@@ -96,9 +103,7 @@ class ProfessorDetailsController {
   }
 
   Future<void> getProfessorGrades({required int id}) async {
-    gradesBloc.add(
-      ProfessorGradesLoadingEvent(),
-    );
+    gradesBloc.add(ProfessorGradesLoadingEvent());
     final resultCount = await _getProfessorGradesCountUsecase(
       ParamsGetProfessorGradesCountUsecase(id: id),
     );
@@ -108,6 +113,22 @@ class ProfessorDetailsController {
         gradesCount = response;
       },
     );
+    final resultMyGrade = await _getProfessorGradeByUserUsecase(
+      ParamsGetProfessorGradeByUserUsecase(id: id),
+    );
+    resultMyGrade.fold(
+      (failure) {
+        myGrade = null;
+      },
+      (response) {
+        myGrade = response;
+        evaluationController.text = myGrade?.description ?? '';
+        gradesBloc.add(
+          ProfessorGradesSuccessEvent(grades: grades),
+        );
+      },
+    );
+
     final result = await _getProfessorGradesUsecase(
       ParamsGetProfessorGradesUsecase(id: id),
     );

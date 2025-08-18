@@ -21,9 +21,7 @@ class RankController {
   }
 
   Future<void> getInstitutos() async {
-    bloc.add(
-      RankingLoadingEvent(),
-    );
+    bloc.add(RankingLoadingEvent());
     final result = await _getInstitutosRankUsecase(
       ParamsGetInstitutosRankUsecase(
         page: page,

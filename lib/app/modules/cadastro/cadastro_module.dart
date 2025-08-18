@@ -1,5 +1,8 @@
+import 'package:app_melivra/app/core/core_module.dart';
 import 'package:app_melivra/app/modules/cadastro/data/datasource/cadastro_remote_datasource.dart';
+import 'package:app_melivra/app/modules/cadastro/data/datasource/i_cadastro_remote_datasource.dart';
 import 'package:app_melivra/app/modules/cadastro/data/services/cadastro_service.dart';
+import 'package:app_melivra/app/modules/cadastro/domain/services/i_cadastro_service.dart';
 import 'package:app_melivra/app/modules/cadastro/domain/usecases/cadastro_user_usecase.dart';
 import 'package:app_melivra/app/modules/cadastro/presentation/bloc/cadastro_bloc.dart';
 import 'package:app_melivra/app/modules/cadastro/presentation/controllers/cadastro_controller.dart';
@@ -7,22 +10,29 @@ import 'package:app_melivra/app/modules/cadastro/presentation/pages/cadastro_pag
 import 'package:flutter_modular/flutter_modular.dart';
 
 class CadastroModule extends Module {
-  static String routeName = '/cadastro/';
+  static const String routeName = '/cadastro/';
+  @override
+  List<Module> get imports => [CoreModule()];
 
   @override
-  List<Bind> get binds => [
-        Bind((i) => CadastroBloc()),
-        Bind((i) => CadastroRemoteDatasource(dio: i())),
-        Bind((i) => CadastroService(cadastroRemoteDatasource: i())),
-        Bind((i) => CadastroUserUsecase(service: i())),
-        Bind((i) => CadastroController(cadastroUserUsecase: i(), bloc: i())),
-      ];
+  void binds(Injector i) {
+    i.add(CadastroBloc.new);
+    i.add<ICadastroRemoteDatasource>(
+      () => CadastroRemoteDatasource(dio: i()),
+    );
+    i.add<ICadastroService>(
+      () => CadastroService(cadastroRemoteDatasource: i()),
+    );
+    i.add(() => CadastroUserUsecase(service: i()));
+    i.add(() => CadastroController(cadastroUserUsecase: i(), bloc: i()));
+    super.binds(i);
+  }
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          Modular.initialRoute,
-          child: (context, args) => const CadastroPage(),
-        ),
-      ];
+  void routes(RouteManager r) {
+    r.child(
+      "/",
+      child: (context) => const CadastroPage(),
+    );
+  }
 }

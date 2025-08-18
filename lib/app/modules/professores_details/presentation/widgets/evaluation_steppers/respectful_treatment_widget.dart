@@ -135,7 +135,7 @@ class _RespectfulTreatmentWidgetState extends State<RespectfulTreatmentWidget> {
                 'Finalizar',
                 style: theme.textTheme.titleLarge!.merge(
                   TextStyle(
-                    color: theme.colorScheme.background,
+                    color: theme.colorScheme.surface,
                   ),
                 ),
               ),

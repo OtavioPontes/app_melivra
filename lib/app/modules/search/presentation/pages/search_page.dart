@@ -226,7 +226,7 @@ class _SearchPageState extends State<SearchPage> {
                                 builder: (context, state) {
                                   if (state is SearchInstitutesLoadingState) {
                                     return CircularProgressIndicator(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     );
                                   }
                                   if (state is SearchInstitutesEmptyState) {
@@ -240,8 +240,7 @@ class _SearchPageState extends State<SearchPage> {
                                           children: [
                                             Icon(
                                               Icons.school,
-                                              color:
-                                                  theme.colorScheme.background,
+                                              color: theme.colorScheme.surface,
                                             ),
                                             SizedBox(width: 16.scale),
                                             Text(
@@ -250,8 +249,8 @@ class _SearchPageState extends State<SearchPage> {
                                                   .textTheme.headlineSmall!
                                                   .merge(
                                                 TextStyle(
-                                                  color: theme
-                                                      .colorScheme.background,
+                                                  color:
+                                                      theme.colorScheme.surface,
                                                 ),
                                               ),
                                             ),
@@ -286,7 +285,7 @@ class _SearchPageState extends State<SearchPage> {
                                 builder: (context, state) {
                                   if (state is SearchProfessorsLoadingState) {
                                     return CircularProgressIndicator(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     );
                                   }
                                   if (state is SearchProfessorsEmptyState) {
@@ -300,8 +299,7 @@ class _SearchPageState extends State<SearchPage> {
                                           children: [
                                             Icon(
                                               Icons.school,
-                                              color:
-                                                  theme.colorScheme.background,
+                                              color: theme.colorScheme.surface,
                                             ),
                                             SizedBox(width: 16.scale),
                                             Text(
@@ -310,8 +308,8 @@ class _SearchPageState extends State<SearchPage> {
                                                   .textTheme.headlineSmall!
                                                   .merge(
                                                 TextStyle(
-                                                  color: theme
-                                                      .colorScheme.background,
+                                                  color:
+                                                      theme.colorScheme.surface,
                                                 ),
                                               ),
                                             ),
@@ -337,8 +335,7 @@ class _SearchPageState extends State<SearchPage> {
                                               vertical: 16.scale,
                                             ),
                                             child: CircularProgressIndicator(
-                                              color:
-                                                  theme.colorScheme.background,
+                                              color: theme.colorScheme.surface,
                                             ),
                                           ),
                                       ],

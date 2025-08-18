@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
-          statusBarColor: theme.colorScheme.background,
+          statusBarColor: theme.colorScheme.surface,
           statusBarIconBrightness: Brightness.dark,
         ),
         child: SingleChildScrollView(
@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                                   'Login',
                                   style: theme.textTheme.headlineMedium!.merge(
                                     TextStyle(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   ),
                                 ),
@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                                       'Esqueci minha senha',
                                       style: theme.textTheme.bodyMedium!.merge(
                                         TextStyle(
-                                          color: theme.colorScheme.background,
+                                          color: theme.colorScheme.surface,
                                         ),
                                       ),
                                     ),
@@ -187,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                                           ),
                                           fixedSize: Size(140.scale, 50.scale),
                                           backgroundColor:
-                                              theme.colorScheme.background,
+                                              theme.colorScheme.surface,
                                         ),
                                         onPressed: controller.login,
                                         child: Text(

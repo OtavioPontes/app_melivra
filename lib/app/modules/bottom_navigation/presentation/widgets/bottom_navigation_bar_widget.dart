@@ -1,9 +1,7 @@
+import 'package:app_melivra/app/modules/bottom_navigation/bottom_navigation_module.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
-
-import '../../../../core/extensions/screen_extension.dart';
-import '../controller/bottom_navigation_controller.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
@@ -15,49 +13,53 @@ class BottomNavigationBarWidget extends StatefulWidget {
 
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget>
     with SingleTickerProviderStateMixin {
-  final controller = Modular.get<BottomNavigationController>();
+  int selectedIndex = 0;
+
+  void onDestinationSelected(int index) {
+    if (index == 0) {
+      Modular.to.navigate("${BottomNavigationModule.routeName}/home/");
+    }
+    if (index == 1) {
+      Modular.to.navigate("${BottomNavigationModule.routeName}/professores/");
+    }
+    if (index == 2) {
+      Modular.to.navigate("${BottomNavigationModule.routeName}/institutos/");
+    }
+    if (index == 3) {
+      Modular.to.navigate("${BottomNavigationModule.routeName}/perfil/");
+    }
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
+  @override
+  void initState() {
+    onDestinationSelected(selectedIndex);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Stack(
-      children: [
-        BottomNavigationBar(
-          iconSize: 30.scale,
-          showUnselectedLabels: false,
-          selectedLabelStyle: TextStyle(
-            fontSize: theme.textTheme.bodyMedium!.fontSize,
-          ),
-          backgroundColor: theme.colorScheme.background,
-          onTap: (value) {
-            controller.animatedToIndex(value);
-            setState(() {});
-          },
-          currentIndex: controller.currentIndex,
-          elevation: 2,
-          selectedItemColor: theme.colorScheme.primary,
-          unselectedItemColor: theme.disabledColor,
-          items: const [
-            BottomNavigationBarItem(
-              label: 'Home',
-              icon: Icon(Icons.home),
-              activeIcon: Icon(
-                Icons.home,
-              ),
-            ),
-            BottomNavigationBarItem(
-              label: 'Professores',
-              icon: Icon(Icons.people),
-            ),
-            BottomNavigationBarItem(
-              label: 'Institutos',
-              icon: Icon(Icons.account_balance),
-            ),
-            BottomNavigationBarItem(
-              label: 'Meu Perfil',
-              icon: Icon(Icons.person),
-            ),
-          ],
+    return NavigationBar(
+      selectedIndex: selectedIndex,
+      onDestinationSelected: onDestinationSelected,
+      destinations: const [
+        NavigationDestination(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.people),
+          label: 'Professores',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.account_balance),
+          label: 'Institutos',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.person),
+          label: 'Meu Perfil',
         ),
       ],
     );

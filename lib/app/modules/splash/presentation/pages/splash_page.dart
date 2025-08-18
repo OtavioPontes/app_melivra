@@ -26,7 +26,7 @@ class _SplashPageState extends State<SplashPage> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
-        statusBarColor: theme.colorScheme.background,
+        statusBarColor: theme.colorScheme.surface,
         systemNavigationBarColor: theme.colorScheme.primary,
       ),
       child: Scaffold(
@@ -96,7 +96,7 @@ class _SplashPageState extends State<SplashPage> {
                           'V ${controller.appVersion}',
                           style: theme.textTheme.titleLarge!.merge(
                             TextStyle(
-                              color: theme.colorScheme.background,
+                              color: theme.colorScheme.surface,
                             ),
                           ),
                         ),
@@ -110,7 +110,7 @@ class _SplashPageState extends State<SplashPage> {
                           state.message,
                           style: theme.textTheme.bodyLarge!.merge(
                             TextStyle(
-                              color: theme.colorScheme.background,
+                              color: theme.colorScheme.surface,
                             ),
                           ),
                         ),
@@ -121,7 +121,7 @@ class _SplashPageState extends State<SplashPage> {
                           onTap: controller.pipeline,
                           child: Icon(
                             Icons.refresh,
-                            color: theme.colorScheme.background,
+                            color: theme.colorScheme.surface,
                           ),
                         ),
                       ],

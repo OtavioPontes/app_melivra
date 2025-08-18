@@ -83,7 +83,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 40.scale,
-                      color: theme.colorScheme.background,
+                      color: theme.colorScheme.surface,
                     ),
                   ),
                 ),
@@ -95,7 +95,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                         children: [
                           Icon(
                             Icons.cancel,
-                            color: theme.colorScheme.background,
+                            color: theme.colorScheme.surface,
                             size: 40.scale,
                           ),
                           SizedBox(height: 16.scale),
@@ -103,7 +103,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                             'Solicitar Retirada',
                             style: theme.textTheme.headlineSmall!.merge(
                               TextStyle(
-                                color: theme.colorScheme.background,
+                                color: theme.colorScheme.surface,
                               ),
                             ),
                           ),
@@ -134,7 +134,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                 'Fale um pouco do motivo que o levou a solicitar a retirada, por favor:',
                                 style: theme.textTheme.headlineSmall!.merge(
                                   TextStyle(
-                                    color: theme.colorScheme.background,
+                                    color: theme.colorScheme.surface,
                                   ),
                                 ),
                               ),
@@ -168,7 +168,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                 'Escolha o Professor',
                                 style: theme.textTheme.headlineSmall!.merge(
                                   TextStyle(
-                                    color: theme.colorScheme.background,
+                                    color: theme.colorScheme.surface,
                                   ),
                                 ),
                               ),
@@ -216,7 +216,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                 builder: (context, state) {
                                   if (state is SearchProfessorsLoadingState) {
                                     return CircularProgressIndicator(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     );
                                   }
                                   if (state is SearchProfessorsEmptyState) {
@@ -260,7 +260,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                   ),
                                   child: Center(
                                     child: CircularProgressIndicator(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   ),
                                 ),
@@ -303,7 +303,7 @@ class _SolicitarRetiradaPageState extends State<SolicitarRetiradaPage> {
                                           ),
                                           fixedSize: Size(140.scale, 50.scale),
                                           backgroundColor:
-                                              theme.colorScheme.background,
+                                              theme.colorScheme.surface,
                                         ),
                                         onPressed: () async {
                                           if (controller.descriptionController

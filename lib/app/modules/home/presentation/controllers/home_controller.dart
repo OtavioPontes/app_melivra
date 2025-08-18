@@ -77,6 +77,7 @@ class HomeController {
   }
 
   Future<void> getListInstitutes() async {
+    topInstitutosBloc.add(TopInstitutosLoadingEvent());
     final result = await _getInstitutosRankUsecase(
       ParamsGetInstitutosRankUsecase(itemsPerPage: 3),
     );

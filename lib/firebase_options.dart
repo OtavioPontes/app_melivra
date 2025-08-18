@@ -63,10 +63,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '834072919526',
     projectId: 'melivra',
     storageBucket: 'melivra.appspot.com',
-    androidClientId:
-        '834072919526-75heik92giothgdbq58n6u4p1tbou100.apps.googleusercontent.com',
-    iosClientId:
-        '834072919526-2i6i493a7ba2fmuacivk9spris7rvpfs.apps.googleusercontent.com',
+    androidClientId: '834072919526-75heik92giothgdbq58n6u4p1tbou100.apps.googleusercontent.com',
+    iosClientId: '834072919526-2i6i493a7ba2fmuacivk9spris7rvpfs.apps.googleusercontent.com',
     iosBundleId: 'com.otaviopontes.melivra',
   );
+
 }

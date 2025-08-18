@@ -64,7 +64,7 @@ class InstitutosPage extends StatelessWidget {
                                   'Não encontramos nada aqui 😥',
                                   style: theme.textTheme.titleLarge!.merge(
                                     TextStyle(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   ),
                                 ),
@@ -72,9 +72,12 @@ class InstitutosPage extends StatelessWidget {
                             );
                           }
                           if (state is InstitutosLoadingState) {
-                            return Center(
-                              child: CircularProgressIndicator(
-                                color: theme.colorScheme.background,
+                            return SizedBox(
+                              height: size.height * 0.6,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: theme.colorScheme.surface,
+                                ),
                               ),
                             );
                           }
@@ -187,8 +190,8 @@ class InstitutosPage extends StatelessWidget {
                                             children: [
                                               Icon(
                                                 Icons.account_balance,
-                                                color: theme
-                                                    .colorScheme.background,
+                                                color:
+                                                    theme.colorScheme.surface,
                                               ),
                                               SizedBox(width: 16.scale),
                                               Text(
@@ -198,7 +201,7 @@ class InstitutosPage extends StatelessWidget {
                                                     .merge(
                                                   TextStyle(
                                                     color: theme
-                                                        .colorScheme.background,
+                                                        .colorScheme.surface,
                                                   ),
                                                 ),
                                               ),
@@ -234,7 +237,7 @@ class InstitutosPage extends StatelessWidget {
                                 'Não encontramos nada aqui 😥',
                                 style: theme.textTheme.titleLarge!.merge(
                                   TextStyle(
-                                    color: theme.colorScheme.background,
+                                    color: theme.colorScheme.surface,
                                   ),
                                 ),
                               ),

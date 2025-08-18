@@ -1,51 +1,57 @@
+import 'package:app_melivra/app/core/core_module.dart';
 import 'package:app_melivra/app/modules/professores_details/data/services/send_report_service.dart';
+import 'package:app_melivra/app/modules/professores_details/domain/services/i_send_report_service.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/evaluate_professor_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/professor_details_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/professor_grades_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/show_button_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/pages/professores_details_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'presentation/pages/professores_details_page.dart';
-
 class ProfessoresDetailsModule extends Module {
-  static const String routeName = "/professoresDetails/";
+  static const String routeName = '/professoresDetails/';
   @override
-  List<Bind> get binds => [
-        Bind((i) => EvaluateProfessorBloc()),
-        Bind((i) => ProfessorGradesBloc()),
-        Bind((i) => ProfessorDetailsBloc()),
-        Bind((i) => ShowEvaluationButtonBloc()),
-        Bind((i) => SendReportService(dio: i())),
-        Bind(
-          (i) => ProfessorDetailsController(
-            postProfessorGradeLikeDislikeUsecase: i(),
-            getProfessorGradesCountUsecase: i(),
-            updateProfessorGradeUsecase: i(),
-            showButtonBloc: i(),
-            getProfessorGradesUsecase: i(),
-            getProfessorDetailsUsecase: i(),
-            gradesBloc: i(),
-            bloc: i(),
-            id: i.args.data['id'],
-          ),
-        ),
-        Bind(
-          (i) => EvaluateProfessorController(
-            box: i(),
-            sendReportService: i(),
-            postProfessorGradeUsecase: i(),
-            bloc: i(),
-          ),
-        ),
-      ];
+  List<Module> get imports => [CoreModule()];
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          Modular.initialRoute,
-          child: (context, args) => const ProfessoresDetailsPage(),
-        ),
-      ];
+  void binds(Injector i) {
+    i.add(EvaluateProfessorBloc.new);
+    i.add(ProfessorGradesBloc.new);
+    i.add(ProfessorDetailsBloc.new);
+    i.add(ShowEvaluationButtonBloc.new);
+    i.add<ISendReportService>(() => SendReportService(dio: i()));
+    i.addSingleton(
+      () => ProfessorDetailsController(
+        getProfessorGradeByUserUsecase: i(),
+        postProfessorGradeLikeDislikeUsecase: i(),
+        getProfessorGradesCountUsecase: i(),
+        updateProfessorGradeUsecase: i(),
+        showButtonBloc: i(),
+        getProfessorGradesUsecase: i(),
+        getProfessorDetailsUsecase: i(),
+        gradesBloc: i(),
+        bloc: i(),
+        id: i.args.data['id'],
+      ),
+    );
+    i.addSingleton(
+      () => EvaluateProfessorController(
+        box: i(),
+        sendReportService: i(),
+        postProfessorGradeUsecase: i(),
+        bloc: i(),
+      ),
+    );
+    super.binds(i);
+  }
+
+  @override
+  void routes(RouteManager r) {
+    r.child(
+      "/",
+      child: (context) => const ProfessoresDetailsPage(),
+    );
+  }
 }

@@ -39,7 +39,7 @@ class SobreAppPage extends StatelessWidget {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 40.scale,
-                      color: theme.colorScheme.background,
+                      color: theme.colorScheme.surface,
                     ),
                   ),
                 ),
@@ -51,7 +51,7 @@ class SobreAppPage extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.info,
-                            color: theme.colorScheme.background,
+                            color: theme.colorScheme.surface,
                             size: 40.scale,
                           ),
                           SizedBox(height: 16.scale),
@@ -59,7 +59,7 @@ class SobreAppPage extends StatelessWidget {
                             'Sobre o App',
                             style: theme.textTheme.headlineSmall!.merge(
                               TextStyle(
-                                color: theme.colorScheme.background,
+                                color: theme.colorScheme.surface,
                               ),
                             ),
                           ),
@@ -91,7 +91,7 @@ class SobreAppPage extends StatelessWidget {
                                   'Me Livra é um app para facilitar a avaliação dos professores e te ajudar a se livrar de problemas.',
                                   style: theme.textTheme.headlineSmall!.merge(
                                     TextStyle(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   ),
                                 ),
@@ -117,7 +117,7 @@ class SobreAppPage extends StatelessWidget {
                               'Me Livra',
                               style: theme.textTheme.titleLarge!.merge(
                                 TextStyle(
-                                  color: theme.colorScheme.background,
+                                  color: theme.colorScheme.surface,
                                 ),
                               ),
                             ),
@@ -126,7 +126,7 @@ class SobreAppPage extends StatelessWidget {
                               'Versão ${AppInfo.instance.packageInfo.version}',
                               style: theme.textTheme.bodySmall!.merge(
                                 TextStyle(
-                                  color: theme.colorScheme.background,
+                                  color: theme.colorScheme.surface,
                                 ),
                               ),
                             ),

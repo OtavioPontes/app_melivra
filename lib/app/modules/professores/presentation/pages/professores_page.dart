@@ -64,7 +64,7 @@ class ProfessoresPage extends StatelessWidget {
                                   'Não encontramos nada aqui 😥',
                                   style: theme.textTheme.titleLarge!.merge(
                                     TextStyle(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   ),
                                 ),
@@ -72,9 +72,12 @@ class ProfessoresPage extends StatelessWidget {
                             );
                           }
                           if (state is ProfessorsLoadingState) {
-                            return Center(
-                              child: CircularProgressIndicator(
-                                color: theme.colorScheme.background,
+                            return SizedBox(
+                              height: size.height * 0.6,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: theme.colorScheme.surface,
+                                ),
                               ),
                             );
                           }
@@ -187,8 +190,8 @@ class ProfessoresPage extends StatelessWidget {
                                             children: [
                                               Icon(
                                                 Icons.school,
-                                                color: theme
-                                                    .colorScheme.background,
+                                                color:
+                                                    theme.colorScheme.surface,
                                               ),
                                               SizedBox(width: 16.scale),
                                               Text(
@@ -198,7 +201,7 @@ class ProfessoresPage extends StatelessWidget {
                                                     .merge(
                                                   TextStyle(
                                                     color: theme
-                                                        .colorScheme.background,
+                                                        .colorScheme.surface,
                                                   ),
                                                 ),
                                               ),

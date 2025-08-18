@@ -17,6 +17,8 @@ class Endpoints {
   static const String professorsRank = '/professors/ranks';
   static String evaluateProfessor({required int id}) =>
       '/professors/$id/grades';
+  static String evaluationByProfessorByUser({required int id}) =>
+      '/professors/$id/grades/user';
   static String gradesCountbyProfessor({required int id}) =>
       '/professors/$id/grades/count';
   static String evaluateComment({required int gradeId}) =>

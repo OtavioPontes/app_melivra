@@ -39,7 +39,8 @@ class LoginFailureDialog extends StatelessWidget {
                   const Spacer(),
                   TextButton(
                     style: TextButton.styleFrom(
-                        backgroundColor: theme.colorScheme.error,),
+                      backgroundColor: theme.colorScheme.error,
+                    ),
                     onPressed: Modular.to.pop,
                     child: Text(
                       'Ok',
@@ -75,7 +76,7 @@ class LoginFailureDialog extends StatelessWidget {
             child: Icon(
               Icons.close,
               size: 50,
-              color: theme.colorScheme.background,
+              color: theme.colorScheme.surface,
             ),
           ),
         ),

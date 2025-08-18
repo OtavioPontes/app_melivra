@@ -29,6 +29,7 @@ class InstitutosController {
   }
 
   Future<void> getInstitutos() async {
+    bloc.add(InstitutosLoadingEvent());
     final result = await _getInstitutosUsecase(
       ParamsGetInstitutosUsecase(),
     );
@@ -51,6 +52,7 @@ class InstitutosController {
   }
 
   Future<void> getGlobalGrade() async {
+    globalGradeBloc.add(GlobalGradeLoadingEvent());
     final result = await _getGlobalGradeUsecase(const NoParams());
 
     result.fold(

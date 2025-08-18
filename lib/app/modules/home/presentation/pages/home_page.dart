@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
                       'Olá, ${controller.store.loggedUser?.name.toNameFormatted()}',
                       style: theme.textTheme.headlineMedium!.merge(
                         TextStyle(
-                          color: theme.colorScheme.background,
+                          color: theme.colorScheme.surface,
                         ),
                       ),
                     ),
@@ -74,14 +74,14 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.search,
-                                    color: theme.colorScheme.background,
+                                    color: theme.colorScheme.surface,
                                   ),
                                   SizedBox(width: 8.scale),
                                   Text(
                                     'Últimos Pesquisados',
                                     style: theme.textTheme.headlineSmall!.merge(
                                       TextStyle(
-                                        color: theme.colorScheme.background,
+                                        color: theme.colorScheme.surface,
                                       ),
                                     ),
                                   ),
@@ -96,7 +96,7 @@ class HomePage extends StatelessWidget {
                                   return Padding(
                                     padding: EdgeInsets.all(8.scale),
                                     child: CircularProgressIndicator(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   );
                                 }
@@ -205,7 +205,7 @@ class HomePage extends StatelessWidget {
                                         style: theme.textTheme.headlineSmall!
                                             .merge(
                                           TextStyle(
-                                            color: theme.colorScheme.background,
+                                            color: theme.colorScheme.surface,
                                           ),
                                         ),
                                       ),
@@ -213,7 +213,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                   Icon(
                                     Icons.arrow_forward_ios,
-                                    color: theme.colorScheme.background,
+                                    color: theme.colorScheme.surface,
                                   ),
                                 ],
                               ),
@@ -224,7 +224,7 @@ class HomePage extends StatelessWidget {
                               builder: (context, state) {
                                 if (state is TopInstitutosLoadingState) {
                                   return CircularProgressIndicator(
-                                    color: theme.colorScheme.background,
+                                    color: theme.colorScheme.surface,
                                   );
                                 }
                                 if (state is TopInstitutosEmptyState) {
@@ -236,7 +236,7 @@ class HomePage extends StatelessWidget {
                                         style:
                                             theme.textTheme.titleLarge!.merge(
                                           TextStyle(
-                                            color: theme.colorScheme.background,
+                                            color: theme.colorScheme.surface,
                                           ),
                                         ),
                                       ),

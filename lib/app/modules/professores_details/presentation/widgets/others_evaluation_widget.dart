@@ -57,7 +57,7 @@ class _OthersEvaluationState extends State<OthersEvaluation> {
             ),
             boxShadow: [
               BoxShadow(
-                color: theme.colorScheme.onPrimary.withOpacity(0.2),
+                color: theme.colorScheme.onPrimary.withValues(alpha: 0.2),
                 offset: const Offset(-1, 2),
                 blurRadius: 5,
                 spreadRadius: 2,
@@ -173,7 +173,7 @@ class _OthersEvaluationState extends State<OthersEvaluation> {
                         backgroundColor: ColorsMeLivra().yellow,
                         child: Icon(
                           Icons.warning,
-                          color: theme.colorScheme.background,
+                          color: theme.colorScheme.surface,
                         ),
                       ),
                     ),

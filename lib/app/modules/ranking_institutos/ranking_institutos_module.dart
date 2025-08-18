@@ -1,27 +1,31 @@
+import 'package:app_melivra/app/core/core_module.dart';
 import 'package:app_melivra/app/modules/ranking_institutos/presentation/bloc/ranking_bloc.dart';
 import 'package:app_melivra/app/modules/ranking_institutos/presentation/controllers/ranking_controller.dart';
+import 'package:app_melivra/app/modules/ranking_institutos/presentation/pages/ranking_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'presentation/pages/ranking_page.dart';
-
 class RankingInstitutosModule extends Module {
-  static String routeName = "/ranking/";
+  static const String routeName = '/ranking/';
   @override
-  List<Bind> get binds => [
-        Bind((i) => RankingBloc()),
-        Bind(
-          (i) => RankController(
-            bloc: i(),
-            getInstitutosRankUsecase: i(),
-          ),
-        ),
-      ];
+  List<Module> get imports => [CoreModule()];
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          Modular.initialRoute,
-          child: (context, args) => RankingPage(),
-        ),
-      ];
+  void binds(Injector i) {
+    i.add(RankingBloc.new);
+    i.add(
+      () => RankController(
+        bloc: i(),
+        getInstitutosRankUsecase: i(),
+      ),
+    );
+    super.binds(i);
+  }
+
+  @override
+  void routes(RouteManager r) {
+    r.child(
+      "/",
+      child: (context) => RankingPage(),
+    );
+  }
 }

@@ -143,6 +143,24 @@ class ProfessorRepository implements IProfessorRepository {
   }
 
   @override
+  Future<Either<IFailure, Grade?>> getProfessorGradesByUser({
+    required int id,
+  }) async {
+    try {
+      final gradesConfig = await _datasource.getProfessorGradesByUser(
+        id: id,
+      );
+      return Right(gradesConfig);
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(
+          message: e.message,
+        ),
+      );
+    }
+  }
+
+  @override
   Future<Either<IFailure, int>> getProfessorGradesCount({
     required int id,
   }) async {

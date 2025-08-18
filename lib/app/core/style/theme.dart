@@ -8,9 +8,8 @@ import 'package:flutter/services.dart';
 ThemeData get lightTheme => ThemeData(
       brightness: Brightness.light,
       primaryColor: ColorsMeLivra().purple,
-      disabledColor: ColorsMeLivra().black.withOpacity(.38),
-      dividerColor: ColorsMeLivra().black.withOpacity(.32),
-      dialogBackgroundColor: ColorsMeLivra().black.shade50,
+      disabledColor: ColorsMeLivra().black.withValues(alpha: .38),
+      dividerColor: ColorsMeLivra().black.withValues(alpha: .32),
       primarySwatch: ColorsMeLivra().black,
       colorScheme: ColorScheme(
         brightness: Brightness.light,
@@ -20,8 +19,6 @@ ThemeData get lightTheme => ThemeData(
         secondary: ColorsMeLivra().purple,
         secondaryContainer: ColorsMeLivra().purple,
         onSecondary: ColorsMeLivra().black,
-        background: ColorsMeLivra().white,
-        onBackground: ColorsMeLivra().black,
         surface: ColorsMeLivra().white,
         onSurface: ColorsMeLivra().black,
         error: ColorsMeLivra().red,
@@ -99,14 +96,14 @@ ThemeData get lightTheme => ThemeData(
         focusColor: ColorsMeLivra().purple,
         fillColor: ColorsMeLivra().black,
         hintStyle: TextStyle(
-          color: ColorsMeLivra().black.withOpacity(.38),
+          color: ColorsMeLivra().black.withValues(alpha: .38),
         ),
         border: InputBorder.none,
         errorStyle: TextStyle(
           color: ColorsMeLivra().red,
         ),
         labelStyle: TextStyle(
-          color: ColorsMeLivra().black.withOpacity(.87),
+          color: ColorsMeLivra().black.withValues(alpha: .87),
           fontSize: 16.scale,
           fontWeight: FontWeight.w500,
           letterSpacing: 0.15,
@@ -118,9 +115,9 @@ ThemeData get lightTheme => ThemeData(
         showUnselectedLabels: true,
         selectedItemColor: ColorsMeLivra().purple,
         backgroundColor: ColorsMeLivra().white,
-        unselectedItemColor: ColorsMeLivra().black.withOpacity(.38),
+        unselectedItemColor: ColorsMeLivra().black.withValues(alpha: .38),
         unselectedIconTheme: IconThemeData(
-          color: ColorsMeLivra().black.withOpacity(.38),
+          color: ColorsMeLivra().black.withValues(alpha: .38),
         ),
         selectedLabelStyle: TextStyle(
           fontFamily: FontsMeLivra.quicksand,
@@ -132,14 +129,31 @@ ThemeData get lightTheme => ThemeData(
           fontFamily: FontsMeLivra.quicksand,
           fontSize: 12.scale,
           fontWeight: FontWeight.w500,
-          color: ColorsMeLivra().black.withOpacity(.38),
+          color: ColorsMeLivra().black.withValues(alpha: .38),
         ),
       ),
       buttonTheme: ButtonThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0.scale),
         ),
-        disabledColor: ColorsMeLivra().black.withOpacity(.38),
+        disabledColor: ColorsMeLivra().black.withValues(alpha: .38),
+      ),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: ColorsMeLivra().white,
+        indicatorColor: ColorsMeLivra().lightPurple,
+        labelTextStyle: WidgetStateProperty.all<TextStyle>(
+          TextStyle(
+            fontSize: 12.scale,
+            fontWeight: FontWeight.w500,
+            color: ColorsMeLivra().purple,
+          ),
+        ),
+        iconTheme: WidgetStateProperty.all<IconThemeData>(
+          IconThemeData(
+            color: ColorsMeLivra().purple,
+            size: 24.scale,
+          ),
+        ),
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: ColorsMeLivra().white,
@@ -159,8 +173,8 @@ ThemeData get lightTheme => ThemeData(
         ),
       ),
       checkboxTheme: CheckboxThemeData(
-        checkColor: MaterialStateProperty.all<Color>(ColorsMeLivra().black),
-        fillColor: MaterialStateProperty.all<Color>(ColorsMeLivra().purple),
+        checkColor: WidgetStateProperty.all<Color>(ColorsMeLivra().black),
+        fillColor: WidgetStateProperty.all<Color>(ColorsMeLivra().purple),
       ),
       iconTheme: IconThemeData(
         color: ColorsMeLivra().purple,
@@ -170,14 +184,16 @@ ThemeData get lightTheme => ThemeData(
         color: ColorsMeLivra().purple,
       ),
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.all<Color>(ColorsMeLivra().green),
+        fillColor: WidgetStateProperty.all<Color>(ColorsMeLivra().green),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0.scale),
         ),
         elevation: 4,
-        shadowColor: ColorsMeLivra().purple.withOpacity(.2),
+        shadowColor: ColorsMeLivra().purple.withValues(alpha: .2),
         margin: EdgeInsets.zero,
       ),
+      dialogTheme:
+          DialogThemeData(backgroundColor: ColorsMeLivra().black.shade50),
     );

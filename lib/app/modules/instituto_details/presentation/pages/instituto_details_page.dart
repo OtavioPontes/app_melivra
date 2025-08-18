@@ -93,7 +93,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                     icon: Icon(
                                       Icons.arrow_back_ios,
                                       size: 40.scale,
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   ),
                                 ),
@@ -106,7 +106,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                       textAlign: TextAlign.center,
                                       style: theme.textTheme.titleLarge!.merge(
                                         TextStyle(
-                                          color: theme.colorScheme.background,
+                                          color: theme.colorScheme.surface,
                                         ),
                                       ),
                                     ),
@@ -128,14 +128,14 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                   icon: Icon(
                                     Icons.arrow_back_ios,
                                     size: 40.scale,
-                                    color: theme.colorScheme.background,
+                                    color: theme.colorScheme.surface,
                                   ),
                                 ),
                               ),
                               SizedBox(height: 64.scale),
                               Center(
                                 child: CircularProgressIndicator(
-                                  color: theme.colorScheme.background,
+                                  color: theme.colorScheme.surface,
                                 ),
                               ),
                             ],
@@ -159,7 +159,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                       icon: Icon(
                                         Icons.arrow_back_ios,
                                         size: 40.scale,
-                                        color: theme.colorScheme.background,
+                                        color: theme.colorScheme.surface,
                                       ),
                                     ),
                                     Flexible(
@@ -169,7 +169,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                         style: theme.textTheme.headlineSmall!
                                             .merge(
                                           TextStyle(
-                                            color: theme.colorScheme.background,
+                                            color: theme.colorScheme.surface,
                                           ),
                                         ),
                                       ),
@@ -261,7 +261,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                 state.message,
                                 style: theme.textTheme.titleLarge!.merge(
                                   TextStyle(
-                                    color: theme.colorScheme.background,
+                                    color: theme.colorScheme.surface,
                                   ),
                                 ),
                               ),
@@ -274,7 +274,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                         if (state is InstitutoProfessorsLoadingState) {
                           return Center(
                             child: CircularProgressIndicator(
-                              color: theme.colorScheme.background,
+                              color: theme.colorScheme.surface,
                             ),
                           );
                         }
@@ -337,7 +337,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                   children: [
                                     Icon(
                                       Icons.school,
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                     SizedBox(width: 16.scale),
                                     Text(
@@ -345,7 +345,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                       style:
                                           theme.textTheme.headlineSmall!.merge(
                                         TextStyle(
-                                          color: theme.colorScheme.background,
+                                          color: theme.colorScheme.surface,
                                         ),
                                       ),
                                     ),
@@ -373,7 +373,7 @@ class _InstitutoDetailsPageState extends State<InstitutoDetailsPage> {
                                       vertical: 16.scale,
                                     ),
                                     child: CircularProgressIndicator(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   ),
                               ],

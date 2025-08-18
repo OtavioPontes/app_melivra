@@ -22,7 +22,7 @@ class SendRecoverCodePage extends StatelessWidget {
               'Esqueci minha senha',
               style: theme.textTheme.headlineMedium!.merge(
                 TextStyle(
-                  color: theme.colorScheme.background,
+                  color: theme.colorScheme.surface,
                 ),
               ),
             ),
@@ -31,7 +31,7 @@ class SendRecoverCodePage extends StatelessWidget {
               'Insira seu email e logo mandaremos o código de recuperação',
               style: theme.textTheme.bodyMedium!.merge(
                 TextStyle(
-                  color: theme.colorScheme.background,
+                  color: theme.colorScheme.surface,
                 ),
               ),
             ),
@@ -50,7 +50,7 @@ class SendRecoverCodePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   fixedSize: Size(140.scale, 50.scale),
-                  backgroundColor: theme.colorScheme.background,
+                  backgroundColor: theme.colorScheme.surface,
                 ),
                 onPressed: controller.sendRecoverCode,
                 child: Text(

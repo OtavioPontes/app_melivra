@@ -35,7 +35,8 @@ class CadastroSuccessDialog extends StatelessWidget {
                   const Spacer(),
                   TextButton(
                     style: TextButton.styleFrom(
-                        backgroundColor: theme.primaryColor,),
+                      backgroundColor: theme.primaryColor,
+                    ),
                     onPressed: () {
                       Modular.to.navigate(InicioModule.routeName);
                       Modular.to.pushNamed(LoginModule.routeName);
@@ -72,7 +73,7 @@ class CadastroSuccessDialog extends StatelessWidget {
             child: Icon(
               Icons.close,
               size: 50,
-              color: theme.colorScheme.background,
+              color: theme.colorScheme.surface,
             ),
           ),
         ),

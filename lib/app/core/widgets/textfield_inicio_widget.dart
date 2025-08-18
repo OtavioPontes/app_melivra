@@ -43,7 +43,7 @@ class _TextFieldInicioState extends State<TextFieldInicio> {
         bottom: bottomPadding,
       ),
       decoration: BoxDecoration(
-        color: theme.colorScheme.background,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Center(

@@ -52,7 +52,8 @@ class _ReportDialogState extends State<ReportDialog> {
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: theme.colorScheme.onPrimary.withOpacity(0.2),
+                            color: theme.colorScheme.onPrimary
+                                .withValues(alpha: 0.2),
                             offset: const Offset(0, 3),
                             blurRadius: 1,
                             spreadRadius: 1,
@@ -97,7 +98,7 @@ class _ReportDialogState extends State<ReportDialog> {
                       'Enviar',
                       style: theme.textTheme.titleLarge!.merge(
                         TextStyle(
-                          color: theme.colorScheme.background,
+                          color: theme.colorScheme.surface,
                         ),
                       ),
                     ),
@@ -131,7 +132,7 @@ class _ReportDialogState extends State<ReportDialog> {
             child: Icon(
               Icons.close,
               size: 50,
-              color: theme.colorScheme.background,
+              color: theme.colorScheme.surface,
             ),
           ),
         ),

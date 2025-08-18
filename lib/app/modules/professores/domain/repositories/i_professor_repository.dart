@@ -45,4 +45,8 @@ abstract class IProfessorRepository {
     required String description,
   });
   Future<Either<IFailure, Grade>> getGlobalGrades();
+
+  Future<Either<IFailure, Grade?>> getProfessorGradesByUser({
+    required int id,
+  });
 }

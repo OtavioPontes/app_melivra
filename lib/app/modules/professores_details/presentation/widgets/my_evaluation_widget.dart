@@ -42,7 +42,7 @@ class _MyEvaluationState extends State<MyEvaluation> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: theme.colorScheme.onPrimary.withOpacity(0.2),
+                  color: theme.colorScheme.onPrimary.withValues(alpha: 0.2),
                   offset: const Offset(-1, 2),
                   blurRadius: 5,
                   spreadRadius: 2,

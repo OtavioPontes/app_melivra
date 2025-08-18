@@ -48,7 +48,7 @@ class MeuPerfilPage extends StatelessWidget {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 40.scale,
-                      color: theme.colorScheme.background,
+                      color: theme.colorScheme.surface,
                     ),
                   ),
                 ),
@@ -77,7 +77,7 @@ class MeuPerfilPage extends StatelessWidget {
                             children: [
                               CircleAvatar(
                                 radius: 40.scale,
-                                backgroundColor: theme.colorScheme.background,
+                                backgroundColor: theme.colorScheme.surface,
                                 child: Text(
                                   controller.nameInitials,
                                   style: theme.textTheme.headlineMedium!.merge(
@@ -96,7 +96,7 @@ class MeuPerfilPage extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   style: theme.textTheme.headlineSmall!.merge(
                                     TextStyle(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   ),
                                 ),
@@ -144,8 +144,7 @@ class MeuPerfilPage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     fixedSize: Size(140.scale, 50.scale),
-                                    backgroundColor:
-                                        theme.colorScheme.background,
+                                    backgroundColor: theme.colorScheme.surface,
                                   ),
                                   onPressed: meuPerfilController.updateProfile,
                                   child: Text(
@@ -190,7 +189,7 @@ class MeuPerfilPage extends StatelessWidget {
                                         style:
                                             theme.textTheme.titleSmall!.merge(
                                           TextStyle(
-                                            color: theme.colorScheme.background,
+                                            color: theme.colorScheme.surface,
                                           ),
                                         ),
                                       ),
@@ -245,7 +244,7 @@ class MeuPerfilTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
               spreadRadius: 2,
               blurRadius: 4,
               offset: const Offset(0, 1),

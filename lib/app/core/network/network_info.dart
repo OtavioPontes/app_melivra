@@ -7,15 +7,15 @@ import 'package:flutter/widgets.dart';
 abstract class INetworkInfo {
   Future<bool> get isConnected;
   Stream<bool> get streamIsConnected;
-  Future<ConnectivityResult> checkConnectivity();
+  Future<List<ConnectivityResult>> checkConnectivity();
 
   Future<void> init();
 }
 
 class NetworkInfo implements INetworkInfo {
   final Connectivity _connectivity = Connectivity();
-  ConnectivityResult result = ConnectivityResult.none;
-  StreamSubscription<ConnectivityResult>? _connectivitySubscription;
+  List<ConnectivityResult> result = [];
+  StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
   final StreamController<bool> _streamController = StreamController.broadcast();
 
   @override
@@ -37,20 +37,20 @@ class NetworkInfo implements INetworkInfo {
     _streamController.close();
   }
 
-  void _updateConnectionStatus(ConnectivityResult result) {
+  void _updateConnectionStatus(List<ConnectivityResult> result) {
     this.result = result;
-    _streamController.add(!(result == ConnectivityResult.none));
+    _streamController.add(!(result.last == ConnectivityResult.none));
   }
 
   @override
-  Future<ConnectivityResult> checkConnectivity() async {
+  Future<List<ConnectivityResult>> checkConnectivity() async {
     result = await _connectivity.checkConnectivity();
     _updateConnectionStatus(result);
     return result;
   }
 
   @override
-  Future<bool> get isConnected async => result != ConnectivityResult.none;
+  Future<bool> get isConnected async => result.last != ConnectivityResult.none;
 
   @override
   Stream<bool> get streamIsConnected => _streamController.stream;

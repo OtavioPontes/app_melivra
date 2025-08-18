@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:app_melivra/app/core/core_module.dart';
 import 'package:app_melivra/app/core/network/api_url.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,7 +22,7 @@ void main() async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      AppModule.url = Api.localUrl;
+      CoreModule.url = Api.localUrl;
       await Firebase.initializeApp();
       final firebaseAnalytics = FirebaseAnalytics.instance;
       await firebaseAnalytics.setAnalyticsCollectionEnabled(false);

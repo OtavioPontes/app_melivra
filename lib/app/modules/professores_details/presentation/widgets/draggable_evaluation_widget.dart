@@ -100,7 +100,6 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                   child: Text(
                                     'Avaliações e Comentários',
                                     textAlign: TextAlign.center,
-                                    textScaleFactor: 1,
                                     style: theme.textTheme.headlineSmall,
                                   ),
                                 ),
@@ -109,7 +108,20 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                             ),
                           ),
                           SizedBox(height: 32.scale),
-                          const MyEvaluation(),
+                          BlocBuilder(
+                            bloc: controller.gradesBloc,
+                            builder: (context, state) {
+                              if (state is ProfessorGradesLoadingState) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              if (controller.myGrade != null) {
+                                return const MyEvaluation();
+                              }
+                              return const SizedBox();
+                            },
+                          ),
                           BlocBuilder(
                             bloc: controller.gradesBloc,
                             builder: (context, state) {
@@ -121,7 +133,7 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                     textAlign: TextAlign.center,
                                     style: theme.textTheme.titleLarge!.merge(
                                       TextStyle(
-                                        color: theme.colorScheme.background,
+                                        color: theme.colorScheme.surface,
                                       ),
                                     ),
                                   ),
@@ -143,7 +155,7 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                       textAlign: TextAlign.center,
                                       style: theme.textTheme.titleLarge!.merge(
                                         TextStyle(
-                                          color: theme.colorScheme.background,
+                                          color: theme.colorScheme.surface,
                                         ),
                                       ),
                                     ),
@@ -162,14 +174,14 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                         icon: Icon(
                                           Icons.arrow_back_ios,
                                           size: 40.scale,
-                                          color: theme.colorScheme.background,
+                                          color: theme.colorScheme.surface,
                                         ),
                                       ),
                                     ),
                                     SizedBox(height: 64.scale),
                                     Center(
                                       child: CircularProgressIndicator(
-                                        color: theme.colorScheme.background,
+                                        color: theme.colorScheme.surface,
                                       ),
                                     ),
                                   ],
@@ -182,7 +194,7 @@ class _DraggableEvaluationState extends State<DraggableEvaluation> {
                                     'Ainda não há comentários, seja o primeiro a comentar 😎',
                                     textAlign: TextAlign.center,
                                     style: theme.textTheme.bodyLarge?.copyWith(
-                                      color: theme.colorScheme.background,
+                                      color: theme.colorScheme.surface,
                                     ),
                                   ),
                                 );

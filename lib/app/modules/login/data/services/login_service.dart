@@ -29,4 +29,22 @@ class LoginService implements ILoginService {
       );
     }
   }
+
+  @override
+  Future<Either<IFailure, User>> oauthLogin({
+    required String idToken,
+  }) async {
+    try {
+      final model = await _loginDatasource.oauthLogin(
+        idToken: idToken,
+      );
+      return Right(model.toEntity());
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(
+          message: e.message,
+        ),
+      );
+    }
+  }
 }

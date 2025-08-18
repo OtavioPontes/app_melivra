@@ -1,11 +1,11 @@
-import 'package:app_melivra/app/modules/suggestions/data/services/send_suggestion_service.dart';
+import 'package:app_melivra/app/modules/suggestions/domain/services/i_send_suggestion_service.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class SuggestionsController {
-  final SendSuggestionService _sendSuggestionService;
+  final ISendSuggestionService _sendSuggestionService;
   SuggestionsController({
-    required SendSuggestionService sendSuggestionService,
+    required ISendSuggestionService sendSuggestionService,
   }) : _sendSuggestionService = sendSuggestionService;
 
   TextEditingController suggestionController = TextEditingController();

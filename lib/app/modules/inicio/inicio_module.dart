@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/core_module.dart';
 import 'package:app_melivra/app/modules/inicio/presentation/pages/inicio_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -7,33 +8,19 @@ class InicioModule extends Module {
   static const String routeName = '/inicio/';
 
   @override
-  List<Bind> get binds => [
-        // ------------------------ STORES ------------------------
-
-        // --------------------- CONTROLLERS ----------------------
-        Bind(
-          (i) => InicioController(),
-        ),
-
-        // ---------------------- USE CASES -----------------------
-
-        // --------------------- REPOSITORIES ---------------------
-
-        // --------------------- DATA SOURCES ---------------------
-
-        // ----------------------- SERVICES -----------------------
-
-        // -------------------- NOTIFICATIONS ---------------------
-      ];
+  List<Module> get imports => [CoreModule()];
 
   @override
-  final List<Module> imports = [];
+  void binds(Injector i) {
+    i.add(() => InicioController(loginService: i(), userStore: i()));
+    super.binds(i);
+  }
 
   @override
-  final List<ModularRoute> routes = [
-    ChildRoute(
-      Modular.initialRoute,
-      child: (_, args) => const InicioPage(),
-    ),
-  ];
+  void routes(RouteManager r) {
+    r.child(
+      "/",
+      child: (context) => const InicioPage(),
+    );
+  }
 }

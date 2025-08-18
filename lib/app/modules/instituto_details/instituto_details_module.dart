@@ -1,3 +1,4 @@
+import 'package:app_melivra/app/core/core_module.dart';
 import 'package:app_melivra/app/modules/instituto_details/presentation/bloc/instituto_details_bloc.dart';
 import 'package:app_melivra/app/modules/instituto_details/presentation/bloc/instituto_professors_bloc.dart';
 import 'package:app_melivra/app/modules/instituto_details/presentation/controllers/instituto_details_controller.dart';
@@ -6,27 +7,30 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class InstitutoDetailsModule extends Module {
   static const String routeName = '/institutoDetails/';
+  @override
+  List<Module> get imports => [CoreModule()];
 
   @override
-  List<Bind> get binds => [
-        Bind((i) => InstitutoDetailsBloc()),
-        Bind((i) => InstitutoProfessorsBloc()),
-        Bind(
-          (i) => InstitutoDetailsController(
-            professorsBloc: i(),
-            getProfessorsUsecase: i(),
-            getInstitutoDetailsUsecase: i(),
-            bloc: i(),
-            id: i.args.data['id'],
-          ),
-        ),
-      ];
+  void binds(Injector i) {
+    i.add(InstitutoDetailsBloc.new);
+    i.add(InstitutoProfessorsBloc.new);
+    i.add(
+      () => InstitutoDetailsController(
+        professorsBloc: i(),
+        getProfessorsUsecase: i(),
+        getInstitutoDetailsUsecase: i(),
+        bloc: i(),
+        id: i.args.data['id'],
+      ),
+    );
+    super.binds(i);
+  }
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          Modular.initialRoute,
-          child: (context, args) => const InstitutoDetailsPage(),
-        ),
-      ];
+  void routes(RouteManager r) {
+    r.child(
+      "/",
+      child: (context) => const InstitutoDetailsPage(),
+    );
+  }
 }

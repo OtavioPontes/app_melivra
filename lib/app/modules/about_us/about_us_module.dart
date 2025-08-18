@@ -1,16 +1,17 @@
+import 'package:app_melivra/app/core/core_module.dart';
 import 'package:app_melivra/app/modules/about_us/presentation/pages/about_us_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AboutUsModule extends Module {
   static const String routeName = '/aboutUs/';
   @override
-  List<Bind> get binds => const [];
+  List<Module> get imports => [CoreModule()];
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          Modular.initialRoute,
-          child: (context, args) => const AboutUsPage(),
-        ),
-      ];
+  void routes(RouteManager r) {
+    r.child(
+      "/",
+      child: (context) => const AboutUsPage(),
+    );
+  }
 }

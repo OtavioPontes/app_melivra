@@ -30,6 +30,7 @@ class ProfessorsController {
   }
 
   Future<void> getProfessors() async {
+    bloc.add(ProfessorsLoadingEvent());
     final result = await _getProfessorsUsecase(
       ParamsGetProfessorsRankUsecase(),
     );
@@ -52,6 +53,7 @@ class ProfessorsController {
   }
 
   Future<void> getGlobalGrade() async {
+    globalGradeBloc.add(GlobalGradeLoadingEvent());
     final result = await _getGlobalGradeUsecase(const NoParams());
 
     result.fold(

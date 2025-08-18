@@ -8,6 +8,7 @@ class Grade extends Equatable {
   final int? respectfulTreatment;
   final int? boardOrganization;
   final int? average;
+  final String? description;
 
   const Grade({
     required this.coherentEvaluation,
@@ -15,6 +16,7 @@ class Grade extends Equatable {
     required this.respectfulTreatment,
     required this.boardOrganization,
     this.average,
+    this.description,
   });
 
   @override
@@ -24,6 +26,7 @@ class Grade extends Equatable {
         clearExplanation,
         respectfulTreatment,
         boardOrganization,
+        description,
       ];
 
   Grade copyWith({
@@ -32,6 +35,7 @@ class Grade extends Equatable {
     int? respectfulTreatment,
     int? boardOrganization,
     int? average,
+    String? description,
   }) {
     return Grade(
       average: average ?? this.average,
@@ -39,6 +43,7 @@ class Grade extends Equatable {
       clearExplanation: clearExplanation ?? this.clearExplanation,
       respectfulTreatment: respectfulTreatment ?? this.respectfulTreatment,
       boardOrganization: boardOrganization ?? this.boardOrganization,
+      description: description ?? this.description,
     );
   }
 
@@ -49,6 +54,7 @@ class Grade extends Equatable {
       'clear_explanation': clearExplanation,
       'respectful_treatment': respectfulTreatment,
       'board_organization': boardOrganization,
+      'description': description,
     };
   }
 
@@ -59,6 +65,7 @@ class Grade extends Equatable {
       clearExplanation: map['clear_explanation']?.toInt(),
       respectfulTreatment: map['respectful_treatment']?.toInt(),
       boardOrganization: map['board_organization']?.toInt(),
+      description: map['description'],
     );
   }
 

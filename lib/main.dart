@@ -3,6 +3,7 @@ import 'dart:isolate';
 
 import 'package:app_melivra/app/core/network/api_url.dart';
 import 'package:app_melivra/firebase_options.dart';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -14,6 +15,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'app/app_module.dart';
 import 'app/app_widget.dart';
 
+import 'app/core/core_module.dart';
 import 'app/core/utils/appinfo.dart';
 
 late final FirebaseAnalytics firebaseAnalytics;
@@ -23,7 +25,7 @@ void main() async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      AppModule.url = Api.prodUrl;
+      CoreModule.url = Api.prodUrl;
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );

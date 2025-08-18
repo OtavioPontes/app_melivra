@@ -55,7 +55,8 @@ class LogoutDialog extends StatelessWidget {
                     children: [
                       TextButton(
                         style: TextButton.styleFrom(
-                            backgroundColor: theme.cardColor,),
+                          backgroundColor: theme.cardColor,
+                        ),
                         onPressed: controller.logout,
                         child: Text(
                           'Sim',
@@ -95,7 +96,7 @@ class LogoutDialog extends StatelessWidget {
             child: Icon(
               Icons.close,
               size: 50,
-              color: theme.colorScheme.background,
+              color: theme.colorScheme.surface,
             ),
           ),
         ),

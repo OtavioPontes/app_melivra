@@ -72,7 +72,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                 'Cadastro',
                                 style: theme.textTheme.headlineMedium!.merge(
                                   TextStyle(
-                                    color: theme.colorScheme.background,
+                                    color: theme.colorScheme.surface,
                                   ),
                                 ),
                               ),
@@ -165,7 +165,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                         ),
                                         fixedSize: Size(140.scale, 50.scale),
                                         backgroundColor:
-                                            theme.colorScheme.background,
+                                            theme.colorScheme.surface,
                                       ),
                                       onPressed: () => controller.isNotEmpty
                                           ? controller.cadastro()

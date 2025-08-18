@@ -98,7 +98,7 @@ class DeletePerfilDialog extends StatelessWidget {
             child: Icon(
               Icons.close,
               size: 50,
-              color: theme.colorScheme.background,
+              color: theme.colorScheme.surface,
             ),
           ),
         ),

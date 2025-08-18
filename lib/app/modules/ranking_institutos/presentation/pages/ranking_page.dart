@@ -48,7 +48,7 @@ class RankingPage extends StatelessWidget {
                             icon: Icon(
                               Icons.arrow_back_ios,
                               size: 40.scale,
-                              color: theme.colorScheme.background,
+                              color: theme.colorScheme.surface,
                             ),
                           ),
                           SizedBox(width: 16.scale),
@@ -57,7 +57,7 @@ class RankingPage extends StatelessWidget {
                               'Ranking dos Institutos',
                               style: theme.textTheme.headlineMedium!.merge(
                                 TextStyle(
-                                  color: theme.colorScheme.background,
+                                  color: theme.colorScheme.surface,
                                 ),
                               ),
                             ),
@@ -213,7 +213,7 @@ class RankingPage extends StatelessWidget {
                                       'Não encontramos nada aqui 😥',
                                       style: theme.textTheme.titleLarge!.merge(
                                         TextStyle(
-                                          color: theme.colorScheme.background,
+                                          color: theme.colorScheme.surface,
                                         ),
                                       ),
                                     ),

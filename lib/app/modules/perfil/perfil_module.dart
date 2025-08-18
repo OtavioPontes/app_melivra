@@ -1,23 +1,17 @@
-import 'package:app_melivra/app/modules/perfil/presentation/controllers/perfil_controller.dart';
+import 'package:app_melivra/app/core/core_module.dart';
 import 'package:app_melivra/app/modules/perfil/presentation/pages/perfil_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class PerfilModule extends Module {
-  static const String routeName = "/perfil/";
-  static ModularProvider provider = ModularProvider(
-    module: PerfilModule(),
-    child: PerfilPage(),
-  );
+  static const String routeName = '/perfil/';
   @override
-  List<Bind> get binds => [
-        Bind((i) => PerfilController(store: i())),
-      ];
+  List<Module> get imports => [CoreModule()];
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          Modular.initialRoute,
-          child: (context, args) => PerfilPage(),
-        ),
-      ];
+  void routes(RouteManager r) {
+    r.child(
+      "/",
+      child: (context) => PerfilPage(),
+    );
+  }
 }

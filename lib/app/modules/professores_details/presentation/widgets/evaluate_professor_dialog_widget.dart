@@ -2,6 +2,7 @@ import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_entity.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/bloc/evaluate_professor_bloc.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/controllers/evalute_professor_controller.dart';
+import 'package:app_melivra/app/modules/professores_details/presentation/controllers/professor_details_controller.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/pages/evaluate_professor_page.dart';
 import 'package:app_melivra/app/modules/professores_details/presentation/widgets/steppers_menu_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class EvaluateProfessorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Modular.get<EvaluateProfessorController>();
+    final professorDetails = Modular.get<ProfessorDetailsController>();
     controller.setProfessor(professor);
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
@@ -61,12 +63,15 @@ class EvaluateProfessorDialog extends StatelessWidget {
                         fixedSize: Size(80.scale, 40.scale),
                         backgroundColor: theme.primaryColor,
                       ),
-                      onPressed: Modular.to.pop,
+                      onPressed: () {
+                        professorDetails.pipeline();
+                        Modular.to.pop();
+                      },
                       child: Text(
                         'Ok',
                         style: theme.textTheme.titleLarge!.merge(
                           TextStyle(
-                            color: theme.colorScheme.background,
+                            color: theme.colorScheme.surface,
                           ),
                         ),
                       ),
@@ -122,7 +127,7 @@ class EvaluateProfessorDialog extends StatelessWidget {
                             'Ok',
                             style: theme.textTheme.titleLarge!.merge(
                               TextStyle(
-                                color: theme.colorScheme.background,
+                                color: theme.colorScheme.surface,
                               ),
                             ),
                           ),

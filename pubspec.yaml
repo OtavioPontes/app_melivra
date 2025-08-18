@@ -3,7 +3,7 @@ description: Aplicativo para avaliação de professores
 
 publish_to: "none"
 
-version: 1.0.2+10
+version: 1.1.0+12
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
-  flutter_modular: ^5.0.3
+  flutter_modular: ^6.4.1
 
   # DB
   hive: ^2.2.3
@@ -23,40 +23,42 @@ dependencies:
   dio: ^5.2.1+1
 
   # Gerência de Estados
-  bloc: ^8.1.0
-  flutter_bloc: ^8.1.1
+  bloc: ^9.0.0
+  flutter_bloc: ^9.1.1
 
   # Utils
   equatable: ^2.0.3
   dartz: ^0.10.0
   version: ^3.0.2
-  package_info: ^2.0.2
-  device_info: ^2.0.3
-  connectivity_plus: ^4.0.1
+  package_info_plus: ^8.3.1
+  device_info_plus: ^11.5.0
+  connectivity_plus: ^6.1.5
   jwt_decoder: ^2.0.1
   sleek_circular_slider: ^2.0.1
   fluttertoast: ^8.1.2
   url_launcher: ^6.1.7
   profanity_filter: ^2.0.0
   pin_code_fields: ^8.0.1
-  pinput: ^2.2.31
+  pinput: ^5.0.1
   tutorial_coach_mark: ^1.2.9
+  font_awesome_flutter: ^10.7.0
+  google_sign_in: ^7.1.1
   # Images
   flutter_svg: ^2.0.7
 
   # Firebase
-  firebase_core: ^2.1.1
-  firebase_storage: ^11.0.3
-  firebase_analytics: ^10.0.3
-  firebase_crashlytics: ^3.0.3
+  firebase_core: ^4.0.0
+  firebase_storage: ^13.0.0
+  firebase_analytics: ^12.0.0
+  firebase_crashlytics: ^5.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.1
+  flutter_lints: ^6.0.0
   mobx_codegen: ^2.0.4
-  mocktail: ^0.3.0
+  mocktail: ^1.0.4
   build_runner: ^2.1.5
 
 flutter:

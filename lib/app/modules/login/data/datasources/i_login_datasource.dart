@@ -5,4 +5,8 @@ abstract class ILoginDatasource {
     required String email,
     required String password,
   });
+
+  Future<UserModel> oauthLogin({
+    required String idToken,
+  });
 }

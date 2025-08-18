@@ -155,6 +155,21 @@ class ProfessorsDatasource implements IProfessorDatasource {
   }
 
   @override
+  Future<Grade?> getProfessorGradesByUser({required int id}) async {
+    try {
+      final response = await _dio.get(
+        Endpoints.evaluationByProfessorByUser(id: id),
+      );
+      return response.data != null ? Grade.fromMap(response.data) : null;
+    } on DioException catch (e) {
+      throw ServerException(
+        message: e.response?.data['message'],
+        statusCode: e.response?.statusCode,
+      );
+    }
+  }
+
+  @override
   Future<int> getProfessorGradesCount({required int id}) async {
     try {
       final response = await _dio.get(

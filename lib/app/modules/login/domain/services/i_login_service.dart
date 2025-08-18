@@ -7,4 +7,8 @@ abstract class ILoginService {
     required String email,
     required String password,
   });
+
+  Future<Either<IFailure, User>> oauthLogin({
+    required String idToken,
+  });
 }

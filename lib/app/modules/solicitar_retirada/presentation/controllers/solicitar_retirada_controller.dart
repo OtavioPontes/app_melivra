@@ -1,7 +1,7 @@
 import 'package:app_melivra/app/modules/professores/domain/entities/professor_response.dart';
 import 'package:app_melivra/app/modules/professores/domain/usecases/get_professors_usecase.dart';
 import 'package:app_melivra/app/modules/search/presentation/bloc/search_professor_bloc.dart';
-import 'package:app_melivra/app/modules/solicitar_retirada/data/services/send_solicitacao_retirada_service.dart';
+import 'package:app_melivra/app/modules/solicitar_retirada/domain/services/i_send_solicitacao_retirada_service.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -10,7 +10,7 @@ import '../../../professores/domain/entities/professor_entity.dart';
 class SolicitarRetiradaController {
   final GetProfessorsUsecase _getProfessorsUsecase;
   final SearchProfessorsBloc searchProfessorsBloc;
-  final SendSolicitacaoRetiradaService _sendSolicitacaoRetiradaService;
+  final ISendSolicitacaoRetiradaService _sendSolicitacaoRetiradaService;
 
   TextEditingController searchController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -23,7 +23,7 @@ class SolicitarRetiradaController {
   SolicitarRetiradaController({
     required this.searchProfessorsBloc,
     required GetProfessorsUsecase getProfessorsUsecase,
-    required SendSolicitacaoRetiradaService sendSolicitacaoRetiradaService,
+    required ISendSolicitacaoRetiradaService sendSolicitacaoRetiradaService,
   })  : _getProfessorsUsecase = getProfessorsUsecase,
         _sendSolicitacaoRetiradaService = sendSolicitacaoRetiradaService;
 

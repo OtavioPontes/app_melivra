@@ -45,7 +45,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 40.scale,
-                      color: theme.colorScheme.background,
+                      color: theme.colorScheme.surface,
                     ),
                   ),
                 ),
@@ -57,7 +57,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                         children: [
                           Icon(
                             Icons.rocket_launch,
-                            color: theme.colorScheme.background,
+                            color: theme.colorScheme.surface,
                             size: 40.scale,
                           ),
                           SizedBox(height: 16.scale),
@@ -65,7 +65,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                             'Sugestões',
                             style: theme.textTheme.headlineSmall!.merge(
                               TextStyle(
-                                color: theme.colorScheme.background,
+                                color: theme.colorScheme.surface,
                               ),
                             ),
                           ),
@@ -95,7 +95,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                                 'Mande suas sugestões e/ou críticas do app no campo abaixo:',
                                 style: theme.textTheme.headlineSmall!.merge(
                                   TextStyle(
-                                    color: theme.colorScheme.background,
+                                    color: theme.colorScheme.surface,
                                   ),
                                 ),
                               ),
@@ -146,7 +146,7 @@ class _SuggestionsPageState extends State<SuggestionsPage> {
                                       ),
                                       fixedSize: Size(140.scale, 50.scale),
                                       backgroundColor:
-                                          theme.colorScheme.background,
+                                          theme.colorScheme.surface,
                                     ),
                                     onPressed: () async {
                                       await controller.sendSuggestion();

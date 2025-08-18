@@ -44,4 +44,6 @@ abstract class IProfessorDatasource {
   });
 
   Future<Grade> getGlobalGrades();
+
+  Future<Grade?> getProfessorGradesByUser({required int id});
 }

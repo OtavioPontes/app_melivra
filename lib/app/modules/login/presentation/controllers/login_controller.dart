@@ -32,8 +32,8 @@ class LoginController {
       (failure) =>
           bloc.add(LoginFailureResponseEvent(message: failure.message)),
       (user) {
-        bloc.add(LoginSuccessResponseEvent());
         _store.setUser(user);
+        bloc.add(LoginSuccessResponseEvent());
         clearFields();
       },
     );
