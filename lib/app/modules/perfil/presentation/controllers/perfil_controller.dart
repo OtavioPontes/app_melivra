@@ -1,6 +1,7 @@
 import 'package:app_melivra/app/core/stores/user_store.dart';
 import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../../core/domain/entities/user.dart';
 
@@ -12,6 +13,7 @@ class PerfilController {
 
   Future<void> logout() async {
     await _store.clearUser();
+    await GoogleSignIn.instance.signOut();
     Modular.to.navigate(InicioModule.routeName);
   }
 

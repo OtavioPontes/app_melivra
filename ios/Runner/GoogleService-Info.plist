@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>834072919526-2i6i493a7ba2fmuacivk9spris7rvpfs.apps.googleusercontent.com</string>
+	<string>834072919526-ortu41vcsjc4i92qnk3e197o64g7kmml.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.834072919526-2i6i493a7ba2fmuacivk9spris7rvpfs</string>
+	<string>com.googleusercontent.apps.834072919526-ortu41vcsjc4i92qnk3e197o64g7kmml</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>834072919526-75heik92giothgdbq58n6u4p1tbou100.apps.googleusercontent.com</string>
+	<string>834072919526-doprmeqa00ba0puuhhlsp9tos56ms60e.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyD6i1Cyr7J670-ui2HS-VecTNcPW1LxrxM</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,11 +15,11 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.otaviopontes.melivra</string>
+	<string>com.otaviopontes.appMelivra</string>
 	<key>PROJECT_ID</key>
 	<string>melivra</string>
 	<key>STORAGE_BUCKET</key>
-	<string>melivra.appspot.com</string>
+	<string>melivra.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:834072919526:ios:857f307b053cff2a6a6a27</string>
+	<string>1:834072919526:ios:506b01378b52425f6a6a27</string>
+	<key>GIDServerClientID</key>
+	<string>834072919526-buv9le1jfvbsh6jk5cin1s3ffklsmd7p.apps.googleusercontent.com</string>
 </dict>
 </plist>

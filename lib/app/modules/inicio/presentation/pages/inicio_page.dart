@@ -150,13 +150,24 @@ class _InicioPageState extends State<InicioPage> {
                                         "834072919526-buv9le1jfvbsh6jk5cin1s3ffklsmd7p.apps.googleusercontent.com",
                                   );
 
-                                  await GoogleSignIn
+                                  final request = await GoogleSignIn
                                       .instance.authorizationClient
-                                      .authorizeScopes([
+                                      .authorizationForScopes([
                                     "https://www.googleapis.com/auth/userinfo.email",
                                   ]);
 
-                                  final account = await GoogleSignIn.instance
+                                  if (request == null) {
+                                    await GoogleSignIn
+                                        .instance.authorizationClient
+                                        .authorizeScopes([
+                                      "https://www.googleapis.com/auth/userinfo.email",
+                                    ]);
+                                  }
+
+                                  var account = await GoogleSignIn.instance
+                                      .attemptLightweightAuthentication();
+
+                                  account ??= await GoogleSignIn.instance
                                       .authenticate();
 
                                   controller.add(
