@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "834072919526-75heik92giothgdbq58n6u4p1tbou100.apps.googleusercontent.com",
+          "client_id": "834072919526-doprmeqa00ba0puuhhlsp9tos56ms60e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.otaviopontes.app_melivra",
@@ -22,7 +22,7 @@
           }
         },
         {
-          "client_id": "834072919526-cafqivpkp8it74b9ogq2l4mmcuiothu2.apps.googleusercontent.com",
+          "client_id": "834072919526-gjrq0kjb1oq3sjh65f3rplg5pkltp353.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.otaviopontes.app_melivra",
@@ -30,7 +30,15 @@
           }
         },
         {
-          "client_id": "834072919526-82lq1re9s3t5bgs75qoo70koceldpl7c.apps.googleusercontent.com",
+          "client_id": "834072919526-scsuv7eq0culagde3qimlau5mb6mq4gp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.otaviopontes.app_melivra",
+            "certificate_hash": "1c5f1194973fa741ab3f00e8c89d7e7a60e74d87"
+          }
+        },
+        {
+          "client_id": "834072919526-4p8trvv14hp4cj0eto14865b6u768tn4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -43,14 +51,14 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "834072919526-82lq1re9s3t5bgs75qoo70koceldpl7c.apps.googleusercontent.com",
+              "client_id": "834072919526-4p8trvv14hp4cj0eto14865b6u768tn4.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "834072919526-2i6i493a7ba2fmuacivk9spris7rvpfs.apps.googleusercontent.com",
+              "client_id": "834072919526-ortu41vcsjc4i92qnk3e197o64g7kmml.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.otaviopontes.melivra"
+                "bundle_id": "com.otaviopontes.appMelivra"
               }
             }
           ]
