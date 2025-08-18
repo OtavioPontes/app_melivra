@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "834072919526",
     "project_id": "melivra",
-    "storage_bucket": "melivra.appspot.com"
+    "storage_bucket": "melivra.firebasestorage.app"
   },
   "client": [
     {
@@ -19,6 +19,14 @@
           "android_info": {
             "package_name": "com.otaviopontes.app_melivra",
             "certificate_hash": "48a21f898ac478ed9253dadedcd61b2ba1882b6c"
+          }
+        },
+        {
+          "client_id": "834072919526-cafqivpkp8it74b9ogq2l4mmcuiothu2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.otaviopontes.app_melivra",
+            "certificate_hash": "2509773c63add591165f9c249014ba6ba7f0acd3"
           }
         },
         {

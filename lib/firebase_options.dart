@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:834072919526:android:46a9006af817086c6a6a27',
     messagingSenderId: '834072919526',
     projectId: 'melivra',
-    storageBucket: 'melivra.appspot.com',
+    storageBucket: 'melivra.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -62,7 +62,7 @@ class DefaultFirebaseOptions {
     appId: '1:834072919526:ios:857f307b053cff2a6a6a27',
     messagingSenderId: '834072919526',
     projectId: 'melivra',
-    storageBucket: 'melivra.appspot.com',
+    storageBucket: 'melivra.firebasestorage.app',
     androidClientId: '834072919526-75heik92giothgdbq58n6u4p1tbou100.apps.googleusercontent.com',
     iosClientId: '834072919526-2i6i493a7ba2fmuacivk9spris7rvpfs.apps.googleusercontent.com',
     iosBundleId: 'com.otaviopontes.melivra',

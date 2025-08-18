@@ -148,9 +148,14 @@ class _InicioPageState extends State<InicioPage> {
                                   await GoogleSignIn.instance.initialize(
                                     serverClientId:
                                         "834072919526-buv9le1jfvbsh6jk5cin1s3ffklsmd7p.apps.googleusercontent.com",
-                                    clientId:
-                                        "834072919526-buv9le1jfvbsh6jk5cin1s3ffklsmd7p.apps.googleusercontent.com",
                                   );
+
+                                  await GoogleSignIn
+                                      .instance.authorizationClient
+                                      .authorizeScopes([
+                                    "https://www.googleapis.com/auth/userinfo.email",
+                                  ]);
+
                                   final account = await GoogleSignIn.instance
                                       .authenticate();
 
@@ -162,13 +167,14 @@ class _InicioPageState extends State<InicioPage> {
                                 } catch (e) {
                                   // ignore: use_build_context_synchronously
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                       content: Text(
-                                        'Erro ao autenticar com o Google: $e',
+                                        'Erro ao autenticar com o Google',
                                       ),
                                       backgroundColor: Colors.redAccent,
                                     ),
                                   );
+                                  rethrow;
                                 }
                               },
                               child: BlocConsumer<InicioController,
