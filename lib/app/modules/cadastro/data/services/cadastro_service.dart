@@ -24,4 +24,40 @@ class CadastroService implements ICadastroService {
       );
     }
   }
+
+  @override
+  Future<Either<IFailure, void>> sendEmailToValidate({
+    required String email,
+    required String name,
+  }) async {
+    try {
+      await _cadastroRemoteDatasource.sendEmailToValidate(
+        email: email,
+        name: name,
+      );
+      return Right(voidRight);
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(message: e.message),
+      );
+    }
+  }
+
+  @override
+  Future<Either<IFailure, void>> validateCodeAndEmail({
+    required String email,
+    required String validationCode,
+  }) async {
+    try {
+      await _cadastroRemoteDatasource.validateCodeAndEmail(
+        email: email,
+        validationCode: validationCode,
+      );
+      return Right(voidRight);
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(message: e.message),
+      );
+    }
+  }
 }

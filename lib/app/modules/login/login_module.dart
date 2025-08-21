@@ -12,7 +12,7 @@ class LoginModule extends Module {
 
   @override
   void binds(Injector i) {
-    i.add(LoginBloc.new);
+    i.add(() => LoginBloc());
     i.add(() => LoginController(bloc: i(), store: i(), loginUsecase: i()));
     i.add(() => LoginUsecase(service: i()));
     super.binds(i);

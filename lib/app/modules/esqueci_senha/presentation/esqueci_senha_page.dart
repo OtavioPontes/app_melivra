@@ -11,11 +11,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/style/assets.dart';
 
 class EsqueciSenhaPage extends StatelessWidget {
-  const EsqueciSenhaPage({Key? key}) : super(key: key);
+  EsqueciSenhaPage({Key? key}) : super(key: key);
+  final controller = Modular.get<RecoverPasswordController>();
 
   @override
   Widget build(BuildContext context) {
-    final controller = Modular.get<RecoverPasswordController>();
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
     return Scaffold(

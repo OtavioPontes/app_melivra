@@ -24,7 +24,7 @@ class EsqueciSenhaModule extends Module {
     i.add(() => SendRecoverCodeUsecase(repository: i()));
     i.add(() => ValidateRecoverCodeUsecase(repository: i()));
     i.add(() => UpdatePasswordUsecase(repository: i()));
-    i.add(
+    i.addSingleton(
       () => RecoverPasswordController(
         updatePasswordUsecase: i(),
         sendRecoverCodeUsecase: i(),
@@ -38,7 +38,7 @@ class EsqueciSenhaModule extends Module {
   void routes(RouteManager r) {
     r.child(
       "/",
-      child: (context) => const EsqueciSenhaPage(),
+      child: (context) => EsqueciSenhaPage(),
     );
   }
 }

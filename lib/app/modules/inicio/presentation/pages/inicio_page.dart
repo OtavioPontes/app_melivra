@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:app_melivra/app/core/assets/initial_custom_path.dart';
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
+import 'package:app_melivra/app/core/utils/validators.dart';
 import 'package:app_melivra/app/modules/bottom_navigation/bottom_navigation_module.dart';
 import 'package:app_melivra/app/modules/cadastro/cadastro_module.dart';
 import 'package:app_melivra/app/modules/inicio/presentation/bloc/inicio_bloc.dart';
@@ -170,12 +173,27 @@ class _InicioPageState extends State<InicioPage> {
                                   account ??= await GoogleSignIn.instance
                                       .authenticate();
 
+                                  final validationError =
+                                      Validators.validateEmail(account.email);
+                                  if (validationError != null) {
+                                    unawaited(GoogleSignIn.instance.signOut());
+                                    // ignore: use_build_context_synchronously
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(validationError),
+                                        backgroundColor: Colors.redAccent,
+                                      ),
+                                    );
+                                    return;
+                                  }
+
                                   controller.add(
                                     InicioBlocSignInEvent(
                                       idToken: account.authentication.idToken!,
                                     ),
                                   );
                                 } catch (e) {
+                                  unawaited(GoogleSignIn.instance.signOut());
                                   // ignore: use_build_context_synchronously
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(

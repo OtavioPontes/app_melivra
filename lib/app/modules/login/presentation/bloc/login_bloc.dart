@@ -2,7 +2,7 @@ import 'package:app_melivra/app/modules/login/presentation/bloc/login_bloc_event
 import 'package:app_melivra/app/modules/login/presentation/bloc/login_bloc_states.dart';
 import 'package:bloc/bloc.dart';
 
-class LoginBloc extends Bloc {
+class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginEmptyState()) {
     on<LoginSubmitEvent>(handleLoginSubmitEvent);
     on<LoginSuccessResponseEvent>(handleLoginSuccessResponseEvent);
@@ -14,12 +14,16 @@ class LoginBloc extends Bloc {
   }
 
   void handleLoginSuccessResponseEvent(
-      LoginSuccessResponseEvent event, Emitter emit,) {
+    LoginSuccessResponseEvent event,
+    Emitter emit,
+  ) {
     emit(LoginSuccessState());
   }
 
   void handleLoginFailureResponseEvent(
-      LoginFailureResponseEvent event, Emitter emit,) {
+    LoginFailureResponseEvent event,
+    Emitter emit,
+  ) {
     emit(LoginFailureState(message: event.message));
   }
 }

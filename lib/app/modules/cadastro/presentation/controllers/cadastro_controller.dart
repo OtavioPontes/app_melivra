@@ -1,4 +1,5 @@
 import 'package:app_melivra/app/modules/cadastro/data/models/user_creation_model.dart';
+import 'package:app_melivra/app/modules/cadastro/domain/services/i_cadastro_service.dart';
 import 'package:app_melivra/app/modules/cadastro/domain/usecases/cadastro_user_usecase.dart';
 import 'package:app_melivra/app/modules/cadastro/presentation/bloc/cadastro_bloc.dart';
 import 'package:app_melivra/app/modules/cadastro/presentation/bloc/cadastro_bloc_events.dart';

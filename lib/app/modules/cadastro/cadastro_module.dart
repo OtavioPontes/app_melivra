@@ -6,6 +6,7 @@ import 'package:app_melivra/app/modules/cadastro/domain/services/i_cadastro_serv
 import 'package:app_melivra/app/modules/cadastro/domain/usecases/cadastro_user_usecase.dart';
 import 'package:app_melivra/app/modules/cadastro/presentation/bloc/cadastro_bloc.dart';
 import 'package:app_melivra/app/modules/cadastro/presentation/controllers/cadastro_controller.dart';
+import 'package:app_melivra/app/modules/cadastro/presentation/controllers/validate_email_controller.dart';
 import 'package:app_melivra/app/modules/cadastro/presentation/pages/cadastro_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -25,6 +26,7 @@ class CadastroModule extends Module {
     );
     i.add(() => CadastroUserUsecase(service: i()));
     i.add(() => CadastroController(cadastroUserUsecase: i(), bloc: i()));
+    i.add(() => ValidateEmailController(cadastroService: i()));
     super.binds(i);
   }
 

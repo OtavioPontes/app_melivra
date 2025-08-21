@@ -4,13 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pinput/pinput.dart';
 
-class ValidateRecoverCodePage extends StatelessWidget {
+class ValidateRecoverCodePage extends StatefulWidget {
   const ValidateRecoverCodePage({Key? key}) : super(key: key);
+
+  @override
+  State<ValidateRecoverCodePage> createState() =>
+      _ValidateRecoverCodePageState();
+}
+
+class _ValidateRecoverCodePageState extends State<ValidateRecoverCodePage> {
+  final controller = Modular.get<RecoverPasswordController>();
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final controller = Modular.get<RecoverPasswordController>();
 
     return PopScope(
       canPop: false,

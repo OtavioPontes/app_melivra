@@ -1,5 +1,6 @@
 import 'package:app_melivra/app/core/extensions/screen_extension.dart';
 import 'package:app_melivra/app/core/style/assets.dart';
+import 'package:app_melivra/app/core/utils/validators.dart';
 import 'package:app_melivra/app/modules/inicio/inicio_module.dart';
 import 'package:app_melivra/app/modules/meu_perfil/presentation/bloc/meu_perfil_bloc.dart';
 import 'package:app_melivra/app/modules/perfil/presentation/controllers/perfil_controller.dart';
@@ -19,6 +20,7 @@ class MeuPerfilPage extends StatelessWidget {
   final MeuPerfilController meuPerfilController =
       Modular.get<MeuPerfilController>();
   final bloc = Modular.get<MeuPerfilBloc>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -119,85 +121,104 @@ class MeuPerfilPage extends StatelessWidget {
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 32.scale),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: size.height * 0.12),
-                              MeuPerfilTextField(
-                                controller: meuPerfilController.nameController!,
-                                fieldHint: 'Nome',
-                                prefixIcon: Icons.person,
-                              ),
-                              SizedBox(height: 24.scale),
-                              MeuPerfilTextField(
-                                controller:
-                                    meuPerfilController.emailController!,
-                                fieldHint: 'Email',
-                                prefixIcon: Icons.email,
-                              ),
-                              SizedBox(height: 64.scale),
-                              Center(
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      // Change your radius here
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    fixedSize: Size(140.scale, 50.scale),
-                                    backgroundColor: theme.colorScheme.surface,
-                                  ),
-                                  onPressed: meuPerfilController.updateProfile,
-                                  child: Text(
-                                    'Salvar',
-                                    style: theme.textTheme.titleLarge!.merge(
-                                      TextStyle(
-                                        color: theme.primaryColor,
-                                      ),
-                                    ),
-                                  ),
+                          child: Form(
+                            key: formKey,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: size.height * 0.12),
+                                MeuPerfilTextField(
+                                  controller:
+                                      meuPerfilController.nameController!,
+                                  fieldHint: 'Nome',
+                                  prefixIcon: Icons.person,
                                 ),
-                              ),
-                              SizedBox(height: 40.scale),
-                              Center(
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      side: const BorderSide(
-                                        color: Colors.red,
+                                SizedBox(height: 24.scale),
+                                MeuPerfilTextField(
+                                  controller:
+                                      meuPerfilController.emailController!,
+                                  fieldHint: 'Email',
+                                  prefixIcon: Icons.email,
+                                  validator: Validators.validateEmail,
+                                ),
+                                SizedBox(height: 64.scale),
+                                Center(
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        // Change your radius here
+                                        borderRadius: BorderRadius.circular(12),
                                       ),
+                                      fixedSize: Size(140.scale, 50.scale),
+                                      backgroundColor:
+                                          formKey.currentState?.validate() ??
+                                                  true
+                                              ? theme.colorScheme.surface
+                                              : theme.disabledColor,
                                     ),
-                                    fixedSize: Size(160.scale, 40.scale),
-                                  ),
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) =>
-                                          const DeletePerfilDialog(),
-                                    );
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                      ),
-                                      SizedBox(width: 8.scale),
-                                      Text(
-                                        'Deletar a Conta',
-                                        style:
-                                            theme.textTheme.titleSmall!.merge(
-                                          TextStyle(
-                                            color: theme.colorScheme.surface,
-                                          ),
+                                    onPressed: () {
+                                      if (formKey.currentState!.validate()) {
+                                        FocusScope.of(context).unfocus();
+                                      } else {
+                                        return;
+                                      }
+                                      meuPerfilController.updateProfile();
+                                    },
+                                    child: Text(
+                                      'Salvar',
+                                      style: theme.textTheme.titleLarge!.merge(
+                                        TextStyle(
+                                          color: theme.primaryColor,
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                SizedBox(height: 40.scale),
+                                Center(
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                        side: const BorderSide(
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                      fixedSize: Size(160.scale, 40.scale),
+                                    ),
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) =>
+                                            const DeletePerfilDialog(),
+                                      );
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                        SizedBox(width: 8.scale),
+                                        Text(
+                                          'Deletar a Conta',
+                                          style:
+                                              theme.textTheme.titleSmall!.merge(
+                                            TextStyle(
+                                              color: theme.colorScheme.surface,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],

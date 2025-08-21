@@ -6,4 +6,12 @@ abstract class ICadastroService {
   Future<Either<IFailure, void>> call({
     required UserCreationModel user,
   });
+  Future<Either<IFailure, void>> sendEmailToValidate({
+    required String email,
+    required String name,
+  });
+  Future<Either<IFailure, void>> validateCodeAndEmail({
+    required String email,
+    required String validationCode,
+  });
 }

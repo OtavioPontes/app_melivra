@@ -5,12 +5,18 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/widgets/textfield_inicio_widget.dart';
 
-class UpdatePasswordPage extends StatelessWidget {
+class UpdatePasswordPage extends StatefulWidget {
   const UpdatePasswordPage({Key? key}) : super(key: key);
 
   @override
+  State<UpdatePasswordPage> createState() => _UpdatePasswordPageState();
+}
+
+class _UpdatePasswordPageState extends State<UpdatePasswordPage> {
+  final controller = Modular.get<RecoverPasswordController>();
+
+  @override
   Widget build(BuildContext context) {
-    final controller = Modular.get<RecoverPasswordController>();
     final theme = Theme.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 64.scale),
